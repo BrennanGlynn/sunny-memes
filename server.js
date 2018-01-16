@@ -37,7 +37,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser('fortified secret'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('express-session')({secret: 'fortified secret', resave: true, saveUninitialized: true}));
-
 app.use(passport.initialize());
 app.use(passport.session());
 

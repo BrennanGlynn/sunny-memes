@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {Navbar, Nav, NavItem } from 'react-bootstrap';
 import Login from './Login';
+import Banner from './Front-Banner';
 
 class Home extends Component {
     constructor(props) {
@@ -55,7 +56,9 @@ class Home extends Component {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
+                <Login/>
                 <Switch>
+                    <Route path='/' exact component={Banner} />
                     <Route path='/login' component={Login} />
                 </Switch>
             </div>

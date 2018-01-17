@@ -13,11 +13,7 @@ passport.use(new FacebookStrategy({
     const me = new User({
         facebookId: profile.id,
         name: profile.displayName,
-<<<<<<< HEAD
-        test: 'test'
-=======
         picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
->>>>>>> origin/master
     })
 
     User.findOne({facebookId: me.facebookId}, function (err, user) {

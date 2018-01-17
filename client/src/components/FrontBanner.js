@@ -15,7 +15,7 @@ class FrontBanner extends Component {
         const {classes} = this.props;
         return(
             <div>
-                <h1 className={classes.center}>Banner</h1>
+                <h1>Banner</h1>
             </div>
         );
     }

@@ -4,11 +4,19 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
+const styles = {
+  center: {
+    textAlign: 'center',
+  },
+};
+
 
 class Banner extends Component {
     render() {
         return(
-          <h1>Banner</h1>
+          <div className>
+            <h1>Banner</h1>
+          </div>
         );
     }
 }

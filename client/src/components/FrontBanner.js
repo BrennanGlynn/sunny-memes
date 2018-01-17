@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 const styles = {
     center: {
         textAlign: 'center'
-    }
+    },
 }
 
 
@@ -14,8 +14,8 @@ class FrontBanner extends Component {
     render() {
         const {classes} = this.props;
         return(
-            <div className={classes.center}>
-                <h1>Banner</h1>
+            <div>
+                <h1 className={classes.center}>Banner</h1>
             </div>
         );
     }

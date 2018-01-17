@@ -5,7 +5,7 @@ import {withStyles} from 'material-ui/styles';
 import {AppBar, Toolbar, Button} from 'material-ui';
 import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
-import Banner from './Front-Banner';
+import Banner from './FrontBanner';
 import MemeCard from './MemeCard';
 import RightDrawer from './RightDrawer';
 
@@ -90,6 +90,7 @@ class Home extends Component {
                 }}
                 />
                 <RightDrawer />
+                <img src="http://localhost:3001/images/faces/unknown-user-pic.png" alt="profile picture" />
             </div>
         );
     }

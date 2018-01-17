@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import {AppBar, Toolbar, Typography, Button} from 'material-ui';
+import {AppBar, Toolbar, Button} from 'material-ui';
 import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
 import Banner from './Front-Banner';
+import MemeCard from './MemeCard';
 
 const styles = {
     root: {
@@ -65,7 +66,7 @@ class Home extends Component {
                 <AppBar position="static">
                     <Toolbar>
                         <div className={classes.flex}>
-                            <img src="http://localhost:3001/images/sunny-logo.png" />
+                            <img src="http://localhost:3001/images/sunny-logo.png" alt="logo"/>
                         </div>
                         {!this.state.name && <LoginModal/>}
                         {this.state.name && <Button href="http://localhost:3001/auth/logout" color="contrast">Logout ({this.state.name})</Button>}
@@ -76,6 +77,17 @@ class Home extends Component {
                     <Route path='/' exact component={Banner} />
                     <Route path='/addMeme' component={AddMeme} />
                 </Switch>
+                <MemeCard memeData={{
+                    "url" : "/images/memes/10156593256159947cold.jpg",
+                    "uploaded_by" : "10156593256159947",
+                    "favorites" : 0,
+                    "visits" : 0,
+                    "tags" : [ ],
+                    "characters" : [
+                    "charlie"
+                    ],
+                }}
+                />
             </div>
         );
     }

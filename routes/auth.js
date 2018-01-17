@@ -8,12 +8,12 @@ passport.use(new FacebookStrategy({
     clientID: '316389025537007',
     clientSecret: '78bcf0c5451347fb5b637d1b2299fa0e',
     callbackURL: 'http://localhost:3001/auth/facebook/return',
-    profileFields: ['id', 'displayName', 'emails']
+    profileFields: ['id', 'displayName', 'emails', 'picture.type(large)']
 }, function (accessToken, refreshToken, profile, done) {
     const me = new User({
         facebookId: profile.id,
         name: profile.displayName,
-        test: 'test'
+        picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
     })
 
     User.findOne({facebookId: me.facebookId}, function (err, user) {
@@ -40,7 +40,7 @@ passport.deserializeUser(function (id, done) {
 
 router.use('/me', (req, res) => {
     if (req.isAuthenticated()) {
-        res.send({id: req.user.facebookId, name: req.user.name})
+        res.send({id: req.user.facebookId, name: req.user.name, picture: req.user.picture})
     } else {
         res.send({id: "", name: "", authenticated: false})
     }

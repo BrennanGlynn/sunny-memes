@@ -12,7 +12,8 @@ passport.use(new FacebookStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     const me = new User({
         facebookId: profile.id,
-        name: profile.displayName
+        name: profile.displayName,
+        test: 'test'
     })
 
     User.findOne({facebookId: me.facebookId}, function (err, user) {
@@ -36,6 +37,14 @@ passport.deserializeUser(function (id, done) {
         done(err, user)
     })
 });
+
+router.use('/me', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.send({id: req.user.facebookId, name: req.user.name})
+    } else {
+        res.send({id: "", name: "", authenticated: false})
+    }
+})
 
 router.get('/facebook', passport.authenticate('facebook'));
 

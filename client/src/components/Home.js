@@ -33,7 +33,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.callApi('/me')
+        this.callApi('auth/me')
             .then(res => {
                 this.setState({facebookId: res.id, name: res.name})
             })

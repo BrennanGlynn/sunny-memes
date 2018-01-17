@@ -6,12 +6,17 @@ import Button from 'material-ui/Button';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
+var FontAwesome = require('react-fontawesome');
+
 const styles = {
-  list: {
-    width: 250,
-  },
   listFull: {
-    width: 'auto',
+    width: '250px',
+  },
+  center: {
+    textAlign: 'center',
+  },
+  marginRight: {
+    marginRight: '5px',
   },
 };
 
@@ -33,21 +38,26 @@ class RightDrawer extends Component {
     render() {
       const { classes } = this.props;
 
-      const sideList = (
-      <div className={classes.list}>
-        <List>TEST</List>
-        <Divider />
-        <List>JEWS</List>
-        <Divider />
-        <List>JEWS</List>
-      </div>
-    );
-
       const fullList = (
       <div className={classes.listFull}>
-        <List>LOL</List>
-        <Divider />
-        <List>MEMES</List>
+        <div className={classes.center}>
+          <h2>Profile Pic Here</h2>
+          <Divider />
+        </div>
+        <div className={classes.center}>
+          <List>
+            <FontAwesome className='marginRight' name='star'/>
+            Favorites
+          </List>
+          <Divider />
+          <List>
+            <FontAwesome className='marginRight' name='upload'/>
+            My Uploads
+          </List>
+          <Divider />
+          <List>Logout</List>
+          <Divider />
+        </div>
       </div>
     );
       return (

@@ -40,11 +40,7 @@ passport.deserializeUser(function (id, done) {
 
 router.use('/me', (req, res) => {
     if (req.isAuthenticated()) {
-<<<<<<< HEAD
-        res.send({id: req.user.facebookId, name: req.user.name})
-=======
         res.send({id: req.user.facebookId, name: req.user.name, picture: req.user.picture})
->>>>>>> origin/master
     } else {
         res.send({id: "", name: "", authenticated: false})
     }

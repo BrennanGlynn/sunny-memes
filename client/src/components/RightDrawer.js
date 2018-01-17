@@ -6,12 +6,17 @@ import Button from 'material-ui/Button';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
+var FontAwesome = require('react-fontawesome');
+
 const styles = {
   listFull: {
     width: '250px',
   },
   center: {
     textAlign: 'center',
+  },
+  marginRight: {
+    marginRight: '5px',
   },
 };
 
@@ -41,11 +46,14 @@ class RightDrawer extends Component {
         </div>
         <div className={classes.center}>
           <List>
-            <FontAwesome name='rocket' />
+            <FontAwesome className='marginRight' name='star'/>
             Favorites
           </List>
           <Divider />
-          <List>My Uploads</List>
+          <List>
+            <FontAwesome className='marginRight' name='upload'/>
+            My Uploads
+          </List>
           <Divider />
           <List>Logout</List>
           <Divider />

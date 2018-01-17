@@ -89,8 +89,7 @@ class Home extends Component {
                     ],
                 }}
                 />
-
-                <RightDrawer/>
+                <RightDrawer />
             </div>
         );
     }

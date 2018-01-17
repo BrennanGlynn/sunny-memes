@@ -15,8 +15,11 @@ const styles = {
   center: {
     textAlign: 'center',
   },
-  marginRight: {
-    marginRight: '5px',
+  left: {
+    textAlign: 'left',
+  },
+  paddingRight: {
+    padding: '5px',
   },
 };
 
@@ -41,21 +44,30 @@ class RightDrawer extends Component {
       const fullList = (
       <div className={classes.listFull}>
         <div className={classes.center}>
-          <h2>Profile Pic Here</h2>
+          <h2>hi ben (pic here)</h2>
           <Divider />
         </div>
-        <div className={classes.center}>
-          <List>
-            <FontAwesome className='marginRight' name='star'/>
-            Favorites
-          </List>
+        <div className={classes.left}>
+          <a href="#">
+            <List>
+              <FontAwesome style={{marginLeft: 5 + "px", paddingRight: 5 + "px"}} className='paddingRight' name='star'/>
+              Favorites
+            </List>
+          </a>
           <Divider />
-          <List>
-            <FontAwesome className='marginRight' name='upload'/>
-            My Uploads
-          </List>
+          <a href="#">
+            <List>
+              <FontAwesome style={{marginLeft: 5 + "px", paddingRight: 5 + "px"}} className='paddingRight' name='upload'/>
+              My Uploads
+            </List>
+          </a>
           <Divider />
-          <List>Logout</List>
+          <a href="#">
+            <List>
+              <FontAwesome style={{marginLeft: 5 + "px", paddingRight: 5 + "px"}} className='paddingRight' name='sign-out'/>
+              Logout
+            </List>
+          </a>
           <Divider />
         </div>
       </div>

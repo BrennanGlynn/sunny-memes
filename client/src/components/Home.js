@@ -7,6 +7,7 @@ import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
 import Banner from './Front-Banner';
 import MemeCard from './MemeCard';
+import RightDrawer from './RightDrawer';
 
 const styles = {
     root: {
@@ -88,6 +89,7 @@ class Home extends Component {
                     ],
                 }}
                 />
+                <RightDrawer />
             </div>
         );
     }

@@ -18,8 +18,8 @@ const styles = {
   left: {
     textAlign: 'left',
   },
-  paddingRight: {
-    padding: '5px',
+  marginRight: {
+    marginRight: '5px',
   },
 };
 

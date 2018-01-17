@@ -21,6 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 //set up mongodb
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g6c7z.mongodb.net:27017,cluster0-shard-00-01-g6c7z.mongodb.net:27017,cluster0-shard-00-02-g6c7z.mongodb.net:27017/sunny?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', { useMongoClient: true }, function (error) {
     if (error) {
         console.log(error);
@@ -41,13 +42,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', auth);
-app.use('/me', (req, res) => {
-    if (req.isAuthenticated()) {
-        res.send({id: req.user.facebookId, name: req.user.name})
-    } else {
-        res.send({id: "", name: "", authenticated: false})
-    }
-})
 
 app.use('/hello', (req, res) => {
     res.send({"express": "hello world"})

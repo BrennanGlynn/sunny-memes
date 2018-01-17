@@ -1,15 +1,32 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {Navbar, Nav, NavItem } from 'react-bootstrap';
-import Login from './Login';
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles';
+import {AppBar, Toolbar, Typography, Button} from 'material-ui';
+import LoginModal from './LoginModal';
+import AddMeme from './AddMeme';
 import Banner from './Front-Banner';
+
+const styles = {
+    root: {
+        width: '100%',
+    },
+    flex: {
+        flex: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+};
+
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             facebookId: '',
-            name: '',
+            name: ''
         }
     }
 
@@ -29,42 +46,43 @@ class Home extends Component {
 
         if (response.status !== 200) throw Error(body.message);
 
-        return body;
+        return body
     };
 
+    requireAuth() {
+        if (this.state.name) {
+            return true
+        }
+        return false
+    }
+
+
     render() {
+        const { classes } = this.props;
+
         return (
             <div>
-                <Navbar collapseOnSelect>
-                    <Navbar.Header>
-                        <Navbar.Brand>
-                            <a href="/">Sunny Memes</a>
-                        </Navbar.Brand>
-                        <Navbar.Toggle/>
-                    </Navbar.Header>
-                    <Navbar.Collapse>
-                        <Nav pullRight>
-                            {!this.state.name &&
-                            <NavItem eventKey={1} href="/login">
-                                Login
-                            </NavItem>}
-                            {this.state.facebookId &&
-                            <NavItem eventKey={2} href="http://localhost:3001/auth/logout">
-                                Logout ({this.state.name})
-                            </NavItem>
-                            }
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
-                <Login/>
+                <AppBar position="static">
+                    <Toolbar>
+                        <div className={classes.flex}>
+                            <img src="http://localhost:3001/images/sunny-logo.png" />
+                        </div>
+                        {!this.state.name && <LoginModal/>}
+                        {this.state.name && <Button href="http://localhost:3001/auth/logout" color="contrast">Logout ({this.state.name})</Button>}
+                    </Toolbar>
+                </AppBar>
+                <LoginModal/>
                 <Switch>
                     <Route path='/' exact component={Banner} />
-                    <Route path='/login' component={Login} />
+                    <Route path='/addMeme' component={AddMeme} />
                 </Switch>
             </div>
         );
     }
-
 }
 
-export default Home;
+Home.propTypes = {
+    classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(Home)

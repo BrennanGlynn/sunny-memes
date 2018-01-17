@@ -52,13 +52,11 @@ app.use('/me', (req, res) => {
 app.use('/hello', (req, res) => {
     res.send({"express": "hello world"})
 })
-// app.use('/login', login);
-//TODO: fix
-app.use('/newMeme', ensureAuthenticated, (req, res) => {
-    res.render('upload');
-});
 
 app.use('/upload', (req, res) => {
+    if (!req.user) {
+        return res.redirect('http://localhost:3000')
+    }
     const form = new formidable.IncomingForm();
 form.parse(req, function (err, fields, files) {
     const oldPath = files.file.path;
@@ -67,17 +65,17 @@ form.parse(req, function (err, fields, files) {
         if (error) throw error;
         console.log(req.user);
         const memeData = {
-            url: "/images/memes/" + req.user.facebookId + files.file.name,
+            url: '/images/memes/' + req.user.facebookId + files.file.name,
             uploaded_by: req.user.facebookId,
-            characters: ["charlie"]
+            characters: ['charlie']
         };
         Meme.create(memeData, function (err, meme) {
             if (err) {
                 console.log(err);
                 res.status = 501;
-                return res.send("Error creating meme")
+                return res.send('Error creating meme')
             }
-            return res.send("Meme created");
+            return res.redirect('http://localhost:3000/');
         });
     })
 })

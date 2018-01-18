@@ -59,7 +59,7 @@ form.parse(req, function (err, fields, files) {
         if (error) throw error;
         console.log(req.user);
         const memeData = {
-            url: '/images/memes/' + req.user.facebookId + files.file.name,
+            url: '/images/memes/' + req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.trim(),
             uploaded_by: req.user.facebookId,
             characters: ['charlie']
         };

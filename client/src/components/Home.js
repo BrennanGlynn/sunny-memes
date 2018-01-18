@@ -28,7 +28,8 @@ class Home extends Component {
         super(props);
         this.state = {
             facebookId: '',
-            name: ''
+            name: '',
+            picture: 'http://localhost:3001/images/user-icon.png'
         }
     }
 
@@ -90,7 +91,7 @@ class Home extends Component {
                 }}
                 />
                 <RightDrawer />
-                <img src="http://localhost:3001/images/faces/unknown-user-pic.png" alt="profile picture" />
+                <img src={this.state.picture} alt="profile picture" />
             </div>
         );
     }

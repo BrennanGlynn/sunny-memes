@@ -10,7 +10,7 @@ const styles = theme => ({
       position: 'relative',
       marginLeft: 'auto',
       marginRight: 'auto',
-      height: '350px',
+      height: '400px',
       paddingTop: '25px',
       backgroundColor: '#2f8a45',
       backgroundImage: 'url(' + bannerBackgroundUrl + ')',
@@ -23,7 +23,7 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 12,
         marginLeft: "35%",
         width: "25%",
-        backgroundColor: 'rgba(255,255,255,.8)',
+        backgroundColor: 'rgba(255,255,255,.7)',
     }),
     h1: {
       color: '#2f8a45',
@@ -59,7 +59,7 @@ class FrontBanner extends Component {
                       {introP}
                     </Typography>
                     <Button raised color="primary" className={classes.button}>
-                      Register
+                      Upload
                     </Button>
                 </Paper>
             </div>

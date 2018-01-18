@@ -2,10 +2,13 @@ import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
-import List from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-
-var FontAwesome = require('react-fontawesome');
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+import FavoriteIcon from 'material-ui-icons/Favorite';
+import CloudUploadIcon from 'material-ui-icons/CloudUpload';
+import PowerSettingsNewIcon from 'material-ui-icons/PowerSettingsNew';
 
 const styles = {
     listFull: {
@@ -20,10 +23,6 @@ const styles = {
     marginRight: {
         marginRight: '5px',
     },
-    faIcon: {
-        marginLeft: '5px',
-        paddingRight: '5px'
-    }
 };
 
 class RightDrawer extends Component {
@@ -51,36 +50,36 @@ class RightDrawer extends Component {
                     <Divider/>
                 </div>
                 <div className={classes.left}>
-                    <a href="#">
-                        <List>
-                            <FontAwesome className={classes.faIcon}
-                                         name='star'/>
-                            Favorites
-                        </List>
-                    </a>
-                    <Divider/>
-                    <a href="#">
-                        <List>
-                            <FontAwesome className={classes.faIcon}
-                                         name='upload'/>
-                            My Uploads
-                        </List>
-                    </a>
-                    <Divider/>
-                    <a href="http://localhost:3001/auth/logout">
-                        <List>
-                            <FontAwesome className={classes.faIcon}
-                                         name='sign-out'/>
-                            Logout
-                        </List>
-                    </a>
-                    <Divider/>
+                  <List>
+                    <ListItem button component="a" href="#">
+                      <ListItemIcon>
+                        <FavoriteIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Favorites" />
+                    </ListItem>
+
+                    <ListItem button component="a" href="#">
+                      <ListItemIcon>
+                        <CloudUploadIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="My Memes" />
+                    </ListItem>
+
+                    <ListItem button component="a" href="/auth/logout">
+                      <ListItemIcon>
+                        <PowerSettingsNewIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Logout" />
+                    </ListItem>
+                  </List>
                 </div>
             </div>
         );
         return (
             <div>
-                <Button onClick={this.toggleDrawer('right', true)}>MENU</Button>
+                <IconButton style={{color: '#fff'}} aria-label="Menu" onClick={this.toggleDrawer('right', true)}>
+                  <MenuIcon />
+                </IconButton>
 
                 <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
                     <div

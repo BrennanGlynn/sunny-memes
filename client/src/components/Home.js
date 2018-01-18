@@ -28,14 +28,15 @@ class Home extends Component {
         super(props);
         this.state = {
             facebookId: '',
-            name: ''
+            name: '',
+            picture: 'http://localhost:3001/images/user-icon.png'
         }
     }
 
     componentDidMount() {
         this.callApi('auth/me')
             .then(res => {
-                this.setState({facebookId: res.id, name: res.name})
+                this.setState({facebookId: res.id, name: res.name, picture: res.picture})
             })
             .catch(err => {
                 console.log(err)
@@ -90,7 +91,7 @@ class Home extends Component {
                 }}
                 />
                 <RightDrawer />
-                <img src="http://localhost:3001/images/faces/unknown-user-pic.png" alt="profile picture" />
+                <img src={this.state.picture} alt="profile picture" />
             </div>
         );
     }

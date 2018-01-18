@@ -37,7 +37,7 @@ passport.deserializeUser(function (id, done) {
     })
 });
 
-router.get('/facebook', passport.authenticate('facebook'));
+router.get('/facebook', passport.authenticate('facebook'), { authType: 'request', scope: ['public_profile', 'email']});
 
 router.get('/facebook/return', passport.authenticate('facebook', {failureRedirect: '/auth'}),
     function (req, res) {

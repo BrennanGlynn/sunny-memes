@@ -32,14 +32,6 @@ const styles = theme => ({
       marginTop: '10px',
       marginBottom: '10px',
     },
-    button: {
-      margin: theme.spacing.unit,
-      backgroundColor: '#2f8a45',
-    },
-    button2: {
-      margin: theme.spacing.unit,
-      backgroundColor: '#ffd204',
-    },
 });
 
 
@@ -58,9 +50,6 @@ class FrontBanner extends Component {
                     <Typography component="p" className={classes.p}>
                       {introP}
                     </Typography>
-                    <Button raised color="primary" className={classes.button}>
-                      Add a Meme
-                    </Button>
                 </Paper>
             </div>
         );

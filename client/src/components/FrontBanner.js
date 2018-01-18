@@ -10,8 +10,13 @@ const styles = theme => ({
       position: 'relative',
       marginLeft: 'auto',
       marginRight: 'auto',
+<<<<<<< HEAD
       height: '350px',
       paddingTop: '5px',
+=======
+      height: '400px',
+      paddingTop: '25px',
+>>>>>>> master
       backgroundColor: '#2f8a45',
       backgroundImage: 'url(' + bannerBackgroundUrl + ')',
       backgroundRepeat: 'no-repeat',
@@ -59,7 +64,7 @@ class FrontBanner extends Component {
                       {introP}
                     </Typography>
                     <Button raised color="primary" className={classes.button}>
-                      Register
+                      Add a Meme
                     </Button>
                 </Paper>
             </div>

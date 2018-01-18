@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
-import { Paper, Grid, Typography } from 'material-ui';
+import { Paper, Typography } from 'material-ui';
 
 const styles = {
     root: {

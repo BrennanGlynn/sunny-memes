@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
@@ -48,7 +47,7 @@ class RightDrawer extends Component {
         const fullList = (
             <div className={classes.listFull}>
                 <div className={classes.center}>
-                    <h2>hi {this.props.name.substr(0, this.props.name.indexOf(' '))}</h2> <img src={this.props.picture}/>
+                    <h2>hi {this.props.name.substr(0, this.props.name.indexOf(' '))}</h2> <img src={this.props.picture} alt="profile"/>
                     <Divider/>
                 </div>
                 <div className={classes.left}>

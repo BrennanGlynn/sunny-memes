@@ -30,7 +30,6 @@ class Home extends Component {
             facebookId: '',
             name: '',
             picture: 'http://localhost:3001/images/user-icon.png',
-            loginOpen: false
         }
     }
 
@@ -46,11 +45,6 @@ class Home extends Component {
                 console.log(err)
             });
     }
-
-    // open/close the login modal
-    toggleLoginOpen () {
-        this.setState({ loginOpen: !this.state.loginOpen });
-    };
 
     // method to call api
     callApi = async (route) => {

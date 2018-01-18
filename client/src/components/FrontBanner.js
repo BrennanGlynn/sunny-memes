@@ -1,33 +1,73 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Grid from 'material-ui/Grid';
+import { Paper, Grid, Typography } from 'material-ui';
+import Button from 'material-ui/Button';
 
-const styles = {
+let bannerBackgroundUrl = 'images/dayman-nightman.png'
+const styles = theme => ({
     bannerWrapper: {
-        textAlign: 'center',
-        height: '250px',
-        position: 'relative',
-        top: '-57px',
-        borderBottom: '1px',
-        borderColor: '#dedede',
-        backgroundColor: '#2f8a45',
+      textAlign: 'center',
+      position: 'relative',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      height: '350px',
+      paddingTop: '25px',
+      backgroundColor: '#2f8a45',
+      backgroundImage: 'url(' + bannerBackgroundUrl + ')',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
     },
+    root: theme.mixins.gutters ({
+        paddingTop: 16,
+        paddingBottom: 16,
+        marginTop: theme.spacing.unit * 12,
+        marginLeft: "33.3%",
+        width: "30%",
+        backgroundColor: 'rgba(255,255,255,.8)',
+    }),
     h1: {
-      paddingTop: '50px',
+      color: '#2f8a45',
     },
-}
+    p: {
+      marginTop: '10px',
+      marginBottom: '10px',
+    },
+    button: {
+      margin: theme.spacing.unit,
+      backgroundColor: '#2f8a45',
+    },
+    button2: {
+      margin: theme.spacing.unit,
+      backgroundColor: '#ffd204',
+    },
+});
 
 
 class FrontBanner extends Component {
     render() {
         const {classes} = this.props;
+        const introP = "This you should upload. I leave memes. Good. Thank you, thank you. " +
+                      "If you vote me, I'm hot. What? Taxes, they'll be lower... son. The meme" +
+                      " upload is the right thing to do Philadelphia, so do."
         return(
             <div className={classes.bannerWrapper}>
-                <h1 className={classes.h1}>Hello Fellow American</h1>
+                <Paper className={classes.root} elevation={4}>
+                    <Typography type="headline" component="h1" className={classes.h1}>
+                        Hello Fellow American
+                    </Typography>
+                    <Typography component="p" className={classes.p}>
+                      {introP}
+                    </Typography>
+                    <Button raised color="primary" className={classes.button}>
+                      Register
+                    </Button>
+                    <Button raised color="accent" className={classes.button2}>
+                      Donate
+                    </Button>
+                </Paper>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(FrontBanner);
+export default withStyles(styles)(FrontBanner)

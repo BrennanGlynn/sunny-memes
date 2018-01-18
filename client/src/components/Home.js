@@ -74,7 +74,6 @@ class Home extends Component {
                         {this.state.name && <Button href="http://localhost:3001/auth/logout" color="contrast">Logout ({this.state.name})</Button>}
                     </Toolbar>
                 </AppBar>
-                <LoginModal/>
                 <Switch>
                     <Route path='/' exact component={Banner} />
                     <Route path='/addMeme' component={AddMeme} />

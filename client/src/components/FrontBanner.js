@@ -10,13 +10,8 @@ const styles = theme => ({
       position: 'relative',
       marginLeft: 'auto',
       marginRight: 'auto',
-<<<<<<< HEAD
       height: '350px',
       paddingTop: '5px',
-=======
-      height: '400px',
-      paddingTop: '25px',
->>>>>>> master
       backgroundColor: '#2f8a45',
       backgroundImage: 'url(' + bannerBackgroundUrl + ')',
       backgroundRepeat: 'no-repeat',

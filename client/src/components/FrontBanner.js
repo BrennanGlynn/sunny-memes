@@ -42,7 +42,6 @@ const styles = theme => ({
     },
 });
 
-
 class FrontBanner extends Component {
     render() {
         const {classes} = this.props;

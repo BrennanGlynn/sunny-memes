@@ -42,7 +42,7 @@ router.use('/me', (req, res) => {
     if (req.isAuthenticated()) {
         res.send({id: req.user.facebookId, name: req.user.name, picture: req.user.picture})
     } else {
-        res.send({id: "", name: "", authenticated: false})
+        res.send({id: "", name: "", picture: 'http://localhost:3001/images/user-icon.png'})
     }
 })
 

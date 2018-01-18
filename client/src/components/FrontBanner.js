@@ -59,7 +59,7 @@ class FrontBanner extends Component {
                       {introP}
                     </Typography>
                     <Button raised color="primary" className={classes.button}>
-                      Upload
+                      Add a Meme
                     </Button>
                 </Paper>
             </div>

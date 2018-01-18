@@ -21,8 +21,8 @@ const styles = theme => ({
         paddingTop: 16,
         paddingBottom: 16,
         marginTop: theme.spacing.unit * 12,
-        marginLeft: "33.3%",
-        width: "30%",
+        marginLeft: "35%",
+        width: "25%",
         backgroundColor: 'rgba(255,255,255,.8)',
     }),
     h1: {
@@ -42,11 +42,12 @@ const styles = theme => ({
     },
 });
 
+
 class FrontBanner extends Component {
     render() {
         const {classes} = this.props;
         const introP = "This you should upload. I leave memes. Good. Thank you, thank you. " +
-                      "If you vote me, I'm hot. What? Taxes, they'll be lower... son. The meme" +
+                      "If you share me, I'm hot. What? Taxes, they'll be lower... son. The meme" +
                       " upload is the right thing to do Philadelphia, so do."
         return(
             <div className={classes.bannerWrapper}>
@@ -59,9 +60,6 @@ class FrontBanner extends Component {
                     </Typography>
                     <Button raised color="primary" className={classes.button}>
                       Register
-                    </Button>
-                    <Button raised color="accent" className={classes.button2}>
-                      Donate
                     </Button>
                 </Paper>
             </div>

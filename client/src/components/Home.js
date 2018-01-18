@@ -65,6 +65,7 @@ class Home extends Component {
 
         return (
             <div>
+                {/*// Navbar //*/}
                 <AppBar position="static">
                     <Toolbar>
                         <div className={classes.flex}>
@@ -74,11 +75,18 @@ class Home extends Component {
                         {this.state.name && <Button href="http://localhost:3001/auth/logout" color="contrast">Logout ({this.state.name})</Button>}
                     </Toolbar>
                 </AppBar>
+
+                {/*// Login popup modal //*/}
                 <LoginModal/>
+
+                {/*// Pages //*/}
                 <Switch>
                     <Route path='/' exact component={Banner} />
                     <Route path='/addMeme' component={AddMeme} />
                 </Switch>
+
+                {/*// Example of a meme card. //*/}
+                {/*// Will move once completed // */}
                 <MemeCard memeData={{
                     "url" : "/images/memes/10156593256159947cold.jpg",
                     "uploaded_by" : "10156593256159947",
@@ -90,6 +98,7 @@ class Home extends Component {
                     ],
                 }}
                 />
+
                 <RightDrawer />
                 <img src={this.state.picture} alt="profile picture" />
             </div>

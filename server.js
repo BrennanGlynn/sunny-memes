@@ -4,14 +4,11 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const formidable = require('formidable');
-const fs = require('fs');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const index = require('./routes/index');
 const auth = require('./routes/auth');
-
-const Meme = require('./models/meme.model');
+const upload = require('./routes/upload');
+const mememRouter = require('./routes/memes');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -22,7 +19,7 @@ app.set('view engine', 'hbs');
 
 //set up mongodb
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g6c7z.mongodb.net:27017,cluster0-shard-00-01-g6c7z.mongodb.net:27017,cluster0-shard-00-02-g6c7z.mongodb.net:27017/sunny?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', { useMongoClient: true }, function (error) {
+mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g6c7z.mongodb.net:27017,cluster0-shard-00-01-g6c7z.mongodb.net:27017,cluster0-shard-00-02-g6c7z.mongodb.net:27017/sunny?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', {useMongoClient: true}, function (error) {
     if (error) {
         console.log(error);
     } else {
@@ -43,37 +40,9 @@ app.use(passport.session());
 
 app.use('/auth', auth);
 
-app.use('/hello', (req, res) => {
-    res.send({"express": "hello world"})
-})
+app.use('/upload', upload);
 
-app.use('/upload', (req, res) => {
-    if (!req.user) {
-        return res.redirect('http://localhost:3000')
-    }
-    const form = new formidable.IncomingForm();
-form.parse(req, function (err, fields, files) {
-    const oldPath = files.file.path;
-    const newPath = './public/images/memes/' + req.user.facebookId + files.file.name;
-    fs.rename(oldPath, newPath, function (error) {
-        if (error) throw error;
-        console.log(req.user);
-        const memeData = {
-            url: '/images/memes/' + req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.trim(),
-            uploaded_by: req.user.facebookId,
-            characters: ['charlie']
-        };
-        Meme.create(memeData, function (err, meme) {
-            if (err) {
-                console.log(err);
-                res.status = 501;
-                return res.send('Error creating meme')
-            }
-            return res.redirect('http://localhost:3000/');
-        });
-    })
-})
-})
+app.use('/memes', mememRouter);
 
 
 // catch 404 and forward to error handler

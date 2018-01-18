@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import {AppBar, Toolbar, Button} from 'material-ui';
+import {AppBar, Toolbar} from 'material-ui';
 import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
 import Banner from './FrontBanner';
@@ -29,20 +29,30 @@ class Home extends Component {
         this.state = {
             facebookId: '',
             name: '',
-            picture: 'http://localhost:3001/images/user-icon.png'
+            picture: 'http://localhost:3001/images/user-icon.png',
+            loginOpen: false
         }
     }
 
     componentDidMount() {
+        // Get the current users details from the backend server
         this.callApi('auth/me')
             .then(res => {
-                this.setState({facebookId: res.id, name: res.name, picture: res.picture})
+                if (this.state.facebookId !== res.id) {
+                    this.setState({facebookId: res.id, name: res.name, picture: res.picture})
+                }
             })
             .catch(err => {
                 console.log(err)
             });
     }
 
+    // open/close the login modal
+    toggleLoginOpen () {
+        this.setState({ loginOpen: !this.state.loginOpen });
+    };
+
+    // method to call api
     callApi = async (route) => {
         const response = await fetch(route, {credentials: 'include'});
         const body = await response.json();
@@ -51,14 +61,6 @@ class Home extends Component {
 
         return body
     };
-
-    requireAuth() {
-        if (this.state.name) {
-            return true
-        }
-        return false
-    }
-
 
     render() {
         const { classes } = this.props;
@@ -72,12 +74,9 @@ class Home extends Component {
                             <img src="http://localhost:3001/images/sunny-logo.png" alt="logo"/>
                         </div>
                         {!this.state.name && <LoginModal/>}
-                        {this.state.name && <Button href="http://localhost:3001/auth/logout" color="contrast">Logout ({this.state.name})</Button>}
+                        {this.state.name && <RightDrawer name={this.state.name} picture={this.state.picture} />}
                     </Toolbar>
                 </AppBar>
-
-                {/*// Login popup modal //*/}
-                <LoginModal/>
 
                 {/*// Pages //*/}
                 <Switch>
@@ -99,8 +98,6 @@ class Home extends Component {
                 }}
                 />
 
-                <RightDrawer />
-                <img src={this.state.picture} alt="profile picture" />
             </div>
         );
     }

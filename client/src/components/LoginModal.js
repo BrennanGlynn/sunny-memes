@@ -2,6 +2,8 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 import Modal from 'material-ui/Modal';
 import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
 
 function getModalStyle() {
     const top = 50;
@@ -36,7 +38,9 @@ class LoginModal extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this.handleOpen} color="contrast">Login</Button>
+                <Button onClick={this.handleOpen} color="contrast">
+                  Login
+                </Button>
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
@@ -51,7 +55,6 @@ class LoginModal extends React.Component {
                             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                         </Typography>
                         <Button color="primary" href="http://localhost:3001/auth/facebook">Connect With Facebook</Button>
-                        <LoginModal />
                     </div>
                 </Modal>
             </div>

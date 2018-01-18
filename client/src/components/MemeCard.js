@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import classnames from 'classnames';
 import Collapse from 'material-ui/transitions/Collapse';
 import Card, { CardHeader, CardMedia, CardContent, CardActions } from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
@@ -110,10 +111,11 @@ class MemeCard extends Component {
                             onClick={handleClick}
                             className={classes.chip}
                           />
+                        {/*  // Add description for meme later if wanted
                           <Typography component="p">
                             This impressive paella is a perfect party dish and a fun meal to cook together with
                             your guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                          </Typography>
+                          </Typography>*/}
                         </CardContent>
                         <CardActions disableActionSpacing>
                           <IconButton aria-label="Add to favorites">
@@ -125,7 +127,8 @@ class MemeCard extends Component {
                           <IconButton aria-label="Download">
                             <FileDownloadIcon />
                           </IconButton>
-                          <div className={classes.flexGrow} />
+                          {/* This is for handling the dropdown menu for more information later Part 1/2
+                         <div className={classes.flexGrow} />
                           <IconButton
                             className={classnames(classes.expand, {
                               [classes.expandOpen]: this.state.expanded,
@@ -135,15 +138,18 @@ class MemeCard extends Component {
                             aria-label="Show more"
                           >
                             <ExpandMoreIcon />
-                          </IconButton>
+                          </IconButton>*/}
                         </CardActions>
-                        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+
+                      {/*  // This is for handling the dropdown menu for more information later Part 2/2
+                       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                          <Divider />
                           <CardContent>
                             <Typography paragraph type="body2">
                               Method:
                             </Typography>
                           </CardContent>
-                        </Collapse>
+                        </Collapse> */}
                       </Card>
                     </div>
                   </Grid>

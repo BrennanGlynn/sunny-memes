@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Grid from 'material-ui/Grid';
+import { Paper, Typography } from 'material-ui';
 
 const styles = {
-    center: {
-        textAlign: 'center',
-    },
-    height: {
-      height: '2500',
-    },
-    blue: {
-        color: 'blue'
+    root: {
+        paddingTop: 16,
+        paddingBottom: 16,
+        width: "50%"
     }
 }
 
@@ -20,12 +15,15 @@ class FrontBanner extends Component {
     render() {
         const {classes} = this.props;
         return(
-
-            <div className={classes.center + ' ' + classes.blue}>
-                <h1>Banner</h1>
+            <div>
+                <Paper className={classes.root} elevation={4}>
+                    <Typography type="headline" component="h1">
+                        Hello Fellow American
+                    </Typography>
+                </Paper>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(FrontBanner);
+export default withStyles(styles)(FrontBanner)

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
@@ -48,7 +47,7 @@ class RightDrawer extends Component {
         const fullList = (
             <div className={classes.listFull}>
                 <div className={classes.center}>
-                    <h2>hi ben (pic here)</h2>
+                    <h2>hi {this.props.name.substr(0, this.props.name.indexOf(' '))}</h2> <img src={this.props.picture} alt="profile"/>
                     <Divider/>
                 </div>
                 <div className={classes.left}>
@@ -68,7 +67,7 @@ class RightDrawer extends Component {
                         </List>
                     </a>
                     <Divider/>
-                    <a href="#">
+                    <a href="http://localhost:3001/auth/logout">
                         <List>
                             <FontAwesome className={classes.faIcon}
                                          name='sign-out'/>
@@ -81,7 +80,7 @@ class RightDrawer extends Component {
         );
         return (
             <div>
-                <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
+                <Button onClick={this.toggleDrawer('right', true)}>MENU</Button>
 
                 <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
                     <div

@@ -61,7 +61,8 @@ class MemeCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: this.props.memeData
+            meme: this.props.data,
+            date: this.formatDate(this.dateFromObjectId(this.props.data._id))
         }
     }
 
@@ -70,6 +71,23 @@ class MemeCard extends Component {
     handleExpandClick = () => {
       this.setState({ expanded: !this.state.expanded });
     };
+
+    dateFromObjectId (objectId) {
+        return new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
+    };
+
+    formatDate (date) {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const month = months[date.getMonth()]
+        const day = this.getOrdinalNum(date.getDate());
+        const year = date.getFullYear()
+
+        return `${month} ${day}, ${year}`;
+    }
+
+    getOrdinalNum(n) {
+        return n + (n > 0 ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10] : '');
+    }
 
 
 
@@ -102,13 +120,13 @@ class MemeCard extends Component {
                               <MoreVertIcon />
                             </IconButton>
                           }
-                          title="He's Lying."
-                          subheader="January 14th, 2018"
+                          title={this.state.meme.title}
+                          subheader={this.state.date}
                         />
                         <CardMedia
                           className={classes.media}
-                          image="/images/memes/10157285303858508hes-lying.png"
-                          title="Cracking Open A Cold One With The Boys"
+                          image={this.state.meme.url}
+                          title={this.state.meme.title}
                         />
                         <CardContent className={classes.center}>
                           <Chip

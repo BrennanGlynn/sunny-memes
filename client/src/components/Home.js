@@ -70,7 +70,7 @@ class Home extends Component {
                             <img src="/images/sunny-logo.png" alt="logo"/>
                         </div>
                         {!this.state.name && <LoginModal/>}
-                        {this.state.name && <Button raised component="span" className={classes.button}>
+                        {this.state.name && <Button href="/addmeme" raised className={classes.button}>
                           Upload
                         </Button>}
                         {this.state.name && <RightDrawer name={this.state.name} picture={this.state.picture} />}
@@ -79,15 +79,15 @@ class Home extends Component {
 
                 {/*// Pages //*/}
                 <Switch>
-                    <Route path='/' exact component={Banner} />
-                    <Route path='/addMeme' component={AddMeme} />
                     <Route path='/memes' component={MemePage} />
                     {!this.state.name && <Route path='/' component={Banner} />}
                     {!this.state.name && <Route path='/addMeme' component={PleaseLogin} />}
                     {this.state.name && <Route path='/addMeme' component={AddMeme} />}
                 </Switch>
 
-                <MemeCard />
+                <MemeCard data={{ "_id" : "5a6162fc94387f127c7bc94a", "title" : "Cultivating Mass", "url" : "/images/memes/1015659325615994796748.jpg", "uploaded_by" : "10156593256159947", "favorites" : 0, "visits" : 0, "tags" : [ ], "characters" : [ "mac" ], "__v"
+                        : 0 }
+                }/>
 
             </div>
         );

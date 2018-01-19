@@ -10,6 +10,7 @@ import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
 import MemeCard from './MemeCard';
+import Empty from './Empty'
 
 const styles = {
   root: {
@@ -81,9 +82,9 @@ class Home extends Component {
 
         {/*// Pages //*/}
         <Switch>
-          <Route path='/' component={this.state.name === '' && this.state.ready ? FrontBanner : ''}/>
+          <Route path='/' exact component={this.state.ready && this.state.name === '' ? FrontBanner : Empty}/>
           <Route path='/memes' component={MemePage}/>
-          <Route path='/addMeme' component={this.state.name ? AddMeme : PleaseLogin}/>}
+          <Route path='/addMeme' component={!this.state.ready || this.state.name ? AddMeme : PleaseLogin}/>
         </Switch>
 
         <MemeCard data={{

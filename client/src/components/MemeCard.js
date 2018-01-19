@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import classnames from 'classnames';
-import Collapse from 'material-ui/transitions/Collapse';
+// import Collapse from 'material-ui/transitions/Collapse';
 import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
+// import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+// import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+// import Button from 'material-ui/Button';
+// import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
@@ -136,36 +134,9 @@ class MemeCard extends Component {
                         label={character}
                         onClick={handleClick}
                         className={classes.chip}
+                        key={character}
                       />
                     )}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/charlie.jpg"/>}*/}
-                      {/*label="Charlie"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/frank.jpg"/>}*/}
-                      {/*label="Frank"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/mac.jpg"/>}*/}
-                      {/*label="Mac"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/dee.jpg"/>}*/}
-                      {/*label="Dee"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
 
 
 

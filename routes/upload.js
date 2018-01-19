@@ -11,14 +11,14 @@ router.use('/', (req, res) => {
 
     const form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-        console.log(fields);
+        const route = req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
         const oldPath = files.file.path;
-        const newPath = './public/images/memes/' + req.user.facebookId + files.file.name;
+        const newPath = './public/images/memes/' + route;
         fs.rename(oldPath, newPath, function (error) {
             if (error) throw error;
             let memeData = {
                 title: fields.title,
-                url: '/images/memes/' + req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.trim(),
+                url: '/images/memes/' + route,
                 uploaded_by: req.user.facebookId,
                 characters: new Array()
             };

@@ -75,7 +75,7 @@ class MemeCard extends Component {
         const {classes} = this.props;
         return (
             <div className={classes.root}>
-              <Grid container alignItems={'center'} justify={'center'}>
+              <Grid container spacing={0} alignItems={'center'} justify={'center'}>
                 <Grid item xs={12} sm={6} md={4} lg={2}>
                   <Grid
                     container

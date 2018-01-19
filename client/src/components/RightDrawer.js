@@ -65,7 +65,7 @@ class RightDrawer extends Component {
                       <ListItemText primary="My Memes" />
                     </ListItem>
 
-                    <ListItem button component="a" href="/auth/logout">
+                    <ListItem button component="a" href="http://localhost:3001/auth/logout">
                       <ListItemIcon>
                         <PowerSettingsNewIcon />
                       </ListItemIcon>

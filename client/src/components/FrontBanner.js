@@ -3,7 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import { Paper, Grid, Typography } from 'material-ui';
 import Button from 'material-ui/Button';
 
-let bannerBackgroundUrl = 'images/dayman-nightman.png'
+let bannerBackgroundUrl = '/images/dayman-nightman.png'
 const styles = theme => ({
     bannerWrapper: {
       textAlign: 'center',

@@ -7,9 +7,9 @@ import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
 import Banner from './FrontBanner';
 import RightDrawer from './RightDrawer';
-import Button from 'material-ui/Button';
 import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
+import MemeCard from './MemeCard';
 
 const styles = {
     root: {
@@ -87,7 +87,7 @@ class Home extends Component {
                     {this.state.name && <Route path='/addMeme' component={AddMeme} />}
                 </Switch>
 
-                <MemeCard/>
+                <MemeCard />
 
             </div>
         );

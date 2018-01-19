@@ -19,6 +19,7 @@ import Chip from 'material-ui/Chip';
 
 const styles = theme => ({
   card: {
+    maxWidth: 300,
   },
   media: {
     width: 300,
@@ -44,6 +45,11 @@ const styles = theme => ({
   },
   center: {
     alignItems: 'center',
+  },
+  chip: {
+    marginBottom: '10px',
+    marginLeft: '2.5px',
+    marginRight: '2.5px',
   },
 });
 
@@ -104,10 +110,38 @@ class MemeCard extends Component {
                           image="/images/memes/10157285303858508hes-lying.png"
                           title="Cracking Open A Cold One With The Boys"
                         />
-                        <CardContent>
+                        <CardContent className={classes.center}>
                           <Chip
                             avatar={<Avatar src="/images/dennis.jpg" />}
                             label="Dennis"
+                            onClick={handleClick}
+                            className={classes.chip}
+                          />
+
+                          <Chip
+                            avatar={<Avatar src="/images/charlie.jpg" />}
+                            label="Charlie"
+                            onClick={handleClick}
+                            className={classes.chip}
+                          />
+
+                          <Chip
+                            avatar={<Avatar src="/images/frank.jpg" />}
+                            label="Frank"
+                            onClick={handleClick}
+                            className={classes.chip}
+                          />
+
+                          <Chip
+                            avatar={<Avatar src="/images/mac.jpg" />}
+                            label="Mac"
+                            onClick={handleClick}
+                            className={classes.chip}
+                          />
+
+                          <Chip
+                            avatar={<Avatar src="/images/dee.jpg" />}
+                            label="Dee"
                             onClick={handleClick}
                             className={classes.chip}
                           />

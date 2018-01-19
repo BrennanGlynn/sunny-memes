@@ -89,13 +89,13 @@ class Home extends Component {
 
         <MemeCard data={{
           "_id": "5a6162fc94387f127c7bc94a",
-          "title": "Cultivating Mass",
+          "title": "Job?",
           "url": "/images/memes/1015659325615994796748.jpg",
           "uploaded_by": "10156593256159947",
           "favorites": 0,
           "visits": 0,
           "tags": [],
-          "characters": ["mac"],
+          "characters": ["charlie"],
           "__v": 0
         }
         }/>

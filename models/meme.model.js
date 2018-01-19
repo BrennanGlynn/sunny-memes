@@ -8,6 +8,10 @@ const MemeSchema = new Schema({
         required: true,
         unique: true
     },
+    title: {
+        type: String,
+        require: true,
+    },
     uploaded_by: {
         type: String,
         required: true

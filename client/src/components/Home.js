@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import {AppBar, Toolbar} from 'material-ui';
+import {AppBar, Button, Toolbar} from 'material-ui';
 import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
 import Banner from './FrontBanner';
@@ -86,6 +86,8 @@ class Home extends Component {
                     {!this.state.name && <Route path='/addMeme' component={PleaseLogin} />}
                     {this.state.name && <Route path='/addMeme' component={AddMeme} />}
                 </Switch>
+
+                <MemeCard/>
 
             </div>
         );

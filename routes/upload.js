@@ -11,6 +11,7 @@ router.use('/', (req, res) => {
 
     const form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
+        console.log(fields);
         const oldPath = files.file.path;
         const newPath = './public/images/memes/' + req.user.facebookId + files.file.name;
         fs.rename(oldPath, newPath, function (error) {

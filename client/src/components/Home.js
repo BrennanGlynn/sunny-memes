@@ -6,8 +6,8 @@ import {AppBar, Toolbar} from 'material-ui';
 import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
 import Banner from './FrontBanner';
-import MemeCard from './MemeCard';
 import RightDrawer from './RightDrawer';
+import MemePage from './MemePage';
 
 const styles = {
     root: {
@@ -76,21 +76,9 @@ class Home extends Component {
                 <Switch>
                     <Route path='/' exact component={Banner} />
                     <Route path='/addMeme' component={AddMeme} />
+                    <Route path='/memes' component={MemePage} />
                 </Switch>
 
-                {/*// Example of a meme card. //*/}
-                {/*// Will move once completed // */}
-                <MemeCard memeData={{
-                    "url" : "/images/memes/10156593256159947cold.jpg",
-                    "uploaded_by" : "10156593256159947",
-                    "favorites" : 0,
-                    "visits" : 0,
-                    "tags" : [ ],
-                    "characters" : [
-                    "charlie"
-                    ],
-                }}
-                />
             </div>
         );
     }

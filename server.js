@@ -13,10 +13,6 @@ const mememRouter = require('./routes/memes');
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use('/static', express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
 //set up mongodb
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g6c7z.mongodb.net:27017,cluster0-shard-00-01-g6c7z.mongodb.net:27017,cluster0-shard-00-02-g6c7z.mongodb.net:27017/sunny?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', {useMongoClient: true}, function (error) {
@@ -27,16 +23,17 @@ mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g
     }
 });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser('fortified secret'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('express-session')({secret: 'fortified secret', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/static', express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
 app.use('/auth', auth);
 

@@ -7,6 +7,8 @@ import LoginModal from './LoginModal';
 import AddMeme from './AddMeme';
 import Banner from './FrontBanner';
 import RightDrawer from './RightDrawer';
+import Button from 'material-ui/Button';
+import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
 
 const styles = {
@@ -29,7 +31,7 @@ class Home extends Component {
         this.state = {
             facebookId: '',
             name: '',
-            picture: 'http://localhost:3001/images/user-icon.png',
+            picture: '/images/user-icon.png',
         }
     }
 
@@ -65,9 +67,12 @@ class Home extends Component {
                 <AppBar position="static">
                     <Toolbar>
                         <div className={classes.flex}>
-                            <img src="http://localhost:3001/images/sunny-logo.png" alt="logo"/>
+                            <img src="/images/sunny-logo.png" alt="logo"/>
                         </div>
                         {!this.state.name && <LoginModal/>}
+                        {this.state.name && <Button raised component="span" className={classes.button}>
+                          Upload
+                        </Button>}
                         {this.state.name && <RightDrawer name={this.state.name} picture={this.state.picture} />}
                     </Toolbar>
                 </AppBar>
@@ -77,6 +82,9 @@ class Home extends Component {
                     <Route path='/' exact component={Banner} />
                     <Route path='/addMeme' component={AddMeme} />
                     <Route path='/memes' component={MemePage} />
+                    {!this.state.name && <Route path='/' component={Banner} />}
+                    {!this.state.name && <Route path='/addMeme' component={PleaseLogin} />}
+                    {this.state.name && <Route path='/addMeme' component={AddMeme} />}
                 </Switch>
 
             </div>

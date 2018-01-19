@@ -10,6 +10,7 @@ import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
 import MemeCard from './MemeCard';
+import Empty from './Empty'
 
 const styles = {
   root: {
@@ -81,20 +82,20 @@ class Home extends Component {
 
         {/*// Pages //*/}
         <Switch>
-          <Route path='/' component={this.state.name === '' && this.state.ready ? FrontBanner : ''}/>
+          <Route path='/' exact component={this.state.ready && this.state.name === '' ? FrontBanner : Empty}/>
           <Route path='/memes' component={MemePage}/>
-          <Route path='/addMeme' component={this.state.name ? AddMeme : PleaseLogin}/>}
+          <Route path='/addMeme' component={!this.state.ready || this.state.name ? AddMeme : PleaseLogin}/>
         </Switch>
 
         <MemeCard data={{
           "_id": "5a6162fc94387f127c7bc94a",
-          "title": "Cultivating Mass",
+          "title": "Job?",
           "url": "/images/memes/1015659325615994796748.jpg",
           "uploaded_by": "10156593256159947",
           "favorites": 0,
           "visits": 0,
           "tags": [],
-          "characters": ["mac"],
+          "characters": ["charlie"],
           "__v": 0
         }
         }/>

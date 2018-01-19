@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-import {Paper, Grid, Typography} from 'material-ui';
-import Button from 'material-ui/Button';
+import {Paper, Typography} from 'material-ui';
 
 let bannerBackgroundUrl = '/images/dayman-nightman.png'
 const styles = theme => ({

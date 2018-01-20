@@ -107,13 +107,13 @@ class MemeCard extends Component {
                 //     <MoreVertIcon/>
                 //   </IconButton>
                 // }
-                title={this.state.title}
-                subheader={this.state.date}
+                title={this.state.title || 'Title'}
+                subheader={this.state.date || 'January, 1st, 2018'}
               />
               <CardMedia
                 className={classes.media}
-                image={this.state.url}
-                title={this.state.title}
+                image={this.state.url || '/images/user-icon.png'}
+                title={this.state.title || 'Title'}
               />
               <CardContent className={classes.chipContainer}>
                 {this.state.characters && this.state.characters.map(character =>

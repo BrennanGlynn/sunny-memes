@@ -8,7 +8,7 @@ import FileDownloadIcon from 'material-ui-icons/FileDownload';
 // import Collapse from 'material-ui/transitions/Collapse';
 // import Divider from 'material-ui/Divider';
 // import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-// import MoreVertIcon from 'material-ui-icons/MoreVert';
+//import MoreVertIcon from 'material-ui-icons/MoreVert';
 // import Button from 'material-ui/Button';
 // import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
@@ -94,7 +94,7 @@ class MemeCard extends Component {
       <div className={classes.root}>
         <Grid container spacing={0} alignItems={'center'} justify={'center'}>
           <div className={classes.frontCardWrapper}>
-            <Card className={classes.card}>
+            <Card raised={true} className={classes.card}>
               <CardHeader
                 //  avatar={
                 //    <Avatar aria-label="Recipe" className={classes.avatar}>

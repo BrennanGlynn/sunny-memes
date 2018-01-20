@@ -8,6 +8,7 @@ import FrontBanner from './FrontBanner';
 import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
+import MyMemes from './MyMemes';
 import MemeCard from './MemeCard';
 import Empty from './Empty';
 import NavMenu from './NavMenu';
@@ -85,6 +86,7 @@ class Home extends Component {
         <Switch>
           <Route path='/' exact component={this.state.ready && this.state.name === '' ? FrontBanner : Empty}/>
           <Route path='/memes' component={MemePage}/>
+          <Route path='/mymemes' component={this.state.ready && this.state.name === '' ? PleaseLogin : MyMemes}/>
         </Switch>
 
         <MemeCard data={{

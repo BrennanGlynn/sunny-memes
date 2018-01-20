@@ -73,9 +73,6 @@ class Home extends Component {
               <img src="/images/sunny-logo.png" alt="logo"/>
             </div>
             {!this.state.name && <LoginModal/>}
-            {this.state.name && <Button href="/addmeme" raised className={classes.button}>
-              Upload
-            </Button>}
             {this.state.name && <RightDrawer name={this.state.name} picture={this.state.picture}/>}
           </Toolbar>
         </AppBar>
@@ -84,7 +81,7 @@ class Home extends Component {
         <Switch>
           <Route path='/' exact component={this.state.ready && this.state.name === '' ? FrontBanner : Empty}/>
           <Route path='/memes' component={MemePage}/>
-          <Route path='/addMeme' component={!this.state.ready || this.state.name ? AddMeme : PleaseLogin}/>
+          {/*<Route path='/addMeme' component={!this.state.ready || this.state.name ? AddMeme : PleaseLogin}/>*/}
         </Switch>
 
         <MemeCard data={{

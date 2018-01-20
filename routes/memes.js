@@ -15,7 +15,7 @@ router.use('/', (req, res) => {
 
   console.log(query.characters)
 
-  Meme.find(query, null, {skip: page * memesPerPage, limit: memesPerPage, sort: {_id: 1}}, function (err, docs) {
+  Meme.find(query, null, {skip: page * memesPerPage, limit: memesPerPage, sort: {_id: -1}}, function (err, docs) {
     if (!err) {
       res.json({documents: docs})
     }

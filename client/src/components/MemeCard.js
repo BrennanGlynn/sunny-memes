@@ -121,7 +121,7 @@ class MemeCard extends Component {
                     <Chip
                       onClick={handleClick}
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                      label={'#' + character}
+                      label={character}
                       className={classes.chip}
                       component={"a"} href={"/memes?chars=" + character}
                     />

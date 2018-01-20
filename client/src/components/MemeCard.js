@@ -49,12 +49,12 @@ const styles = theme => ({
     marginLeft: '2.5px',
     marginRight: '2.5px',
     textTransform: 'capitalize',
+    textDecoration: 'none',
   },
-  chipLink: {
-    color: 'inherit',
-  },
-
 });
+
+function handleClick() {
+}
 
 class MemeCard extends Component {
   constructor(props) {
@@ -124,13 +124,13 @@ class MemeCard extends Component {
                   <CardContent className={classes.center}>
                     {this.state.characters && this.state.characters.map(character =>
                       <div key={character + Math.floor(Math.random() * 1000)}>
-                        <a className={classes.chipLink} href={"/memes?chars=" + character}>
                           <Chip
+                            onClick={handleClick}
                             avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
                             label={'#' + character}
                             className={classes.chip}
+                            component={"a"} href={"/memes?chars=" + character}
                           />
-                        </a>
                       </div>
                     )}
 

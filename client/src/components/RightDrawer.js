@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
-import {Button, Drawer, Divider, IconButton, Typography} from 'material-ui';
-import MenuIcon from 'material-ui-icons/Menu';
+import {Button, Drawer, Divider, Typography} from 'material-ui';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import CloudUploadIcon from 'material-ui-icons/CloudUpload';
 import PowerSettingsNewIcon from 'material-ui-icons/PowerSettingsNew';
@@ -53,9 +52,6 @@ class RightDrawer extends Component {
         <Button raised onClick={this.toggleDrawer(true)}>
           Upload
         </Button>
-        <IconButton style={{color: '#fff'}} aria-label="Menu">
-          <MenuIcon/>
-        </IconButton>
 
         <Drawer anchor="right" open={this.state.open} onClose={this.toggleDrawer(false)}>
           <div

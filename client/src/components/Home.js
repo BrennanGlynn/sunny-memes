@@ -10,7 +10,8 @@ import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
 import MemeCard from './MemeCard';
-import Empty from './Empty'
+import Empty from './Empty';
+import NavMenu from './NavMenu';
 
 const styles = {
   root: {
@@ -73,7 +74,8 @@ class Home extends Component {
               <img src="/images/sunny-logo.png" alt="logo"/>
             </div>
             {!this.state.name && <LoginModal/>}
-            {this.state.name && <RightDrawer name={this.state.name} picture={this.state.picture}/>}
+            {this.state.name && <RightDrawer/>}
+            {this.state.name && <NavMenu name={this.state.name} picture={this.state.picture}/>}
           </Toolbar>
         </AppBar>
 

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {IconButton, Button, Menu, MenuItem} from 'material-ui';
+import {Button, Menu, MenuItem} from 'material-ui';
 import {withStyles} from 'material-ui/styles';
-import MenuIcon from 'material-ui-icons/Menu';
 
 const styles = {
   picture: {
@@ -55,9 +54,6 @@ class NavMenu extends Component {
         </Menu>
       </div>
     )
-    // {/*<IconButton style={{color: '#fff'}} aria-label="Menu">*/}
-    // {/*<MenuIcon/>*/}
-    // {/*</IconButton>*/}
   }
 }
 

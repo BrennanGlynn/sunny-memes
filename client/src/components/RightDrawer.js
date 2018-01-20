@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
 import {Button, Drawer, Divider, Typography} from 'material-ui';
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import CloudUploadIcon from 'material-ui-icons/CloudUpload';
-import PowerSettingsNewIcon from 'material-ui-icons/PowerSettingsNew';
 import AddMeme from "./AddMeme";
 
 const styles = {

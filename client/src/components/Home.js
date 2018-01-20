@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import {AppBar, Button, Toolbar} from 'material-ui';
+import {AppBar, Toolbar} from 'material-ui';
 import LoginModal from './LoginModal';
-import AddMeme from './AddMeme';
 import FrontBanner from './FrontBanner';
 import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
@@ -83,7 +82,6 @@ class Home extends Component {
         <Switch>
           <Route path='/' exact component={this.state.ready && this.state.name === '' ? FrontBanner : Empty}/>
           <Route path='/memes' component={MemePage}/>
-          {/*<Route path='/addMeme' component={!this.state.ready || this.state.name ? AddMeme : PleaseLogin}/>*/}
         </Switch>
 
         <MemeCard data={{

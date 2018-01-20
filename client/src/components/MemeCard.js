@@ -8,7 +8,7 @@ import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 // import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
+// import MoreVertIcon from 'material-ui-icons/MoreVert';
 // import Button from 'material-ui/Button';
 // import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';

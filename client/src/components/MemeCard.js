@@ -48,13 +48,13 @@ const styles = theme => ({
     marginBottom: '10px',
     marginLeft: '2.5px',
     marginRight: '2.5px',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
   },
-});
+  chipLink: {
+    color: 'inherit',
+  },
 
-function handleClick() {
-  alert('You clicked the Chip.'); // eslint-disable-line no-alert
-}
+});
 
 class MemeCard extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class MemeCard extends Component {
 
   // handleExpandClick = () => {
   //   this.setState({expanded: !this.state.expanded});
-  // };
+  // }
 
   dateFromObjectId(objectId) {
     return new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
@@ -89,12 +89,6 @@ class MemeCard extends Component {
     return n + (n > 0 ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10] : '');
   }
 
-
-//when using img use http://localhost:3001/memeData.url
-//You can access the properties inside this.state
-  //It should have the properties displayed
-  //////////////////////////////////////////////
-//{this.state.data.url}
   render() {
     const {classes} = this.props;
     return (
@@ -114,11 +108,11 @@ class MemeCard extends Component {
                     //      R
                     //    </Avatar>
                     //  }
-                    action={
-                      <IconButton>
-                        <MoreVertIcon/>
-                      </IconButton>
-                    }
+                    // action={
+                    //   <IconButton>
+                    //     <MoreVertIcon/>
+                    //   </IconButton>
+                    // }
                     title={this.state.title}
                     subheader={this.state.date}
                   />
@@ -129,15 +123,16 @@ class MemeCard extends Component {
                   />
                   <CardContent className={classes.center}>
                     {this.state.characters && this.state.characters.map(character =>
-                      <Chip
-                        avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                        label={character}
-                        onClick={handleClick}
-                        className={classes.chip}
-                        key={character}
-                      />
+                      <div key={character + Math.floor(Math.random() * 1000)}>
+                        <a className={classes.chipLink} href={"/memes?chars=" + character}>
+                          <Chip
+                            avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                            label={'#' + character}
+                            className={classes.chip}
+                          />
+                        </a>
+                      </div>
                     )}
-
 
 
                     {/*  // Add description for meme later if wanted

@@ -59,7 +59,7 @@ class MemePage extends Component {
     return (
       <Grid container className={classes.root} spacing={0}>
         {this.state.memes.map(meme =>
-          <Grid item xs={12} sm={6} md={4} lg={3} key={meme._id}>
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>
             <MemeCard className={classes.card}  data={meme}/>
           </Grid>
         )}

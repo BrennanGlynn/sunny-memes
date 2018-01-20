@@ -8,7 +8,7 @@ import FileDownloadIcon from 'material-ui-icons/FileDownload';
 // import Collapse from 'material-ui/transitions/Collapse';
 // import Divider from 'material-ui/Divider';
 // import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-//import MoreVertIcon from 'material-ui-icons/MoreVert';
+// import MoreVertIcon from 'material-ui-icons/MoreVert';
 // import Button from 'material-ui/Button';
 // import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
@@ -40,8 +40,9 @@ const styles = theme => ({
   flexGrow: {
     flex: '1 1 auto',
   },
-  center: {
+  chipContainer: {
     alignItems: 'center',
+    display: 'flex'
   },
   chip: {
     marginBottom: '10px',
@@ -61,7 +62,7 @@ class MemeCard extends Component {
     this.state = {
       expanded: false,
       title: this.props.data.title,
-      date: this.formatDate(this.dateFromObjectId(this.props.data._id)),
+      date: MemeCard.formatDate(MemeCard.dateFromObjectId(this.props.data._id)),
       characters: this.props.data.characters,
       url: this.props.data.url
     }
@@ -71,20 +72,20 @@ class MemeCard extends Component {
   //   this.setState({expanded: !this.state.expanded});
   // }
 
-  dateFromObjectId(objectId) {
+  static dateFromObjectId(objectId) {
     return new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
   };
 
-  formatDate(date) {
+  static formatDate(date) {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const month = months[date.getMonth()]
-    const day = this.getOrdinalNum(date.getDate());
+    const day = MemeCard.getOrdinalNum(date.getDate());
     const year = date.getFullYear()
 
     return `${month} ${day}, ${year}`;
   }
 
-  getOrdinalNum(n) {
+  static getOrdinalNum(n) {
     return n + (n > 0 ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10] : '');
   }
 
@@ -114,7 +115,7 @@ class MemeCard extends Component {
                 image={this.state.url}
                 title={this.state.title}
               />
-              <CardContent className={classes.center}>
+              <CardContent className={classes.chipContainer}>
                 {this.state.characters && this.state.characters.map(character =>
                   <div key={character + Math.floor(Math.random() * 1000)}>
                     <Chip

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-// import Collapse from 'material-ui/transitions/Collapse';
 import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
-// import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
+// import Collapse from 'material-ui/transitions/Collapse';
+// import Divider from 'material-ui/Divider';
 // import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 // import MoreVertIcon from 'material-ui-icons/MoreVert';
 // import Button from 'material-ui/Button';
@@ -17,11 +17,10 @@ import Chip from 'material-ui/Chip';
 
 const styles = theme => ({
   card: {
-    maxWidth: 300,
+    width: 275,
   },
   media: {
-    width: 300,
-    height: 200,
+    height: 200
   },
   frontCardWrapper: {
     marginTop: '25px',
@@ -94,64 +93,58 @@ class MemeCard extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={0} alignItems={'center'} justify={'center'}>
-          <Grid item xs={12} sm={6} md={4} lg={2}>
-            <Grid
-              container
-              alignItems={'center'}
-              justify={'center'}
-            >
-              <div className={classes.frontCardWrapper}>
-                <Card className={classes.card}>
-                  <CardHeader
-                    //  avatar={
-                    //    <Avatar aria-label="Recipe" className={classes.avatar}>
-                    //      R
-                    //    </Avatar>
-                    //  }
-                    // action={
-                    //   <IconButton>
-                    //     <MoreVertIcon/>
-                    //   </IconButton>
-                    // }
-                    title={this.state.title}
-                    subheader={this.state.date}
-                  />
-                  <CardMedia
-                    className={classes.media}
-                    image={this.state.url}
-                    title={this.state.title}
-                  />
-                  <CardContent className={classes.center}>
-                    {this.state.characters && this.state.characters.map(character =>
-                      <div key={character + Math.floor(Math.random() * 1000)}>
-                          <Chip
-                            onClick={handleClick}
-                            avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                            label={'#' + character}
-                            className={classes.chip}
-                            component={"a"} href={"/memes?chars=" + character}
-                          />
-                      </div>
-                    )}
+          <div className={classes.frontCardWrapper}>
+            <Card className={classes.card}>
+              <CardHeader
+                //  avatar={
+                //    <Avatar aria-label="Recipe" className={classes.avatar}>
+                //      R
+                //    </Avatar>
+                //  }
+                // action={
+                //   <IconButton>
+                //     <MoreVertIcon/>
+                //   </IconButton>
+                // }
+                title={this.state.title}
+                subheader={this.state.date}
+              />
+              <CardMedia
+                className={classes.media}
+                image={this.state.url}
+                title={this.state.title}
+              />
+              <CardContent className={classes.center}>
+                {this.state.characters && this.state.characters.map(character =>
+                  <div key={character + Math.floor(Math.random() * 1000)}>
+                    <Chip
+                      onClick={handleClick}
+                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                      label={'#' + character}
+                      className={classes.chip}
+                      component={"a"} href={"/memes?chars=" + character}
+                    />
+                  </div>
+                )}
 
 
-                    {/*  // Add description for meme later if wanted
+                {/*  // Add description for meme later if wanted
                           <Typography component="p">
                             This impressive paella is a perfect party dish and a fun meal to cook together with
                             your guests. Add 1 cup of frozen peas along with the mussels, if you like.
                           </Typography>*/}
-                  </CardContent>
-                  <CardActions disableActionSpacing>
-                    <IconButton aria-label="Add to favorites">
-                      <FavoriteIcon/>
-                    </IconButton>
-                    <IconButton aria-label="Share">
-                      <ShareIcon/>
-                    </IconButton>
-                    <IconButton aria-label="Download">
-                      <FileDownloadIcon/>
-                    </IconButton>
-                    {/* This is for handling the dropdown menu for more information later Part 1/2
+              </CardContent>
+              <CardActions disableActionSpacing>
+                <IconButton aria-label="Add to favorites">
+                  <FavoriteIcon/>
+                </IconButton>
+                <IconButton aria-label="Share">
+                  <ShareIcon/>
+                </IconButton>
+                <IconButton aria-label="Download">
+                  <FileDownloadIcon/>
+                </IconButton>
+                {/* This is for handling the dropdown menu for more information later Part 1/2
                          <div className={classes.flexGrow} />
                           <IconButton
                             className={classnames(classes.expand, {
@@ -163,9 +156,9 @@ class MemeCard extends Component {
                           >
                             <ExpandMoreIcon />
                           </IconButton>*/}
-                  </CardActions>
+              </CardActions>
 
-                  {/*  // This is for handling the dropdown menu for more information later Part 2/2
+              {/*  // This is for handling the dropdown menu for more information later Part 2/2
                        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                           <Divider />
                           <CardContent>
@@ -174,10 +167,8 @@ class MemeCard extends Component {
                             </Typography>
                           </CardContent>
                         </Collapse> */}
-                </Card>
-              </div>
-            </Grid>
-          </Grid>
+            </Card>
+          </div>
         </Grid>
       </div>
     );

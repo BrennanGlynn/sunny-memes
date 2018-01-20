@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
+import {Grid} from 'material-ui';
 import queryString from 'query-string';
 import MemeCard from './MemeCard';
 
 const styles = {
-  card: {}
+  card: {},
+  root: {
+    flexGrow: 1
+  }
 }
 
 class MemePage extends Component {
@@ -52,11 +56,14 @@ class MemePage extends Component {
   render() {
     const {classes} = this.props;
 
-    return (<div>
-      {this.state.memes.map(meme =>
-        <MemeCard className={classes.card} key={meme._id} data={meme}/>
-      )}
-    </div>)
+    return (
+      <Grid container className={classes.root} spacing={0}>
+        {this.state.memes.map(meme =>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={meme._id}>
+            <MemeCard className={classes.card}  data={meme}/>
+          </Grid>
+        )}
+      </Grid>)
   }
 }
 

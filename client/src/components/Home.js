@@ -19,6 +19,9 @@ const styles = {
   flex: {
     flex: 1,
   },
+  logo: {
+    width: 100
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -70,7 +73,7 @@ class Home extends Component {
         <AppBar position="static">
           <Toolbar>
             <div className={classes.flex}>
-              <img src="/images/sunny-logo.png" alt="logo"/>
+              <img className={classes.logo} src="/images/sunny-logo.png" alt="logo"/>
             </div>
             {!this.state.name && <LoginModal/>}
             {this.state.name && <RightDrawer/>}

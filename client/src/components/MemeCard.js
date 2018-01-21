@@ -41,8 +41,7 @@ const styles = theme => ({
     flex: '1 1 auto',
   },
   chipContainer: {
-    alignItems: 'center',
-    display: 'flex'
+    alignItems: 'center'
   },
   chip: {
     marginBottom: '10px',
@@ -61,11 +60,29 @@ class MemeCard extends Component {
     super(props);
     this.state = {
       expanded: false,
+      memeId: this.props.data._id,
       title: this.props.data.title,
       date: MemeCard.formatDate(MemeCard.dateFromObjectId(this.props.data._id)),
       characters: this.props.data.characters,
       url: this.props.data.url
     }
+  }
+
+  handleFavorite() {
+    fetch('memes/favorite', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      credentials: 'include',
+      body: JSON.stringify({
+        meme: this.state.memeId
+      })
+    }).then(function (res) {
+      console.log(res.json())
+    }).catch(function (err) {
+      console.log('Error sending favorite')
+    })
   }
 
   // handleExpandClick = () => {
@@ -136,7 +153,7 @@ class MemeCard extends Component {
                           </Typography>*/}
               </CardContent>
               <CardActions disableActionSpacing>
-                <IconButton aria-label="Add to favorites">
+                <IconButton onClick={this.handleFavorite.bind(this)} aria-label="Add to favorites">
                   <FavoriteIcon/>
                 </IconButton>
                 <IconButton aria-label="Share">

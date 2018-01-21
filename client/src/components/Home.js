@@ -9,7 +9,6 @@ import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
 import MyMemes from './MyMemes';
-import MemeCard from './MemeCard';
 import Empty from './Empty';
 import NavMenu from './NavMenu';
 
@@ -88,19 +87,6 @@ class Home extends Component {
           <Route path='/memes' component={MemePage}/>
           <Route path='/mymemes' component={this.state.ready && this.state.name === '' ? PleaseLogin : MyMemes}/>
         </Switch>
-
-        <MemeCard data={{
-          "_id": "5a6162fc94387f127c7bc94a",
-          "title": "Job?",
-          "url": "/images/memes/1015659325615994796748.jpg",
-          "uploaded_by": "10156593256159947",
-          "favorites": 0,
-          "visits": 0,
-          "tags": [],
-          "characters": ["charlie"],
-          "__v": 0
-        }
-        }/>
 
       </div>
     );

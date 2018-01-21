@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const auth = require('./routes/auth');
 const upload = require('./routes/upload');
-const mememRouter = require('./routes/memes');
+const memeRouter = require('./routes/memes');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -24,13 +24,13 @@ mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g
 });
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
 app.use(cookieParser('fortified secret'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('express-session')({secret: 'fortified secret', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json('application/json'));
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -39,7 +39,7 @@ app.use('/auth', auth);
 
 app.use('/upload', upload);
 
-app.use('/memes', mememRouter);
+app.use('/memes', memeRouter);
 
 
 // catch 404 and forward to error handler

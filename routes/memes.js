@@ -6,11 +6,22 @@ const memesPerPage = 30;
 
 router.use('/favorite', (req, res) => {
   if (!req.user) return res.json({message: 'Please login first'})
-
-  Meme.findByIdAndUpdate(req.body.meme, {$addToSet: {favorites: req.user.facebookId}}, {safe: true, new: true}, (err, meme) => {
+  Meme.findOne({_id: req.body.meme}, 'favorites', function (err, meme) {
     if (err) {
-      return res.json({'Error adding favorite': err});
-    } else return res.json({message:'added favorite', meme: req.body.meme, id: req.user.facebookId})
+      return res.json({error: err})
+    } else if (meme.favorites.indexOf(req.user.facebookId) === -1) {
+      Meme.findByIdAndUpdate(req.body.meme, {$addToSet: {favorites: req.user.facebookId}}, {safe: true, new: true}, (err, meme) => {
+        if (err) {
+          return res.json({'Error adding favorite': err});
+        } else return res.json({message:'added favorite', meme: req.body.meme, id: req.user.facebookId})
+      })
+    } else {
+      Meme.findByIdAndUpdate(req.body.meme, {$pull: {favorites: req.user.facebookId}}, (err, meme) => {
+        if (err) {
+          return res.json({message: err});
+        } else return res.json({message:'Removed favorite', meme: req.body.meme, id: req.user.facebookId})
+      })
+    }
   })
 })
 

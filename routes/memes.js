@@ -9,17 +9,21 @@ router.use('/favorite', (req, res) => {
   Meme.findOne({_id: req.body.meme}, 'favorites', function (err, meme) {
     if (err) {
       return res.json({error: err})
-    } else if (meme.favorites.indexOf(req.user.facebookId) === -1) {
-      Meme.findByIdAndUpdate(req.body.meme, {$addToSet: {favorites: req.user.facebookId}}, {safe: true, new: true}, (err, meme) => {
+    } else if (
+       meme.favorites.indexOf(req.user.facebookId) === -1) {
+      Meme.findByIdAndUpdate(req.body.meme, {$addToSet: {favorites: req.user.facebookId}}, {
+        safe: true,
+        new: true
+      }, (err, meme) => {
         if (err) {
           return res.json({'Error adding favorite': err});
-        } else return res.json({message:'added favorite', meme: req.body.meme, id: req.user.facebookId})
+        } else return res.json({message: 'added favorite', meme: req.body.meme, id: req.user.facebookId})
       })
     } else {
       Meme.findByIdAndUpdate(req.body.meme, {$pull: {favorites: req.user.facebookId}}, (err, meme) => {
         if (err) {
           return res.json({message: err});
-        } else return res.json({message:'Removed favorite', meme: req.body.meme, id: req.user.facebookId})
+        } else return res.json({message: 'Removed favorite', meme: req.body.meme, id: req.user.facebookId})
       })
     }
   })
@@ -37,7 +41,7 @@ router.use('/mine', (req, res) => {
   };
 
   if (chars) {
-    query.characters = { $all: chars}
+    query.characters = {$all: chars}
   }
 
   Meme.find(query, null, {skip: page * memesPerPage, limit: memesPerPage, sort: {_id: -1}}, function (err, docs) {
@@ -53,7 +57,7 @@ router.use('/', (req, res) => {
   let query = {};
 
   if (chars) {
-    query.characters = { $all: chars}
+    query.characters = {$all: chars}
   }
 
   Meme.find(query, null, {skip: page * memesPerPage, limit: memesPerPage, sort: {_id: -1}}, function (err, docs) {

@@ -50,6 +50,12 @@ const styles = theme => ({
     textTransform: 'capitalize',
     textDecoration: 'none',
   },
+  download: {
+    color: 'inherit',
+    textDecoration: 'inherit',
+    width: '1em',
+    height: '1em'
+  }
 });
 
 function handleClick() {
@@ -160,7 +166,7 @@ class MemeCard extends Component {
                   <ShareIcon/>
                 </IconButton>
                 <IconButton aria-label="Download">
-                  <FileDownloadIcon/>
+                  <a className={classes.download} href={"http://localhost:3001" + this.state.url} download=""><FileDownloadIcon/></a>
                 </IconButton>
                 {/* This is for handling the dropdown menu for more information later Part 1/2
                          <div className={classes.flexGrow} />

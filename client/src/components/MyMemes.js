@@ -11,7 +11,7 @@ const styles = {
   }
 }
 
-class MemePage extends Component {
+class MyMemes extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class MemePage extends Component {
   componentDidMount() {
     // Get the current users details from the backend server
     const chars = queryString.parse(this.props.location.search).chars
-    let query = 'memes';
+    let query = 'memes/mine';
     if (typeof chars === 'object') {
       query = query + '?chars=' + chars.join('&chars=');
     } else if (typeof chars === 'string') {
@@ -57,14 +57,21 @@ class MemePage extends Component {
     const {classes} = this.props;
 
     return (
-      <Grid container className={classes.root} spacing={0}>
-        {this.state.memes.map(meme =>
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>
-            <MemeCard className={classes.card}  data={meme}/>
+      <div>
+        {this.state.memes[0]._id ? (
+          <Grid container className={classes.root} spacing={0}>
+            {this.state.memes.map(meme =>
+              <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>
+                <MemeCard className={classes.card} data={meme}/>
+              </Grid>
+            )}
           </Grid>
+        ) : (
+          //TODO: change this
+          <div>You haven't uploaded any memes</div>
         )}
-      </Grid>)
+      </div>)
   }
 }
 
-export default withStyles(styles)(MemePage);
+export default withStyles(styles)(MyMemes);

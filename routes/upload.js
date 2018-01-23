@@ -6,7 +6,7 @@ const Meme = require('../models/meme.model');
 
 router.use('/', (req, res) => {
     if (!req.user) {
-        return res.redirect('http://localhost:3000')
+        return res.redirect('http://localhost:3000/pleaseLogin')
     }
 
     const form = new formidable.IncomingForm();

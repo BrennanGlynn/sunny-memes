@@ -1,29 +1,26 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import classnames from 'classnames';
-import Collapse from 'material-ui/transitions/Collapse';
 import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+// import Collapse from 'material-ui/transitions/Collapse';
+// import Divider from 'material-ui/Divider';
+// import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+// import MoreVertIcon from 'material-ui-icons/MoreVert';
+// import Button from 'material-ui/Button';
+// import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
 const styles = theme => ({
   card: {
-    maxWidth: 300,
+    width: 275,
   },
   media: {
-    width: 300,
-    height: 200,
+    height: 200
   },
   frontCardWrapper: {
     marginTop: '25px',
@@ -43,19 +40,25 @@ const styles = theme => ({
   flexGrow: {
     flex: '1 1 auto',
   },
-  center: {
-    alignItems: 'center',
+  chipContainer: {
+    alignItems: 'center'
   },
   chip: {
     marginBottom: '10px',
     marginLeft: '2.5px',
     marginRight: '2.5px',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    textDecoration: 'none',
   },
+  download: {
+    color: 'inherit',
+    textDecoration: 'inherit',
+    width: '1em',
+    height: '1em'
+  }
 });
 
 function handleClick() {
-  alert('You clicked the Chip.'); // eslint-disable-line no-alert
 }
 
 class MemeCard extends Component {
@@ -63,6 +66,7 @@ class MemeCard extends Component {
     super(props);
     this.state = {
       expanded: false,
+      memeId: this.props.data._id,
       title: this.props.data.title,
       date: MemeCard.formatDate(MemeCard.dateFromObjectId(this.props.data._id)),
       characters: this.props.data.characters,
@@ -70,9 +74,26 @@ class MemeCard extends Component {
     }
   }
 
+  handleFavorite() {
+    fetch('memes/favorite', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      credentials: 'include',
+      body: JSON.stringify({
+        meme: this.state.memeId
+      })
+    }).then(function (res) {
+      console.log(res.json())
+    }).catch(function (err) {
+      console.log('Error sending favorite')
+    })
+  }
+
   // handleExpandClick = () => {
   //   this.setState({expanded: !this.state.expanded});
-  // };
+  // }
 
   static dateFromObjectId(objectId) {
     return new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
@@ -91,101 +112,63 @@ class MemeCard extends Component {
     return n + (n > 0 ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10] : '');
   }
 
-
-//when using img use http://localhost:3001/memeData.url
-//You can access the properties inside this.state
-  //It should have the properties displayed
-  //////////////////////////////////////////////
-//{this.state.data.url}
   render() {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
         <Grid container spacing={0} alignItems={'center'} justify={'center'}>
-          <Grid item xs={12} sm={6} md={4} lg={2}>
-            <Grid
-              container
-              alignItems={'center'}
-              justify={'center'}
-            >
-              <div className={classes.frontCardWrapper}>
-                <Card className={classes.card}>
-                  <CardHeader
-                    //  avatar={
-                    //    <Avatar aria-label="Recipe" className={classes.avatar}>
-                    //      R
-                    //    </Avatar>
-                    //  }
-                    action={
-                      <IconButton>
-                        <MoreVertIcon/>
-                      </IconButton>
-                    }
-                    title={this.state.title}
-                    subheader={this.state.date}
-                  />
-                  <CardMedia
-                    className={classes.media}
-                    image={this.state.url}
-                    title={this.state.title}
-                  />
-                  <CardContent className={classes.center}>
-                    {this.state.characters && this.state.characters.map(character =>
-                      <Chip
-                        avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                        label={character}
-                        onClick={handleClick}
-                        className={classes.chip}
-                      />
-                    )}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/charlie.jpg"/>}*/}
-                      {/*label="Charlie"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/frank.jpg"/>}*/}
-                      {/*label="Frank"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/mac.jpg"/>}*/}
-                      {/*label="Mac"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
-
-                    {/*<Chip*/}
-                      {/*avatar={<Avatar src="/images/dee.jpg"/>}*/}
-                      {/*label="Dee"*/}
-                      {/*onClick={handleClick}*/}
-                      {/*className={classes.chip}*/}
-                    {/*/>*/}
+          <div className={classes.frontCardWrapper}>
+            <Card raised={true} className={classes.card}>
+              <CardHeader
+                //  avatar={
+                //    <Avatar aria-label="Recipe" className={classes.avatar}>
+                //      R
+                //    </Avatar>
+                //  }
+                // action={
+                //   <IconButton>
+                //     <MoreVertIcon/>
+                //   </IconButton>
+                // }
+                title={this.state.title || 'Title'}
+                subheader={this.state.date || 'January, 1st, 2018'}
+              />
+              <CardMedia
+                className={classes.media}
+                image={this.state.url || '/images/user-icon.png'}
+                title={this.state.title || 'Title'}
+              />
+              <CardContent className={classes.chipContainer}>
+                {this.state.characters && this.state.characters.map(character =>
+                  <div key={character + Math.floor(Math.random() * 1000)}>
+                    <Chip
+                      onClick={handleClick}
+                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                      label={character}
+                      className={classes.chip}
+                      component={"a"} href={"/memes?chars=" + character}
+                    />
+                  </div>
+                )}
 
 
-
-                    {/*  // Add description for meme later if wanted
+                {/*  // Add description for meme later if wanted
                           <Typography component="p">
                             This impressive paella is a perfect party dish and a fun meal to cook together with
                             your guests. Add 1 cup of frozen peas along with the mussels, if you like.
                           </Typography>*/}
-                  </CardContent>
-                  <CardActions disableActionSpacing>
-                    <IconButton aria-label="Add to favorites">
-                      <FavoriteIcon/>
-                    </IconButton>
-                    <IconButton aria-label="Share">
-                      <ShareIcon/>
-                    </IconButton>
-                    <IconButton aria-label="Download">
-                      <FileDownloadIcon/>
-                    </IconButton>
-                    {/* This is for handling the dropdown menu for more information later Part 1/2
+              </CardContent>
+              <CardActions disableActionSpacing>
+                <IconButton onClick={this.handleFavorite.bind(this)} aria-label="Add to favorites">
+                  <FavoriteIcon/>
+                </IconButton>
+                <IconButton aria-label="Share">
+                  <ShareIcon/>
+                </IconButton>
+                <IconButton aria-label="Download">
+                  <a className={classes.download} href={"http://localhost:3001" + this.state.url} download=""><FileDownloadIcon/></a>
+                </IconButton>
+                {/* This is for handling the dropdown menu for more information later Part 1/2
                          <div className={classes.flexGrow} />
                           <IconButton
                             className={classnames(classes.expand, {
@@ -197,9 +180,9 @@ class MemeCard extends Component {
                           >
                             <ExpandMoreIcon />
                           </IconButton>*/}
-                  </CardActions>
+              </CardActions>
 
-                  {/*  // This is for handling the dropdown menu for more information later Part 2/2
+              {/*  // This is for handling the dropdown menu for more information later Part 2/2
                        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                           <Divider />
                           <CardContent>
@@ -208,10 +191,8 @@ class MemeCard extends Component {
                             </Typography>
                           </CardContent>
                         </Collapse> */}
-                </Card>
-              </div>
-            </Grid>
-          </Grid>
+            </Card>
+          </div>
         </Grid>
       </div>
     );

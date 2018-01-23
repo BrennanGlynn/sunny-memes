@@ -26,8 +26,8 @@ const MemeSchema = new Schema({
         default: 0
     },
     favorites: {
-        type: Number,
-        default: 0
+        type: [String],
+        default: []
     }
 })
 

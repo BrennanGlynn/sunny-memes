@@ -55,6 +55,9 @@ const styles = theme => ({
     textDecoration: 'inherit',
     width: '1em',
     height: '1em'
+  },
+  favorite: {
+    color: 'red'
   }
 });
 
@@ -70,7 +73,9 @@ class MemeCard extends Component {
       title: this.props.data.title,
       date: MemeCard.formatDate(MemeCard.dateFromObjectId(this.props.data._id)),
       characters: this.props.data.characters,
-      url: this.props.data.url
+      url: this.props.data.url,
+      favorites: this.props.data.favorites,
+      user: this.props.user
     }
   }
 
@@ -159,7 +164,7 @@ class MemeCard extends Component {
                           </Typography>*/}
               </CardContent>
               <CardActions disableActionSpacing>
-                <IconButton onClick={this.handleFavorite.bind(this)} aria-label="Add to favorites">
+                <IconButton onClick={this.handleFavorite.bind(this)} aria-label="Add to favorites" className={this.state.favorites && this.state.favorites.includes(this.state.user) ? classes.favorite : ''}>
                   <FavoriteIcon/>
                 </IconButton>
                 <IconButton aria-label="Share">

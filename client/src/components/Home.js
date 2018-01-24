@@ -3,6 +3,8 @@ import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import {AppBar, Toolbar} from 'material-ui';
+import AddTodo from '../containers/AddTodo'
+import VisibleTodoList from '../containers/VisibleTodoList'
 import LoginModal from './LoginModal';
 import FrontBanner from './FrontBanner';
 import RightDrawer from './RightDrawer';
@@ -28,6 +30,13 @@ const styles = {
   },
 };
 
+function loginActionCreator(id) {
+  return {
+    type: 'LOGIN',
+    id
+  }
+}
+
 
 class Home extends Component {
   constructor(props) {
@@ -46,6 +55,7 @@ class Home extends Component {
       .then(res => {
         if (this.state.facebookId !== res.id) {
           this.setState({facebookId: res.id, name: res.name, picture: res.picture})
+          //dispatch(loginActionCreator(res.id))
         }
         this.setState({ready: true})
       })
@@ -84,9 +94,12 @@ class Home extends Component {
         {/*// Pages //*/}
         <Switch>
           <Route path='/' exact component={this.state.ready && this.state.name === '' ? FrontBanner : Empty}/>
-          <Route path='/memes' component={MemePage}/>
+          <Route path='/memes' render={MemePage}/>
           <Route path='/mymemes' component={this.state.ready && this.state.name === '' ? PleaseLogin : MyMemes}/>
         </Switch>
+
+        <AddTodo/>
+        <VisibleTodoList/>
 
       </div>
     );

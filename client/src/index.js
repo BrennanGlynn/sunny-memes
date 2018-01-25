@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import {createStore, applyMiddleware} from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import storage from 'redux-persist/lib/storage';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
 import 'babel-polyfill';
@@ -13,13 +16,22 @@ import 'typeface-roboto';
 import {attemptFacebookAuth, getMyMemes} from "./actions";
 
 const loggerMiddleware = createLogger()
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+
 const store = createStore(
-  reducer,
+  persistedReducer,
   applyMiddleware(
     thunkMiddleware, // lets us dispatch() functions
     loggerMiddleware // neat middleware that logs actions
   )
 )
+
+const persistor = persistStore(store)
 
 // set auth object in store
 store.dispatch(attemptFacebookAuth());
@@ -28,7 +40,9 @@ store.dispatch(getMyMemes('memes/mine'));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <PersistGate loading={null} persistor={persistor}>
+      <App/>
+    </PersistGate>
   </Provider>,
   document.getElementById('root'));
 

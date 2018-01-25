@@ -75,6 +75,7 @@ class MemeCard extends Component {
       characters: this.props.data.characters,
       url: this.props.data.url,
       favorites: this.props.data.favorites,
+      favorited: this.props.data.favorites.includes(this.props.user),
       user: this.props.user
     }
   }
@@ -93,6 +94,9 @@ class MemeCard extends Component {
       console.log(res.json())
     }).catch(function (err) {
       console.log('Error sending favorite')
+    })
+    this.setState({
+      favorited: !this.state.favorited
     })
   }
 
@@ -164,7 +168,7 @@ class MemeCard extends Component {
                           </Typography>*/}
               </CardContent>
               <CardActions disableActionSpacing>
-                <IconButton onClick={this.handleFavorite.bind(this)} aria-label="Add to favorites" className={this.state.favorites && this.state.favorites.includes(this.state.user) ? classes.favorite : ''}>
+                <IconButton onClick={this.handleFavorite.bind(this)} aria-label="Add to favorites" className={this.state.favorites && this.state.favorited ? classes.favorite : ''}>
                   <FavoriteIcon/>
                 </IconButton>
                 <IconButton aria-label="Share">

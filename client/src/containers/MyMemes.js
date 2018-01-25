@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import MyMemes from '../components/MyMemes'
+import {attemptFavorite} from "../actions";
 
 const mapStateToProps = state => {
   return {
@@ -8,8 +9,17 @@ const mapStateToProps = state => {
   }
 }
 
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onFavorite: (memeId) => {
+//       dispatch(attemptFavorite(memeId))
+//     }
+//   }
+// }
+
 const MyMemesContainer = connect(
   mapStateToProps,
+  // mapDispatchToProps
 )(MyMemes);
 
 export default MyMemesContainer

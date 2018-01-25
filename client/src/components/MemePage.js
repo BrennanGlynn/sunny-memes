@@ -42,7 +42,7 @@ class MemePage extends Component {
 MemePage.propTypes = {
   classes: PropTypes.object.isRequired,
   memes: PropTypes.array.isRequired,
-  user: PropTypes.string.isRequired
+  user: PropTypes.string.isRequired,
 }
 
 export default withStyles(styles)(MemePage);

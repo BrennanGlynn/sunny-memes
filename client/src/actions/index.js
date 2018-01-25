@@ -61,7 +61,7 @@ export const getMyMemes = (query) => {
 
 export const getMemes = (query) => {
   return dispatch => {
-    return fetch(query)
+    return fetch(query, {credentials: 'include'})
       .then(
         res => res.json(),
         error => console.log(error)

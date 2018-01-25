@@ -69,18 +69,10 @@ class MemeCard extends Component {
     super(props);
     this.state = {
       expanded: false,
-      memeId: this.props.data._id,
-      title: this.props.data.title,
-      date: MemeCard.formatDate(MemeCard.dateFromObjectId(this.props.data._id)),
-      characters: this.props.data.characters,
-      url: this.props.data.url,
-      favorites: this.props.data.favorites,
-      favorited: this.props.data.favorites.includes(this.props.user),
-      user: this.props.user
     }
   }
 
-  handleFavorite() {
+  handleFavorite(memeId) {
     fetch('memes/favorite', {
       method: 'POST',
       headers: new Headers({
@@ -88,15 +80,12 @@ class MemeCard extends Component {
       }),
       credentials: 'include',
       body: JSON.stringify({
-        meme: this.state.memeId
+        meme: memeId
       })
     }).then(function (res) {
       console.log(res.json())
     }).catch(function (err) {
       console.log('Error sending favorite')
-    })
-    this.setState({
-      favorited: !this.state.favorited
     })
   }
 
@@ -122,62 +111,63 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes} = this.props;
+    const {classes, data, user} = this.props;
     return (
       <div className={classes.root}>
-        <Grid container spacing={0} alignItems={'center'} justify={'center'}>
-          <div className={classes.frontCardWrapper}>
-            <Card raised={true} className={classes.card}>
-              <CardHeader
-                //  avatar={
-                //    <Avatar aria-label="Recipe" className={classes.avatar}>
-                //      R
-                //    </Avatar>
-                //  }
-                // action={
-                //   <IconButton>
-                //     <MoreVertIcon/>
-                //   </IconButton>
-                // }
-                title={this.state.title || 'Title'}
-                subheader={this.state.date || 'January, 1st, 2018'}
-              />
-              <CardMedia
-                className={classes.media}
-                image={this.state.url || '/images/user-icon.png'}
-                title={this.state.title || 'Title'}
-              />
-              <CardContent className={classes.chipContainer}>
-                {this.state.characters && this.state.characters.map(character =>
-                  <div key={character + Math.floor(Math.random() * 1000)}>
-                    <Chip
-                      onClick={handleClick}
-                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                      label={character}
-                      className={classes.chip}
-                      component={"a"} href={"/memes?chars=" + character}
-                    />
-                  </div>
-                )}
+        {data._id && (
+          <Grid container spacing={0} alignItems={'center'} justify={'center'}>
+            <div className={classes.frontCardWrapper}>
+              <Card raised={true} className={classes.card}>
+                <CardHeader
+                  //  avatar={
+                  //    <Avatar aria-label="Recipe" className={classes.avatar}>
+                  //      R
+                  //    </Avatar>
+                  //  }
+                  // action={
+                  //   <IconButton>
+                  //     <MoreVertIcon/>
+                  //   </IconButton>
+                  // }
+                  title={data.title || 'Title'}
+                  subheader={data.date || 'January, 1st, 2018'}
+                />
+                <CardMedia
+                  className={classes.media}
+                  image={data.url || '/images/user-icon.png'}
+                  title={data.title || 'Title'}
+                />
+                <CardContent className={classes.chipContainer}>
+                  {data.characters && data.characters.map(character =>
+                    <div key={character + Math.floor(Math.random() * 1000)}>
+                      <Chip
+                        onClick={handleClick}
+                        avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                        label={character}
+                        className={classes.chip}
+                        component={"a"} href={"/memes?chars=" + character}
+                      />
+                    </div>
+                  )}
 
 
-                {/*  // Add description for meme later if wanted
+                  {/*  // Add description for meme later if wanted
                           <Typography component="p">
                             This impressive paella is a perfect party dish and a fun meal to cook together with
                             your guests. Add 1 cup of frozen peas along with the mussels, if you like.
                           </Typography>*/}
-              </CardContent>
-              <CardActions disableActionSpacing>
-                <IconButton onClick={this.handleFavorite.bind(this)} aria-label="Add to favorites" className={this.state.favorites && this.state.favorited ? classes.favorite : ''}>
-                  <FavoriteIcon/>
-                </IconButton>
-                <IconButton aria-label="Share">
-                  <ShareIcon/>
-                </IconButton>
-                <IconButton aria-label="Download">
-                  <a className={classes.download} href={"http://localhost:3001" + this.state.url} download=""><FileDownloadIcon/></a>
-                </IconButton>
-                {/* This is for handling the dropdown menu for more information later Part 1/2
+                </CardContent>
+                <CardActions disableActionSpacing>
+                  <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) ? classes.favorite : ''}>
+                    <FavoriteIcon/>
+                  </IconButton>
+                  <IconButton aria-label="Share">
+                    <ShareIcon/>
+                  </IconButton>
+                  <IconButton aria-label="Download">
+                    <a className={classes.download} href={"http://localhost:3001" + data.url} download=""><FileDownloadIcon/></a>
+                  </IconButton>
+                  {/* This is for handling the dropdown menu for more information later Part 1/2
                          <div className={classes.flexGrow} />
                           <IconButton
                             className={classnames(classes.expand, {
@@ -189,9 +179,9 @@ class MemeCard extends Component {
                           >
                             <ExpandMoreIcon />
                           </IconButton>*/}
-              </CardActions>
+                </CardActions>
 
-              {/*  // This is for handling the dropdown menu for more information later Part 2/2
+                {/*  // This is for handling the dropdown menu for more information later Part 2/2
                        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                           <Divider />
                           <CardContent>
@@ -200,9 +190,10 @@ class MemeCard extends Component {
                             </Typography>
                           </CardContent>
                         </Collapse> */}
-            </Card>
-          </div>
-        </Grid>
+              </Card>
+            </div>
+          </Grid>
+        )}
       </div>
     );
   }

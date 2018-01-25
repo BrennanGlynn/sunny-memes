@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import Home from './components/Home'
+import GlobalContainer from './containers/GlobalContainer'
 
 import './App.css';
 
 const App = () => (
   <Router>
-    <Home/>
+    <GlobalContainer/>
   </Router>
 );
 

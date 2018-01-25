@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
 import 'typeface-roboto';
-import {fetchPosts, selectSubreddit} from "./actions";
+import {attemptFacebookAuth} from "./actions";
 
 const loggerMiddleware = createLogger()
 const store = createStore(
@@ -21,9 +21,8 @@ const store = createStore(
   )
 )
 
-store.dispatch(selectSubreddit('reactjs'))
-store.dispatch(fetchPosts('reactjs'))
-  .then(() => console.log(store.getState()))
+
+store.dispatch(attemptFacebookAuth());
 
 ReactDOM.render(
   <Provider store={store}>

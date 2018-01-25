@@ -1,12 +1,8 @@
 import {combineReducers} from 'redux'
-import todos from './todos'
-import visibilityFilter from './visibilityFilter'
-import reddit from './redditReducer'
+import auth from './auth'
 
-const todoApp = combineReducers({
-  todos,
-  visibilityFilter,
-  reddit
+const sunnyApp = combineReducers({
+  auth
 })
 
-export default todoApp
+export default sunnyApp

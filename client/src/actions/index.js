@@ -32,7 +32,7 @@ export const authReceived = (json) => {
 export const attemptLogout = () => {
   return (dispatch, getState) => {
     if (getState().auth.loggedIn) {
-      return fetch('/auth/logout')
+      return fetch('/auth/logout', {credentials: 'include'})
         .then(
           res => res.json(),
           error => console.log(error)
@@ -45,6 +45,25 @@ export const attemptLogout = () => {
 
 export const logout = {
   type: 'LOGOUT'
+}
+
+export const getMyMemes = (query) => {
+  return dispatch => {
+    return fetch(query, {credentials: 'include'})
+      .then(
+        res => res.json(),
+        error => console.log(error)
+      ).then(json => {
+        dispatch(myMemesReceived(json.documents))
+      })
+  }
+}
+
+export const myMemesReceived = (memes) => {
+  return {
+    type: 'MY_MEMES_RECEIVED',
+    memes
+  }
 }
 
 

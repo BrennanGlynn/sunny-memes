@@ -8,7 +8,7 @@ import FrontBanner from './FrontBanner';
 import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
 import MemePage from './MemePage';
-import MyMemes from './MyMemes';
+import MyMemes from '../containers/MyMemes';
 import Empty from './Empty';
 import NavMenu from './NavMenu';
 
@@ -41,7 +41,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
           </div>
           {!auth.loggedIn && <LoginModal/>}
           {auth.loggedIn && <RightDrawer/>}
-          {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture}/>}
+          {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
         </Toolbar>
       </AppBar>
 

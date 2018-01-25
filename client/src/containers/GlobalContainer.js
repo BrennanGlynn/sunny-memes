@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { logout } from "../actions"
+import { logout, attemptLogout } from "../actions"
 import Home from '../components/Home'
 
 const mapStateToProps = state => {
@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLogoutClick: () => {
-      dispatch(logout)
+      dispatch(attemptLogout())
     }
   }
 }

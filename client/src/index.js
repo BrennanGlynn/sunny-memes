@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
 import 'typeface-roboto';
-import {attemptFacebookAuth} from "./actions";
+import {attemptFacebookAuth, getMyMemes} from "./actions";
 
 const loggerMiddleware = createLogger()
 const store = createStore(
@@ -21,8 +21,10 @@ const store = createStore(
   )
 )
 
-
+// set auth object in store
 store.dispatch(attemptFacebookAuth());
+// preload users first 30 memes
+store.dispatch(getMyMemes('memes/mine'));
 
 ReactDOM.render(
   <Provider store={store}>

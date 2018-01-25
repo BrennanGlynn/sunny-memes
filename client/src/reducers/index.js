@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux'
 import auth from './auth'
+import memes from './memes'
 
 const sunnyApp = combineReducers({
-  auth
+  auth,
+  memes
 })
 
 export default sunnyApp

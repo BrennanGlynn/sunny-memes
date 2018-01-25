@@ -55,7 +55,7 @@ router.get('/facebook/return', passport.authenticate('facebook', {failureRedirec
 
 router.get('/logout', function (req, res) {
     req.logout();
-    res.redirect('http://localhost:3000');
+    res.json({loggedOut: true})
 });
 
 module.exports = router;

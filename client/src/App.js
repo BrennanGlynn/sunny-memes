@@ -1,14 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-
-import Home from './components/Home'
+import {BrowserRouter as Router} from 'react-router-dom';
+import GlobalContainer from './containers/GlobalContainer'
 
 import './App.css';
 
 const App = () => (
-    <Router>
-        <Home/>
-    </Router>
+  <Router>
+    <GlobalContainer/>
+  </Router>
 );
 
 export default App;

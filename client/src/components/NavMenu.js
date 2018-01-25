@@ -50,7 +50,7 @@ class NavMenu extends Component {
         >
           <MenuItem onClick={this.handleClose}>Favorites</MenuItem>
           <a className={classes.menuLink} href="/mymemes"><MenuItem onClick={this.handleClose}>My Memes</MenuItem></a>
-          <a className={classes.menuLink} href="http://localhost:3001/auth/logout"><MenuItem onClick={this.handleClose}>Logout</MenuItem></a>
+          <a onClick={this.props.logout} className={classes.menuLink}><MenuItem onClick={this.handleClose}>Logout</MenuItem></a>
         </Menu>
       </div>
     )

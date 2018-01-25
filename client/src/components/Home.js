@@ -7,7 +7,7 @@ import LoginModal from './LoginModal';
 import FrontBanner from './FrontBanner';
 import RightDrawer from './RightDrawer';
 import PleaseLogin from './PleaseLogin';
-import MemePage from './MemePage';
+import Memes from '../containers/Memes';
 import MyMemes from '../containers/MyMemes';
 import Empty from './Empty';
 import NavMenu from './NavMenu';
@@ -48,7 +48,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
       {/*// Pages //*/}
       <Switch>
         <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : Empty}/>
-        <Route path='/memes' component={MemePage}/>
+        <Route path='/memes' component={Memes}/>
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
       </Switch>
     </div>

@@ -59,9 +59,28 @@ export const getMyMemes = (query) => {
   }
 }
 
+export const getMemes = (query) => {
+  return dispatch => {
+    return fetch(query)
+      .then(
+        res => res.json(),
+        error => console.log(error)
+      ).then(json => {
+        dispatch(memesReceived(json.documents))
+      })
+  }
+}
+
 export const myMemesReceived = (memes) => {
   return {
     type: 'MY_MEMES_RECEIVED',
+    memes
+  }
+}
+
+export const memesReceived = (memes) => {
+  return {
+    type: 'MEMES_RECEIVED',
     memes
   }
 }

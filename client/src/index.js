@@ -13,7 +13,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
 import 'typeface-roboto';
-import {attemptFacebookAuth, getMyMemes} from "./actions";
+import {attemptFacebookAuth, getMemes, getMyMemes} from "./actions";
 
 const loggerMiddleware = createLogger()
 const persistConfig = {
@@ -37,6 +37,8 @@ const persistor = persistStore(store)
 store.dispatch(attemptFacebookAuth());
 // preload users first 30 memes
 store.dispatch(getMyMemes('memes/mine'));
+// preload 30 most recent memes
+store.dispatch(getMemes('memes'));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -7,8 +7,8 @@ const mapStateToProps = state => {
   }
 }
 
-const GlobalContainer = connect(
+const MyMemesContainer = connect(
   mapStateToProps,
 )(MyMemes);
 
-export default GlobalContainer
+export default MyMemesContainer

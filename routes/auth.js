@@ -40,9 +40,9 @@ passport.deserializeUser(function (id, done) {
 
 router.use('/me', (req, res) => {
     if (req.isAuthenticated()) {
-        res.send({id: req.user.facebookId, name: req.user.name, picture: req.user.picture})
+        res.send({id: req.user.facebookId, name: req.user.name, picture: req.user.picture, loggedIn: true})
     } else {
-        res.send({id: "", name: "", picture: 'http://localhost:3001/images/user-icon.png'})
+        res.send({loggedIn: false})
     }
 })
 

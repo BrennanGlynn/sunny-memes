@@ -10,7 +10,7 @@ function authReducer(state = {
         pending: true
       })
     case 'AUTH_RECEIVED':
-      return action.user.id ?
+      return action.loggedIn ?
         Object.assign({}, state, {
           user: {
             id: action.user.id,
@@ -21,7 +21,9 @@ function authReducer(state = {
           pending: false
         })
         : Object.assign({}, state, {
-          pending: false
+          pending: false,
+          user: {},
+          loggedIn: false
         })
     case 'LOGOUT':
       return Object.assign({}, state, {

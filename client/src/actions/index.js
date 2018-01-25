@@ -24,8 +24,9 @@ export const authReceived = (json) => {
     user: {
       id: json.id,
       name: json.name,
-      picture: json.picture
-    }
+      picture: json.picture,
+    },
+    loggedIn: json.loggedIn
   }
 }
 

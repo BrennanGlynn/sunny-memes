@@ -3,7 +3,8 @@ import MyMemes from '../components/MyMemes'
 
 const mapStateToProps = state => {
   return {
-    memes: state.memes.myMemes
+    memes: state.memes.myMemes,
+    user: state.auth.user.id
   }
 }
 

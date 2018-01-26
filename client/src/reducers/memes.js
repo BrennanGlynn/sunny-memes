@@ -32,6 +32,30 @@ function memeReducer(state = {
         memes: action.memes,
         pending: false,
       })
+    case 'TOGGLE_FAVORITE':
+      if (action.isFavorite) {
+        let memes = state.memes.map((meme) => {
+          let updatedMeme = meme;
+          if (meme._id === action.meme) {
+            updatedMeme.favorites.push(action.user)
+          }
+          return updatedMeme
+        })
+        let myMemes = state.myMemes.map((meme) => {
+          let updatedMeme = meme;
+          if (meme._id === action.meme) {
+            updatedMeme.favorites.push(action.id)
+          }
+          return updatedMeme
+        })
+        return Object.assign({}, state, {
+          memes,
+          myMemes
+        })
+      } else {
+        // remove heart
+        return state
+      }
     default:
       return state
   }

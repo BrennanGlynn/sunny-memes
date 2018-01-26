@@ -9,17 +9,17 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onFavorite: (memeId) => {
-//       dispatch(attemptFavorite(memeId))
-//     }
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    onFavorite: (memeId) => {
+      dispatch(attemptFavorite(memeId))
+    }
+  }
+}
 
 const MemesContainer = connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(MemeCard);
 
 export default MemesContainer

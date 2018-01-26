@@ -4,6 +4,7 @@ import {withStyles} from 'material-ui/styles';
 import {Grid} from 'material-ui';
 //import queryString from 'query-string';
 import MemeContainer from '../containers/MemeContainer'
+import Masonry from 'react-masonry-component'
 
 const styles = {
   root: {
@@ -18,13 +19,14 @@ class MyMemes extends Component {
     return (
       <div>
         {memes[0] ? (
-          <Grid container className={classes.root} spacing={0}>
-            {memes.map((meme, i) =>
-              <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>
-                <MemeContainer className={classes.card} memeIndex={i} mine={true}/>
-              </Grid>
+          <Masonry
+            options={{fitWidth: true}}
+            className={classes.masonry}
+          >
+            {memes.map((meme,i) =>
+              <MemeContainer memeIndex={i} key={meme._id} mine={true}/>
             )}
-          </Grid>
+          </Masonry>
         ) : (
           //TODO: change this
           <div>You haven't uploaded any memes</div>

@@ -14,6 +14,9 @@ const styles = {
     marginRight: 'auto',
     marginLeft: 'auto',
   },
+  masonry: {
+    margin: 'auto'
+  }
 }
 
 class MemePage extends Component {
@@ -30,11 +33,12 @@ class MemePage extends Component {
   // }
 
   render() {
-    const {memes} = this.props;
+    const {classes, memes} = this.props;
 
     return (
       <Masonry
-        className={'memeWrapper'}
+        options={{fitWidth: true}}
+        className={classes.masonry}
       >
         {memes.map((meme,i) =>
             <MemeContainer memeIndex={i} key={meme._id}/>

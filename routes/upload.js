@@ -35,7 +35,7 @@ router.use('/', (req, res) => {
                     res.status = 501;
                     return res.send('Error creating meme: ' + err);
                 }
-                return res.redirect('http://localhost:3000/');
+                return res.redirect('http://localhost:3000/myMemes');
             });
         })
     })

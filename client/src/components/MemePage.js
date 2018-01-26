@@ -4,15 +4,14 @@ import {withStyles} from 'material-ui/styles';
 // import queryString from 'query-string';
 import MemeContainer from '../containers/MemeContainer'
 import Masonry from 'react-masonry-component'
+import Grid from 'material-ui/Grid';
 
 const styles = {
   root: {
     flexGrow: 1,
   },
   memeWrapper: {
-    position: 'relative',
-    marginRight: 'auto',
-    marginLeft: 'auto',
+    margin: 'auto',
   },
   masonry: {
     margin: 'auto'
@@ -36,14 +35,21 @@ class MemePage extends Component {
     const {classes, memes} = this.props;
 
     return (
-      <Masonry
-        options={{fitWidth: true}}
-        className={classes.masonry}
-      >
-        {memes.map((meme,i) =>
-            <MemeContainer memeIndex={i} key={meme._id}/>
-        )}
-      </Masonry>)
+      <Grid container>
+        <Grid item xs={12}>
+          <div className="center">
+            <Masonry
+              options={{fitWidth: true}}
+              className={classes.memeWrapper}
+            >
+                  {memes.map((meme,i) =>
+                      <MemeContainer memeIndex={i} key={meme._id}/>
+                  )}
+            </Masonry>
+          </div>
+        </Grid>
+      </Grid>
+    )
   }
 }
 

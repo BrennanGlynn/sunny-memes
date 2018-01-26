@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
+import Grid from 'material-ui/Grid';
 import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import List, { ListItemIcon } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Avatar from 'material-ui/Avatar';
+import Chip from 'material-ui/Chip';
+import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
+import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
+import HighlightOffIcon from 'material-ui-icons/HighlightOff';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+
+// import Button from 'material-ui/Button';
+// import Typography from 'material-ui/Typography';
 // import Collapse from 'material-ui/transitions/Collapse';
 // import Divider from 'material-ui/Divider';
 // import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-// import MoreVertIcon from 'material-ui-icons/MoreVert';
-// import Button from 'material-ui/Button';
-// import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import Avatar from 'material-ui/Avatar';
-import Chip from 'material-ui/Chip';
 
 const styles = theme => ({
   card: {
@@ -72,6 +79,18 @@ class MemeCard extends Component {
     }
   }
 
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   handleFavorite(memeId) {
     fetch('memes/favorite', {
       method: 'POST',
@@ -112,6 +131,7 @@ class MemeCard extends Component {
 
   render() {
     const {classes, data, user, onFavorite} = this.props;
+    const { anchorEl } = this.state;
     return (
       <div className={classes.root}>
         {data._id && (
@@ -124,14 +144,36 @@ class MemeCard extends Component {
                   //      R
                   //    </Avatar>
                   //  }
-                  // action={
-                  //   <IconButton>
-                  //     <MoreVertIcon/>
-                  //   </IconButton>
-                  // }
+                  action={
+                    <IconButton
+                      aria-owns={anchorEl ? 'simple-menu' : null}
+                      aria-haspopup="true"
+                      onClick={this.handleClick}>
+                     <MoreVertIcon/>
+                    </IconButton>
+                  }
                   title={data.title || 'Title'}
                   subheader={data.date || 'January, 1st, 2018'}
                 />
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={this.handleClose}
+                  transition={Fade}
+                >
+                  <MenuItem onClick={this.handleClose}>
+                    <ListItemIcon>
+                      <RemoveRedEyeIcon />
+                    </ListItemIcon>Hide
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={this.handleClose}>
+                    <ListItemIcon>
+                      <HighlightOffIcon />
+                    </ListItemIcon>Delete
+                  </MenuItem>
+                </Menu>
                 <CardMedia
                   className={classes.media}
                   image={data.url || '/images/user-icon.png'}

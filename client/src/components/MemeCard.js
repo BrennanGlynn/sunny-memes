@@ -9,7 +9,7 @@ import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
-import FavoriteIcon from 'material-ui-icons/Favorite';
+import StarIcon from 'material-ui-icons/Star';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
@@ -64,7 +64,7 @@ const styles = theme => ({
     height: '1em'
   },
   favorite: {
-    color: 'red'
+    color: '#fed035'
   }
 });
 
@@ -201,7 +201,7 @@ class MemeCard extends Component {
                 </CardContent>
                 <CardActions disableActionSpacing>
                   <IconButton onClick={() => onFavorite(data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) ? classes.favorite : ''}>
-                    <FavoriteIcon/>
+                    <StarIcon/>
                   </IconButton>
                   <IconButton aria-label="Share">
                     <ShareIcon/>

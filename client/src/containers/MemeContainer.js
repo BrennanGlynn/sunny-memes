@@ -3,9 +3,11 @@ import MemeCard from '../components/MemeCard'
 import {attemptFavorite} from "../actions";
 
 const mapStateToProps = (state, props) => {
+  const mine = props.mine;
+  let data = mine ? state.memes.myMemes[props.memeIndex] : state.memes.memes[props.memeIndex]
   return {
     user: state.auth.user.id,
-    data: state.memes.memes[props.memeIndex]
+    data
   }
 }
 

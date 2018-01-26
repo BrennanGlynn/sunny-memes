@@ -4,6 +4,7 @@ import {withStyles} from 'material-ui/styles';
 import {Grid} from 'material-ui';
 // import queryString from 'query-string';
 import MemeContainer from '../containers/MemeContainer'
+import Masonry from 'react-masonry-component'
 
 const styles = {
   card: {},
@@ -29,13 +30,12 @@ class MemePage extends Component {
     const {classes, memes} = this.props;
 
     return (
-      <Grid container className={classes.root} spacing={0}>
+      <Masonry
+      >
         {memes.map((meme,i) =>
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>
-            <MemeContainer className={classes.card} memeIndex={i}/>
-          </Grid>
+            <MemeContainer className={classes.card} memeIndex={i} key={meme._id}/>
         )}
-      </Grid>)
+      </Masonry>)
   }
 }
 

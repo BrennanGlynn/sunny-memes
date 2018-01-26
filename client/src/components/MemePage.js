@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import {Grid} from 'material-ui';
 // import queryString from 'query-string';
-import MemeCard from './MemeCard';
+import MemeContainer from '../containers/MemeContainer'
 
 const styles = {
   card: {},
@@ -26,13 +26,13 @@ class MemePage extends Component {
   // }
 
   render() {
-    const {classes, memes, user} = this.props;
+    const {classes, memes} = this.props;
 
     return (
       <Grid container className={classes.root} spacing={0}>
         {memes.map(meme =>
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>
-            <MemeCard className={classes.card}  data={meme} user={user}/>
+            <MemeContainer className={classes.card} data={meme}/>
           </Grid>
         )}
       </Grid>)

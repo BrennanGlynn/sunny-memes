@@ -5,21 +5,21 @@ import {attemptFavorite} from "../actions";
 const mapStateToProps = (state, props) => {
   return {
     user: state.auth.user.id,
-    data: props.data
+    data: state.memes.memes[props.memeIndex]
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onFavorite: (memeId) => {
-//       dispatch(attemptFavorite(memeId))
-//     }
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    onFavorite: (memeId) => {
+      dispatch(attemptFavorite(memeId))
+    }
+  }
+}
 
 const MemesContainer = connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(MemeCard);
 
 export default MemesContainer

@@ -20,9 +20,9 @@ class MyMemes extends Component {
       <div>
         {memes[0]._id ? (
           <Grid container className={classes.root} spacing={0}>
-            {memes.map(meme =>
+            {memes.map((meme, i) =>
               <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>
-                <MemeContainer className={classes.card} data={meme}/>
+                <MemeContainer className={classes.card} memeIndex={i}/>
               </Grid>
             )}
           </Grid>

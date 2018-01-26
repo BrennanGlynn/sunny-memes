@@ -111,7 +111,7 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user} = this.props;
+    const {classes, data, user, onFavorite} = this.props;
     return (
       <div className={classes.root}>
         {data._id && (
@@ -158,7 +158,7 @@ class MemeCard extends Component {
                           </Typography>*/}
                 </CardContent>
                 <CardActions disableActionSpacing>
-                  <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) ? classes.favorite : ''}>
+                  <IconButton onClick={() => onFavorite(data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) ? classes.favorite : ''}>
                     <FavoriteIcon/>
                   </IconButton>
                   <IconButton aria-label="Share">

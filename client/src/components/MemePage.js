@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import {Grid} from 'material-ui';
 // import queryString from 'query-string';
 import MemeContainer from '../containers/MemeContainer'
 import Masonry from 'react-masonry-component'
 
 const styles = {
-  card: {},
   root: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
+  memeWrapper: {
+    position: 'relative',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+  },
 }
 
 class MemePage extends Component {
@@ -27,14 +30,15 @@ class MemePage extends Component {
   // }
 
   render() {
-    const {classes, memes} = this.props;
+    const {memes} = this.props;
 
     //dfklfjdl;asfjdas;lfdas
     return (
       <Masonry
+        className={'memeWrapper'}
       >
         {memes.map((meme,i) =>
-            <MemeContainer className={classes.card} memeIndex={i} key={meme._id}/>
+            <MemeContainer memeIndex={i} key={meme._id}/>
         )}
       </Masonry>)
   }

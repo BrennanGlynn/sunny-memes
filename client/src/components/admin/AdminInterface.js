@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
@@ -114,7 +114,7 @@ class Admin extends React.Component {
     };
 
     render() {
-      const {classes, onLogoutClick, auth, theme} = this.props;
+      const {classes, theme} = this.props;
       return (
             <div className={classes.root}>
               <div className={classes.appFrame}>

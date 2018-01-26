@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import MyMemes from '../components/MyMemes'
-import {attemptFavorite} from "../actions";
 
 const mapStateToProps = state => {
   return {

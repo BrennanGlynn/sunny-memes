@@ -17,6 +17,7 @@ import AccountCircleIcon from 'material-ui-icons/AccountCircle';
 import CloudUploadIcon from 'material-ui-icons/CloudUpload';
 
 import MemberList from './MemberList';
+import MemeList from './MemeList';
 
 const drawerWidth = 240;
 
@@ -154,7 +155,7 @@ class Admin extends React.Component {
 
                         <ListItemText primary="Home" />
                       </ListItem>
-
+                      <Divider />
                       <ListItem button>
                         <ListItemIcon>
                           <AccountCircleIcon />
@@ -162,7 +163,7 @@ class Admin extends React.Component {
 
                         <ListItemText primary="Members" />
                       </ListItem>
-
+                      <Divider />
                       <ListItem button>
                         <ListItemIcon>
                           <CloudUploadIcon />
@@ -172,11 +173,12 @@ class Admin extends React.Component {
                       </ListItem>
                     </List>
                     <Divider />
-                    <List className={classes.list}>Test2</List>
                   </div>
                 </Drawer>
                 <main className={classes.content}>
                   <MemberList />
+
+                  <MemeList />
                 </main>
               </div>
             </div>

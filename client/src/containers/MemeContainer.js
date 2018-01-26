@@ -5,7 +5,7 @@ import {attemptFavorite} from "../actions";
 const mapStateToProps = (state, props) => {
   return {
     user: state.auth.user.id,
-    data: props.data
+    data: state.memes.memes[props.memeIndex]
   }
 }
 

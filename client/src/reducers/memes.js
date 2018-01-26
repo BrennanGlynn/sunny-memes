@@ -34,27 +34,69 @@ function memeReducer(state = {
       })
     case 'TOGGLE_FAVORITE':
       if (action.isFavorite) {
-        let memes = state.memes.map((meme) => {
-          let updatedMeme = meme;
+        let memes = state.memes.map((meme, index) => {
           if (meme._id === action.meme) {
-            updatedMeme.favorites.push(action.user)
+            return Object.assign({}, meme, {
+              favorites: [
+                ...meme.favorites.slice(0, index),
+                action.user,
+                ...meme.favorites.slice(index)
+              ]
+            })
           }
-          return updatedMeme
+          return meme
         })
-        let myMemes = state.myMemes.map((meme) => {
-          let updatedMeme = meme;
+
+        let myMemes = state.myMemes.map((meme, index) => {
           if (meme._id === action.meme) {
-            updatedMeme.favorites.push(action.id)
+            return Object.assign({}, meme, {
+              favorites: [
+                ...meme.favorites.slice(0, index),
+                action.user,
+                ...meme.favorites.slice(index)
+              ]
+            })
           }
-          return updatedMeme
+          return meme
         })
+
         return Object.assign({}, state, {
-          memes,
-          myMemes
+          memes: Object.assign([], memes),
+          myMemes: Object.assign([], myMemes)
         })
       } else {
         // remove heart
-        return state
+
+        let memes = state.memes.map((meme, index) => {
+          let favIndex = meme.favorites.indexOf(action.user)
+          if (meme._id === action.meme) {
+            return Object.assign({}, meme, {
+              favorites: [
+                ...meme.favorites.slice(0, favIndex),
+                ...meme.favorites.slice(favIndex + 1)
+              ]
+            })
+          }
+          return meme
+        })
+
+        let myMemes = state.myMemes.map((meme, index) => {
+          let favIndex = meme.favorites.indexOf(action.user)
+          if (meme._id === action.meme) {
+            return Object.assign({}, meme, {
+              favorites: [
+                ...meme.favorites.slice(0, favIndex),
+                ...meme.favorites.slice(favIndex + 1)
+              ]
+            })
+          }
+          return meme
+        })
+
+        return Object.assign({}, state, {
+          memes: Object.assign([], memes),
+          myMemes: Object.assign([], myMemes)
+        })
       }
     default:
       return state

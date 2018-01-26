@@ -11,7 +11,7 @@ import Memes from '../containers/Memes';
 import MyMemes from '../containers/MyMemes';
 import Empty from './Empty';
 import NavMenu from './NavMenu';
-import AdminInterface from './AdminInterface'
+import AdminInterface from './admin/AdminInterface'
 
 const styles = {
   root: {

@@ -23,13 +23,14 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 const styles = theme => ({
   card: {
-    width: 280,
+    width: 300,
     marginLeft: '7.5px',
     marginRight: '7.5px',
     marginTop: '15px'
   },
   media: {
-    height: 200
+    width: 300,
+    minHeight: 200,
   },
   frontCardWrapper: {
     position: 'relative',

@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
 import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
 import Menu, { MenuItem } from 'material-ui/Menu';
-import List, { ListItemIcon } from 'material-ui/List';
+import { ListItemIcon } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
@@ -24,16 +23,18 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 const styles = theme => ({
   card: {
-    width: 275,
+    width: 280,
+    marginLeft: '7.5px',
+    marginRight: '7.5px',
+    marginTop: '15px'
   },
   media: {
     height: 200
   },
   frontCardWrapper: {
-    marginTop: '25px',
     position: 'relative',
-    marginLeft: '0 auto',
-    marginRight: '0 auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -135,7 +136,6 @@ class MemeCard extends Component {
     return (
       <div className={classes.root}>
         {data._id && (
-          <Grid container spacing={0} alignItems={'center'} justify={'center'}>
             <div className={classes.frontCardWrapper}>
               <Card raised={true} className={classes.card}>
                 <CardHeader
@@ -234,7 +234,6 @@ class MemeCard extends Component {
                         </Collapse> */}
               </Card>
             </div>
-          </Grid>
         )}
       </div>
     );

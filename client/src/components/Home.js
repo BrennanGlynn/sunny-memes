@@ -49,7 +49,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
       {/*// Pages //*/}
       <Switch>
         <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : Empty}/>
-        <Route path='/memes' component={Memes}/>
+        <Route path='/memes' exact component={Memes}/>
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
       </Switch>
 

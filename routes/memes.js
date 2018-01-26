@@ -78,11 +78,29 @@ router.use('/', (req, res) => {
     query.characters = {$all: chars}
   }
 
-  Meme.find(query, null, {skip: page * memesPerPage, limit: memesPerPage, sort: {_id: -1}}, function (err, docs) {
-    if (!err) {
-      res.json({documents: docs})
+  // Meme.find(query, null, {skip: page * memesPerPage, limit: memesPerPage, sort: {_id: -1}}, function (err, docs) {
+  //   if (!err) {
+  //     res.json({documents: docs})
+  //   }
+  // });
+  Meme.aggregate(
+    {$project: {
+      "url": 1,
+        "title":1,
+        "uploaded_by":1,
+        "characters": 1,
+        "favorites":1,
+        "numFaves": {"$size": "$favorites"}
+      }},
+    {$sort: {
+      "numFaves": -1
+      }},
+    {$skip: page * memesPerPage || 0},
+    {$limit: memesPerPage},
+    function (err, docs) {
+      if (!err) res.json({documents:docs})
     }
-  });
+  )
 })
 
 module.exports = router;

@@ -17,7 +17,7 @@ class MyMemes extends Component {
 
     return (
       <div>
-        {memes[0]._id ? (
+        {memes[0] ? (
           <Grid container className={classes.root} spacing={0}>
             {memes.map((meme, i) =>
               <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={meme._id}>

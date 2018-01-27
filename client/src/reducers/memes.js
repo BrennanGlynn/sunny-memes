@@ -23,11 +23,13 @@ function memeReducer(state = {
 }, action) {
   switch (action.type) {
     case 'MY_MEMES_RECEIVED':
+      console.log(action.memes)
       return Object.assign({}, state, {
         myMemes: action.memes,
         pending: false
       })
     case 'MEMES_RECEIVED':
+      console.log(action.memes)
       return Object.assign({}, state, {
         memes: action.memes,
         pending: false,
@@ -38,9 +40,8 @@ function memeReducer(state = {
           if (meme._id === action.meme) {
             return Object.assign({}, meme, {
               favorites: [
-                ...meme.favorites.slice(0, index),
+                ...meme.favorites.slice(),
                 action.user,
-                ...meme.favorites.slice(index)
               ]
             })
           }
@@ -51,9 +52,8 @@ function memeReducer(state = {
           if (meme._id === action.meme) {
             return Object.assign({}, meme, {
               favorites: [
-                ...meme.favorites.slice(0, index),
+                ...meme.favorites.slice(),
                 action.user,
-                ...meme.favorites.slice(index)
               ]
             })
           }
@@ -65,8 +65,6 @@ function memeReducer(state = {
           myMemes: Object.assign([], myMemes)
         })
       } else {
-        // remove heart
-
         let memes = state.memes.map((meme, index) => {
           let favIndex = meme.favorites.indexOf(action.user)
           if (meme._id === action.meme) {

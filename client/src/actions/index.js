@@ -96,9 +96,7 @@ export const getMemes = (query) => {
   return dispatch => {
     return fetch(query, {credentials: 'include'})
       .then(
-        res => {
-          res.json()
-        },
+        res => res.json(),
         error => console.log(error)
       ).then(json => {
         if (json) dispatch(memesReceived(json.documents))

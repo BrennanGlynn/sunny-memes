@@ -9,7 +9,10 @@ import Masonry from 'react-masonry-component'
 const styles = {
   root: {
     flexGrow: 1
-  }
+  },
+  masonry: {
+    margin: 'auto'
+  },
 }
 
 class MyMemes extends Component {
@@ -19,17 +22,23 @@ class MyMemes extends Component {
     return (
       <div>
         {memes[0] ? (
-          <Masonry
-            options={{fitWidth: true}}
-            className={classes.masonry}
-          >
-            {memes.map((meme,i) =>
-              <MemeContainer memeIndex={i} key={meme._id} mine={true}/>
-            )}
-          </Masonry>
+            <Grid container>
+              <Grid item xs={12}>
+                <div className="center">
+                  <Masonry
+                    options={{fitWidth: true}}
+                    className={classes.masonry}
+                  >
+                    {memes.map((meme,i) =>
+                      <MemeContainer memeIndex={i} key={meme._id} mine={true}/>
+                    )}
+                  </Masonry>
+                </div>
+              </Grid>
+            </Grid>
         ) : (
           //TODO: change this
-          <div>You haven't uploaded any memes</div>
+          <div>You havent uploaded any memes</div>
         )}
       </div>)
   }

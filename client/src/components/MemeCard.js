@@ -4,6 +4,7 @@ import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui
 import Menu, {MenuItem} from 'material-ui/Menu';
 import {ListItemIcon} from 'material-ui/List';
 import {Avatar, Chip, Divider, Typography} from 'material-ui/';
+import Masonry from 'react-masonry-component';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
 import StarIcon from 'material-ui-icons/Star';
@@ -15,17 +16,18 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 const styles = theme => ({
   card: {
-    width: 300,
+    width: 335,
     marginLeft: '7.5px',
     marginRight: '7.5px',
-    marginTop: '15px'
+    marginTop: '15px',
   },
   title: {
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    fontWeight: 500,
   },
   media: {
-    width: 300,
-    minHeight: 200,
+    width: '100%',
+    minHeight: 275,
   },
   frontCardWrapper: {
     position: 'relative',
@@ -45,10 +47,10 @@ const styles = theme => ({
     flex: '1 1 auto',
   },
   chipContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 50
   },
   chip: {
-    marginBottom: '10px',
     marginLeft: '2.5px',
     marginRight: '2.5px',
     textTransform: 'capitalize',
@@ -62,27 +64,25 @@ const styles = theme => ({
   },
   favorite: {
     color: '#fed035'
+  },
+  vertIcon: {
+    float: 'right',
+    marginTop: -8,
+    marginRight: -24
   }
 });
-
-
-function handleClick() {
-}
 
 class MemeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      anchorEl: false,
       expanded: false,
       favorite: this.props.data.favorites.includes(this.props.user)
     }
   }
 
-  state = {
-    anchorEl: null,
-  };
-
-  handleClick = event => {
+  handleVertClick = event => {
     this.setState({anchorEl: event.currentTarget});
   };
 
@@ -113,26 +113,25 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user, onFavorite} = this.props;
+    const {classes, data, user} = this.props;
     const {anchorEl} = this.state;
     return (
       <div className={classes.root}>
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
-              <CardHeader
-                action={
+              <CardContent style={{height: 60}}>
+                <CardActions className={classes.vertIcon}>
                   <IconButton
-                    aria-owns={anchorEl ? 'simple-menu' : null}
                     aria-haspopup="true"
-                    onClick={this.handleClick}>
+                    onClick={this.handleVertClick.bind(this)}>
                     <MoreVertIcon/>
                   </IconButton>
-                }
-                className={classes.title}
-                title={data.title.toLowerCase() || 'Title'}
-                subheader={MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}
-              />
+                </CardActions>
+                <Typography type="subheading" className={classes.title}>{data.title || 'Loading Title...'}</Typography>
+                <Typography
+                  type="caption">{MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}</Typography>
+              </CardContent>
               <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -158,21 +157,26 @@ class MemeCard extends Component {
                 title={data.title || 'Title'}
               />
               <CardContent className={classes.chipContainer}>
-                {data.characters && data.characters.map(character =>
-                  <div key={character + Math.floor(Math.random() * 1000)}>
-                    <Chip
-                      onClick={handleClick}
-                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                      label={character}
-                      className={classes.chip}
-                      component={"a"} href={"/memes?chars=" + character}
-                    />
-                  </div>
-                )}
+                <Masonry
+                  options={{fitWidth: true}}
+                >
+                  {data.characters && data.characters.map((character,i) =>
+                    <div key={i}>
+                      <Chip
+                        avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                        label={character}
+                        className={classes.chip}
+                        component={"a"} href={"/memes?chars=" + character}
+                      />
+                    </div>
+                  )}
+                </Masonry>
               </CardContent>
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
-                  <StarIcon className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}/><Typography type={'body2'}>{data.numFaves}</Typography>
+                  <StarIcon
+                    className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}/><Typography
+                  type={'body2'}>{data.numFaves}</Typography>
                 </IconButton>
                 <IconButton aria-label="Share">
                   <ShareIcon/>

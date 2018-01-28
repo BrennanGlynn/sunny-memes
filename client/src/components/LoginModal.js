@@ -1,23 +1,27 @@
 import React from 'react';
-import Typography from 'material-ui/Typography';
-import Modal from 'material-ui/Modal';
-import Button from 'material-ui/Button';
+import {withStyles} from 'material-ui/styles';
+import {Button, Modal, Typography} from 'material-ui';
+import PeopleIcon from 'material-ui-icons/People'
 
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
+const top = 25;
+const left = 50;
 
-  return {
+const styles = {
+  facebookIcon: {
+    marginRight: 8,
+    marginLeft: -8
+  },
+  modal: {
     position: 'absolute',
-    width: 8 * 50,
+    width: 300,
     top: `${top}%`,
     left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    transform: `translate(-${left}%, -${top}%)`,
     border: '1px solid #e5e5e5',
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
-    padding: 8 * 4,
-  };
+    padding: 16,
+  }
 }
 
 class LoginModal extends React.Component {
@@ -34,30 +38,34 @@ class LoginModal extends React.Component {
   };
 
   render() {
+    const {classes} = this.props
     return (
       <div>
         <Button onClick={this.handleOpen} color="contrast">
           Login
         </Button>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.open}
-          onClose={this.handleClose}
-        >
-          <div style={getModalStyle()}>
-            <Typography type="title" id="modal-title">
-              Text in a modal
-            </Typography>
-            <Typography type="subheading" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-            <Button color="primary" href="http://localhost:3001/auth/facebook">Connect With Facebook</Button>
-          </div>
-        </Modal>
+            <Modal
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              open={this.state.open}
+              onClose={this.handleClose}
+            >
+              <div className={classes.modal}>
+                <Typography type="title" id="modal-title">
+                  Login with facebook
+                </Typography>
+                <Typography type="subheading" id="simple-modal-description">
+                  You need to be logged in to save your favorite memes.
+                </Typography>
+                <Button color="primary" href="http://localhost:3001/auth/facebook">
+                  <PeopleIcon className={classes.facebookIcon}/>
+                  Login With Facebook
+                </Button>
+              </div>
+            </Modal>
       </div>
     );
   }
 }
 
-export default LoginModal;
+export default withStyles(styles)(LoginModal);

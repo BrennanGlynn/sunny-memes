@@ -75,6 +75,7 @@ class MemeCard extends Component {
     super(props);
     this.state = {
       expanded: false,
+      favorite: this.props.data.favorites.includes(this.props.user)
     }
   }
 
@@ -89,6 +90,11 @@ class MemeCard extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+
+  handleFavorite = (memeId)  => {
+    this.setState({favorite: !this.state.favorite})
+    this.props.onFavorite(memeId);
+  }
 
   static dateFromObjectId(objectId) {
     return new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
@@ -166,7 +172,7 @@ class MemeCard extends Component {
                   )}
                 </CardContent>
                 <CardActions disableActionSpacing>
-                  <IconButton onClick={() => onFavorite(data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) ? classes.favorite : ''}>
+                  <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}>
                     <StarIcon/>
                   </IconButton>
                   <IconButton aria-label="Share">

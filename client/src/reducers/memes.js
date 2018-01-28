@@ -34,13 +34,19 @@ function memeReducer(state = {
       })
     case 'TOGGLE_FAVORITE':
       if (action.isFavorite) {
+        // adding a favorite
+
+        // loop over memes in state to find modified meme
         let memes = state.memes.map((meme, index) => {
+
           if (meme._id === action.meme) {
+            // we've found the meme we're trying to change
             return Object.assign({}, meme, {
               favorites: [
                 ...meme.favorites.slice(),
                 action.user,
-              ]
+              ],
+              numFaves: meme.numFaves + 1
             })
           }
           return meme
@@ -52,7 +58,8 @@ function memeReducer(state = {
               favorites: [
                 ...meme.favorites.slice(),
                 action.user,
-              ]
+              ],
+              numFaves: meme.numFaves + 1
             })
           }
           return meme
@@ -70,7 +77,8 @@ function memeReducer(state = {
               favorites: [
                 ...meme.favorites.slice(0, favIndex),
                 ...meme.favorites.slice(favIndex + 1)
-              ]
+              ],
+              numFaves: meme.numFaves - 1
             })
           }
           return meme
@@ -83,7 +91,8 @@ function memeReducer(state = {
               favorites: [
                 ...meme.favorites.slice(0, favIndex),
                 ...meme.favorites.slice(favIndex + 1)
-              ]
+              ],
+              numFaves: meme.numFaves - 1
             })
           }
           return meme

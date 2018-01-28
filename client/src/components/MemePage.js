@@ -35,9 +35,8 @@ class MemePage extends Component {
     const {classes, memes} = this.props;
 
     return (
-      <Grid container>
+      <Grid container spacing={0}>
         <Grid item xs={12}>
-          <div className="center">
             <Masonry
               options={{fitWidth: true}}
               className={classes.memeWrapper}
@@ -46,7 +45,6 @@ class MemePage extends Component {
                       <MemeContainer memeIndex={i} key={meme._id}/>
                   )}
             </Masonry>
-          </div>
         </Grid>
       </Grid>
     )

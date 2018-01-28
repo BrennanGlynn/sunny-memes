@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
 import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import { ListItemIcon } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Avatar from 'material-ui/Avatar';
-import Chip from 'material-ui/Chip';
+import Menu, {MenuItem} from 'material-ui/Menu';
+import {ListItemIcon} from 'material-ui/List';
+import {Avatar, Chip, Divider, Typography} from 'material-ui/';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
 import StarIcon from 'material-ui-icons/Star';
@@ -67,6 +65,7 @@ const styles = theme => ({
   }
 });
 
+
 function handleClick() {
 }
 
@@ -84,14 +83,14 @@ class MemeCard extends Component {
   };
 
   handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
+    this.setState({anchorEl: event.currentTarget});
   };
 
   handleClose = () => {
-    this.setState({ anchorEl: null });
+    this.setState({anchorEl: null});
   };
 
-  handleFavorite = (memeId)  => {
+  handleFavorite = (memeId) => {
     this.setState({favorite: !this.state.favorite})
     this.props.onFavorite(memeId);
   }
@@ -115,75 +114,76 @@ class MemeCard extends Component {
 
   render() {
     const {classes, data, user, onFavorite} = this.props;
-    const { anchorEl } = this.state;
+    const {anchorEl} = this.state;
     return (
       <div className={classes.root}>
         {data._id && (
-            <div className={classes.frontCardWrapper}>
-              <Card raised={true} className={classes.card}>
-                <CardHeader
-                  action={
-                    <IconButton
-                      aria-owns={anchorEl ? 'simple-menu' : null}
-                      aria-haspopup="true"
-                      onClick={this.handleClick}>
-                     <MoreVertIcon/>
-                    </IconButton>
-                  }
-                  className={classes.title}
-                  title={data.title.toLowerCase() || 'Title'}
-                  subheader={MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}
-                />
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={this.handleClose}
-                  transition={Fade}
-                >
-                  <MenuItem onClick={this.handleClose}>
-                    <ListItemIcon>
-                      <RemoveRedEyeIcon />
-                    </ListItemIcon>Hide
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem onClick={this.handleClose}>
-                    <ListItemIcon>
-                      <HighlightOffIcon />
-                    </ListItemIcon>Delete
-                  </MenuItem>
-                </Menu>
-                <CardMedia
-                  className={classes.media}
-                  image={data.url || '/images/user-icon.png'}
-                  title={data.title || 'Title'}
-                />
-                <CardContent className={classes.chipContainer}>
-                  {data.characters && data.characters.map(character =>
-                    <div key={character + Math.floor(Math.random() * 1000)}>
-                      <Chip
-                        onClick={handleClick}
-                        avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                        label={character}
-                        className={classes.chip}
-                        component={"a"} href={"/memes?chars=" + character}
-                      />
-                    </div>
-                  )}
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}>
-                    <StarIcon/>
+          <div className={classes.frontCardWrapper}>
+            <Card raised={true} className={classes.card}>
+              <CardHeader
+                action={
+                  <IconButton
+                    aria-owns={anchorEl ? 'simple-menu' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleClick}>
+                    <MoreVertIcon/>
                   </IconButton>
-                  <IconButton aria-label="Share">
-                    <ShareIcon/>
-                  </IconButton>
-                  <IconButton aria-label="Download">
-                    <a className={classes.download} href={"http://localhost:3001" + data.url} download=""><FileDownloadIcon/></a>
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </div>
+                }
+                className={classes.title}
+                title={data.title.toLowerCase() || 'Title'}
+                subheader={MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}
+              />
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleClose}
+                transition={Fade}
+              >
+                <MenuItem onClick={this.handleClose}>
+                  <ListItemIcon>
+                    <RemoveRedEyeIcon/>
+                  </ListItemIcon>Hide
+                </MenuItem>
+                <Divider/>
+                <MenuItem onClick={this.handleClose}>
+                  <ListItemIcon>
+                    <HighlightOffIcon/>
+                  </ListItemIcon>Delete
+                </MenuItem>
+              </Menu>
+              <CardMedia
+                className={classes.media}
+                image={data.url || '/images/user-icon.png'}
+                title={data.title || 'Title'}
+              />
+              <CardContent className={classes.chipContainer}>
+                {data.characters && data.characters.map(character =>
+                  <div key={character + Math.floor(Math.random() * 1000)}>
+                    <Chip
+                      onClick={handleClick}
+                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                      label={character}
+                      className={classes.chip}
+                      component={"a"} href={"/memes?chars=" + character}
+                    />
+                  </div>
+                )}
+              </CardContent>
+              <CardActions disableActionSpacing>
+                <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
+                  <StarIcon className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}/><Typography type={'body2'}>{data.numFaves}</Typography>
+                </IconButton>
+                <IconButton aria-label="Share">
+                  <ShareIcon/>
+                </IconButton>
+                <IconButton aria-label="Download">
+                  <a className={classes.download} href={"http://localhost:3001" + data.url}
+                     download=""><FileDownloadIcon/></a>
+                </IconButton>
+              </CardActions>
+            </Card>
+          </div>
         )}
       </div>
     );

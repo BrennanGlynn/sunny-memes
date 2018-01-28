@@ -37,7 +37,6 @@ export const attemptFavorite = (memeId) => {
 }
 
 export const toggleFavorite = (json) => {
-  console.log(json)
   return {
     type: 'TOGGLE_FAVORITE',
     meme: json.meme,

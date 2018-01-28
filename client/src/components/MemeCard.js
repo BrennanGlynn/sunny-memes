@@ -15,18 +15,15 @@ import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-// import Button from 'material-ui/Button';
-// import Typography from 'material-ui/Typography';
-// import Collapse from 'material-ui/transitions/Collapse';
-// import Divider from 'material-ui/Divider';
-// import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-
 const styles = theme => ({
   card: {
     width: 300,
     marginLeft: '7.5px',
     marginRight: '7.5px',
     marginTop: '15px'
+  },
+  title: {
+    textTransform: 'capitalize'
   },
   media: {
     width: 300,
@@ -93,27 +90,6 @@ class MemeCard extends Component {
     this.setState({ anchorEl: null });
   };
 
-  handleFavorite(memeId) {
-    fetch('memes/favorite', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      credentials: 'include',
-      body: JSON.stringify({
-        meme: memeId
-      })
-    }).then(function (res) {
-      console.log(res.json())
-    }).catch(function (err) {
-      console.log('Error sending favorite')
-    })
-  }
-
-  // handleExpandClick = () => {
-  //   this.setState({expanded: !this.state.expanded});
-  // }
-
   static dateFromObjectId(objectId) {
     return new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
   };
@@ -140,11 +116,6 @@ class MemeCard extends Component {
             <div className={classes.frontCardWrapper}>
               <Card raised={true} className={classes.card}>
                 <CardHeader
-                  //  avatar={
-                  //    <Avatar aria-label="Recipe" className={classes.avatar}>
-                  //      R
-                  //    </Avatar>
-                  //  }
                   action={
                     <IconButton
                       aria-owns={anchorEl ? 'simple-menu' : null}
@@ -153,8 +124,8 @@ class MemeCard extends Component {
                      <MoreVertIcon/>
                     </IconButton>
                   }
-                  title={data.title || 'Title'}
-                  subheader={data.date || 'January, 1st, 2018'}
+                  title={data.title.toLowerCase() || 'Title'}
+                  subheader={MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}
                 />
                 <Menu
                   id="simple-menu"
@@ -192,13 +163,6 @@ class MemeCard extends Component {
                       />
                     </div>
                   )}
-
-
-                  {/*  // Add description for meme later if wanted
-                          <Typography component="p">
-                            This impressive paella is a perfect party dish and a fun meal to cook together with
-                            your guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                          </Typography>*/}
                 </CardContent>
                 <CardActions disableActionSpacing>
                   <IconButton onClick={() => onFavorite(data._id)} aria-label="Add to favorites" className={data.favorites.includes(user) ? classes.favorite : ''}>
@@ -210,29 +174,7 @@ class MemeCard extends Component {
                   <IconButton aria-label="Download">
                     <a className={classes.download} href={"http://localhost:3001" + data.url} download=""><FileDownloadIcon/></a>
                   </IconButton>
-                  {/* This is for handling the dropdown menu for more information later Part 1/2
-                         <div className={classes.flexGrow} />
-                          <IconButton
-                            className={classnames(classes.expand, {
-                              [classes.expandOpen]: this.state.expanded,
-                            })}
-                            onClick={this.handleExpandClick}
-                            aria-expanded={this.state.expanded}
-                            aria-label="Show more"
-                          >
-                            <ExpandMoreIcon />
-                          </IconButton>*/}
                 </CardActions>
-
-                {/*  // This is for handling the dropdown menu for more information later Part 2/2
-                       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                          <Divider />
-                          <CardContent>
-                            <Typography paragraph type="body2">
-                              Method:
-                            </Typography>
-                          </CardContent>
-                        </Collapse> */}
               </Card>
             </div>
         )}

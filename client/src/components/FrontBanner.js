@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-import {Paper, Typography} from 'material-ui';
 
 let bannerBackgroundUrl = '/images/dayman-nightman.png'
 const styles = theme => ({
@@ -37,19 +36,8 @@ const styles = theme => ({
 class FrontBanner extends Component {
   render() {
     const {classes} = this.props;
-    const introP = "This you should upload. I leave memes. Good. Thank you, thank you. " +
-      "If you share me, I'm hot. What? Taxes, they'll be lower... son. The meme" +
-      " upload is the right thing to do Philadelphia, so do."
     return (
       <div className={classes.bannerWrapper}>
-        <Paper className={classes.root} elevation={4}>
-          <Typography type="headline" component="h1" className={classes.h1}>
-            Hello Fellow American
-          </Typography>
-          <Typography component="p" className={classes.p}>
-            {introP}
-          </Typography>
-        </Paper>
       </div>
     );
   }

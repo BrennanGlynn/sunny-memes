@@ -12,7 +12,6 @@ import 'babel-polyfill';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
-import 'typeface-roboto';
 import {attemptFacebookAuth, getMemes, getMyMemes} from "./actions";
 
 const loggerMiddleware = createLogger()

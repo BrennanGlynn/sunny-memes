@@ -124,6 +124,7 @@ class MemeCard extends Component {
                      <MoreVertIcon/>
                     </IconButton>
                   }
+                  className={classes.title}
                   title={data.title.toLowerCase() || 'Title'}
                   subheader={MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}
                 />

@@ -10,6 +10,9 @@ const styles = {
   center: {
     textAlign: 'center',
   },
+  label: {
+    color: 'white',
+  },
   left: {
     textAlign: 'left',
   },
@@ -19,7 +22,6 @@ const styles = {
 };
 
 class RightDrawer extends Component {
-
   state = {
     open: false
   };
@@ -46,10 +48,7 @@ class RightDrawer extends Component {
     );
     return (
       <div>
-        <Button raised onClick={this.toggleDrawer(true)}>
-          Upload
-        </Button>
-
+        <Button className={classes.label} onClick={this.toggleDrawer(true)}>Upload</Button>
         <Drawer anchor="right" open={this.state.open} onClose={this.toggleDrawer(false)}>
           <div
             tabIndex={0}

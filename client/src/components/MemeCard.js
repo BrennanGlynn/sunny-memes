@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-import Card, {CardHeader, CardMedia, CardContent, CardActions} from 'material-ui/Card';
+import Card, {CardMedia, CardContent, CardActions} from 'material-ui/Card';
 import Menu, {MenuItem} from 'material-ui/Menu';
-import {ListItemIcon} from 'material-ui/List';
-import {Avatar, Chip, Divider, Typography} from 'material-ui/';
+import {Avatar, Chip, Divider, ListItemIcon, Typography} from 'material-ui/';
 import Masonry from 'react-masonry-component';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
@@ -13,6 +12,7 @@ import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
+import MemePopup from './MemePopup'
 
 const styles = theme => ({
   card: {
@@ -69,16 +69,17 @@ const styles = theme => ({
     float: 'right',
     marginTop: -8,
     marginRight: -24
-  }
+  },
 });
 
 class MemeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      anchorEl: false,
+      anchorEl: null,
       expanded: false,
-      favorite: this.props.data.favorites.includes(this.props.user)
+      favorite: this.props.data.favorites.includes(this.props.user),
+      zoomed: false
     }
   }
 
@@ -93,6 +94,10 @@ class MemeCard extends Component {
   handleFavorite = (memeId) => {
     this.setState({favorite: !this.state.favorite})
     this.props.onFavorite(memeId);
+  }
+
+  toggleFullMeme = () => {
+    this.setState({zoomed: !this.state.zoomed})
   }
 
   static dateFromObjectId(objectId) {
@@ -155,6 +160,7 @@ class MemeCard extends Component {
                 className={classes.media}
                 image={data.url || '/images/user-icon.png'}
                 title={data.title || 'Title'}
+                onClick={this.toggleFullMeme}
               />
               <CardContent className={classes.chipContainer}>
                 <Masonry
@@ -187,6 +193,9 @@ class MemeCard extends Component {
                 </IconButton>
               </CardActions>
             </Card>
+
+
+            <MemePopup data={data} openModal={this.toggleFullMeme} zoomed={this.state.zoomed} />
           </div>
         )}
       </div>

@@ -6,7 +6,7 @@ import {AppBar, Button, Toolbar} from 'material-ui';
 import HomeIcon from 'material-ui-icons/Home';
 import LoginModal from './LoginModal';
 import FrontBanner from './FrontBanner';
-import RightDrawer from './RightDrawer';
+import RightDrawer from './UploadModal';
 import PleaseLogin from './PleaseLogin';
 import Memes from '../containers/Memes';
 import MyMemes from '../containers/MyMemes';

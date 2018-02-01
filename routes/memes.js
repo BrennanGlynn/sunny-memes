@@ -66,21 +66,26 @@ router.use('/mine', (req, res) => {
 
   Meme.aggregate(
     {$match: query},
-    {$project: {
+    {
+      $project: {
         "url": 1,
-        "title":1,
-        "uploaded_by":1,
+        "title": 1,
+        "uploaded_by": 1,
         "characters": 1,
-        "favorites":1,
+        "favorites": 1,
         "numFaves": {"$size": "$favorites"}
-      }},
-    {$sort: {
-        "numFaves": -1
-      }},
+      }
+    },
+    {
+      $sort: {
+        "numFaves": -1,
+        "_id": 1
+      }
+    },
     {$skip: page * memesPerPage || 0},
     {$limit: memesPerPage},
     function (err, docs) {
-      if (!err) res.json({documents:docs})
+      if (!err) res.json({documents: docs})
     }
   )
 })
@@ -98,21 +103,26 @@ router.use('/', (req, res) => {
 
   Meme.aggregate(
     {$match: query},
-    {$project: {
-      "url": 1,
-        "title":1,
-        "uploaded_by":1,
+    {
+      $project: {
+        "url": 1,
+        "title": 1,
+        "uploaded_by": 1,
         "characters": 1,
-        "favorites":1,
+        "favorites": 1,
         "numFaves": {"$size": "$favorites"}
-      }},
-    {$sort: {
-      "numFaves": -1
-      }},
+      }
+    },
+    {
+      $sort: {
+        "numFaves": -1,
+        "_id": -1
+      }
+    },
     {$skip: page * memesPerPage || 0},
     {$limit: memesPerPage},
     function (err, docs) {
-      if (!err) res.json({documents:docs})
+      if (!err) res.json({documents: docs})
     }
   )
 })

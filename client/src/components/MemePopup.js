@@ -15,7 +15,6 @@ const styles = {
     maxWidth: '90%'
   },
   fullImage: {
-    maxHeight: 500,
     minWidth: 325,
     width: '100%',
   }

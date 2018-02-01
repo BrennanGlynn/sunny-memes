@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { attemptLogout } from "../actions"
-import Home from '../components/Home'
+import Home from '../components/home/Home'
 
 const mapStateToProps = state => {
   return {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withStyles} from 'material-ui/styles';
 import {Button, Modal, Typography} from 'material-ui';
-import AddMeme from "./AddMeme";
+import UploadForm from "./UploadForm";
 
 const styles = {
   openModal: {
@@ -55,7 +55,7 @@ class UploadModal extends Component {
         >
           <div className={classes.openModal}>
             <Typography type="display" component="h1">Upload meme</Typography>
-            <AddMeme/>
+            <UploadForm/>
           </div>
         </Modal>
       </div>

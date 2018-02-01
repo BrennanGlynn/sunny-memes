@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import MyMemes from '../components/MyMemes'
+import MyMemes from '../../components/users/MyMemes'
 
 const mapStateToProps = state => {
   return {

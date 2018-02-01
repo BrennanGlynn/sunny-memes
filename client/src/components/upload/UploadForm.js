@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class AddMeme extends Component {
+class UploadForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,4 +43,4 @@ class AddMeme extends Component {
   }
 }
 
-export default AddMeme;
+export default UploadForm;

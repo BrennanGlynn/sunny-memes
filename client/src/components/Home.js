@@ -12,7 +12,8 @@ import Memes from '../containers/Memes';
 import MyMemes from '../containers/MyMemes';
 import Empty from './Empty';
 import NavMenu from './NavMenu';
-import AdminInterface from './admin/AdminInterface'
+import AdminInterface from './admin/AdminInterface';
+import MemeComments from './MemeComments';
 
 const styles = {
   root: {
@@ -56,6 +57,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
         <Route path='/memes' exact component={Memes}/>
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
         <Route path='/admin' component={AdminInterface}/>
+        <Route path='/memecomments' exact component={MemeComments}/>
       </Switch>
     </div>
     }

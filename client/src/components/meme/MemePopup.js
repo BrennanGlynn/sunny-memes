@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import {withStyles} from 'material-ui/styles';
-import {Grid, Button, Divider, ListItemIcon, Modal, Typography} from 'material-ui';
+import {Grid, Button, Paper, Divider, ListItemIcon, Modal, Typography} from 'material-ui';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import IconButton from 'material-ui/IconButton';
@@ -21,11 +21,19 @@ const styles = {
     padding: '32',
     minWidth: '50%',
     maxWidth: '90%',
-    height: '50%',
+    height: 'auto',
   },
   fullImage: {
     minWidth: 325,
     width: '100%',
+  },
+  root: {
+    width: '100%',
+    height: '80%',
+    marginTop: 10,
+    marginBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 }
 
@@ -53,6 +61,8 @@ class MemePopup extends Component {
         aria-describedby="simple-modal-description"
         open={zoomed}
         onClose={openModal}
+        disableAutoFocus={true}
+        disableBackdropClick={true}
       >
         <div className={classes.openModal}>
           <Grid container justify="flex-end">
@@ -82,25 +92,33 @@ class MemePopup extends Component {
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete
                 </MenuItem>
+                <Divider/>
+                <MenuItem onClick={this.handleClose}>
+                  <ListItemIcon>
+                    <HighlightOffIcon/>
+                  </ListItemIcon>Report Duplicate
+                </MenuItem>
               </Menu>
             </Grid>
           </Grid>
-          <Grid container>
-            <Grid item xs={6}>
-              <div style={{width: '100%'}}>
-                <Typography type="title" id="modal-title">
-                  {data.title}
-                </Typography>
-                <Typography type="subheading" id="simple-modal-description">
-                  {data.uploaded_by}
-                </Typography>
-                <img className={classes.fullImage} src={data.url} alt="fullMeme" />
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <MemeComments />
-            </Grid>
-          </Grid>
+          <Divider/>
+
+            <div className={classes.root}>
+              <Grid container spacing={8} justify="center">
+                <Grid item xs={6}>
+                    <Typography type="title" id="modal-title">
+                      {data.title}
+                    </Typography>
+                    <Typography type="subheading" id="simple-modal-description">
+                      {data.uploaded_by}
+                    </Typography>
+                    <img className={classes.fullImage} src={data.url} alt="fullMeme" />
+                </Grid>
+                <Grid item xs={6}>
+                  <MemeComments />
+                </Grid>
+              </Grid>
+            </div>
         </div>
       </Modal>
     );

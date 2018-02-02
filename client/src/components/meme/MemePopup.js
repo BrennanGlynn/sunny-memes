@@ -7,6 +7,7 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 import IconButton from 'material-ui/IconButton';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
+import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MemeComments from '../MemeComments';
 
 const styles = {
@@ -95,8 +96,8 @@ class MemePopup extends Component {
                 <Divider/>
                 <MenuItem onClick={this.handleClose}>
                   <ListItemIcon>
-                    <HighlightOffIcon/>
-                  </ListItemIcon>Report Duplicate
+                    <ReportProblemIcon/>
+                  </ListItemIcon>Report
                 </MenuItem>
               </Menu>
             </Grid>

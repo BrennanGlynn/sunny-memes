@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {Route} from 'react-router-dom';
 import {withStyles} from 'material-ui/styles';
-import {Button, Modal, Typography} from 'material-ui'
+import {Grid, Button, Modal, Typography} from 'material-ui'
+import MemeComments from '../MemeComments'
 
 const styles = {
   openModal: {
@@ -12,12 +14,13 @@ const styles = {
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0,0,0,.5)',
     padding: '32',
-    maxWidth: '90%'
+    minWidth: '50%',
+    maxWidth: '90%',
   },
   fullImage: {
     minWidth: 325,
     width: '100%',
-  }
+  },
 }
 
 
@@ -32,16 +35,23 @@ class MemePopup extends Component {
         onClose={openModal}
       >
         <div className={classes.openModal}>
-          <div style={{width: '100%'}}>
-            <Button onClick={openModal}>Close</Button>
-            <Typography type="title" id="modal-title">
-              {data.title}
-            </Typography>
-            <Typography type="subheading" id="simple-modal-description">
-              {data.uploaded_by}
-            </Typography>
-            <img className={classes.fullImage} src={data.url} alt="fullMeme" />
-          </div>
+          <Grid container>
+            <Grid item xs={6}>
+              <div style={{width: '100%'}}>
+                <Button onClick={openModal}>Close</Button>
+                <Typography type="title" id="modal-title">
+                  {data.title}
+                </Typography>
+                <Typography type="subheading" id="simple-modal-description">
+                  {data.uploaded_by}
+                </Typography>
+                <img className={classes.fullImage} src={data.url} alt="fullMeme" />
+              </div>
+            </Grid>
+            <Grid item xs={6}>
+              <Route path='/memecomments' component={MemeComments}/>
+            </Grid>
+          </Grid>
         </div>
       </Modal>
     );

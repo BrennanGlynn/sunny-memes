@@ -71,8 +71,6 @@ class MemeComments extends Component {
   render() {
     const {classes} = this.props;
     return(
-      <Grid container className={classes.root}>
-        <Grid item xs={6} sm={5} md={3} lg={2} xl={1}>
           <Paper className={classes.root} elevation={4}>
             <Grid container className={classes.commentContainer}>
               <Grid item xs={2} sm={3} className={classes.avatar}>
@@ -110,8 +108,6 @@ class MemeComments extends Component {
               </Grid>
             </Grid>
           </Paper>
-        </Grid>
-      </Grid>
     )
   }
 }

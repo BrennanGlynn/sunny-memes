@@ -49,7 +49,7 @@ class MemePopup extends Component {
               </div>
             </Grid>
             <Grid item xs={6}>
-              <Route path='/memecomments' component={MemeComments}/>
+              <MemeComments />
             </Grid>
           </Grid>
         </div>

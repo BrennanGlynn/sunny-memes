@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import MemeCard from '../components/MemeCard'
-import {attemptFavorite} from "../actions";
+import MemeCard from '../../components/meme/MemeCard'
+import {attemptFavorite} from "../../actions/index";
 
 const mapStateToProps = (state, props) => {
   const mine = props.mine;

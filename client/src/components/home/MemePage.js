@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 // import queryString from 'query-string';
-import MemeContainer from '../containers/MemeContainer'
+import MemeContainer from '../../containers/memes/MemeContainer'
 import Masonry from 'react-masonry-component'
 import Grid from 'material-ui/Grid';
 

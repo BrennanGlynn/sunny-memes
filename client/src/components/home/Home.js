@@ -4,16 +4,20 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import {AppBar, Button, Toolbar} from 'material-ui';
 import HomeIcon from 'material-ui-icons/Home';
-import LoginModal from './LoginModal';
+import LoginModal from '../login/LoginModal';
 import FrontBanner from './FrontBanner';
-import RightDrawer from './RightDrawer';
-import PleaseLogin from './PleaseLogin';
-import Memes from '../containers/Memes';
-import MyMemes from '../containers/MyMemes';
-import Empty from './Empty';
+import UploadModal from '../upload/UploadModal';
+import PleaseLogin from '../PleaseLogin';
+import Memes from '../../containers/memes/Memes';
+import MyMemes from '../../containers/memes/MyMemes';
+import Empty from '../Empty';
 import NavMenu from './NavMenu';
+<<<<<<< HEAD:client/src/components/Home.js
 import AdminInterface from './admin/AdminInterface';
 import MemeComments from './MemeComments';
+=======
+import AdminInterface from '../admin/AdminInterface'
+>>>>>>> master:client/src/components/home/Home.js
 
 const styles = {
   root: {
@@ -46,7 +50,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
             <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
           </div>
           {!auth.loggedIn && <LoginModal/>}
-          {auth.loggedIn && <RightDrawer/>}
+          {auth.loggedIn && <UploadModal/>}
           {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
         </Toolbar>
       </AppBar>

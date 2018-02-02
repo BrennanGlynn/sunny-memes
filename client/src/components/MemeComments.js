@@ -72,6 +72,11 @@ class MemeComments extends Component {
     const {classes} = this.props;
     return(
           <Paper className={classes.root} elevation={4}>
+            <Grid container>
+              <Grid item>
+                
+              </Grid>
+            </Grid>
             <Grid container className={classes.commentContainer}>
               <Grid item xs={2} sm={3} className={classes.avatar}>
                   <a>

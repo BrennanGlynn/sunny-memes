@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import {withStyles} from 'material-ui/styles';
-import {Grid, Button, Modal, Typography} from 'material-ui'
-import MemeComments from '../MemeComments'
+import {Grid, Button, Divider, ListItemIcon, Modal, Typography} from 'material-ui';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+import IconButton from 'material-ui/IconButton';
+import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
+import HighlightOffIcon from 'material-ui-icons/HighlightOff';
+import MemeComments from '../MemeComments';
 
 const styles = {
   openModal: {
@@ -16,6 +21,7 @@ const styles = {
     padding: '32',
     minWidth: '50%',
     maxWidth: '90%',
+    height: '50%',
   },
   fullImage: {
     minWidth: 325,
@@ -25,8 +31,22 @@ const styles = {
 
 
 class MemePopup extends Component {
+
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
     const {classes, data, openModal, zoomed} = this.props;
+    const { anchorEl } = this.state;
     return (
       <Modal
         aria-labelledby="simple-modal-title"
@@ -35,10 +55,39 @@ class MemePopup extends Component {
         onClose={openModal}
       >
         <div className={classes.openModal}>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <IconButton
+                aria-owns={anchorEl ? 'simple-menu' : null}
+                aria-haspopup="true"
+                onClick={this.handleClick}
+              >
+                <MoreVertIcon />
+              </IconButton>
+              <Button onClick={openModal}>Close</Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleClose}
+              >
+                <MenuItem onClick={this.handleClose}>
+                  <ListItemIcon>
+                    <RemoveRedEyeIcon/>
+                  </ListItemIcon>Hide
+                </MenuItem>
+                <Divider/>
+                <MenuItem onClick={this.handleClose}>
+                  <ListItemIcon>
+                    <HighlightOffIcon/>
+                  </ListItemIcon>Delete
+                </MenuItem>
+              </Menu>
+            </Grid>
+          </Grid>
           <Grid container>
             <Grid item xs={6}>
               <div style={{width: '100%'}}>
-                <Button onClick={openModal}>Close</Button>
                 <Typography type="title" id="modal-title">
                   {data.title}
                 </Typography>

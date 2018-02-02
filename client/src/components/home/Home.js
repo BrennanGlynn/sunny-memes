@@ -12,12 +12,8 @@ import Memes from '../../containers/memes/Memes';
 import MyMemes from '../../containers/memes/MyMemes';
 import Empty from '../Empty';
 import NavMenu from './NavMenu';
-<<<<<<< HEAD:client/src/components/Home.js
-import AdminInterface from './admin/AdminInterface';
-import MemeComments from './MemeComments';
-=======
-import AdminInterface from '../admin/AdminInterface'
->>>>>>> master:client/src/components/home/Home.js
+import AdminInterface from '../admin/AdminInterface';
+import MemeComments from '../MemeComments';
 
 const styles = {
   root: {

@@ -1,46 +1,76 @@
 import React, {Component} from 'react'
+import {
+  Avatar, Button, Card, CardActions, CardContent, CardMedia, Chip, IconButton, Typography,
+  withStyles
+} from 'material-ui'
+import Masonry from 'react-masonry-component'
+import Dropzone from 'react-dropzone'
+import UploadPreviewCard from "./UploadPreviewCard";
+import {Redirect} from "react-router";
+
+const styles = {
+  masonry: {
+    margin: 'auto'
+  }
+};
 
 class UploadForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null
+      files: [],
     }
   }
 
-  handleImageChange(event) {
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        this.setState({image: e.target.result});
-      };
-      reader.readAsDataURL(event.target.files[0])
-    }
+  onDrop = (acceptedFiles, rejectedFiles) => {
+    this.setState({files: acceptedFiles})
+  }
+
+  handleUpload() {
+    this.state.files.forEach(function (f) {
+      let formData = new FormData();
+      formData.append('file', f);
+      formData.append('title', f.title)
+      formData.append('characters', f.characters)
+
+      fetch('upload/test', {
+        credentials: 'include',
+        method: 'post',
+        body: formData,
+      })
+    })
+  }
+
+  handleFileChange(index, newFile) {
+    let newFiles = this.state.files.slice()
+    newFiles[index] = newFile
+    this.setState({files: newFiles})
   }
 
   render() {
+    const {classes} = this.props;
     return (
-      <form method="post" encType="multipart/form-data" action="/upload">
-        {/*We need to have a separate input name for each character*/}
+      <div>
+        <form>
+          {/*Replace previews with uploadpreviewcard*/}
+          {/*<UploadPreviewCard file={file} />*/}
 
-        <label>Title of post:</label><br/>
-        <input type="text" name="title"/><br/>
-        <label>Meme</label><br/>
-        <input type="file" onChange={this.handleImageChange.bind(this)} name="file"/><br/>
-        {this.state.image && <img id="target" src={this.state.image} alt="upload" />}
-        <input type="checkbox" id="charlie" name="charlie" value="true"/>
-        <label for="charlie">Charlie</label><br/>
-        <input type="checkbox" id="mac" name="mac" value="true"/>
-        <label for="charlie">Mac</label><br/>
-        <input type="checkbox" id="dennis" name="dennis" value="true"/>
-        <label for="charlie">Dennis</label><br/>
-        <input type="checkbox" id="frank" name="frank" value="true"/>
-        <label for="charlie">Frank</label><br/>
-        <input type="checkbox" id="dee" name="dee" value="true"/>
-        <label for="charlie">Dee</label><br/>
-        <input type="submit" value="Submit"/>
-      </form>);
+          <input type="text" name="title"/><br/>
+          <Dropzone onDrop={this.onDrop}></Dropzone>
+          <Masonry
+            options={{fitWidth: true}}
+            className={classes.masonry}
+          >
+            {
+              this.state.files.map((file, index) =>
+                <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
+              )
+            }
+          </Masonry>
+          <Button href='/mymemes' onClick={this.handleUpload.bind(this)}>Submit</Button>
+        </form>
+      </div>);
   }
 }
 
-export default UploadForm;
+export default withStyles(styles)(UploadForm);

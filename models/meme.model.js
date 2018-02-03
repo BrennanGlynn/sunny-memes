@@ -19,7 +19,7 @@ const MemeSchema = new Schema({
   },
   characters: {
     type: [String],
-    required: true
+    default: []
   },
   tags: [String],
   visits: {

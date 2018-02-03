@@ -54,7 +54,7 @@ class UploadModal extends Component {
           onClose={this.toggleModal}
         >
           <div className={classes.openModal}>
-            <Typography type="display" component="h1">Upload meme</Typography>
+            <Typography type="body2" component="h1">Upload meme</Typography>
             <UploadForm/>
           </div>
         </Modal>

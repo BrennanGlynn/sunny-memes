@@ -170,20 +170,15 @@ class MemeCard extends Component {
                 onClick={this.toggleFullMeme}
               />
               <CardContent className={classes.chipContainer}>
-                <Masonry
-                  options={{fitWidth: true}}
-                >
-                  {data.characters && data.characters.map((character,i) =>
-                    <div key={i}>
-                      <Chip
-                        avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
-                        label={character}
-                        className={classes.chip}
-                        component={"a"} href={"/memes?chars=" + character}
-                      />
-                    </div>
-                  )}
-                </Masonry>
+                {data.characters && data.characters.map((character, i) =>
+                    <Chip
+                      key={i}
+                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                      label={character}
+                      className={classes.chip}
+                      component={"a"} href={"/memes?chars=" + character}
+                    />
+                )}
               </CardContent>
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
@@ -202,7 +197,7 @@ class MemeCard extends Component {
             </Card>
 
 
-            <MemePopup data={data} openModal={this.toggleFullMeme} zoomed={this.state.zoomed} />
+            <MemePopup data={data} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>
           </div>
         )}
       </div>

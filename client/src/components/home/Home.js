@@ -12,7 +12,8 @@ import Memes from '../../containers/memes/Memes';
 import MyMemes from '../../containers/memes/MyMemes';
 import Empty from '../Empty';
 import NavMenu from './NavMenu';
-import AdminInterface from '../admin/AdminInterface';
+import AdminInterface from '../admin/AdminInterface'
+import UploadForm from "../upload/UploadForm";
 import MemeComments from '../MemeComments';
 
 const styles = {
@@ -46,7 +47,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
             <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
           </div>
           {!auth.loggedIn && <LoginModal/>}
-          {auth.loggedIn && <UploadModal/>}
+          {auth.loggedIn && <Button className={classes.label} href="/upload">Upload</Button>}
           {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
         </Toolbar>
       </AppBar>
@@ -57,6 +58,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
         <Route path='/memes' exact component={Memes}/>
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
         <Route path='/admin' component={AdminInterface}/>
+        <Route path='/upload' component={UploadForm} />
         <Route path='/memecomments' exact component={MemeComments}/>
       </Switch>
     </div>

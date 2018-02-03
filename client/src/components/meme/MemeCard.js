@@ -11,6 +11,7 @@ import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
+import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import MemePopup from './MemePopup'
 
@@ -154,6 +155,12 @@ class MemeCard extends Component {
                   <ListItemIcon>
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete
+                </MenuItem>
+                <Divider/>
+                <MenuItem onClick={this.handleClose}>
+                  <ListItemIcon>
+                    <ReportProblemIcon/>
+                  </ListItemIcon>Report
                 </MenuItem>
               </Menu>
               <CardMedia

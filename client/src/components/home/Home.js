@@ -14,6 +14,7 @@ import Empty from '../Empty';
 import NavMenu from './NavMenu';
 import AdminInterface from '../admin/AdminInterface'
 import UploadForm from "../upload/UploadForm";
+import MemeComments from '../MemeComments';
 
 const styles = {
   root: {
@@ -58,6 +59,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
         <Route path='/admin' component={AdminInterface}/>
         <Route path='/upload' component={UploadForm} />
+        <Route path='/memecomments' exact component={MemeComments}/>
       </Switch>
     </div>
     }

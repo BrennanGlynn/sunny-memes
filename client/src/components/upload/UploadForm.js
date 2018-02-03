@@ -23,7 +23,11 @@ class UploadForm extends Component {
   }
 
   onDrop = (acceptedFiles, rejectedFiles) => {
-    this.setState({files: acceptedFiles})
+    let newFiles = this.state.files.slice()
+    acceptedFiles.forEach(file => {
+      newFiles.push(file)
+    })
+    this.setState({files: newFiles})
   }
 
   handleUpload() {

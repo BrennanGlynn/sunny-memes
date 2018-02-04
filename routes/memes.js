@@ -78,8 +78,7 @@ router.use('/mine', (req, res) => {
     },
     {
       $sort: {
-        "numFaves": -1,
-        "_id": 1
+        "_id": -1
       }
     },
     {$skip: page * memesPerPage || 0},

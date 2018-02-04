@@ -41,7 +41,7 @@ router.get('/facebook', passport.authenticate('facebook'), { authType: 'request'
 
 router.get('/facebook/return', passport.authenticate('facebook', {failureRedirect: '/auth'}),
     function (req, res) {
-        res.redirect('http://localhost:3000')
+        res.redirect('/')
     });
 
 router.get('/logout', function (req, res) {

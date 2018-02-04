@@ -1,12 +1,11 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Link, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import {AppBar, Button, Toolbar} from 'material-ui';
 import HomeIcon from 'material-ui-icons/Home';
 import LoginModal from '../login/LoginModal';
 import FrontBanner from './FrontBanner';
-import UploadModal from '../upload/UploadModal';
 import PleaseLogin from '../PleaseLogin';
 import Memes from '../../containers/memes/Memes';
 import MyMemes from '../../containers/memes/MyMemes';
@@ -14,6 +13,7 @@ import Empty from '../Empty';
 import NavMenu from './NavMenu';
 import AdminInterface from '../admin/AdminInterface'
 import UploadForm from "../upload/UploadForm";
+import UploadContainer from '../../containers/UploadContainer'
 import MemeComments from '../MemeComments';
 
 const styles = {
@@ -47,7 +47,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
             <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
           </div>
           {!auth.loggedIn && <LoginModal/>}
-          {auth.loggedIn && <Button className={classes.label} href="/upload">Upload</Button>}
+          {auth.loggedIn && <Button className={classes.label} href="/addmeme">Upload</Button>}
           {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
         </Toolbar>
       </AppBar>
@@ -58,7 +58,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
         <Route path='/memes' exact component={Memes}/>
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
         <Route path='/admin' component={AdminInterface}/>
-        <Route path='/upload' component={UploadForm} />
+        <Route path='/addmeme' component={UploadContainer} />
         <Route path='/memecomments' exact component={MemeComments}/>
       </Switch>
     </div>

@@ -117,7 +117,7 @@ export const memesReceived = (memes) => {
   }
 }
 
-export const uploadedMeme = () => {
+export const uploadedMemes = () => {
   return dispatch => {
     dispatch(getMyMemes('memes/mine'))
   }

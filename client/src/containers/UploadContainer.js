@@ -1,16 +1,23 @@
 import { connect } from 'react-redux'
-import { uploadedMeme } from "../actions"
+import { uploadedMemes } from "../actions"
 import UploadForm from '../components/upload/UploadForm'
+
+const mapStateToProps = state => {
+  return {
+    myMemes: state.myMemes
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpload: (meme) => {
-      dispatch(uploadedMeme(meme))
+    onUpload: () => {
+      dispatch(uploadedMemes())
     }
   }
 }
 
 const UploadContainer = connect(
+  mapStateToProps,
   mapDispatchToProps
 )(UploadForm);
 

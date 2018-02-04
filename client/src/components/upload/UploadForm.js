@@ -27,18 +27,27 @@ class UploadForm extends Component {
   }
 
   handleUpload() {
+    let promises = []
+    let dispatchUploads = this.props.onUpload
     this.state.files.forEach(function (f) {
       let formData = new FormData();
       formData.append('file', f);
       formData.append('title', f.title)
       formData.append('characters', f.characters)
 
-      fetch('upload/test', {
+      promises.push(fetch('upload', {
         credentials: 'include',
         method: 'post',
         body: formData,
-      })
+      }))
     })
+
+    Promise.all(promises).then(() => {
+        dispatchUploads()
+        window.location.replace('/mymemes')
+      },
+      err => console.log(err)
+    )
   }
 
   handleFileChange(index, newFile) {
@@ -51,20 +60,18 @@ class UploadForm extends Component {
     const {classes} = this.props;
     return (
       <div>
-        <form>
-          <Dropzone onDrop={this.onDrop}></Dropzone>
-          <Masonry
-            options={{fitWidth: true}}
-            className={classes.masonry}
-          >
-            {
-              this.state.files.map((file, index) =>
-                <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
-              )
-            }
-          </Masonry>
-          <Button href='/mymemes' onClick={this.handleUpload.bind(this)}>Submit</Button>
-        </form>
+        <Dropzone onDrop={this.onDrop}></Dropzone>
+        <Masonry
+          options={{fitWidth: true}}
+          className={classes.masonry}
+        >
+          {
+            this.state.files.map((file, index) =>
+              <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
+            )
+          }
+        </Masonry>
+        <Button onClick={this.handleUpload.bind(this)}>Submit</Button>
       </div>);
   }
 }

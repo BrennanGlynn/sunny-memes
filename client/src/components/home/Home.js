@@ -58,7 +58,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
         <Route path='/memes' exact component={Memes}/>
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
         <Route path='/admin' component={AdminInterface}/>
-        <Route path='/addmeme' component={UploadContainer} />
+        <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin} />
         <Route path='/memecomments' exact component={MemeComments}/>
       </Switch>
     </div>

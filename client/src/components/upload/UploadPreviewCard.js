@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-import StarIcon from 'material-ui-icons/Star'
-import ShareIcon from 'material-ui-icons/Share'
-import FileDownloadIcon from 'material-ui-icons/FileDownload'
 import {
-  Avatar, Card, CardActions, CardContent, CardMedia, Chip, IconButton, TextField, Typography,
+  Avatar, Card, CardContent, CardMedia, Chip, TextField, Typography,
   withStyles
 } from "material-ui";
 

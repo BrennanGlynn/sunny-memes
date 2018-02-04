@@ -1,12 +1,8 @@
 import React, {Component} from 'react'
-import {
-  Avatar, Button, Card, CardActions, CardContent, CardMedia, Chip, IconButton, Typography,
-  withStyles
-} from 'material-ui'
+import {Button, withStyles} from 'material-ui'
 import Masonry from 'react-masonry-component'
 import Dropzone from 'react-dropzone'
 import UploadPreviewCard from "./UploadPreviewCard";
-import {Redirect} from "react-router";
 
 const styles = {
   masonry: {
@@ -56,10 +52,6 @@ class UploadForm extends Component {
     return (
       <div>
         <form>
-          {/*Replace previews with uploadpreviewcard*/}
-          {/*<UploadPreviewCard file={file} />*/}
-
-          <input type="text" name="title"/><br/>
           <Dropzone onDrop={this.onDrop}></Dropzone>
           <Masonry
             options={{fitWidth: true}}

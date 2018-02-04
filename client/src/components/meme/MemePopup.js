@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
 import {withStyles} from 'material-ui/styles';
-import {Grid, Button, Paper, Divider, ListItemIcon, Modal, Typography} from 'material-ui';
+import {Grid, Button, Divider, ListItemIcon, Modal, Typography} from 'material-ui';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import IconButton from 'material-ui/IconButton';

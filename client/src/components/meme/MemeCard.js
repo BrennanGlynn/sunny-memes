@@ -3,7 +3,6 @@ import {withStyles} from 'material-ui/styles';
 import Card, {CardMedia, CardContent, CardActions} from 'material-ui/Card';
 import Menu, {MenuItem} from 'material-ui/Menu';
 import {Avatar, Chip, Divider, ListItemIcon, Typography} from 'material-ui/';
-import Masonry from 'react-masonry-component';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
 import StarIcon from 'material-ui-icons/Star';
@@ -170,7 +169,7 @@ class MemeCard extends Component {
                 onClick={this.toggleFullMeme}
               />
               <CardContent className={classes.chipContainer}>
-                {data.characters && data.characters.map((character, i) =>
+                {data.characters.length > 1 && data.characters.map((character, i) =>
                     <Chip
                       key={i}
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}

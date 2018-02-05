@@ -22,7 +22,7 @@ class MyMemes extends Component {
     return (
       <div>
         {memes[0] ? (
-            <Grid container>
+            <Grid container spacing={0}>
               <Grid item xs={12}>
                 <div className="center">
                   <Masonry

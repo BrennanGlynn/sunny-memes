@@ -17,7 +17,7 @@ router.use('/test', (req, res) => {
         console.log('bad type error', files.file.type)
         return res.json({error: 'bad type'})
       }
-      const route = req.user.facebookId + Math.floor(Math.random() * 100000);
+      const route = req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
       const oldPath = files.file.path;
       const newPath = './public/images/memes/' + route;
       fs.rename(oldPath, newPath, function (error) {
@@ -58,7 +58,7 @@ router.use('/', (req, res) => {
       // Ensure file is one of the allowed types above
       if (!typesAllowed.includes(files.file.type)) return res.json({error: 'not saved'})
 
-      const route = req.user.facebookId + Math.floor(Math.random() * 100000);
+      const route = req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
       const oldPath = files.file.path;
       const newPath = './public/images/memes/' + route;
       fs.rename(oldPath, newPath, function (error) {

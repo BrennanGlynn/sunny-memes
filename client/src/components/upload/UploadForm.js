@@ -60,7 +60,9 @@ class UploadForm extends Component {
     const {classes} = this.props;
     return (
       <div>
-        <Dropzone onDrop={this.onDrop}></Dropzone>
+        <Dropzone
+          accept="image/gif, image/jpeg, image/png, image/svg+xml"
+          onDrop={this.onDrop}></Dropzone>
         <Masonry
           options={{fitWidth: true}}
           className={classes.masonry}

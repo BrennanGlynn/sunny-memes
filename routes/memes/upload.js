@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const formidable = require('formidable');
 const fs = require('fs');
-const Meme = require('../models/meme.model');
+const Meme = require('../../models/meme.model');
 const typesAllowed = ['image/gif', 'image/jpeg', 'image/png', 'image/svg+xml']
 
 // use this route to test upload features

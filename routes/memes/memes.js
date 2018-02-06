@@ -1,8 +1,14 @@
 const express = require('express');
-const Meme = require('../models/meme.model');
-
+const Meme = require('../../models/meme.model');
 const router = express.Router();
 const memesPerPage = 30;
+
+router.delete('/:id', (req, res) => {
+  Meme.remove({ _id: req.params.id}, function (err, meme) {
+    if (err) console.log(err)
+    return res.json(meme)
+  })
+})
 
 router.use('/favorite', (req, res) => {
   // login check

@@ -16,11 +16,11 @@ const port = process.env.PORT || 3001;
 //set up mongodb
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g6c7z.mongodb.net:27017,cluster0-shard-00-01-g6c7z.mongodb.net:27017,cluster0-shard-00-02-g6c7z.mongodb.net:27017/sunny?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', {useMongoClient: true}, function (error) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log("connected")
-    }
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("connected")
+  }
 });
 
 app.use(logger('dev'));
@@ -47,27 +47,27 @@ app.use('/upload', upload);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login')
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login')
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

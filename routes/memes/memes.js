@@ -1,11 +1,21 @@
 const express = require('express');
+const fs = require('fs');
 const Meme = require('../../models/meme.model');
 const router = express.Router();
 const memesPerPage = 30;
 
 router.delete('/:id', (req, res) => {
+  let imagePath = ''
+  Meme.findOne({_id: req.params.id}, function (err, meme) {
+    console.log(meme)
+    imagePath = meme.url
+  })
+
   Meme.remove({ _id: req.params.id}, function (err, meme) {
     if (err) console.log(err)
+    fs.unlink('./public' + imagePath, function () {
+      console.log('image deleted from server')
+    })
     return res.json(meme)
   })
 })

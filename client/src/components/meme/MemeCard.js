@@ -91,6 +91,19 @@ class MemeCard extends Component {
     this.setState({anchorEl: null});
   };
 
+  handleDelete(memeId) {
+    this.setState({anchorEl: null})
+    fetch('/memes/' + memeId, {
+      credentials: 'include',
+      method: 'delete'
+    }).then(response => {
+      console.log('deleted meme: ' + memeId)
+      return response.json()
+    }).then(json =>
+      json
+    )
+  }
+
   handleFavorite = (memeId) => {
     this.setState({favorite: !this.state.favorite})
     this.props.onFavorite(memeId);
@@ -150,7 +163,7 @@ class MemeCard extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                <MenuItem onClick={this.handleClose}>
+                <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete
@@ -169,7 +182,7 @@ class MemeCard extends Component {
                 onClick={this.toggleFullMeme}
               />
               <CardContent className={classes.chipContainer}>
-                {data.characters.length >= 1 && data.characters.map((character, i) =>
+                {data.characters[0] !== 'undefined' && data.characters.map((character, i) =>
                     <Chip
                       key={i}
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}

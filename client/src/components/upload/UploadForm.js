@@ -75,7 +75,7 @@ class UploadForm extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid container justify="center">
+      <Grid container justify="center" spacing={0}>
         <Grid item xs={12} sm={12} md={6} lg={4}>
           <div className={classes.dropzoneWrapper}>
             <Typography variant="headline" gutterBottom>

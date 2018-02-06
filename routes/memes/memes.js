@@ -5,18 +5,34 @@ const router = express.Router();
 const memesPerPage = 30;
 
 router.delete('/:id', (req, res) => {
-  let imagePath = ''
-  Meme.findOne({_id: req.params.id}, function (err, meme) {
-    console.log(meme)
-    imagePath = meme.url
-  })
+  // Include admins as authorized users
+  // TODO store admin status in users
+  let AuthorizedUsers = ['10156593256159947', '10157285303858508']
 
-  Meme.remove({ _id: req.params.id}, function (err, meme) {
-    if (err) console.log(err)
-    fs.unlink('./public' + imagePath, function () {
-      console.log('image deleted from server')
-    })
-    return res.json(meme)
+  // get details about meme getting deleted
+  Meme.findOne({_id: req.params.id}, function (err, meme) {
+    if (meme) {
+      // add the author as an authorized user
+      AuthorizedUsers.push(meme.uploaded_by)
+
+      // if authorized
+      if (AuthorizedUsers.includes(req.user.facebookId)) {
+        // delete meme
+        Meme.remove({ _id: req.params.id}, function (err, result) {
+          if (err) console.log(err)
+
+          // remove image from server
+          fs.unlink('./public' + meme.url, function () {
+            console.log('image deleted from server')
+          })
+
+          // return original meme
+          return res.json(meme)
+        })
+      } else {
+        return res.json({error: 'not authorized to delete this file'})
+      }
+    }
   })
 })
 

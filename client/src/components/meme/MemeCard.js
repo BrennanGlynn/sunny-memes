@@ -169,7 +169,7 @@ class MemeCard extends Component {
                 onClick={this.toggleFullMeme}
               />
               <CardContent className={classes.chipContainer}>
-                {data.characters.length > 1 && data.characters.map((character, i) =>
+                {data.characters.length >= 1 && data.characters.map((character, i) =>
                     <Chip
                       key={i}
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}

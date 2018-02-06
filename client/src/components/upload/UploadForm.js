@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, withStyles} from 'material-ui'
+import {Grid, Typography, Button, withStyles} from 'material-ui'
 import Masonry from 'react-masonry-component'
 import Dropzone from 'react-dropzone'
 import UploadPreviewCard from "./UploadPreviewCard";
@@ -59,22 +59,28 @@ class UploadForm extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <div>
-        <Dropzone
-          accept="image/gif, image/jpeg, image/png, image/svg+xml"
-          onDrop={this.onDrop}></Dropzone>
-        <Masonry
-          options={{fitWidth: true}}
-          className={classes.masonry}
-        >
-          {
-            this.state.files.map((file, index) =>
-              <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
-            )
-          }
-        </Masonry>
-        <Button onClick={this.handleUpload.bind(this)}>Submit</Button>
-      </div>);
+      <Grid container justify="center">
+        <Grid item>
+          <div>
+
+            <Dropzone
+              accept="image/gif, image/jpeg, image/png, image/svg+xml"
+              onDrop={this.onDrop}></Dropzone>
+            <Masonry
+              options={{fitWidth: true}}
+              className={classes.masonry}
+            >
+              {
+                this.state.files.map((file, index) =>
+                  <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
+                )
+              }
+            </Masonry>
+            <Button onClick={this.handleUpload.bind(this)}>Submit</Button>
+          </div>
+        </Grid>
+      </Grid>
+    );
   }
 }
 

@@ -95,7 +95,7 @@ class UploadForm extends Component {
               }
             </Masonry>
           </div>
-          <Grid container className={classes.uploadButton} justify="center">
+          <Grid container className={classes.uploadButton} justify="center" spacing={0}>
             <Grid item>
               <Button variant="raised" color="primary" onClick={this.handleUpload.bind(this)}>Upload</Button>
             </Grid>

@@ -30,9 +30,12 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-  label: {
-    color: 'white'
-  }
+  navLabel: {
+    color: 'white',
+  },
+  uploadLabel: {
+    color: 'black'
+  },
 };
 
 
@@ -44,10 +47,10 @@ const Home = ({classes, onLogoutClick, auth}) => (
       <AppBar position="static">
         <Toolbar>
           <div className={classes.flex}>
-            <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
+            <Button href='/' className={classes.navLabel}><HomeIcon style={{marginRight: 16}}/> Home</Button>
           </div>
           {!auth.loggedIn && <LoginModal/>}
-          {auth.loggedIn && <Button className={classes.label} href="/addmeme">Upload</Button>}
+          {auth.loggedIn && <Button variant="raised" className={classes.uploadLabel} href="/addmeme">Upload</Button>}
           {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
         </Toolbar>
       </AppBar>

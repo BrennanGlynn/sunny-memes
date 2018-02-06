@@ -163,11 +163,11 @@ class MemeCard extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
+                {user === data.uploaded_by && <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete
-                </MenuItem>
+                </MenuItem>}
                 <Divider/>
                 <MenuItem onClick={this.handleClose}>
                   <ListItemIcon>

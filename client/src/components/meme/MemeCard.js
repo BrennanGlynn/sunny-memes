@@ -27,12 +27,9 @@ const styles = theme => ({
     backgroundSize: '100%',
     height: 300,
   },
-  background: {
-    background: 'rgba(240,240,240,.5)',
-  },
   media: {
-    width: 300,
-    height: 350,
+    paddingTop: 15,
+    width: 300
   },
   frontCardWrapper: {
     position: 'relative',
@@ -53,7 +50,6 @@ const styles = theme => ({
   },
   chipContainer: {
     alignItems: 'center',
-    minHeight: 20,
     padding: 5,
   },
   chip: {
@@ -99,14 +95,6 @@ class MemeCard extends Component {
   handleDelete(memeId) {
     this.props.deleteMeme(memeId)
     this.setState({anchorEl: null})
-    // fetch('/memes/' + memeId, {
-    //   credentials: 'include',
-    //   method: 'delete'
-    // }).then(response => {
-    //   return response.json()
-    // }).then(json =>
-    //   json
-    // )
   }
 
   handleFavorite = (memeId) => {
@@ -182,18 +170,10 @@ class MemeCard extends Component {
                 </MenuItem>
               </Menu>
               <div className={classes.background}>
-                <CardMedia
-                  classes={{
-                    root: classes.rootMedia,
-                  }}
-                  className={classes.media}
-                  image={data.url || '/images/user-icon.png'}
-                  title={data.title || 'Title'}
-                  onClick={this.toggleFullMeme}
-                />
+                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme} />
               </div>
-              <CardContent className={classes.chipContainer}>
-                {data.characters[0] !== 'undefined' && data.characters.map((character, i) =>
+              {data.characters[0] !== 'undefined' && <CardContent className={classes.chipContainer}>
+                {data.characters.map((character, i) =>
                     <Chip
                       key={i}
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
@@ -202,7 +182,7 @@ class MemeCard extends Component {
                       component={"a"} href={"/memes?chars=" + character}
                     />
                 )}
-              </CardContent>
+              </CardContent>}
               <Divider />
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">

@@ -28,7 +28,6 @@ const styles = theme => ({
     height: 300,
   },
   media: {
-    paddingTop: 15,
     width: 300
   },
   frontCardWrapper: {
@@ -131,7 +130,7 @@ class MemeCard extends Component {
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
-              <CardContent style={{height: 40}}>
+              <CardContent>
                 <CardActions className={classes.vertIcon}>
                   <IconButton
                     aria-haspopup="true"

@@ -24,7 +24,7 @@ const styles = theme => ({
     fontWeight: 500,
   },
   rootMedia: {
-    backgroundSize: 'contain',
+    backgroundSize: '100%',
     height: 300,
   },
   background: {
@@ -32,7 +32,7 @@ const styles = theme => ({
   },
   media: {
     width: 300,
-    height: '300px',
+    height: 350,
   },
   frontCardWrapper: {
     position: 'relative',
@@ -53,11 +53,11 @@ const styles = theme => ({
   },
   chipContainer: {
     alignItems: 'center',
-    height: 50
+    minHeight: 20,
+    padding: 5,
   },
   chip: {
-    marginLeft: '2.5px',
-    marginRight: '2.5px',
+    margin: '2.5px',
     textTransform: 'capitalize',
     textDecoration: 'none',
   },
@@ -143,7 +143,7 @@ class MemeCard extends Component {
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
-              <CardContent style={{height: 60}}>
+              <CardContent style={{height: 40}}>
                 <CardActions className={classes.vertIcon}>
                   <IconButton
                     aria-haspopup="true"
@@ -202,6 +202,7 @@ class MemeCard extends Component {
                     />
                 )}
               </CardContent>
+              <Divider />
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon

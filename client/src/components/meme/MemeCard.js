@@ -16,18 +16,20 @@ import MemePopup from './MemePopup'
 
 const styles = theme => ({
   card: {
-    width: 335,
-    marginLeft: '7.5px',
-    marginRight: '7.5px',
-    marginTop: '15px',
+    width: 300,
+    margin: 5,
   },
   title: {
     textTransform: 'capitalize',
     fontWeight: 500,
   },
+  rootMedia: {
+    backgroundSize: 'contain',
+    height: 300,
+  },
   media: {
-    width: '100%',
-    minHeight: 275,
+    width: 300,
+    height: '300px',
   },
   frontCardWrapper: {
     position: 'relative',
@@ -176,6 +178,9 @@ class MemeCard extends Component {
                 </MenuItem>
               </Menu>
               <CardMedia
+                classes={{
+                  root: classes.rootMedia,
+                }}
                 className={classes.media}
                 image={data.url || '/images/user-icon.png'}
                 title={data.title || 'Title'}

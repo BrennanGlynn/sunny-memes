@@ -19,6 +19,7 @@ const styles = {
     borderColor: 'rgba(102, 102, 102,.5)',
     borderStyle: 'dashed',
     borderRadius: 2,
+    textAlign: 'center'
   },
   uploadButton: {
     margin: '10px auto',
@@ -76,33 +77,32 @@ class UploadForm extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid container justify="center" spacing={0}>
-        <Grid item xs={12} sm={12} md={6} lg={4}>
-          <div className={classes.dropzoneWrapper}>
-            <Typography variant="headline" gutterBottom>
-              Upload a Meme
-            </Typography>
+      <div className={classes.dropzoneWrapper}>
+        <Grid container justify="center" spacing={0}>
+          <Grid item xs={10} sm={6} lg={4}>
             <Dropzone className={classes.dropzone}
-              accept="image/gif, image/jpeg, image/png, image/svg+xml"
-              onDrop={this.onDrop}></Dropzone>
-            <Masonry
-              options={{fitWidth: true}}
-              className={classes.masonry}
-            >
-              {
-                this.state.files.map((file, index) =>
-                  <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
-                )
-              }
-            </Masonry>
-          </div>
-          <Grid container className={classes.uploadButton} justify="center" spacing={0}>
-            <Grid item>
-              <Button variant="raised" color="primary" onClick={this.handleUpload.bind(this)}>Upload</Button>
-            </Grid>
+                      accept="image/gif, image/jpeg, image/png, image/svg+xml"
+                      onDrop={this.onDrop}>
+              <Typography type="headline" gutterBottom>Upload a Meme</Typography>
+            </Dropzone>
           </Grid>
         </Grid>
-      </Grid>
+        <Masonry
+          options={{fitWidth: true}}
+          className={classes.masonry}
+        >
+          {
+            this.state.files.map((file, index) =>
+              <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
+            )
+          }
+        </Masonry>
+        <Grid container className={classes.uploadButton} justify="center" spacing={0}>
+          <Grid item>
+            <Button variant="raised" color="primary" onClick={this.handleUpload.bind(this)}>Upload</Button>
+          </Grid>
+        </Grid>
+      </div>
     );
   }
 }

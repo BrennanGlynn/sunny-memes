@@ -10,7 +10,7 @@ const MemeSchema = new Schema({
   },
   title: {
     type: String,
-    require: true,
+    required: true,
     maxlength: 65
   },
   uploaded_by: {

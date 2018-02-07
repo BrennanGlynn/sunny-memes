@@ -5,18 +5,12 @@ const router = express.Router();
 const memesPerPage = 30;
 
 router.delete('/:id', (req, res) => {
-  // Include admins as authorized users
-  // TODO store admin status in users
-  let AuthorizedUsers = ['10156593256159947', '10157285303858508']
 
   // get details about meme getting deleted
   Meme.findOne({_id: req.params.id}, function (err, meme) {
     if (meme) {
-      // add the author as an authorized user
-      AuthorizedUsers.push(meme.uploaded_by)
-
       // if authorized
-      if (AuthorizedUsers.includes(req.user.facebookId)) {
+      if (req.user.facebookId === meme.uploaded_by || req.user.admin) {
         // delete meme
         Meme.remove({ _id: req.params.id}, function (err, result) {
           if (err) console.log(err)

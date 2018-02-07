@@ -15,7 +15,8 @@ function authReducer(state = {
           user: {
             id: action.user.id,
             name: action.user.name,
-            picture: action.user.picture
+            picture: action.user.picture,
+            admin: action.user.admin
           },
           loggedIn: true,
           pending: false

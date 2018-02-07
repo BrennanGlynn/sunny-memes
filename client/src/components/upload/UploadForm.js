@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, Typography, Button, withStyles} from 'material-ui'
+import {Typography, Grid, Button, withStyles} from 'material-ui'
 import Masonry from 'react-masonry-component'
 import Dropzone from 'react-dropzone'
 import UploadPreviewCard from "./UploadPreviewCard";

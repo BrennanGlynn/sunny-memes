@@ -57,8 +57,8 @@ const styles = theme => ({
   },
   [theme.breakpoints.only('xs')]: {
     card: {
-      width: 190,
-      margin: 3,
+      width: 320,
+      margin: 5,
     },
     title: {
       textTransform: 'capitalize',
@@ -68,7 +68,7 @@ const styles = theme => ({
       backgroundSize: '100%',
     },
     media: {
-      width: 190,
+      width: 320,
     },
   },
   [theme.breakpoints.between('sm', 'md')]: {

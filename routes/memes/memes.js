@@ -1,8 +1,34 @@
 const express = require('express');
-const Meme = require('../models/meme.model');
-
+const fs = require('fs');
+const Meme = require('../../models/meme.model');
 const router = express.Router();
 const memesPerPage = 30;
+
+router.delete('/:id', (req, res) => {
+
+  // get details about meme getting deleted
+  Meme.findOne({_id: req.params.id}, function (err, meme) {
+    if (meme) {
+      // if authorized
+      if (req.user.facebookId === meme.uploaded_by || req.user.admin) {
+        // delete meme
+        Meme.remove({ _id: req.params.id}, function (err, result) {
+          if (err) console.log(err)
+
+          // remove image from server
+          fs.unlink('./public' + meme.url, function () {
+            console.log('image deleted from server')
+          })
+
+          // return original meme
+          return res.json(meme)
+        })
+      } else {
+        return res.json({error: 'not authorized to delete this file'})
+      }
+    }
+  })
+})
 
 router.use('/favorite', (req, res) => {
   // login check

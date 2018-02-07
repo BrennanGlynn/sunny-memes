@@ -7,6 +7,7 @@ const mapStateToProps = (state, props) => {
   let data = mine ? state.memes.myMemes[props.memeIndex] : state.memes.memes[props.memeIndex]
   return {
     user: state.auth.user.id,
+    admin: state.auth.user.admin,
     data
   }
 }

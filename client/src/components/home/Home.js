@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import withWidth from 'material-ui/utils/withWidth';
 import compose from 'recompose/compose';
-import {AppBar, Button, Toolbar} from 'material-ui';
+import {Grid, AppBar, Button, Toolbar} from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import HomeIcon from 'material-ui-icons/Home';
+import PersonIcon from 'material-ui-icons/Person';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import LoginModal from '../login/LoginModal';
@@ -23,13 +24,21 @@ import UploadContainer from '../../containers/UploadContainer'
 import MemeComments from '../MemeComments';
 
 const styles = theme => ({
-  mobileMenu: {
-    [theme.breakpoints.between('md', 'xl')]: {
+  [theme.breakpoints.between('xs', 'md')]: {
+    desktopMenu: {
       display: 'none',
     },
+    mobileLogo: {
+      textAlign: 'center',
+      position: 'relative',
+      top: 7.5,
+    },
+    mobileMenuButton: {
+      color: '#fff',
+    },
   },
-  desktopMenu: {
-    [theme.breakpoints.between('xs', 'md')]: {
+  [theme.breakpoints.between('md', 'xl')]: {
+    mobileMenu: {
       display: 'none',
     },
   },
@@ -37,7 +46,13 @@ const styles = theme => ({
     width: '100%',
   },
   flex: {
-    flex: 2,
+    flex: 1,
+  },
+  leftIcon: {
+    textAlign: 'left',
+  },
+  rightIcon: {
+    textAlign: 'right',
   },
   logo: {
     width: 100
@@ -58,14 +73,31 @@ const Home = ({classes, onLogoutClick, auth}) => (
     <div>
       <AppBar position="sticky" className={classes.mobileMenu}>
         <Toolbar>
-          <Button>
-            <IconButton
-                color="inherit"
-                aria-label="open drawer"
-              >
-              <MenuIcon />
-            </IconButton>
-          </Button>
+          <Grid container>
+            <Grid item xs={4} className={classes.leftIcon}>
+              <Button className={classes.mobileMenuButton}>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                  >
+                  <MenuIcon />
+                </IconButton>
+              </Button>
+            </Grid>
+            <Grid item xs={4} className={classes.mobileLogo}>
+              <img src="./images/dayman-nightman.png" alt="Sunny Memes" />
+            </Grid>
+            <Grid item xs={4} className={classes.rightIcon}>
+              <Button className={classes.mobileMenuButton}>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                  >
+                  <PersonIcon />
+                </IconButton>
+              </Button>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       {/*// Desktop Navbar //*/}

@@ -131,7 +131,7 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user} = this.props;
+    const {classes, data, user, admin} = this.props;
     const {anchorEl} = this.state;
     return (
       <div className={classes.root}>
@@ -163,7 +163,7 @@ class MemeCard extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                {user === data.uploaded_by && <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
+                {(user === data.uploaded_by || admin) && <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete

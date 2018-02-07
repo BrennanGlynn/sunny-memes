@@ -40,7 +40,7 @@ passport.deserializeUser(function (id, done) {
 
 router.use('/me', (req, res) => {
   if (req.isAuthenticated()) {
-    res.json({id: req.user.facebookId, name: req.user.name, picture: req.user.picture, loggedIn: true})
+    res.json({id: req.user.facebookId, name: req.user.name, picture: req.user.picture, admin: req.user.admin, loggedIn: true})
   } else {
     res.json({loggedIn: false})
   }

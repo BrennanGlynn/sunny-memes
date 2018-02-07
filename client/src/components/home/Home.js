@@ -2,7 +2,11 @@ import React from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
+import withWidth from 'material-ui/utils/withWidth';
+import compose from 'recompose/compose';
 import {AppBar, Button, Toolbar} from 'material-ui';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
 import HomeIcon from 'material-ui-icons/Home';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
@@ -18,7 +22,17 @@ import UploadForm from "../upload/UploadForm";
 import UploadContainer from '../../containers/UploadContainer'
 import MemeComments from '../MemeComments';
 
-const styles = {
+const styles = theme => ({
+  mobileMenu: {
+    [theme.breakpoints.between('md', 'xl')]: {
+      display: 'none',
+    },
+  },
+  desktopMenu: {
+    [theme.breakpoints.between('xs', 'md')]: {
+      display: 'none',
+    },
+  },
   root: {
     width: '100%',
   },
@@ -35,15 +49,27 @@ const styles = {
   label: {
     color: 'white'
   }
-};
+});
 
 
 const Home = ({classes, onLogoutClick, auth}) => (
   <div>
     {!auth.pending &&
     <div>
-      {/*// Navbar //*/}
-      <AppBar position="sticky">
+      <AppBar position="sticky" className={classes.mobileMenu}>
+        <Toolbar>
+          <Button>
+            <IconButton
+                color="inherit"
+                aria-label="open drawer"
+              >
+              <MenuIcon />
+            </IconButton>
+          </Button>
+        </Toolbar>
+      </AppBar>
+      {/*// Desktop Navbar //*/}
+      <AppBar position="sticky" className={classes.desktopMenu}>
         <Toolbar>
           <img src="./images/dayman-nightman.png" alt="Sunny Memes" />
           <div className={classes.flex}>
@@ -77,4 +103,4 @@ Home.propTypes = {
   onLogoutClick: PropTypes.func.isRequired
 }
 
-export default withStyles(styles)(Home)
+export default compose(withStyles(styles), withWidth())(Home);

@@ -15,22 +15,6 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 import MemePopup from './MemePopup'
 
 const styles = theme => ({
-  card: {
-    width: 300,
-    margin: 5,
-  },
-  title: {
-    textTransform: 'capitalize',
-    fontWeight: 500,
-  },
-  rootMedia: {
-    backgroundSize: '100%',
-    height: 300,
-  },
-  media: {
-    paddingTop: 15,
-    width: 300
-  },
   frontCardWrapper: {
     position: 'relative',
     marginLeft: 'auto',
@@ -70,6 +54,54 @@ const styles = theme => ({
     float: 'right',
     marginTop: -8,
     marginRight: -24
+  },
+  [theme.breakpoints.only('xs')]: {
+    card: {
+      width: 190,
+      margin: 3,
+    },
+    title: {
+      textTransform: 'capitalize',
+      fontWeight: 500,
+    },
+    rootMedia: {
+      backgroundSize: '100%',
+    },
+    media: {
+      width: 190,
+    },
+  },
+  [theme.breakpoints.between('sm', 'md')]: {
+    card: {
+      width: 225,
+      margin: 5,
+    },
+    title: {
+      textTransform: 'capitalize',
+      fontWeight: 500,
+    },
+    rootMedia: {
+      backgroundSize: '100%',
+    },
+    media: {
+      width: 225,
+    },
+  },
+  [theme.breakpoints.between('lg', 'xl')]: {
+    card: {
+      width: 260,
+      margin: 5,
+    },
+    title: {
+      textTransform: 'capitalize',
+      fontWeight: 500,
+    },
+    rootMedia: {
+      backgroundSize: '100%',
+    },
+    media: {
+      width: 260,
+    },
   },
 });
 
@@ -131,7 +163,7 @@ class MemeCard extends Component {
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
-              <CardContent style={{height: 40}}>
+              <CardContent>
                 <CardActions className={classes.vertIcon}>
                   <IconButton
                     aria-haspopup="true"

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import {AppBar, Button, Toolbar} from 'material-ui';
 import HomeIcon from 'material-ui-icons/Home';
+import StarIcon from 'material-ui-icons/Star';
+import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import LoginModal from '../login/LoginModal';
 import FrontBanner from './FrontBanner';
 import PleaseLogin from '../PleaseLogin';
@@ -21,7 +23,7 @@ const styles = {
     width: '100%',
   },
   flex: {
-    flex: 1,
+    flex: 2,
   },
   logo: {
     width: 100
@@ -30,12 +32,9 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-  navLabel: {
-    color: 'white',
-  },
-  uploadLabel: {
-    color: 'black'
-  },
+  label: {
+    color: 'white'
+  }
 };
 
 
@@ -44,13 +43,16 @@ const Home = ({classes, onLogoutClick, auth}) => (
     {!auth.pending &&
     <div>
       {/*// Navbar //*/}
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
+          <img src="./images/dayman-nightman.png" alt="Sunny Memes" />
           <div className={classes.flex}>
-            <Button href='/' className={classes.navLabel}><HomeIcon style={{marginRight: 16}}/> Home</Button>
+            <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
+            <Button href='/' className={classes.label}><StarIcon style={{marginRight: 16}}/> Most Popular</Button>
+            <Button href='/' className={classes.label}><AccessTimeIcon style={{marginRight: 16}}/> Recently Uploaded</Button>
           </div>
           {!auth.loggedIn && <LoginModal/>}
-          {auth.loggedIn && <Button variant="raised" className={classes.uploadLabel} href="/addmeme">Upload</Button>}
+          {auth.loggedIn && <Button className={classes.label} href="/addmeme">Upload</Button>}
           {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
         </Toolbar>
       </AppBar>

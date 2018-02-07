@@ -53,7 +53,6 @@ const styles = theme => ({
   },
   chipContainer: {
     alignItems: 'center',
-    minHeight: 20,
     padding: 5,
   },
   chip: {
@@ -99,14 +98,6 @@ class MemeCard extends Component {
   handleDelete(memeId) {
     this.props.deleteMeme(memeId)
     this.setState({anchorEl: null})
-    // fetch('/memes/' + memeId, {
-    //   credentials: 'include',
-    //   method: 'delete'
-    // }).then(response => {
-    //   return response.json()
-    // }).then(json =>
-    //   json
-    // )
   }
 
   handleFavorite = (memeId) => {
@@ -192,8 +183,8 @@ class MemeCard extends Component {
                   onClick={this.toggleFullMeme}
                 />
               </div>
-              <CardContent className={classes.chipContainer}>
-                {data.characters[0] !== 'undefined' && data.characters.map((character, i) =>
+              {data.characters[0] !== 'undefined' && <CardContent className={classes.chipContainer}>
+                {data.characters.map((character, i) =>
                     <Chip
                       key={i}
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
@@ -202,7 +193,7 @@ class MemeCard extends Component {
                       component={"a"} href={"/memes?chars=" + character}
                     />
                 )}
-              </CardContent>
+              </CardContent>}
               <Divider />
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">

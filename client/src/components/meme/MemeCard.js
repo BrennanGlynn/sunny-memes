@@ -97,16 +97,16 @@ class MemeCard extends Component {
   };
 
   handleDelete(memeId) {
+    this.props.deleteMeme(memeId)
     this.setState({anchorEl: null})
-    fetch('/memes/' + memeId, {
-      credentials: 'include',
-      method: 'delete'
-    }).then(response => {
-      console.log('deleted meme: ' + memeId)
-      return response.json()
-    }).then(json =>
-      json
-    )
+    // fetch('/memes/' + memeId, {
+    //   credentials: 'include',
+    //   method: 'delete'
+    // }).then(response => {
+    //   return response.json()
+    // }).then(json =>
+    //   json
+    // )
   }
 
   handleFavorite = (memeId) => {
@@ -168,7 +168,8 @@ class MemeCard extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                {(user === data.uploaded_by || admin) && <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
+                {(user === data.uploaded_by || admin) &&
+                <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete

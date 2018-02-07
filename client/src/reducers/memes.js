@@ -32,6 +32,20 @@ function memeReducer(state = {
         memes: action.memes,
         pending: false,
       })
+    case 'MEME_DELETED':
+      // only return memes that aren't deleted
+      let memes = state.memes.filter((meme) =>
+        meme._id !== action.meme
+      )
+
+      let myMemes = state.myMemes.filter((meme) =>
+        meme._id !== action.meme
+      )
+
+      return Object.assign({}, state, {
+        memes: Object.assign([], memes),
+        myMemes: Object.assign([], myMemes)
+      })
     case 'TOGGLE_FAVORITE':
       if (action.isFavorite) {
         // adding a favorite

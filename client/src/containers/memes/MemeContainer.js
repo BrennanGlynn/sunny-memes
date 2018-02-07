@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import MemeCard from '../../components/meme/MemeCard'
-import {attemptFavorite} from "../../actions/index";
+import {attemptFavorite, attemptDelete} from "../../actions/index";
 
 const mapStateToProps = (state, props) => {
   const mine = props.mine;
@@ -16,6 +16,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onFavorite: (memeId) => {
       dispatch(attemptFavorite(memeId))
+    },
+    deleteMeme: (memeId) => {
+      dispatch(attemptDelete(memeId))
     }
   }
 }

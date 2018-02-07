@@ -45,6 +45,26 @@ export const toggleFavorite = (json) => {
   }
 }
 
+export const attemptDelete = (memeId) => {
+  return (dispatch, getState) => {
+    return fetch('/memes/' + memeId, {
+      credentials: 'include',
+      method: 'delete'
+    }).then(response => {
+      return response.json()
+    }).then(json =>
+      dispatch(memeDeleted(memeId))
+    )
+  }
+}
+
+export const memeDeleted = (memeId) => {
+  return {
+    type: 'MEME_DELETED',
+    meme: memeId
+  }
+}
+
 export const attemptLogin = {
   type: 'ATTEMPT_LOGIN'
 }

@@ -27,12 +27,9 @@ const styles = theme => ({
     backgroundSize: '100%',
     height: 300,
   },
-  background: {
-    background: 'rgba(240,240,240,.5)',
-  },
   media: {
-    width: 300,
-    height: 350,
+    paddingTop: 15,
+    width: 300
   },
   frontCardWrapper: {
     position: 'relative',
@@ -173,15 +170,7 @@ class MemeCard extends Component {
                 </MenuItem>
               </Menu>
               <div className={classes.background}>
-                <CardMedia
-                  classes={{
-                    root: classes.rootMedia,
-                  }}
-                  className={classes.media}
-                  image={data.url || '/images/user-icon.png'}
-                  title={data.title || 'Title'}
-                  onClick={this.toggleFullMeme}
-                />
+                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme} />
               </div>
               {data.characters[0] !== 'undefined' && <CardContent className={classes.chipContainer}>
                 {data.characters.map((character, i) =>

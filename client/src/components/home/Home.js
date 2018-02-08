@@ -11,7 +11,7 @@ import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import LoginModal from '../login/LoginModal';
 import FrontBanner from './FrontBanner';
 import PleaseLogin from '../PleaseLogin';
-import Memes from '../../containers/memes/Memes';
+import MostPopularContainer from '../../containers/memes/MostPopularContainer';
 import MyMemes from '../../containers/memes/MyMemes';
 import NavMenu from './NavMenu';
 import AdminInterface from '../admin/AdminInterface'
@@ -19,6 +19,7 @@ import UploadContainer from '../../containers/UploadContainer'
 import MemeComments from '../MemeComments';
 import NavDrawer from './NavDrawer'
 import UserDrawer from './UserDrawer'
+import FrontPage from "./FrontPage";
 
 const styles = theme => ({
   [theme.breakpoints.between('xs', 'md')]: {
@@ -110,7 +111,8 @@ class Home extends Component {
                 </Grid>
                 <Grid item xs={4} className={classes.rightIcon}>
                   {auth.loggedIn ?
-                    <UserDrawer open={this.state.userDrawerOpen} openUserDrawer={this.toggleUserDrawer.bind(this)} logout={onLogoutClick}/> :
+                    <UserDrawer open={this.state.userDrawerOpen} openUserDrawer={this.toggleUserDrawer.bind(this)}
+                                logout={onLogoutClick}/> :
                     <LoginModal className={classes.mobileLogin}/>}
                 </Grid>
               </Grid>
@@ -123,7 +125,7 @@ class Home extends Component {
               <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
               <div className={classes.flex}>
                 <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
-                <Button href='/' className={classes.label}><StarIcon style={{marginRight: 16}}/> Most Popular</Button>
+                <Button href='/mostpopular' className={classes.label}><StarIcon style={{marginRight: 16}}/> Most Popular</Button>
                 <Button href='/' className={classes.label}><AccessTimeIcon style={{marginRight: 16}}/> Recently
                   Uploaded</Button>
               </div>
@@ -135,8 +137,8 @@ class Home extends Component {
 
           {/*// Pages //*/}
           <Switch>
-            <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : Memes}/>
-            <Route path='/memes' exact component={Memes}/>
+            <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>
+            <Route path='/mostpopular' exact component={MostPopularContainer}/>
             <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>
             <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>

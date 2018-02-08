@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import MemePage from '../../components/home/MemePage'
+import MostPopular from '../../components/home/MostPopular'
 
 const mapStateToProps = state => {
   return {
@@ -16,9 +16,9 @@ const mapStateToProps = state => {
 //   }
 // }
 
-const MemesContainer = connect(
+const MostPopularContainer = connect(
   mapStateToProps,
   // mapDispatchToProps
-)(MemePage);
+)(MostPopular);
 
-export default MemesContainer
+export default MostPopularContainer

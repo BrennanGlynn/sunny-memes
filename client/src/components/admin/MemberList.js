@@ -32,7 +32,7 @@ const columnData = [
   { id: 'calories', numeric: true, disablePadding: false, label: 'ID' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Registration Date' },
   { id: 'carbs', numeric: true, disablePadding: false, label: 'Registered From' },
-  { id: 'protein', numeric: true, disablePadding: false, label: '# Uploaded Memes' },
+  { id: 'protein', numeric: true, disablePadding: false, label: '# Uploaded MostPopularContainer' },
 ];
 
 class EnhancedTableHead extends React.Component {

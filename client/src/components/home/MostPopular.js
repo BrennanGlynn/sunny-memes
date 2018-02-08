@@ -18,7 +18,7 @@ const styles = {
   }
 }
 
-class MemePage extends Component {
+class MostPopular extends Component {
   // todo fix character sorting
   // componentDidMount() {
   //   // Get the current users details from the backend server
@@ -51,10 +51,10 @@ class MemePage extends Component {
   }
 }
 
-MemePage.propTypes = {
+MostPopular.propTypes = {
   classes: PropTypes.object.isRequired,
   memes: PropTypes.array.isRequired,
   user: PropTypes.string.isRequired,
 }
 
-export default withStyles(styles)(MemePage);
+export default withStyles(styles)(MostPopular);

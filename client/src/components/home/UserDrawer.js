@@ -6,15 +6,20 @@ import MenuIcon from 'material-ui-icons/Menu';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import PowerIcon from 'material-ui-icons/PowerSettingsNew';
+import {withRouter} from 'react-router-dom'
+import {Link} from "react-router-dom";
 
-const styles = {
-}
+const styles = {}
 
 class UserDrawer extends Component {
 
+  goTo(route) {
+    window.location.assign(route)
+  }
+
   render() {
     const {classes, open, openUserDrawer} = this.props
-    return(
+    return (
       <div>
         <IconButton
           color="inherit"
@@ -28,25 +33,23 @@ class UserDrawer extends Component {
           onClose={openUserDrawer}
         >
           <List component="nav">
-            <ListItem button>
+            <ListItem button button onClick={this.goTo.bind(this, 'favorites')}>
               <ListItemIcon>
                 <StarIcon/>
               </ListItemIcon>
-              <ListItemText primary="Favorites" />
+              <ListItemText primary="Favorites"/>
             </ListItem>
-            <ListItem button
-              href='/favorites'
-            >
+            <ListItem button onClick={this.goTo.bind(this, 'mymemes')}>
               <ListItemIcon>
                 <HomeIcon/>
               </ListItemIcon>
-              <ListItemText primary="MyMemes" />
+              <ListItemText primary="My Memes"/>
             </ListItem>
             <ListItem button onClick={this.props.logout}>
               <ListItemIcon>
                 <PowerIcon/>
               </ListItemIcon>
-              <ListItemText primary="Log out" />
+              <ListItemText primary="Log out"/>
             </ListItem>
           </List>
         </Drawer>

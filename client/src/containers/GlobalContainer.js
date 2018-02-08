@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { attemptLogout } from "../actions"
 import Home from '../components/home/Home'
 
@@ -16,9 +17,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const GlobalContainer = connect(
+const GlobalContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(Home));
 
 export default GlobalContainer

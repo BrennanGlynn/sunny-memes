@@ -11,6 +11,10 @@ const styles = {
 
 class NavDrawer extends Component {
 
+  goTo(route) {
+    window.location.assign(route)
+  }
+
   render() {
     const {classes, open, openRightDrawer} = this.props
     return(
@@ -27,19 +31,28 @@ class NavDrawer extends Component {
           onClose={openRightDrawer}
         >
           <List component="nav">
-            <ListItem button>
+            <ListItem
+              button
+              onClick={this.goTo.bind(this, '/')}
+            >
               <ListItemIcon>
                 <HomeIcon/>
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button>
+            <ListItem
+              button
+              onClick={this.goTo.bind(this, '/memes')}
+            >
               <ListItemIcon>
                 <StarIcon/>
               </ListItemIcon>
               <ListItemText primary="Most Popular" />
             </ListItem>
-            <ListItem button>
+            <ListItem
+              button
+              onClick={this.goTo.bind(this, '/new')}
+            >
               <ListItemIcon>
                 <AccessTimeIcon/>
               </ListItemIcon>

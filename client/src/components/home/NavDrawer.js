@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
-import PersonIcon from 'material-ui-icons/Person';
+import {Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
 import HomeIcon from 'material-ui-icons/Home';
 import MenuIcon from 'material-ui-icons/Menu';
 import StarIcon from 'material-ui-icons/Star';
@@ -16,7 +15,7 @@ class NavDrawer extends Component {
   }
 
   render() {
-    const {classes, open, openRightDrawer} = this.props
+    const {open, openRightDrawer} = this.props
     return(
       <div>
         <IconButton

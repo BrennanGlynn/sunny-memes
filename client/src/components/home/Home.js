@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import withWidth from 'material-ui/utils/withWidth';
 import compose from 'recompose/compose';
-import {Grid, AppBar, Button, Toolbar} from 'material-ui';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
+import {AppBar, Button, Grid, Toolbar} from 'material-ui';
 import HomeIcon from 'material-ui-icons/Home';
-import PersonIcon from 'material-ui-icons/Person';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import LoginModal from '../login/LoginModal';
@@ -16,10 +13,8 @@ import FrontBanner from './FrontBanner';
 import PleaseLogin from '../PleaseLogin';
 import Memes from '../../containers/memes/Memes';
 import MyMemes from '../../containers/memes/MyMemes';
-import Empty from '../Empty';
 import NavMenu from './NavMenu';
 import AdminInterface from '../admin/AdminInterface'
-import UploadForm from "../upload/UploadForm";
 import UploadContainer from '../../containers/UploadContainer'
 import MemeComments from '../MemeComments';
 import NavDrawer from './NavDrawer'
@@ -79,6 +74,15 @@ class Home extends Component {
       navDrawerOpen: false,
       userDrawerOpen: false
     }
+  }
+
+  componentDidMount() {
+    // set auth object in store
+    this.props.attemptFacebookAuth();
+    // preload users first 30 memes
+    this.props.getMyMemes('memes/mine');
+    // preload 30 most recent memes
+    this.props.getMemes('memes');
   }
 
   toggleNavDrawer() {

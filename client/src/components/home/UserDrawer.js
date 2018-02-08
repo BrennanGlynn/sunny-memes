@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import {Button, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
+import {Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
 import PersonIcon from 'material-ui-icons/Person';
 import HomeIcon from 'material-ui-icons/Home';
-import MenuIcon from 'material-ui-icons/Menu';
 import StarIcon from 'material-ui-icons/Star';
-import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import PowerIcon from 'material-ui-icons/PowerSettingsNew';
-import {withRouter} from 'react-router-dom'
-import {Link} from "react-router-dom";
 
 const styles = {}
 
@@ -18,7 +14,7 @@ class UserDrawer extends Component {
   }
 
   render() {
-    const {classes, open, openUserDrawer} = this.props
+    const {open, openUserDrawer} = this.props
     return (
       <div>
         <IconButton
@@ -33,7 +29,7 @@ class UserDrawer extends Component {
           onClose={openUserDrawer}
         >
           <List component="nav">
-            <ListItem button button onClick={this.goTo.bind(this, 'favorites')}>
+            <ListItem button onClick={this.goTo.bind(this, 'favorites')}>
               <ListItemIcon>
                 <StarIcon/>
               </ListItemIcon>

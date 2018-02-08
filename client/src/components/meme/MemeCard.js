@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-import Card, {CardMedia, CardContent, CardActions} from 'material-ui/Card';
+import Card, {CardActions, CardContent} from 'material-ui/Card';
 import Menu, {MenuItem} from 'material-ui/Menu';
 import {Avatar, Chip, Divider, ListItemIcon, Typography} from 'material-ui/';
 import Fade from 'material-ui/transitions/Fade';

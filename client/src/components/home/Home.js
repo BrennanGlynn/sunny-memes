@@ -22,6 +22,7 @@ import AdminInterface from '../admin/AdminInterface'
 import UploadForm from "../upload/UploadForm";
 import UploadContainer from '../../containers/UploadContainer'
 import MemeComments from '../MemeComments';
+import NavDrawer from './NavDrawer'
 
 const styles = theme => ({
   [theme.breakpoints.between('xs', 'md')]: {
@@ -37,7 +38,7 @@ const styles = theme => ({
       color: '#fff',
     },
   },
-  [theme.breakpoints.between('md', 'xl')]: {
+  [theme.breakpoints.between('lg', 'xl')]: {
     mobileMenu: {
       display: 'none',
     },
@@ -73,41 +74,34 @@ const Home = ({classes, onLogoutClick, auth}) => (
     <div>
       <AppBar position="sticky" className={classes.mobileMenu}>
         <Toolbar>
-          <Grid container>
+          <Grid container spacing={0}>
             <Grid item xs={4} className={classes.leftIcon}>
-              <Button className={classes.mobileMenuButton}>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                  >
-                  <MenuIcon />
-                </IconButton>
-              </Button>
+              <NavDrawer/>
             </Grid>
             <Grid item xs={4} className={classes.mobileLogo}>
-              <img src="./images/dayman-nightman.png" alt="Sunny Memes" />
+              <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
             </Grid>
             <Grid item xs={4} className={classes.rightIcon}>
-              <Button className={classes.mobileMenuButton}>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                  >
-                  <PersonIcon />
-                </IconButton>
-              </Button>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+              >
+                <PersonIcon/>
+              </IconButton>
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
+
       {/*// Desktop Navbar //*/}
       <AppBar position="sticky" className={classes.desktopMenu}>
         <Toolbar>
-          <img src="./images/dayman-nightman.png" alt="Sunny Memes" />
+          <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
           <div className={classes.flex}>
             <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
             <Button href='/' className={classes.label}><StarIcon style={{marginRight: 16}}/> Most Popular</Button>
-            <Button href='/' className={classes.label}><AccessTimeIcon style={{marginRight: 16}}/> Recently Uploaded</Button>
+            <Button href='/' className={classes.label}><AccessTimeIcon style={{marginRight: 16}}/> Recently
+              Uploaded</Button>
           </div>
           {!auth.loggedIn && <LoginModal/>}
           {auth.loggedIn && <Button className={classes.label} href="/addmeme">Upload</Button>}
@@ -121,7 +115,7 @@ const Home = ({classes, onLogoutClick, auth}) => (
         <Route path='/memes' exact component={Memes}/>
         <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
         <Route path='/admin' component={AdminInterface}/>
-        <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin} />
+        <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
         <Route path='/memecomments' exact component={MemeComments}/>
       </Switch>
     </div>

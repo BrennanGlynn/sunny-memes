@@ -41,23 +41,24 @@ class UploadForm extends Component {
       newFiles.push(file)
     })
     this.setState({files: newFiles})
-    console.log(newFiles)
   }
 
   handleUpload() {
     let promises = []
     let dispatchUploads = this.props.onUpload
     this.state.files.forEach(function (f) {
-      let formData = new FormData();
-      formData.append('file', f);
-      formData.append('title', f.title)
-      formData.append('characters', f.characters)
+      if (f.title && f.title.length > 0 && f.title.length <= 65) {
+        let formData = new FormData();
+        formData.append('file', f);
+        formData.append('title', f.title)
+        formData.append('characters', f.characters)
 
-      promises.push(fetch('upload', {
-        credentials: 'include',
-        method: 'post',
-        body: formData,
-      }))
+        promises.push(fetch('upload', {
+          credentials: 'include',
+          method: 'post',
+          body: formData,
+        }))
+      }
     })
 
     Promise.all(promises).then(() => {

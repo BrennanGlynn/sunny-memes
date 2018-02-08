@@ -204,6 +204,7 @@ class MemeCard extends Component {
                     />
                   )}
                 </CardContent>
+                <Divider/>
               </div>}
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">

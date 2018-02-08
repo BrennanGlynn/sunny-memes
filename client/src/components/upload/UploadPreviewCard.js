@@ -77,14 +77,17 @@ class UploadPreviewCard extends Component {
     super(props)
     this.state = {
       title: "",
-      characters: []
+      characters: [],
+      error: true
     }
   }
 
   handleTitleChange(file, e) {
-    let title = e.target.value
+    const title = e.target.value.trim()
+    const error = title.length <= 0 || title.length >= 65
     this.setState({
-      title
+      title,
+      error
     }, function () {
       file.title = title
     });
@@ -109,14 +112,16 @@ class UploadPreviewCard extends Component {
 
     return (
       <Card key={file.name} raised={true} className={classes.card}>
-        <CardContent style={{height: 60}}>
+        <CardContent style={{height: 80}}>
           <TextField
-            label="Title"
+            label="Give your meme a title"
             placeholder="Give your meme a title"
             className={classes.textField}
             value={this.state.title.value}
             onChange={this.handleTitleChange.bind(this, file)}
             margin="normal"
+            error={this.state.error}
+            multiline
           />
           <Typography
             type="caption">{"January, 1st 2018"}</Typography>

@@ -4,6 +4,7 @@ import PersonIcon from 'material-ui-icons/Person';
 import HomeIcon from 'material-ui-icons/Home';
 import StarIcon from 'material-ui-icons/Star';
 import PowerIcon from 'material-ui-icons/PowerSettingsNew';
+import UploadIcon from 'material-ui-icons/Publish'
 
 const styles = {}
 
@@ -29,6 +30,12 @@ class UserDrawer extends Component {
           onClose={openUserDrawer}
         >
           <List component="nav">
+            <ListItem button onClick={this.goTo.bind(this, 'addmeme')}>
+              <ListItemIcon>
+                <UploadIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Upload Meme"/>
+            </ListItem>
             <ListItem button onClick={this.goTo.bind(this, 'favorites')}>
               <ListItemIcon>
                 <StarIcon/>

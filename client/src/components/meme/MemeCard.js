@@ -20,18 +20,6 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  flexGrow: {
-    flex: '1 1 auto',
-  },
   chipContainer: {
     alignItems: 'center',
     padding: 5,
@@ -110,7 +98,6 @@ class MemeCard extends Component {
     super(props);
     this.state = {
       anchorEl: null,
-      expanded: false,
       favorite: this.props.data.favorites.includes(this.props.user),
       zoomed: false
     }
@@ -163,7 +150,7 @@ class MemeCard extends Component {
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
-              <CardContent>
+              <CardContent style={{minHeight: 20}}>
                 <CardActions className={classes.vertIcon}>
                   <IconButton
                     aria-haspopup="true"

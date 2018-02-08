@@ -41,7 +41,6 @@ class UploadForm extends Component {
       newFiles.push(file)
     })
     this.setState({files: newFiles})
-    console.log(newFiles)
   }
 
   handleUpload() {

@@ -101,7 +101,6 @@ class UploadPreviewCard extends Component {
     this.setState({characters: newChars}, function () {
       file.characters = newChars
     })
-    console.log(newChars)
   }
 
   render() {

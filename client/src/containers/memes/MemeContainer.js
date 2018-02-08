@@ -3,12 +3,10 @@ import MemeCard from '../../components/meme/MemeCard'
 import {attemptFavorite, attemptDelete} from "../../actions/index";
 
 const mapStateToProps = (state, props) => {
-  const mine = props.mine;
-  let data = mine ? state.memes.myMemes[props.memeIndex] : state.memes.memes[props.memeIndex]
   return {
     user: state.auth.user.id,
     admin: state.auth.user.admin,
-    data
+    data: props.meme
   }
 }
 

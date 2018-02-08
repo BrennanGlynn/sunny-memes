@@ -115,6 +115,42 @@ router.use('/mine', (req, res) => {
   )
 })
 
+router.use('/recent', (req, res) => {
+  const page = req.query.page;
+  const chars = req.query.chars;
+  let query = {};
+
+  if (typeof chars === 'object') {
+    query.characters = {$all: chars}
+  } else if (typeof chars === 'string') {
+    query.characters = chars
+  }
+
+  Meme.aggregate(
+    {$match: query},
+    {
+      $project: {
+        "url": 1,
+        "title": 1,
+        "uploaded_by": 1,
+        "characters": 1,
+        "favorites": 1,
+        "numFaves": {"$size": "$favorites"}
+      }
+    },
+    {
+      $sort: {
+        "_id": -1
+      }
+    },
+    {$skip: page * memesPerPage || 0},
+    {$limit: memesPerPage},
+    function (err, docs) {
+      if (!err) res.json({documents: docs})
+    }
+  )
+})
+
 router.use('/', (req, res) => {
   const page = req.query.page;
   const chars = req.query.chars;

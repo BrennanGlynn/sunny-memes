@@ -41,7 +41,7 @@ class NavDrawer extends Component {
             </ListItem>
             <ListItem
               button
-              onClick={this.goTo.bind(this, '/memes')}
+              onClick={this.goTo.bind(this, '/mostPopular')}
             >
               <ListItemIcon>
                 <StarIcon/>
@@ -50,7 +50,7 @@ class NavDrawer extends Component {
             </ListItem>
             <ListItem
               button
-              onClick={this.goTo.bind(this, '/new')}
+              onClick={this.goTo.bind(this, '/mostRecent')}
             >
               <ListItemIcon>
                 <AccessTimeIcon/>

@@ -8,14 +8,6 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onFavorite: (memeId) => {
-//       dispatch(attemptFavorite(memeId))
-//     }
-//   }
-// }
-
 const MyMemesContainer = connect(
   mapStateToProps,
   // mapDispatchToProps

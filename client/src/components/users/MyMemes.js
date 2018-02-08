@@ -29,8 +29,8 @@ class MyMemes extends Component {
                     options={{fitWidth: true}}
                     className={classes.masonry}
                   >
-                    {memes.map((meme,i) =>
-                      <MemeContainer memeIndex={i} key={meme._id} mine={true}/>
+                    {memes.map((meme) =>
+                      <MemeContainer meme={meme} key={meme._id}/>
                     )}
                   </Masonry>
                 </div>

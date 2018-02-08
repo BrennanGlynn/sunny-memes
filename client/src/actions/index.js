@@ -100,6 +100,18 @@ export const logout = {
   type: 'LOGOUT'
 }
 
+export const getRecentMemes = (query) => {
+  return dispatch => {
+    return fetch(query, {credentials: 'include'})
+      .then(
+        res => res.json(),
+        error => console.log(error)
+      ).then(json => {
+        if (json) dispatch(recentMemesReceived(json.documents))
+      })
+  }
+}
+
 export const getMyMemes = (query) => {
   return dispatch => {
     return fetch(query, {credentials: 'include'})
@@ -121,6 +133,13 @@ export const getMemes = (query) => {
       ).then(json => {
         if (json) dispatch(memesReceived(json.documents))
       })
+  }
+}
+
+export const recentMemesReceived = (memes) => {
+  return {
+    type: 'RECENT_MEMES_RECEIVED',
+    memes
   }
 }
 

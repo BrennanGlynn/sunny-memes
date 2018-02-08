@@ -9,7 +9,7 @@ import HomeIcon from 'material-ui-icons/Home';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import LoginModal from '../login/LoginModal';
-import FrontBanner from './FrontBanner';
+import FrontBanner from '../Pages/FrontBanner';
 import PleaseLogin from '../PleaseLogin';
 import MostPopularContainer from '../../containers/memes/MostPopularContainer';
 import MyMemes from '../../containers/memes/MyMemes';
@@ -19,7 +19,8 @@ import UploadContainer from '../../containers/UploadContainer'
 import MemeComments from '../MemeComments';
 import NavDrawer from './NavDrawer'
 import UserDrawer from './UserDrawer'
-import FrontPage from "./FrontPage";
+import FrontPage from "../Pages/FrontPage";
+import RecentMemesContainer from "../../containers/memes/RecentMemesContainer";
 
 const styles = theme => ({
   [theme.breakpoints.between('xs', 'md')]: {
@@ -78,11 +79,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // set auth object in store
-    this.props.attemptFacebookAuth();
     // preload users first 30 memes
     this.props.getMyMemes('memes/mine');
-    // preload 30 most recent memes
+    // load 30 most recent memes
+    this.props.getRecentMemes('memes/recent')
+    // preload 30 most popular memes
     this.props.getMemes('memes');
   }
 
@@ -126,7 +127,7 @@ class Home extends Component {
               <div className={classes.flex}>
                 <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
                 <Button href='/mostpopular' className={classes.label}><StarIcon style={{marginRight: 16}}/> Most Popular</Button>
-                <Button href='/' className={classes.label}><AccessTimeIcon style={{marginRight: 16}}/> Recently
+                <Button href='/mostRecent' className={classes.label}><AccessTimeIcon style={{marginRight: 16}}/> Recently
                   Uploaded</Button>
               </div>
               {!auth.loggedIn && <LoginModal/>}
@@ -139,6 +140,7 @@ class Home extends Component {
           <Switch>
             <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>
             <Route path='/mostpopular' exact component={MostPopularContainer}/>
+            <Route path='/mostrecent' exact component={RecentMemesContainer}/>
             <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>
             <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>

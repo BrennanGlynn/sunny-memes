@@ -12,6 +12,7 @@ import 'babel-polyfill';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
+import {attemptFacebookAuth} from "./actions";
 
 const loggerMiddleware = createLogger()
 const persistConfig = {
@@ -30,6 +31,9 @@ const store = createStore(
 )
 
 const persistor = persistStore(store)
+
+// set auth object in store
+store.dispatch(attemptFacebookAuth());
 
 ReactDOM.render(
   <Provider store={store}>

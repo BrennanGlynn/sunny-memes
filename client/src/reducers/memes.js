@@ -22,6 +22,11 @@ function memeReducer(state = {
   pending: false
 }, action) {
   switch (action.type) {
+    case 'RECENT_MEMES_RECEIVED':
+      return {
+        ...state,
+        recentMemes: action.memes
+      }
     case 'MY_MEMES_RECEIVED':
       return Object.assign({}, state, {
         myMemes: action.memes,

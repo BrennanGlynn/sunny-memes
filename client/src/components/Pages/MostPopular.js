@@ -41,8 +41,8 @@ class MostPopular extends Component {
               options={{fitWidth: true}}
               className={classes.memeWrapper}
             >
-                  {memes.map((meme,i) =>
-                      <MemeContainer memeIndex={i} key={meme._id}/>
+                  {memes.map((meme) =>
+                      <MemeContainer key={meme._id} meme={meme}/>
                   )}
             </Masonry>
         </Grid>

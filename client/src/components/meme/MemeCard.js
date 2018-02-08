@@ -202,10 +202,12 @@ class MemeCard extends Component {
                 </MenuItem>
               </Menu>
               <div className={classes.background}>
-                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme} />
+                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme}/>
               </div>
-              {data.characters[0] !== 'undefined' && <CardContent className={classes.chipContainer}>
-                {data.characters.map((character, i) =>
+              {data.characters[0] !== 'undefined' &&
+              <div>
+                <CardContent className={classes.chipContainer}>
+                  {data.characters.map((character, i) =>
                     <Chip
                       key={i}
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
@@ -213,9 +215,9 @@ class MemeCard extends Component {
                       className={classes.chip}
                       component={"a"} href={"/memes?chars=" + character}
                     />
-                )}
-              </CardContent>}
-              <Divider />
+                  )}
+                </CardContent>
+              </div>}
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon

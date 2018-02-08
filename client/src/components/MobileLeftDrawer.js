@@ -50,12 +50,12 @@ class MobileLeftDrawer extends Component {
     );
     return(
         <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
-        <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+        <Drawer open={this.state.left} onClose={this.toggleNavDrawer('left', false)}>
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
+            onClick={this.toggleNavDrawer('left', false)}
+            onKeyDown={this.toggleNavDrawer('left', false)}
           >
             {sideList}
           </div>

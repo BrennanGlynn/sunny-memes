@@ -41,8 +41,8 @@ class LoginModal extends React.Component {
     const {classes} = this.props
     return (
       <div>
-        <Button onClick={this.handleOpen} color="contrast">
-          Login
+        <Button onClick={this.handleOpen} color="inherit">
+          Log in
         </Button>
             <Modal
               aria-labelledby="simple-modal-title"
@@ -52,14 +52,14 @@ class LoginModal extends React.Component {
             >
               <div className={classes.modal}>
                 <Typography type="title" id="modal-title">
-                  Login with facebook
+                  Log in with facebook
                 </Typography>
                 <Typography type="subheading" id="simple-modal-description">
                   You need to be logged in to save your favorite memes.
                 </Typography>
                 <Button color="primary" href="http://localhost:3001/auth/facebook">
                   <PeopleIcon className={classes.facebookIcon}/>
-                  Login With Facebook
+                  Log in With Facebook
                 </Button>
               </div>
             </Modal>

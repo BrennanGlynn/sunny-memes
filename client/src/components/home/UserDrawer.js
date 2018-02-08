@@ -5,45 +5,48 @@ import HomeIcon from 'material-ui-icons/Home';
 import MenuIcon from 'material-ui-icons/Menu';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
+import PowerIcon from 'material-ui-icons/PowerSettingsNew';
 
 const styles = {
 }
 
-class NavDrawer extends Component {
+class UserDrawer extends Component {
 
   render() {
-    const {classes, open, openRightDrawer} = this.props
+    const {classes, open, openUserDrawer} = this.props
     return(
       <div>
         <IconButton
-        color="inherit"
-        aria-label="open drawer"
-        onClick={openRightDrawer}
-      >
-            <MenuIcon/>
+          color="inherit"
+          aria-label="open user drawer"
+          onClick={openUserDrawer}
+        >
+          <PersonIcon/>
         </IconButton>
         <Drawer
           open={open}
-          onClose={openRightDrawer}
+          onClose={openUserDrawer}
         >
           <List component="nav">
             <ListItem button>
               <ListItemIcon>
-                <HomeIcon/>
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
                 <StarIcon/>
               </ListItemIcon>
-              <ListItemText primary="Most Popular" />
+              <ListItemText primary="Favorites" />
             </ListItem>
-            <ListItem button>
+            <ListItem button
+              href='/favorites'
+            >
               <ListItemIcon>
-                <AccessTimeIcon/>
+                <HomeIcon/>
               </ListItemIcon>
-              <ListItemText primary="Recently Uploaded" />
+              <ListItemText primary="MyMemes" />
+            </ListItem>
+            <ListItem button onClick={this.props.logout}>
+              <ListItemIcon>
+                <PowerIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Log out" />
             </ListItem>
           </List>
         </Drawer>
@@ -52,4 +55,4 @@ class NavDrawer extends Component {
   }
 }
 
-export default withStyles(styles)(NavDrawer)
+export default withStyles(styles)(UserDrawer)

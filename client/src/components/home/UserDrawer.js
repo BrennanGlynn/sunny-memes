@@ -26,6 +26,7 @@ class UserDrawer extends Component {
           <PersonIcon/>
         </IconButton>
         <Drawer
+          anchor="right"
           open={open}
           onClose={openUserDrawer}
         >

@@ -57,7 +57,7 @@ const styles = theme => ({
   },
   [theme.breakpoints.only('xs')]: {
     card: {
-      width: 320,
+      width: 310,
       margin: 5,
     },
     title: {
@@ -68,7 +68,7 @@ const styles = theme => ({
       backgroundSize: '100%',
     },
     media: {
-      width: 320,
+      width: '100%',
     },
   },
   [theme.breakpoints.between('sm', 'md')]: {

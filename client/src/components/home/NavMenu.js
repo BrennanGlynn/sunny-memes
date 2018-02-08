@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
 import {Button, Menu, MenuItem} from 'material-ui';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import {withStyles} from 'material-ui/styles';
+import withWidth from 'material-ui/utils/withWidth';
 
-const styles = {
+const styles = theme => ({
+  desktopMenu: {
+    [theme.breakpoints.between('xs', 'md')]: {
+      display: 'none',
+    },
+  },
   picture: {
     height: 50,
     width: 50,
@@ -10,8 +18,8 @@ const styles = {
   },
   menuLink: {
     textDecoration: 'none'
-  }
-}
+  },
+});
 
 class NavMenu extends Component {
   constructor(props) {
@@ -34,7 +42,7 @@ class NavMenu extends Component {
     const {classes} = this.props;
 
     return(
-      <div>
+      <div className={classes.desktopMenu}>
         <Button
           aria-owns={anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
@@ -57,4 +65,4 @@ class NavMenu extends Component {
   }
 }
 
-export default withStyles(styles)(NavMenu);
+export default compose(withStyles(styles), withWidth())(NavMenu);

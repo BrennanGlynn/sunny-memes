@@ -1,15 +1,10 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import classNames from 'classnames';
-import ExpansionPanel, {
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-  ExpansionPanelActions,
-} from 'material-ui/ExpansionPanel';
-import {Avatar, Grid, Chip, Button, Divider, Typography } from 'material-ui/';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import MostPopularContainer from '../../containers/memes/MostPopularContainer';
+import React, {Component} from "react"
+import PropTypes from "prop-types";
+import {withStyles} from "material-ui/styles";
+import ExpansionPanel, {ExpansionPanelDetails, ExpansionPanelSummary,} from "material-ui/ExpansionPanel";
+import {Avatar, Chip, Divider, Grid, Typography} from "material-ui/";
+import ExpandMoreIcon from "material-ui-icons/ExpandMore";
+import MostPopularContainer from "../../containers/memes/MostPopularContainer";
 
 const styles = theme => ({
   root: {
@@ -51,17 +46,13 @@ const styles = theme => ({
   },
 });
 
-function handleDelete() {
-  alert('You clicked the delete icon.'); // eslint-disable-line no-alert
-}
-
 function handleClick() {
   alert('You clicked the Chip.'); // eslint-disable-line no-alert
 }
 
 class FrontPage extends Component {
   render() {
-    const { classes, memes } = this.props;
+    const { classes } = this.props;
 
     return(
       <div className={classes.root}>

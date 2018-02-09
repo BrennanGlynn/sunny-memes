@@ -12,7 +12,7 @@ import LoginModal from "../login/LoginModal";
 import FrontBanner from "../Pages/FrontBanner";
 import PleaseLogin from "../Pages/PleaseLogin";
 import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
-import MyMemes from "../../containers/Pages/MyMemes";
+import MyMemesContainer from "../../containers/Pages/MyMemesContainer";
 import NavMenu from "./NavMenu";
 import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/UploadContainer"
@@ -145,7 +145,7 @@ class Home extends Component {
             <Route path='/mostrecent' exact component={RecentMemesContainer}/>
             <Route path='/favorites' component={!auth.pending && auth.loggedIn ? Favorites : PleaseLogin}/>
             <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
-            <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
+            <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>
             <Route component={PageNotFound} />
           </Switch>

@@ -62,7 +62,6 @@ class MemePopup extends Component {
         open={zoomed}
         onClose={openModal}
         disableAutoFocus={true}
-        disableBackdropClick={true}
       >
         <div className={classes.openModal}>
           <Grid container justify="flex-end">

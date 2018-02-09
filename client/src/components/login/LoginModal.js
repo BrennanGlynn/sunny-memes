@@ -1,6 +1,6 @@
 import React from 'react';
 import {withStyles} from 'material-ui/styles';
-import {Button, Modal, Typography} from 'material-ui';
+import {Grid, Button, Modal, Typography} from 'material-ui';
 import PeopleIcon from 'material-ui-icons/People'
 
 const top = 25;
@@ -41,8 +41,8 @@ class LoginModal extends React.Component {
     const {classes} = this.props
     return (
       <div>
-        <Button onClick={this.handleOpen} color="inherit">
-          Log in
+        <Button onClick={this.handleOpen} variant="raised">
+          Login
         </Button>
             <Modal
               aria-labelledby="simple-modal-title"
@@ -58,10 +58,14 @@ class LoginModal extends React.Component {
                   We use external authentication so we dont have to save your
                   password.
                 </Typography>
-                <Button color="primary" href="http://localhost:3001/auth/facebook">
-                  <PeopleIcon className={classes.facebookIcon}/>
-                  Log in With Facebook
-                </Button>
+                <Grid container justify="center" spacing={0}>
+                  <Grid item xs={9}>
+                    <Button color="primary" href="http://localhost:3001/auth/facebook">
+                      <PeopleIcon className={classes.facebookIcon}/>
+                      Log in With Facebook
+                    </Button>
+                  </Grid>
+                </Grid>
               </div>
             </Modal>
       </div>

@@ -51,10 +51,10 @@ class LoginModal extends React.Component {
               onClose={this.handleClose}
             >
               <div className={classes.modal}>
-                <Typography variant="title" id="modal-title">
+                <Typography variant="title" id="modal-title" gutterBottom>
                   Login with your account
                 </Typography>
-                <Typography variant="subheading" id="simple-modal-description">
+                <Typography variant="subheading" id="simple-modal-description" gutterBottom>
                   We use external authentication so we dont have to save your
                   password.
                 </Typography>

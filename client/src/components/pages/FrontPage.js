@@ -63,52 +63,6 @@ class FrontPage extends Component {
           </Grid>
         </Grid>
 
-
-
-
-        <Grid container justify="center" align="center" spacing="0">
-          <ExpansionPanel defaultExpanded>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>Select Characters</Typography>
-            </ExpansionPanelSummary>
-            <Divider />
-            <ExpansionPanelDetails className={classes.details}>
-              <Grid item xs={12} sm={12} md={12}>
-                <Chip
-                  avatar={<Avatar src="/images/dennis.jpg" />}
-                  label="Dennis"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/mac.jpg" />}
-                  label="Mac"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/charlie.jpg" />}
-                  label="Charlie"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/dee.jpg" />}
-                  label="Dee"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/frank.jpg" />}
-                  label="Frank"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-              </Grid>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        </Grid>
-
         <Grid container>
           <Grid item xs={12}>
             <MostPopularContainer />

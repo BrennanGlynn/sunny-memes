@@ -57,17 +57,17 @@ router.use('/', (req, res) => {
 
       // Ensure file is one of the allowed types above
       if (!typesAllowed.includes(files.file.type)) return res.json({error: 'not saved'})
-
       const route = req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
       const oldPath = files.file.path;
       const newPath = './public/images/memes/' + route;
+      const characters = fields.characters && fields.characters !== "" ? fields.characters.split(',') : []
       fs.rename(oldPath, newPath, function (error) {
         if (error) throw error;
         let memeData = {
           title: fields.title,
           url: '/images/memes/' + route,
           uploaded_by: req.user.facebookId,
-          characters: fields.characters.split(',')
+          characters
         };
 
         // Store meme in server

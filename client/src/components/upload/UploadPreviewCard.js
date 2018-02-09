@@ -5,15 +5,15 @@ import {
 } from "material-ui";
 
 const styles = theme => ({
-  dimmed: {
-    opacity: 0.4,
-    filter: 'alpha(opacity=40)'
-  },
   card: {
     width: 335,
     marginLeft: '7.5px',
     marginRight: '7.5px',
     marginTop: '15px',
+  },
+  dimmed: {
+    opacity: 0.4,
+    filter: 'alpha(opacity=40)'
   },
   title: {
     textTransform: 'capitalize',

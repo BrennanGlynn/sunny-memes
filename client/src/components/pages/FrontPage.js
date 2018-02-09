@@ -57,7 +57,7 @@ class FrontPage extends Component {
 
     return(
       <div className={classes.root}>
-        <Grid container justify="flex-right" spacing="0">
+        <Grid container justify="flex-end" spacing="0">
           <Grid xs={3}>
             <FilterModal />
           </Grid>

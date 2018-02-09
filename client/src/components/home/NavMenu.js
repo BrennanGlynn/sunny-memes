@@ -16,6 +16,7 @@ const styles = theme => ({
     borderRadius: '50%'
   },
   menuLink: {
+    color: 'inherit',
     textDecoration: 'none'
   },
 });

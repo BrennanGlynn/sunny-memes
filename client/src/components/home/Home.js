@@ -10,18 +10,18 @@ import StarIcon from "material-ui-icons/Star";
 import AccessTimeIcon from "material-ui-icons/AccessTime";
 import LoginModal from "../login/LoginModal";
 import FrontBanner from "../Pages/FrontBanner";
-import PleaseLogin from "../PleaseLogin";
+import PleaseLogin from "../Pages/PleaseLogin";
 import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
 import MyMemes from "../../containers/Pages/MyMemes";
 import NavMenu from "./NavMenu";
 import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/UploadContainer"
-import MemeComments from "../MemeComments";
 import NavDrawer from "./NavDrawer"
 import UserDrawer from "./UserDrawer"
 import FrontPage from "../Pages/FrontPage";
 import RecentMemesContainer from "../../containers/Pages/RecentMemesContainer";
 import Favorites from "../Pages/Favorites"
+import PageNotFound from "../Pages/PageNotFound";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -143,11 +143,11 @@ class Home extends Component {
             <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>
             <Route path='/mostpopular' exact component={MostPopularContainer}/>
             <Route path='/mostrecent' exact component={RecentMemesContainer}/>
-            <Route path='/favorites' exact component={Favorites}/>
+            <Route path='/favorites' component={!auth.pending && auth.loggedIn ? Favorites : PleaseLogin}/>
+            <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
             <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemes : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>
-            <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
-            <Route path='/memecomments' exact component={MemeComments}/>
+            <Route component={PageNotFound} />
           </Switch>
         </div>
         }

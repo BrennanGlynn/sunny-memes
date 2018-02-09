@@ -9,8 +9,8 @@ import HomeIcon from "material-ui-icons/Home";
 import StarIcon from "material-ui-icons/Star";
 import AccessTimeIcon from "material-ui-icons/AccessTime";
 import LoginModal from "../login/LoginModal";
-import FrontBanner from "../Pages/FrontBanner";
-import PleaseLogin from "../Pages/PleaseLogin";
+import FrontBanner from "../pages/FrontBanner";
+import PleaseLogin from "../pages/PleaseLogin";
 import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
 import MyMemesContainer from "../../containers/Pages/MyMemesContainer";
 import NavMenu from "./NavMenu";
@@ -18,10 +18,10 @@ import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/UploadContainer"
 import NavDrawer from "./NavDrawer"
 import UserDrawer from "./UserDrawer"
-import FrontPage from "../Pages/FrontPage";
+import FrontPage from "../pages/FrontPage";
 import RecentMemesContainer from "../../containers/Pages/RecentMemesContainer";
-import Favorites from "../Pages/Favorites"
-import PageNotFound from "../Pages/PageNotFound";
+import Favorites from "../pages/Favorites"
+import PageNotFound from "../pages/PageNotFound";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {

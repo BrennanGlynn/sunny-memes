@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import MostPopular from '../../components/Pages/MostPopular'
+import MostPopular from '../../components/pages/MostPopular'
 
 const mapStateToProps = state => {
   return {

@@ -4,6 +4,14 @@ const Meme = require('../../models/meme.model');
 const router = express.Router();
 const memesPerPage = 30;
 
+router.get('/:id', (req, res) => {
+  Meme.findOne({_id: req.params.id}, function (err, meme) {
+    if (meme) {
+      return res.json(meme)
+    }
+  })
+})
+
 router.delete('/:id', (req, res) => {
 
   // get details about meme getting deleted

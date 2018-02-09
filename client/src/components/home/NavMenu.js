@@ -55,9 +55,9 @@ class NavMenu extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>Favorites</MenuItem>
-          <a className={classes.menuLink} href="/mymemes"><MenuItem onClick={this.handleClose}>My Memes</MenuItem></a>
-          <a onClick={this.props.logout} className={classes.menuLink}><MenuItem onClick={this.handleClose}>Logout</MenuItem></a>
+          <MenuItem onClick={this.handleClose}><a className={classes.menuLink} href="/favorites">Favorites</a></MenuItem>
+          <MenuItem onClick={this.handleClose}><a className={classes.menuLink} href="/mymemes">My Memes</a></MenuItem>
+          <MenuItem onClick={this.handleClose}><a onClick={this.props.logout} className={classes.menuLink}>Logout</a></MenuItem>
         </Menu>
       </div>
     )

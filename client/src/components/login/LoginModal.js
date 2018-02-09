@@ -51,11 +51,12 @@ class LoginModal extends React.Component {
               onClose={this.handleClose}
             >
               <div className={classes.modal}>
-                <Typography type="title" id="modal-title">
-                  Log in with facebook
+                <Typography variant="title" id="modal-title">
+                  Login with your account
                 </Typography>
-                <Typography type="subheading" id="simple-modal-description">
-                  You need to be logged in to save your favorite memes.
+                <Typography variant="subheading" id="simple-modal-description">
+                  We use external authentication so we dont have to save your
+                  password.
                 </Typography>
                 <Button color="primary" href="http://localhost:3001/auth/facebook">
                   <PeopleIcon className={classes.facebookIcon}/>

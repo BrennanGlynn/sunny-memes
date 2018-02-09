@@ -5,6 +5,7 @@ import ExpansionPanel, {ExpansionPanelDetails, ExpansionPanelSummary,} from "mat
 import {Avatar, Chip, Divider, Grid, Typography} from "material-ui/";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
+import FilterModal from "../FilterModal.js";
 
 const styles = theme => ({
   root: {
@@ -56,7 +57,16 @@ class FrontPage extends Component {
 
     return(
       <div className={classes.root}>
-        <Grid container justify="center" align="center">
+        <Grid container justify="flex-right" spacing="0">
+          <Grid xs={3}>
+            <FilterModal />
+          </Grid>
+        </Grid>
+
+
+
+
+        <Grid container justify="center" align="center" spacing="0">
           <ExpansionPanel defaultExpanded>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography className={classes.heading}>Select Characters</Typography>

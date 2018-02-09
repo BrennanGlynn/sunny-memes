@@ -38,7 +38,11 @@ class UploadForm extends Component {
   onDrop = (acceptedFiles, rejectedFiles) => {
     let newFiles = this.state.files.slice()
     acceptedFiles.forEach(file => {
-      newFiles.push(file)
+      if (newFiles.length < 5) {
+        newFiles.push(file)
+      } else {
+      //  todo let user know they tried to upload more than 5 images
+      }
     })
     this.setState({files: newFiles})
   }

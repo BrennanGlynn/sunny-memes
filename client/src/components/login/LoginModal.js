@@ -55,14 +55,13 @@ class LoginModal extends React.Component {
                   Login with your account
                 </Typography>
                 <Typography variant="subheading" id="simple-modal-description" gutterBottom>
-                  We use external authentication so we dont have to save your
-                  password.
+                  We use external authentication so we dont have to save your password.
                 </Typography>
                 <Grid container justify="center" spacing={0}>
-                  <Grid item xs={9}>
-                    <Button color="primary" href="http://localhost:3001/auth/facebook">
+                  <Grid item xs={9} md={9}>
+                    <Button color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
                       <PeopleIcon className={classes.facebookIcon}/>
-                      Log in With Facebook
+                      Login With Facebook
                     </Button>
                   </Grid>
                 </Grid>

@@ -40,7 +40,7 @@ class FrontBanner extends Component {
     const {classes} = this.props;
     return (
       <div>
-        <Grid container spacing={0}>
+        <Grid container justify="center" spacing={0}>
           <Grid item xs={12}>
             <div className={classes.bannerWrapper}>
               <Paper className={classes.root} elevation={4}>

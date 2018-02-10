@@ -7,13 +7,18 @@ const top = 25;
 const left = 50;
 
 const styles = {
+  facebookButton: {
+    marginTop: 10,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
   facebookIcon: {
     marginRight: 8,
     marginLeft: -8
   },
   modal: {
     position: 'absolute',
-    width: 300,
+    minWidth: '20%',
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${left}%, -${top}%)`,
@@ -58,11 +63,13 @@ class LoginModal extends React.Component {
                   We use external authentication so we dont have to save your password.
                 </Typography>
                 <Grid container justify="center" spacing={0}>
-                  <Grid item xs={9} md={9}>
-                    <Button color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
-                      <PeopleIcon className={classes.facebookIcon}/>
-                      Login With Facebook
-                    </Button>
+                  <Grid item xs={6} md={6}>
+                    <div className={classes.facebookButton}>
+                      <Button color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
+                        <PeopleIcon className={classes.facebookIcon}/>
+                        Login With Facebook
+                      </Button>
+                    </div>
                   </Grid>
                 </Grid>
               </div>

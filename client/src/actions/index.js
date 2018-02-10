@@ -2,13 +2,13 @@ export function attemptFacebookAuth() {
   return (dispatch, getState) => {
     if (!getState().auth.loggedIn) {
       dispatch(attemptLogin)
-      return fetch('/auth/me', {credentials: 'include'})
+      return fetch("/auth/me", {credentials: "include"})
         .then(
           res => res.json(),
-          error => console.log(error)
+          error => console.log(error),
         ).then(json => {
             dispatch(authReceived(json))
-          }
+          },
         )
     }
   }
@@ -17,18 +17,19 @@ export function attemptFacebookAuth() {
 export const attemptFavorite = (memeId) => {
   return (dispatch, getState) => {
     if (getState().auth.loggedIn) {
-      return fetch('memes/favorite', {
-        method: 'POST',
+      return fetch("memes/favorite", {
+        method: "POST",
         headers: new Headers({
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         }),
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify({
-          meme: memeId
-        })})
+          meme: memeId,
+        }),
+      })
         .then(
           res => res.json(),
-          error => console.log(error)
+          error => console.log(error),
         ).then(json => {
           dispatch(toggleFavorite(json))
         })
@@ -38,57 +39,56 @@ export const attemptFavorite = (memeId) => {
 
 export const toggleFavorite = (json) => {
   return {
-    type: 'TOGGLE_FAVORITE',
+    type: "TOGGLE_FAVORITE",
     meme: json.meme,
-    user: json.id,
-    isFavorite: json.isFavorite
+    updatedMeme: json.updatedMeme,
   }
 }
 
 export const attemptDelete = (memeId) => {
   return (dispatch, getState) => {
-    return fetch('/memes/' + memeId, {
-      credentials: 'include',
-      method: 'delete'
+    return fetch("/memes/" + memeId, {
+      credentials: "include",
+      method: "delete",
     }).then(response => {
       return response.json()
     }).then(json =>
-      dispatch(memeDeleted(memeId))
+      dispatch(memeDeleted(memeId)),
     )
   }
 }
 
 export const memeDeleted = (memeId) => {
   return {
-    type: 'MEME_DELETED',
-    meme: memeId
+    type: "MEME_DELETED",
+    meme: memeId,
   }
 }
 
 export const attemptLogin = {
-  type: 'ATTEMPT_LOGIN'
+  type: "ATTEMPT_LOGIN",
 }
 
 export const authReceived = (json) => {
   return {
-    type: 'AUTH_RECEIVED',
+    type: "AUTH_RECEIVED",
     user: {
       id: json.id,
       name: json.name,
       picture: json.picture,
-      admin: json.admin
+      admin: json.admin,
     },
-    loggedIn: json.loggedIn
+    loggedIn: json.loggedIn,
   }
 }
 
 export const attemptLogout = () => {
   return (dispatch, getState) => {
     if (getState().auth.loggedIn) {
-      return fetch('/auth/logout', {credentials: 'include'})
+      return fetch("/auth/logout", {credentials: "include"})
         .then(
           res => res.json(),
-          error => console.log(error)
+          error => console.log(error),
         ).then(json => {
           dispatch(logout)
         })
@@ -97,69 +97,87 @@ export const attemptLogout = () => {
 }
 
 export const logout = {
-  type: 'LOGOUT'
+  type: "LOGOUT",
 }
 
 export const getRecentMemes = (query) => {
   return dispatch => {
-    return fetch(query, {credentials: 'include'})
+    return fetch(query, {credentials: "include"})
       .then(
         res => res.json(),
-        error => console.log(error)
+        error => console.log(error),
       ).then(json => {
-        if (json) dispatch(recentMemesReceived(json.documents))
+        let memes = {}
+        if (json) {
+          json.documents.forEach(meme => {
+            memes[meme._id] = meme
+          })
+        }
+        dispatch(recentMemesReceived(memes))
       })
   }
 }
 
 export const getMyMemes = (query) => {
   return dispatch => {
-    return fetch(query, {credentials: 'include'})
+    return fetch(query, {credentials: "include"})
       .then(
         res => res.json(),
-        error => console.log(error)
+        error => console.log(error),
       ).then(json => {
-        if (json) dispatch(myMemesReceived(json.documents))
+        let memes = {}
+        if (json) {
+          json.documents.forEach(meme => {
+            memes[meme._id] = meme
+          })
+        }
+        dispatch(myMemesReceived(memes))
       })
   }
 }
 
 export const getMemes = (query) => {
   return dispatch => {
-    return fetch(query, {credentials: 'include'})
+    return fetch(query, {credentials: "include"})
       .then(
         res => res.json(),
-        error => console.log(error)
+        error => console.log(error),
       ).then(json => {
-        if (json) dispatch(memesReceived(json.documents))
+        let memes = {}
+        if (json) {
+          json.documents.forEach(meme => {
+            memes[meme._id] = meme
+          })
+        }
+        dispatch(memesReceived(memes))
       })
   }
 }
 
 export const recentMemesReceived = (memes) => {
   return {
-    type: 'RECENT_MEMES_RECEIVED',
-    memes
+    type: "RECENT_MEMES_RECEIVED",
+    memes,
   }
 }
 
 export const myMemesReceived = (memes) => {
   return {
-    type: 'MY_MEMES_RECEIVED',
-    memes
+    type: "MY_MEMES_RECEIVED",
+    memes,
   }
 }
 
 export const memesReceived = (memes) => {
   return {
-    type: 'MEMES_RECEIVED',
-    memes
+    type: "MEMES_RECEIVED",
+    memes,
   }
 }
 
 export const uploadedMemes = () => {
   return dispatch => {
-    dispatch(getMyMemes('memes/mine'))
+    dispatch(getMyMemes("memes/mine"))
   }
 }
 

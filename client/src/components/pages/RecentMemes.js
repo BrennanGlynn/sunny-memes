@@ -33,6 +33,12 @@ class RecentMemes extends Component {
 
   render() {
     const {classes, memes} = this.props;
+    let memeArray = [];
+    for (const key in memes) {
+      if (memes.hasOwnProperty(key)) {
+        memeArray.push(memes[key])
+      }
+    }
 
     return (
       <Grid container spacing={0}>
@@ -41,7 +47,7 @@ class RecentMemes extends Component {
             options={{fitWidth: true}}
             className={classes.memeWrapper}
           >
-            {memes.map((meme) =>
+            {memeArray.map((meme) =>
               <MemeContainer key={meme._id} meme={meme}/>
             )}
           </Masonry>

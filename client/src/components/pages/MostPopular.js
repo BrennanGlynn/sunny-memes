@@ -33,6 +33,12 @@ class MostPopular extends Component {
 
   render() {
     const {classes, memes} = this.props;
+    let memesArray = []
+    for (const key in memes) {
+      if (memes.hasOwnProperty(key)) {
+        memesArray.push(memes[key])
+      }
+    }
 
     return (
       <Grid container spacing={0}>
@@ -41,9 +47,9 @@ class MostPopular extends Component {
               options={{fitWidth: true}}
               className={classes.memeWrapper}
             >
-                  {memes.map((meme) =>
-                      <MemeContainer key={meme._id} meme={meme}/>
-                  )}
+              {memesArray.map((meme) =>
+                <MemeContainer meme={meme} key={meme._id}/>
+              )}
             </Masonry>
         </Grid>
       </Grid>

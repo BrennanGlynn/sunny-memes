@@ -18,10 +18,16 @@ const styles = {
 class MyMemes extends Component {
   render() {
     const {classes, memes} = this.props;
+    const memesArray = []
+    for (const key in memes) {
+      if (memes.hasOwnProperty(key)) {
+        memesArray.push(memes[key])
+      }
+    }
 
     return (
       <div>
-        {memes[0] ? (
+        {memesArray[0] ? (
             <Grid container spacing={0}>
               <Grid item xs={12}>
                 <div className="center">
@@ -29,7 +35,7 @@ class MyMemes extends Component {
                     options={{fitWidth: true}}
                     className={classes.masonry}
                   >
-                    {memes.map((meme) =>
+                    {memesArray.map((meme) =>
                       <MemeContainer meme={meme} key={meme._id}/>
                     )}
                   </Masonry>

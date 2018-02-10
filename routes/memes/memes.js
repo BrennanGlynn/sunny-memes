@@ -49,23 +49,21 @@ router.use('/favorite', (req, res) => {
         if (err) {
           return res.json({'Error adding favorite': err});
         } else return res.json({
-          message: 'added favorite',
           meme: req.body.meme,
+          updatedMeme: meme,
           id: req.user.facebookId,
-          isFavorite: true
         })
       })
 
       // remove favorite if user had set it as a favorite before
     } else {
-      Meme.findByIdAndUpdate(req.body.meme, {$pull: {favorites: req.user.facebookId}}, (err, meme) => {
+      Meme.findByIdAndUpdate(req.body.meme, {$pull: {favorites: req.user.facebookId}}, {new: true}, (err, meme) => {
         if (err) {
           return res.json({message: err});
         } else return res.json({
-          message: 'Removed favorite',
+          updatedMeme: meme,
           meme: req.body.meme,
           id: req.user.facebookId,
-          isFavorite: false
         })
       })
     }

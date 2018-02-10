@@ -123,6 +123,7 @@ export const attemptFavorite = (memeId) => {
           res => res.json(),
           error => console.log(error),
         ).then(json => {
+          dispatch(getFavoriteMemes("memes/favorites"))
           dispatch(toggleFavorite(json))
         })
     }

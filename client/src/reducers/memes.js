@@ -53,7 +53,8 @@ function memeReducer(state = {
         ...state,
         memes,
         myMemes,
-        recentMemes
+        recentMemes,
+        favoriteMemes
       }
     default:
       return state

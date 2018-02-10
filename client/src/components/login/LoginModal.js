@@ -57,6 +57,7 @@ class LoginModal extends React.Component {
               aria-describedby="simple-modal-description"
               open={this.state.open}
               onClose={this.handleClose}
+              disableAutoFocus={true}
             >
               <div className={classes.modal}>
                 <Typography variant="title" id="modal-title" gutterBottom>

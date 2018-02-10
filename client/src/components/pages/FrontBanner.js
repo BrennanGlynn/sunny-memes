@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
+import {Typography, Grid, Paper} from "material-ui/";
+import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
 
-let bannerBackgroundUrl = '/images/dayman-nightman.png'
+let bannerBackgroundUrl = '/images/front-page-dayman-nightman.png'
 const styles = theme => ({
   bannerWrapper: {
     textAlign: 'center',
@@ -37,7 +39,29 @@ class FrontBanner extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <div className={classes.bannerWrapper}>
+      <div>
+        <Grid container justify="center" spacing={0}>
+          <Grid item xs={12}>
+            <div className={classes.bannerWrapper}>
+              <Paper className={classes.root} elevation={4}>
+                <Typography variant="headline" component="h3">
+                  Hello, fellow American.
+                </Typography>
+                <Typography component="p">
+                  This you should upload memes. I leave power. Good.
+                  Thank you. Thank you. If you upload memes, I am hot. What? Taxes. Theyll be lower, son.
+                  The meme upload is right thing to do, Philadelphia. So do.
+                </Typography>
+              </Paper>
+            </div>
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
+            <MostPopularContainer />
+          </Grid>
+        </Grid>
       </div>
     );
   }

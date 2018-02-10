@@ -1,19 +1,27 @@
 import React from 'react';
 import {withStyles} from 'material-ui/styles';
-import {Button, Modal, Typography} from 'material-ui';
+import {Grid, Button, Modal, Typography} from 'material-ui';
 import PeopleIcon from 'material-ui-icons/People'
 
 const top = 25;
 const left = 50;
 
 const styles = {
+  loginButtonWrapper: {
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  loginButton: {
+    marginTop: 10,
+    width: 210,
+  },
   facebookIcon: {
     marginRight: 8,
     marginLeft: -8
   },
   modal: {
     position: 'absolute',
-    width: 300,
+    minWidth: '20%',
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${left}%, -${top}%)`,
@@ -41,26 +49,37 @@ class LoginModal extends React.Component {
     const {classes} = this.props
     return (
       <div>
-        <Button onClick={this.handleOpen} color="inherit">
-          Log in
+        <Button onClick={this.handleOpen} variant="raised">
+          Login
         </Button>
             <Modal
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
               open={this.state.open}
               onClose={this.handleClose}
+              disableAutoFocus={true}
             >
               <div className={classes.modal}>
-                <Typography type="title" id="modal-title">
-                  Log in with facebook
+                <Typography variant="title" id="modal-title" gutterBottom>
+                  Login with your account
                 </Typography>
-                <Typography type="subheading" id="simple-modal-description">
-                  You need to be logged in to save your favorite memes.
+                <Typography variant="subheading" id="simple-modal-description" gutterBottom>
+                  We use external authentication so we dont have to save your password.
                 </Typography>
-                <Button color="primary" href="http://localhost:3001/auth/facebook">
-                  <PeopleIcon className={classes.facebookIcon}/>
-                  Log in With Facebook
-                </Button>
+                <Grid container justify="center" spacing={0}>
+                  <Grid item xs={6} md={6}>
+                    <div className={classes.loginButtonWrapper}>
+                      <Button className={classes.loginButton} color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
+                        <PeopleIcon className={classes.facebookIcon}/>
+                        Login With Facebook
+                      </Button>
+                      <Button className={classes.loginButton} color="secondary" variant="raised" href="http://localhost:3001/auth/facebook">
+                        <PeopleIcon className={classes.facebookIcon}/>
+                        Login with Google
+                      </Button>
+                    </div>
+                  </Grid>
+                </Grid>
               </div>
             </Modal>
       </div>

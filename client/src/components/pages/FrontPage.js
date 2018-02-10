@@ -5,6 +5,7 @@ import ExpansionPanel, {ExpansionPanelDetails, ExpansionPanelSummary,} from "mat
 import {Avatar, Chip, Divider, Grid, Typography} from "material-ui/";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
+import FilterModal from "../FilterModal.js";
 
 const styles = theme => ({
   root: {
@@ -56,47 +57,10 @@ class FrontPage extends Component {
 
     return(
       <div className={classes.root}>
-        <Grid container justify="center" align="center">
-          <ExpansionPanel defaultExpanded>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>Select Characters</Typography>
-            </ExpansionPanelSummary>
-            <Divider />
-            <ExpansionPanelDetails className={classes.details}>
-              <Grid item xs={12} sm={12} md={12}>
-                <Chip
-                  avatar={<Avatar src="/images/dennis.jpg" />}
-                  label="Dennis"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/mac.jpg" />}
-                  label="Mac"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/charlie.jpg" />}
-                  label="Charlie"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/dee.jpg" />}
-                  label="Dee"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-                <Chip
-                  avatar={<Avatar src="/images/frank.jpg" />}
-                  label="Frank"
-                  onClick={handleClick}
-                  className={classes.chip}
-                />
-              </Grid>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
+        <Grid container justify="flex-end" spacing="0">
+          <Grid xs={3}>
+            <FilterModal />
+          </Grid>
         </Grid>
 
         <Grid container>

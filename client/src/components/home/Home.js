@@ -61,6 +61,12 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  mobileMenu: {
+    backgroundColor: '#2c8943',
+  },
+  desktopMenu: {
+    backgroundColor: '#2c8943',
+  },
   mobileLogin: {
     marginTop: 10,
   },

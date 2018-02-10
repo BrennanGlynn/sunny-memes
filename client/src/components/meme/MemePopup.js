@@ -52,8 +52,13 @@ class MemePopup extends Component {
     this.setState({ anchorEl: null });
   };
 
+  handleDelete(memeId) {
+    this.props.deleteMeme(memeId)
+    this.setState({anchorEl: null})
+  }
+
   render() {
-    const {classes, data, openModal, zoomed} = this.props;
+    const {classes, data, user, admin, openModal, zoomed} = this.props;
     const { anchorEl } = this.state;
     return (
       <Modal
@@ -62,7 +67,6 @@ class MemePopup extends Component {
         open={zoomed}
         onClose={openModal}
         disableAutoFocus={true}
-        disableBackdropClick={true}
       >
         <div className={classes.openModal}>
           <Grid container justify="flex-end">
@@ -87,7 +91,7 @@ class MemePopup extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                <MenuItem onClick={this.handleClose}>
+                <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete

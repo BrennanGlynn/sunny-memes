@@ -58,7 +58,6 @@ class FilterModal extends Component {
     return(
       <div>
         <IconButton
-          color="rgba(0, 0, 0, 0.54)"
           aria-haspopup="true"
           onClick={this.handleOpen}
         >

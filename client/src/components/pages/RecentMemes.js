@@ -59,7 +59,7 @@ class RecentMemes extends Component {
 
 RecentMemes.propTypes = {
   classes: PropTypes.object.isRequired,
-  memes: PropTypes.array.isRequired,
+  memes: PropTypes.object.isRequired,
   user: PropTypes.string.isRequired,
 }
 

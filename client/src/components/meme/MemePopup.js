@@ -58,7 +58,7 @@ class MemePopup extends Component {
   }
 
   render() {
-    const {classes, data, user, admin, openModal, zoomed} = this.props;
+    const {classes, data, openModal, zoomed} = this.props;
     const { anchorEl } = this.state;
     return (
       <Modal

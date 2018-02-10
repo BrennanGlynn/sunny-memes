@@ -59,7 +59,7 @@ class MostPopular extends Component {
 
 MostPopular.propTypes = {
   classes: PropTypes.object.isRequired,
-  memes: PropTypes.array.isRequired,
+  memes: PropTypes.object.isRequired,
   user: PropTypes.string.isRequired,
 }
 

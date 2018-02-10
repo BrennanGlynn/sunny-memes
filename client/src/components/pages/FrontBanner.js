@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
 import {Typography, Grid, Paper} from "material-ui/";
-import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
+import MostPopularContainer from "../../containers/pages/MostPopularContainer";
 
 let bannerBackgroundUrl = '/images/front-page-dayman-nightman.png'
 const styles = theme => ({

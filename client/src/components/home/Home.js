@@ -11,17 +11,17 @@ import AccessTimeIcon from "material-ui-icons/AccessTime";
 import LoginModal from "../login/LoginModal";
 import FrontBanner from "../pages/FrontBanner";
 import PleaseLogin from "../pages/PleaseLogin";
-import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
-import MyMemesContainer from "../../containers/Pages/MyMemesContainer";
+import MostPopularContainer from "../../containers/pages/MostPopularContainer";
+import MyMemesContainer from "../../containers/pages/MyMemesContainer";
 import NavMenu from "./NavMenu";
 import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/UploadContainer"
 import NavDrawer from "./NavDrawer"
 import UserDrawer from "./UserDrawer"
 import FrontPage from "../pages/FrontPage";
-import RecentMemesContainer from "../../containers/Pages/RecentMemesContainer";
-import Favorites from "../pages/Favorites"
+import RecentMemesContainer from "../../containers/pages/RecentMemesContainer";
 import PageNotFound from "../pages/PageNotFound";
+import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -92,6 +92,8 @@ class Home extends Component {
     this.props.getRecentMemes("memes/recent")
     // preload 30 most popular memes
     this.props.getMemes("memes");
+    // load 30 most recent favorites
+    this.props.getFavoriteMemes("memes/favorites")
   }
 
   toggleNavDrawer() {
@@ -149,7 +151,7 @@ class Home extends Component {
             <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>
             <Route path='/mostpopular' exact component={MostPopularContainer}/>
             <Route path='/mostrecent' exact component={RecentMemesContainer}/>
-            <Route path='/favorites' component={!auth.pending && auth.loggedIn ? Favorites : PleaseLogin}/>
+            <Route path='/favorites' component={!auth.pending && auth.loggedIn ? FavoriteMemesContainer : PleaseLogin}/>
             <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
             <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>

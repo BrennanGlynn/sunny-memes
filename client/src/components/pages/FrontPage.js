@@ -4,7 +4,7 @@ import {withStyles} from "material-ui/styles";
 import ExpansionPanel, {ExpansionPanelDetails, ExpansionPanelSummary,} from "material-ui/ExpansionPanel";
 import {Avatar, Chip, Divider, Grid, Typography} from "material-ui/";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
-import MostPopularContainer from "../../containers/Pages/MostPopularContainer";
+import MostPopularContainer from "../../containers/pages/MostPopularContainer";
 import FilterModal from "../FilterModal.js";
 
 const styles = theme => ({

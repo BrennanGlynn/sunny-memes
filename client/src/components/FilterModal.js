@@ -31,7 +31,7 @@ const styles = theme => ({
   },
   dimmed: {
     opacity: 0.4,
-    filter: 'alpha(opacity=40)'
+    filter: 'alpha(opacity=40)',
   },
 });
 

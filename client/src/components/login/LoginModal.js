@@ -7,10 +7,13 @@ const top = 25;
 const left = 50;
 
 const styles = {
-  facebookButton: {
-    marginTop: 10,
+  loginButtonWrapper: {
     marginBottom: 10,
     textAlign: 'center',
+  },
+  loginButton: {
+    marginTop: 10,
+    width: 210,
   },
   facebookIcon: {
     marginRight: 8,
@@ -64,10 +67,14 @@ class LoginModal extends React.Component {
                 </Typography>
                 <Grid container justify="center" spacing={0}>
                   <Grid item xs={6} md={6}>
-                    <div className={classes.facebookButton}>
-                      <Button color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
+                    <div className={classes.loginButtonWrapper}>
+                      <Button className={classes.loginButton} color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
                         <PeopleIcon className={classes.facebookIcon}/>
                         Login With Facebook
+                      </Button>
+                      <Button className={classes.loginButton} color="secondary" variant="raised" href="http://localhost:3001/auth/facebook">
+                        <PeopleIcon className={classes.facebookIcon}/>
+                        Login with Google
                       </Button>
                     </div>
                   </Grid>

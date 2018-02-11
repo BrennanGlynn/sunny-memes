@@ -149,7 +149,7 @@ class Home extends Component {
                   Uploaded</Button>
               </div>
               {!auth.loggedIn && <LoginModal/>}
-              {auth.loggedIn && <Button className={classes.uploadButton} href="/addmeme">Upload</Button>}
+              {auth.loggedIn && <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>}
               {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
             </Toolbar>
           </AppBar>

@@ -7,6 +7,11 @@ const top = 25;
 const left = 50;
 
 const styles = {
+  loginButtonHeader: {
+    backgroundColor: '#ffd800',
+    color: '#fff',
+    textShadow: '1px 1px 2px rgba(0,0,0,.3)',
+  },
   loginButtonWrapper: {
     marginBottom: 10,
     textAlign: 'center',
@@ -49,7 +54,7 @@ class LoginModal extends React.Component {
     const {classes} = this.props
     return (
       <div>
-        <Button onClick={this.handleOpen} variant="raised">
+        <Button onClick={this.handleOpen} variant="raised" className={classes.loginButtonHeader}>
           Login
         </Button>
             <Modal

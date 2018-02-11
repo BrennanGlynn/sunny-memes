@@ -13,11 +13,14 @@ const styles = theme => ({
   picture: {
     height: 40,
     width: 40,
-    borderRadius: '50%'
+    borderRadius: '50%',
   },
   menuLink: {
     color: 'inherit',
-    textDecoration: 'none'
+    textDecoration: 'none',
+  },
+  userMenu: {
+    top: 48,
   },
 });
 
@@ -52,6 +55,7 @@ class NavMenu extends Component {
         </Button>
         <Menu
           id="simple-menu"
+          className={classes.userMenu}
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handleClose}

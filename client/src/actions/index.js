@@ -8,9 +8,9 @@ export function attemptFacebookAuth() {
           res => res.json(),
           error => console.log(error),
         ).then(json => {
-            dispatch(authReceived(json))
-          },
-        )
+          if (json.loggedIn) dispatch(getFavoriteMemes('memes/favorites'))
+          dispatch(authReceived(json))
+        })
     }
   }
 }
@@ -100,7 +100,7 @@ export const recentMemesReceived = (memes) => {
 export const favoriteMemesReceived = (memes) => {
   return {
     type: "FAVORITE_MEMES_RECEIVED",
-    memes
+    memes,
   }
 }
 
@@ -172,7 +172,9 @@ export const uploadedMemes = () => {
 function memeRequest(dispatch, query, receivedAction) {
   fetch(query, {credentials: "include"})
     .then(
-      res => res.json(),
+      res => {
+        return res.json()
+      },
       error => console.log(error),
     ).then(json => {
     let memes = {}

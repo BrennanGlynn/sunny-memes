@@ -57,7 +57,7 @@ class FrontPage extends Component {
           </Grid>
         </Grid>
 
-        <Grid container>
+        <Grid container spacing={0}>
           <Grid item xs={12}>
             <MostPopularContainer />
           </Grid>

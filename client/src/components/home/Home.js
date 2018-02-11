@@ -54,9 +54,6 @@ const styles = theme => ({
   rightIcon: {
     textAlign: "right",
   },
-  logo: {
-    width: 100,
-  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -69,9 +66,6 @@ const styles = theme => ({
   },
   mobileLogin: {
     marginTop: 10,
-  },
-  label: {
-    color: "white",
   },
   label: {
     color: "white",

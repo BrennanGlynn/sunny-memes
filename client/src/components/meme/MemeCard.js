@@ -38,6 +38,9 @@ const styles = theme => ({
   favorite: {
     color: '#fed035'
   },
+  favoriteNumber: {
+    color: 'rgba(0, 0, 0, 0.54)',
+  },
   vertIcon: {
     float: 'right',
     marginTop: -8,
@@ -210,7 +213,7 @@ class MemeCard extends Component {
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon
                     className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}/><Typography
-                  type={'body2'}>{data.numFaves}</Typography>
+                  type={'body2'} className={classes.favoriteNumber}>{data.numFaves}</Typography>
                 </IconButton>
                 <IconButton aria-label="Share">
                   <ShareIcon/>

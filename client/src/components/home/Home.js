@@ -79,6 +79,9 @@ const styles = theme => ({
   uploadButton: {
     color: "white",
     backgroundColor: "rgba(0,0,0,.8)",
+    '&:hover': {
+      backgroundColor: "rgba(0,0,0,.9)",
+    },
   },
 });
 

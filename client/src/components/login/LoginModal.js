@@ -8,9 +8,12 @@ const left = 50;
 
 const styles = {
   loginButtonHeader: {
-    backgroundColor: '#ffd800',
     color: '#fff',
     textShadow: '1px 1px 2px rgba(0,0,0,.3)',
+    backgroundColor: "rgba(0,0,0,.8)",
+      '&:hover': {
+        backgroundColor: "rgba(0,0,0,.9)",
+    },
   },
   loginButtonWrapper: {
     marginBottom: 10,

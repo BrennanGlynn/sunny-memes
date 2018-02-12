@@ -97,11 +97,7 @@ class Home extends Component {
 
   componentDidMount() {
     // preload users first 30 memes
-    this.props.getMyMemes("memes/mine");
-    // load 30 most recent memes
-    this.props.getRecentMemes("memes/recent")
-    // preload 30 most popular memes
-    this.props.getMemes("memes");
+    this.props.fetchAllMemes("")
   }
 
   toggleNavDrawer() {

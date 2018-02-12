@@ -8,7 +8,7 @@ export function attemptFacebookAuth() {
           res => res.json(),
           error => console.log(error),
         ).then(json => {
-          if (json.loggedIn) dispatch(getFavoriteMemes('memes/favorites'))
+          if (json.loggedIn) dispatch(fetchAllMemes(""))
           dispatch(authReceived(json))
         })
     }
@@ -52,6 +52,18 @@ export const logout = {
 
 //==========================================================================================================Meme actions
 //============================================================================requesting memes
+export const fetchAllMemes = (query) => {
+  return (dispatch, getState) => {
+    dispatch(getMemes(query))
+    dispatch(getRecentMemes(query))
+
+    if (getState().auth.loggedIn) {
+      dispatch(getMyMemes(query))
+      dispatch(getFavoriteMemes(query))
+    }
+  }
+}
+
 export const getMemes = (query) => {
   return dispatch => {
     return memeRequest(dispatch, query, memesReceived)
@@ -60,19 +72,19 @@ export const getMemes = (query) => {
 
 export const getMyMemes = (query) => {
   return dispatch => {
-    return memeRequest(dispatch, query, myMemesReceived)
+    return memeRequest(dispatch, 'mine' + query, myMemesReceived)
   }
 }
 
 export const getRecentMemes = (query) => {
   return dispatch => {
-    return memeRequest(dispatch, query, recentMemesReceived)
+    return memeRequest(dispatch, 'recent' + query, recentMemesReceived)
   }
 }
 
 export const getFavoriteMemes = (query) => {
   return dispatch => {
-    return memeRequest(dispatch, query, favoriteMemesReceived);
+    return memeRequest(dispatch, 'favorites' + query, favoriteMemesReceived);
   }
 }
 
@@ -123,7 +135,7 @@ export const attemptFavorite = (memeId) => {
           res => res.json(),
           error => console.log(error),
         ).then(json => {
-          dispatch(getFavoriteMemes("memes/favorites"))
+          dispatch(getFavoriteMemes(""))
           dispatch(toggleFavorite(json))
         })
     }
@@ -162,15 +174,15 @@ export const memeDeleted = (memeId) => {
 
 export const uploadedMemes = () => {
   return dispatch => {
-    dispatch(getMyMemes("memes/mine"))
-    dispatch(getRecentMemes("memes/recent"))
+    dispatch(getMyMemes(""))
+    dispatch(getRecentMemes(""))
   }
 }
 
 
 //======================================================================================================Helper functions
 function memeRequest(dispatch, query, receivedAction) {
-  fetch(query, {credentials: "include"})
+  fetch('memes/' + query, {credentials: "include"})
     .then(
       res => {
         return res.json()

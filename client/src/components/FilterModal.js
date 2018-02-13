@@ -8,6 +8,7 @@ import FilterList from "material-ui-icons/FilterList";
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    marginBottom: 5,
   },
   openModal: {
     position: "absolute",

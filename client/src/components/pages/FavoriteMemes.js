@@ -14,11 +14,7 @@ class Favorites extends Component {
 
     return (
       <div>
-        <Grid container spacing={0}>
-          <Grid item>
-            <FilterModalContainer/>
-          </Grid>
-        </Grid>
+        <FilterModalContainer/>
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <Masonry

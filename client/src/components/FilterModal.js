@@ -63,7 +63,7 @@ class FilterModal extends Component {
     return (
       <div>
         <Grid container alignItems="center" spacing={0}>
-          <Grid item className={classes.chipContainer}>
+          <Grid item xs={6} md={10}>
                 {characterNames.map(character =>
                   <Chip
                     key={character}
@@ -76,7 +76,7 @@ class FilterModal extends Component {
                 )}
             </Grid>
 
-            <Grid item>
+            <Grid item xs={6} md={2}>
               <IconButton
                 aria-haspopup="true"
                 onClick={this.handleOpen}

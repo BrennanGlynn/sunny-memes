@@ -10,6 +10,9 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  pictureButton: {
+    marginLeft: 25,
+  },
   picture: {
     height: 40,
     width: 40,
@@ -47,6 +50,7 @@ class NavMenu extends Component {
     return(
       <div className={classes.desktopMenu}>
         <Button
+          className={classes.pictureButton}
           aria-owns={anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}

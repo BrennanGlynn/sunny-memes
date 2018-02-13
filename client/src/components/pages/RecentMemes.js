@@ -5,6 +5,7 @@ import {withStyles} from "material-ui/styles";
 import MemeContainer from "../../containers/memes/MemeContainer"
 import Masonry from "react-masonry-component"
 import Grid from "material-ui/Grid";
+import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 
 const styles = {
   root: {
@@ -41,18 +42,25 @@ class RecentMemes extends Component {
     }
 
     return (
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <Masonry
-            options={{fitWidth: true}}
-            className={classes.memeWrapper}
-          >
-            {memeArray.map((meme) =>
-              <MemeContainer key={meme._id} meme={meme}/>
-            )}
-          </Masonry>
+      <div>
+        <Grid container justify="flex-end" spacing={0}>
+          <Grid item xs={2}>
+            <FilterModalContainer/>
+          </Grid>
         </Grid>
-      </Grid>
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
+            <Masonry
+              options={{fitWidth: true}}
+              className={classes.memeWrapper}
+            >
+              {memeArray.map((meme) =>
+                <MemeContainer key={meme._id} meme={meme}/>
+              )}
+            </Masonry>
+          </Grid>
+        </Grid>
+      </div>
     )
   }
 }

@@ -22,6 +22,7 @@ import FrontPage from "../pages/FrontPage";
 import RecentMemesContainer from "../../containers/pages/RecentMemesContainer";
 import PageNotFound from "../pages/PageNotFound";
 import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer";
+import FilterModalContainer from "../../containers/sorting/FilterModalContainer"
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -90,12 +91,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // preload users first 30 memes
-    this.props.getMyMemes("memes/mine");
-    // load 30 most recent memes
-    this.props.getRecentMemes("memes/recent")
-    // preload 30 most popular memes
-    this.props.getMemes("memes");
+    this.props.fetchAllMemes()
   }
 
   toggleNavDrawer() {

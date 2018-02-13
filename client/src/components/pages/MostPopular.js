@@ -43,7 +43,7 @@ class MostPopular extends Component {
 
     return (
       <div>
-        <Grid container justify="flex-end" spacing={0}>
+        <Grid container spacing={0}>
           <Grid item>
             <FilterModalContainer/>
           </Grid>

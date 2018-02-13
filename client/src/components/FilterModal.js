@@ -6,6 +6,9 @@ import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 
 const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
   openModal: {
     position: "absolute",
     top: "50%",
@@ -59,33 +62,32 @@ class FilterModal extends Component {
 
     return (
       <div>
-        <Grid container spacing={0}>
-          <Grid item xs={9}>
-            <div className={classes.chipContainer}>
-              {characterNames.map(character =>
-                <Chip
-                  key={character}
-                  avatar={<Avatar src={`/images/${character}.jpg`}/>}
-                  label={character}
-                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
-                  onClick={toggleChar.bind(this, character)}
-                  onDelete={classes.chip}
-                />,
-              )}
-            </div>
+        <Grid container alignItems="center" spacing={0}>
+          <Grid item className={classes.chipContainer}>
+                {characterNames.map(character =>
+                  <Chip
+                    key={character}
+                    avatar={<Avatar src={`/images/${character}.jpg`}/>}
+                    label={character}
+                    className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                    onClick={toggleChar.bind(this, character)}
+                    onDelete={classes.chip}
+                  />,
+                )}
+            </Grid>
+
+            <Grid item>
+              <IconButton
+                aria-haspopup="true"
+                onClick={this.handleOpen}
+              >
+                <Typography variant="caption" className={classes.filterText}>
+                  Filter
+                </Typography>
+                <FilterList/>
+              </IconButton>
+            </Grid>
           </Grid>
-          <Grid item>
-            <IconButton
-              aria-haspopup="true"
-              onClick={this.handleOpen}
-            >
-              <Typography variant="caption" className={classes.filterText}>
-                Filter
-              </Typography>
-              <FilterList/>
-            </IconButton>
-          </Grid>
-        </Grid>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

@@ -15,7 +15,7 @@ class Favorites extends Component {
     return (
       <div>
         <Grid container justify="flex-end" spacing={0}>
-          <Grid item xs={2}>
+          <Grid item>
             <FilterModalContainer/>
           </Grid>
         </Grid>

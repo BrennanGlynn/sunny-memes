@@ -19,9 +19,6 @@ const styles = theme => ({
     maxWidth: "90%",
     height: "auto",
   },
-  filterRow: {
-    marginTop: 5,
-  },
   filterText: {
     marginRight: 10,
   },
@@ -62,24 +59,22 @@ class FilterModal extends Component {
 
     return (
       <div>
-        <Grid container className={classes.filterRow} alignItems="center" spacing={0}>
+        <Grid container spacing={0}>
           <Grid item xs={9}>
-            <div>
-              <Chip
-                avatar={<Avatar src="./images/frank.jpg" />}
-                label="Frank"
-                onDelete={classes.chip}
-                className={classes.chip}
-              />
-              <Chip
-                avatar={<Avatar src="./images/dennis.jpg" />}
-                label="Dennis"
-                onDelete={classes.chip}
-                className={classes.chip}
-              />
+            <div className={classes.chipContainer}>
+              {characterNames.map(character =>
+                <Chip
+                  key={character}
+                  avatar={<Avatar src={`/images/${character}.jpg`}/>}
+                  label={character}
+                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                  onClick={toggleChar.bind(this, character)}
+                  onDelete={classes.chip}
+                />,
+              )}
             </div>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item>
             <IconButton
               aria-haspopup="true"
               onClick={this.handleOpen}

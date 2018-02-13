@@ -9,6 +9,12 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     marginBottom: 5,
+    [theme.breakpoints.between('xs', 'sm')]: {
+      width: '95%',
+      marginRight: '2.5%',
+      marginLeft: '2.5%',
+      textAlign: 'center',
+    },
   },
   openModal: {
     position: "absolute",
@@ -22,6 +28,10 @@ const styles = theme => ({
     minWidth: "20%",
     maxWidth: "90%",
     height: "auto",
+    [theme.breakpoints.only('xs')]: {
+      top: "25%",
+      minWidth: "80%",
+    },
   },
   filterText: {
     marginRight: 10,

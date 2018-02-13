@@ -28,11 +28,7 @@ class MyMemes extends Component {
 
     return (
       <div>
-        <Grid container justify="flex-end" spacing={0}>
-          <Grid item xs={2}>
-            <FilterModalContainer/>
-          </Grid>
-        </Grid>
+        <FilterModalContainer/>
         {memesArray[0] ? (
             <Grid container spacing={0}>
               <Grid item xs={12}>

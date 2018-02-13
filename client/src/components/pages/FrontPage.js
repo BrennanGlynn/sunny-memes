@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles";
 import {Grid} from "material-ui/";
 import MostPopularContainer from "../../containers/pages/MostPopularContainer";
-import FilterModal from "../FilterModal.js";
+import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 
 const styles = theme => ({
   root: {
@@ -51,12 +51,6 @@ class FrontPage extends Component {
 
     return(
       <div className={classes.root}>
-        <Grid container justify="flex-end" spacing={0}>
-          <Grid item xs={3}>
-            <FilterModal />
-          </Grid>
-        </Grid>
-
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <MostPopularContainer />

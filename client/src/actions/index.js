@@ -50,10 +50,45 @@ export const logout = {
   type: "LOGOUT",
 }
 
+//========================================================================================================Filter actions
+export const toggleCharacter = (character) => {
+  return (dispatch, getState) => {
+    let characters = getState().filter.characters;
+    const charIndex = characters.indexOf(character);
+    if (charIndex === -1) {
+      characters.push(character)
+    } else {
+      characters.splice(charIndex, 1)
+    }
+    dispatch(updateFilter(characters))
+  }
+}
+
+export const updateFilter = (characterArray) => {
+  return dispatch => {
+    dispatch(updatedFilter(characterArray))
+    dispatch(fetchAllMemes())
+  }
+}
+
+export const updatedFilter = (characterArray) => {
+  return {
+    type: "UPDATED_FILTER",
+    filter: characterArray
+  }
+}
+
 //==========================================================================================================Meme actions
 //============================================================================requesting memes
-export const fetchAllMemes = (query) => {
+export const fetchAllMemes = () => {
   return (dispatch, getState) => {
+    let query = '?'
+    let characters = getState().filter.characters.slice()
+    characters.forEach((char, index) => {
+      query += 'chars=' + char
+      if (index + 1 < characters.length) query += '&'
+    })
+    console.log(query)
     dispatch(getMemes(query))
     dispatch(getRecentMemes(query))
 

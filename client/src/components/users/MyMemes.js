@@ -5,6 +5,7 @@ import {Grid} from 'material-ui';
 //import queryString from 'query-string';
 import MemeContainer from '../../containers/memes/MemeContainer'
 import Masonry from 'react-masonry-component'
+import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 
 const styles = {
   root: {
@@ -27,6 +28,11 @@ class MyMemes extends Component {
 
     return (
       <div>
+        <Grid container justify="flex-end" spacing={0}>
+          <Grid item xs={2}>
+            <FilterModalContainer/>
+          </Grid>
+        </Grid>
         {memesArray[0] ? (
             <Grid container spacing={0}>
               <Grid item xs={12}>

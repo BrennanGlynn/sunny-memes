@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "material-ui/styles";
 // import queryString from 'query-string';
-import MemeContainer from '../../containers/memes/MemeContainer'
-import Masonry from 'react-masonry-component'
-import Grid from 'material-ui/Grid';
+import MemeContainer from "../../containers/memes/MemeContainer"
+import Masonry from "react-masonry-component"
+import Grid from "material-ui/Grid";
+import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 
 const styles = {
   root: {
@@ -41,8 +42,14 @@ class MostPopular extends Component {
     }
 
     return (
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
+      <div>
+        <Grid container justify="flex-end" spacing={0}>
+          <Grid item xs={2}>
+            <FilterModalContainer/>
+          </Grid>
+        </Grid>
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
             <Masonry
               options={{fitWidth: true}}
               className={classes.memeWrapper}
@@ -51,8 +58,9 @@ class MostPopular extends Component {
                 <MemeContainer meme={meme} key={meme._id}/>
               )}
             </Masonry>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     )
   }
 }
@@ -60,7 +68,6 @@ class MostPopular extends Component {
 MostPopular.propTypes = {
   classes: PropTypes.object.isRequired,
   memes: PropTypes.object.isRequired,
-  user: PropTypes.string.isRequired,
 }
 
 export default withStyles(styles)(MostPopular);

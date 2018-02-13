@@ -12,7 +12,7 @@ import 'babel-polyfill';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import App from './App';
-import {attemptFacebookAuth} from "./actions";
+import {attemptFacebookAuth, updateFilter} from "./actions";
 
 const loggerMiddleware = createLogger()
 const persistConfig = {

@@ -14,6 +14,7 @@ const styles = {
   dropzone: {
     width: '100%',
     height: 200,
+    backgroundColor: 'rgba(245,245,245,.5)',
     borderWidth: 2,
     borderColor: 'rgba(102, 102, 102,.5)',
     borderStyle: 'dashed',

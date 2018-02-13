@@ -19,6 +19,9 @@ const styles = theme => ({
     maxWidth: "90%",
     height: "auto",
   },
+  filterRow: {
+    marginTop: 5,
+  },
   filterText: {
     marginRight: 10,
   },
@@ -59,15 +62,35 @@ class FilterModal extends Component {
 
     return (
       <div>
-        <IconButton
-          aria-haspopup="true"
-          onClick={this.handleOpen}
-        >
-          <Typography variant="caption" className={classes.filterText}>
-            Filter
-          </Typography>
-          <FilterList/>
-        </IconButton>
+        <Grid container className={classes.filterRow} alignItems="center" spacing={0}>
+          <Grid item xs={9}>
+            <div>
+              <Chip
+                avatar={<Avatar src="./images/frank.jpg" />}
+                label="Frank"
+                onDelete={classes.chip}
+                className={classes.chip}
+              />
+              <Chip
+                avatar={<Avatar src="./images/dennis.jpg" />}
+                label="Dennis"
+                onDelete={classes.chip}
+                className={classes.chip}
+              />
+            </div>
+          </Grid>
+          <Grid item xs={3}>
+            <IconButton
+              aria-haspopup="true"
+              onClick={this.handleOpen}
+            >
+              <Typography variant="caption" className={classes.filterText}>
+                Filter
+              </Typography>
+              <FilterList/>
+            </IconButton>
+          </Grid>
+        </Grid>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

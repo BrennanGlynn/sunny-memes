@@ -25,6 +25,11 @@ const styles = theme => ({
   filterText: {
     marginRight: 10,
   },
+  chipTopContainer: {
+    marginRight: 10,
+    position: 'relative',
+    top: 10,
+  },
   chipContainer: {
     margin: 20,
     textAlign: "center",
@@ -62,8 +67,9 @@ class FilterModal extends Component {
 
     return (
       <div>
-        <Grid container alignItems="center" spacing={0}>
-          <Grid item xs={6} md={10}>
+        <Grid container className={classes.root} justify="flex-end" alignItems="center" spacing={0}>
+          <Grid item xs={12} md={10} lg={5} xl={4}>
+            <span className={classes.chipTopContainer}>
                 {characterNames.map(character =>
                   <Chip
                     key={character}
@@ -74,9 +80,7 @@ class FilterModal extends Component {
                     onDelete={classes.chip}
                   />,
                 )}
-            </Grid>
-
-            <Grid item xs={6} md={2}>
+              </span>
               <IconButton
                 aria-haspopup="true"
                 onClick={this.handleOpen}

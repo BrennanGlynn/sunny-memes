@@ -27,6 +27,7 @@ const styles = theme => ({
     textAlign: "center",
   },
   chip: {
+    textTransform: 'capitalize',
     marginRight: 5,
   },
   dimmed: {

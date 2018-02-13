@@ -21,8 +21,14 @@ const styles = {
     textAlign: 'center'
   },
   uploadButton: {
-    margin: '10px auto',
+    margin: '20px auto',
     position: 'relative',
+      color: '#fff',
+      textShadow: '1px 1px 2px rgba(0,0,0,.3)',
+      backgroundColor: "rgba(22,141,33,.8)",
+        '&:hover': {
+          backgroundColor: "rgba(22,141,33,.9)",
+      },
   },
   uploadText: {
     position: 'relative',
@@ -105,9 +111,9 @@ class UploadForm extends Component {
             )
           }
         </Masonry>
-        <Grid container className={classes.uploadButton} justify="center" spacing={0}>
+        <Grid container justify="center" spacing={0}>
           <Grid item>
-            <Button variant="raised" color="primary" onClick={this.handleUpload.bind(this)}>Upload</Button>
+            <Button className={classes.uploadButton} variant="raised" color="primary" onClick={this.handleUpload.bind(this)}>Upload</Button>
           </Grid>
         </Grid>
       </div>

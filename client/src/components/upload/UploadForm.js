@@ -12,7 +12,6 @@ const styles = {
     marginTop: 20,
   },
   dropzone: {
-    marginTop: 20,
     width: '100%',
     height: 200,
     borderWidth: 2,
@@ -24,6 +23,10 @@ const styles = {
   uploadButton: {
     margin: '10px auto',
     position: 'relative',
+  },
+  uploadText: {
+    position: 'relative',
+    top: 90,
   },
 };
 
@@ -88,7 +91,7 @@ class UploadForm extends Component {
             <Dropzone className={classes.dropzone}
                       accept="image/gif, image/jpeg, image/png, image/svg+xml"
                       onDrop={this.onDrop}>
-              <Typography type="headline" gutterBottom>Upload a Meme</Typography>
+              <Typography className={classes.uploadText} type="headline" gutterBottom>Click Here or Drag & Drop Memes</Typography>
             </Dropzone>
           </Grid>
         </Grid>

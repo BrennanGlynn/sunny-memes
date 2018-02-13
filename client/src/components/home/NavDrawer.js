@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
+import {Drawer, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
 import HomeIcon from 'material-ui-icons/Home';
 import MenuIcon from 'material-ui-icons/Menu';
 import StarIcon from 'material-ui-icons/Star';
@@ -30,6 +30,7 @@ class NavDrawer extends Component {
           onClose={openRightDrawer}
         >
           <List component="nav">
+            <Divider />
             <ListItem
               button
               onClick={this.goTo.bind(this, '/')}
@@ -39,6 +40,7 @@ class NavDrawer extends Component {
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
+            <Divider />
             <ListItem
               button
               onClick={this.goTo.bind(this, '/mostPopular')}
@@ -48,6 +50,7 @@ class NavDrawer extends Component {
               </ListItemIcon>
               <ListItemText primary="Most Popular" />
             </ListItem>
+            <Divider />
             <ListItem
               button
               onClick={this.goTo.bind(this, '/mostRecent')}
@@ -57,6 +60,7 @@ class NavDrawer extends Component {
               </ListItemIcon>
               <ListItemText primary="Recently Uploaded" />
             </ListItem>
+            <Divider />
           </List>
         </Drawer>
       </div>

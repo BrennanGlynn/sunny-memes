@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
+import {Drawer, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, withStyles} from 'material-ui'
 import PersonIcon from 'material-ui-icons/Person';
 import HomeIcon from 'material-ui-icons/Home';
 import StarIcon from 'material-ui-icons/Star';
@@ -31,30 +31,35 @@ class UserDrawer extends Component {
           onClose={openUserDrawer}
         >
           <List component="nav">
+            <Divider />
             <ListItem button onClick={this.goTo.bind(this, 'addmeme')}>
               <ListItemIcon>
                 <UploadIcon/>
               </ListItemIcon>
               <ListItemText primary="Upload Meme"/>
             </ListItem>
+            <Divider />
             <ListItem button onClick={this.goTo.bind(this, 'favorites')}>
               <ListItemIcon>
                 <StarIcon/>
               </ListItemIcon>
               <ListItemText primary="Favorites"/>
             </ListItem>
+            <Divider />
             <ListItem button onClick={this.goTo.bind(this, 'mymemes')}>
               <ListItemIcon>
                 <HomeIcon/>
               </ListItemIcon>
               <ListItemText primary="My Memes"/>
             </ListItem>
+            <Divider />
             <ListItem button onClick={this.props.logout}>
               <ListItemIcon>
                 <PowerIcon/>
               </ListItemIcon>
               <ListItemText primary="Log out"/>
             </ListItem>
+            <Divider />
           </List>
         </Drawer>
       </div>

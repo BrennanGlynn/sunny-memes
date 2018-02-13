@@ -115,7 +115,9 @@ class Home extends Component {
                   <NavDrawer open={this.state.navDrawerOpen} openRightDrawer={this.toggleNavDrawer.bind(this)}/>
                 </Grid>
                 <Grid item xs={4} className={classes.mobileLogo}>
-                  <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
+                  <Button href='/'>
+                    <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
+                  </Button>
                 </Grid>
                 <Grid item xs={4} className={classes.rightIcon}>
                   {auth.loggedIn ?
@@ -130,9 +132,10 @@ class Home extends Component {
           {/*// Desktop Navbar //*/}
           <AppBar position="sticky" className={classes.desktopMenu}>
             <Toolbar>
-              <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
+              <Button href='/'>
+                <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
+              </Button>
               <div className={classes.flex}>
-                <Button href='/' className={classes.label}><HomeIcon style={{marginRight: 16}}/> Home</Button>
                 <Button href='/mostpopular' className={classes.label}><StarIcon style={{marginRight: 16}}/> Most Popular</Button>
                 <Button href='/mostRecent' className={classes.label}><AccessTimeIcon
                   style={{marginRight: 16}}/> Recently

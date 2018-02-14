@@ -46,18 +46,24 @@ class UploadForm extends Component {
   }
 
   onDrop = (acceptedFiles, rejectedFiles) => {
+    let underTenFiles = true
     let newFiles = this.state.files.slice()
     acceptedFiles.forEach(file => {
       if (newFiles.length < 10) {
         newFiles.push(file)
       } else {
-      //  todo let user know they tried to upload more than 5 images
+        underTenFiles = false
       }
     })
+    if (!underTenFiles) {
+      //todo change this to a dialog or something
+      alert("We only allow you to upload 10 memes at one time")
+    }
     this.setState({files: newFiles})
   }
 
   handleUpload() {
+    let valid = true
     let promises = []
     let dispatchUploads = this.props.onUpload
     this.state.files.forEach(function (f) {
@@ -72,15 +78,22 @@ class UploadForm extends Component {
           method: 'post',
           body: formData,
         }))
+      } else {
+        valid = false
       }
     })
 
-    Promise.all(promises).then(() => {
-        dispatchUploads()
-        window.location.replace('/mymemes')
-      },
-      err => console.log(err)
-    )
+    if (valid) {
+      Promise.all(promises).then(() => {
+          dispatchUploads()
+          window.location.replace('/mymemes')
+        },
+        err => console.log(err)
+      )
+    } else {
+      //todo change this to a dialog or something
+      alert("please fix all titles")
+    }
   }
 
   handleFileChange(index, newFile) {

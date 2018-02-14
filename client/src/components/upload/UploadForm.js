@@ -86,6 +86,7 @@ class UploadForm extends Component {
         err => console.log(err)
       )
     } else {
+      //todo change this to a dialog or something
       alert("please fix all titles")
     }
   }

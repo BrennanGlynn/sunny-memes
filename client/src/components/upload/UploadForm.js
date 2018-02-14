@@ -58,6 +58,7 @@ class UploadForm extends Component {
   }
 
   handleUpload() {
+    let valid = true
     let promises = []
     let dispatchUploads = this.props.onUpload
     this.state.files.forEach(function (f) {
@@ -72,15 +73,21 @@ class UploadForm extends Component {
           method: 'post',
           body: formData,
         }))
+      } else {
+        valid = false
       }
     })
 
-    Promise.all(promises).then(() => {
-        dispatchUploads()
-        window.location.replace('/mymemes')
-      },
-      err => console.log(err)
-    )
+    if (valid) {
+      Promise.all(promises).then(() => {
+          dispatchUploads()
+          window.location.replace('/mymemes')
+        },
+        err => console.log(err)
+      )
+    } else {
+      alert("please fix all titles")
+    }
   }
 
   handleFileChange(index, newFile) {

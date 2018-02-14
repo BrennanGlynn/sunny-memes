@@ -39,8 +39,6 @@ app.use('/auth', auth);
 app.use('/memes', memeRouter);
 app.use('/upload', upload);
 
-console.log('this is a test for ben')
-
 // app.use(express.static(path.join(__dirname, '/client/build')));
 // app.get('*', function(req, res) {
 //   res.sendFile(path.resolve(__dirname, './client/build/index.html'));

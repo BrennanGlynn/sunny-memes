@@ -48,13 +48,13 @@ class SimpleDialog extends React.Component {
         <DialogTitle id="simple-dialog-title">Upload a Meme</DialogTitle>
         <div>
           <List>
-              <ListItem button>
-                <ListItemIcon>
-                    <ImageIcon />
-                </ListItemIcon>
-                <ListItemText primary="Single Meme" />
-              </ListItem>
             <ListItem button>
+              <ListItemIcon>
+                <ImageIcon />
+              </ListItemIcon>
+              <ListItemText primary="Single Meme" />
+            </ListItem>
+            <ListItem button component="a" href="/addmeme">
               <ListItemIcon>
                   <CameraRollIcon />
               </ListItemIcon>

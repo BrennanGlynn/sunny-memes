@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import AddIcon from 'material-ui-icons/Add';
+import { Button, Divider } from 'material-ui/';
+import AddAPhotoIcon from 'material-ui-icons/AddAPhoto';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Dialog, { DialogTitle } from 'material-ui/Dialog';
 import blue from 'material-ui/colors/blue';
@@ -48,18 +48,21 @@ class SimpleDialog extends React.Component {
         <DialogTitle id="simple-dialog-title">Upload a Meme</DialogTitle>
         <div>
           <List>
+            <Divider />
             <ListItem button>
               <ListItemIcon>
                 <ImageIcon />
               </ListItemIcon>
               <ListItemText primary="Single Meme" />
             </ListItem>
+            <Divider />
             <ListItem button component="a" href="/addmeme">
               <ListItemIcon>
                   <CameraRollIcon />
               </ListItemIcon>
               <ListItemText primary="Multiple Memes" />
             </ListItem>
+            <Divider />
           </List>
         </div>
       </Dialog>
@@ -96,7 +99,7 @@ class MobileUploadButton extends Component {
     return(
       <div className={classes.desktopHide}>
         <Button variant="fab" className={classes.desktopHide + " " + classes.uploadButton} onClick={this.handleClickOpen}>
-          <AddIcon />
+          <AddAPhotoIcon />
         </Button>
         <SimpleDialogWrapped
           selectedValue={this.state.selectedValue}

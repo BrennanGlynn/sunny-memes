@@ -9,8 +9,6 @@ import blue from 'material-ui/colors/blue';
 import CameraRollIcon from 'material-ui-icons/CameraRoll';
 import ImageIcon from 'material-ui-icons/Image';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
 const styles = theme => ({
   desktopHide: {
     [theme.breakpoints.between('md', 'xl')]: {
@@ -81,7 +79,6 @@ class MobileUploadButton extends Component {
 
   state = {
     open: false,
-    selectedValue: emails[1],
   };
 
   handleClickOpen = () => {

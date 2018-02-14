@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
-import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Dialog, { DialogTitle } from 'material-ui/Dialog';
 import blue from 'material-ui/colors/blue';
-import Avatar from 'material-ui/Avatar';
-import PersonIcon from 'material-ui-icons/Person';
+import CameraRollIcon from 'material-ui-icons/CameraRoll';
+import ImageIcon from 'material-ui-icons/Image';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
@@ -47,26 +47,20 @@ class SimpleDialog extends React.Component {
 
     return (
       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Upload a Meme</DialogTitle>
         <div>
           <List>
-            {emails.map(email => (
-              <ListItem button onClick={() => this.handleListItemClick(email)} key={email}>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <PersonIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={email} />
+              <ListItem button>
+                <ListItemIcon>
+                    <ImageIcon />
+                </ListItemIcon>
+                <ListItemText primary="Single Meme" />
               </ListItem>
-            ))}
-            <ListItem button onClick={() => this.handleListItemClick('addAccount')}>
-              <ListItemAvatar>
-                <Avatar>
-                  <AddIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="add account" />
+            <ListItem button>
+              <ListItemIcon>
+                  <CameraRollIcon />
+              </ListItemIcon>
+              <ListItemText primary="Multiple Memes" />
             </ListItem>
           </List>
         </div>

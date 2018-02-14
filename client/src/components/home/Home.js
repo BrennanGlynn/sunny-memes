@@ -8,12 +8,14 @@ import {AppBar, Button, Grid, Toolbar} from "material-ui";
 import HomeIcon from "material-ui-icons/Home";
 import StarIcon from "material-ui-icons/Star";
 import AccessTimeIcon from "material-ui-icons/AccessTime";
+import AddIcon from 'material-ui-icons/Add';
 import LoginModal from "../login/LoginModal";
 import FrontBanner from "../pages/FrontBanner";
 import PleaseLogin from "../pages/PleaseLogin";
 import MostPopularContainer from "../../containers/pages/MostPopularContainer";
 import MyMemesContainer from "../../containers/pages/MyMemesContainer";
 import NavMenu from "./NavMenu";
+import MobileUploadButton from "./MobileUploadButton";
 import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/UploadContainer"
 import NavDrawer from "./NavDrawer"
@@ -158,6 +160,10 @@ class Home extends Component {
             <Route path='/admin' component={AdminInterface}/>
             <Route component={PageNotFound} />
           </Switch>
+
+          {auth.loggedIn &&
+            <MobileUploadButton />
+          }
         </div>
         }
       </div>

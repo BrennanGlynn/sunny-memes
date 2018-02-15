@@ -62,8 +62,7 @@ class UploadForm extends Component {
       }
     })
     if (!underTenFiles) {
-      //todo change this to a dialog or something
-      alert("We only allow you to upload 10 memes at one time")
+      this.toggleDialog("We only allow you to upload 10 memes at one time")
     }
     this.setState({files: newFiles})
   }
@@ -97,8 +96,7 @@ class UploadForm extends Component {
         err => console.log(err)
       )
     } else {
-      //todo change this to a dialog or something
-      alert("please fix all titles")
+      this.toggleDialog("Please make sure all titles are valid!")
     }
   }
 
@@ -112,12 +110,8 @@ class UploadForm extends Component {
     open: false,
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
+  toggleDialog = () => {
+    this.setState({ open: !this.state.open });
   };
 
   render() {
@@ -151,7 +145,7 @@ class UploadForm extends Component {
 
         <Dialog
           open={this.state.open}
-          onClose={this.handleClose}
+          onClose={this.toggleDialog}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
@@ -163,10 +157,10 @@ class UploadForm extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.toggleDialog} color="primary">
               Disagree
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={this.toggleDialog} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>

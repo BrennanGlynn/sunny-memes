@@ -20,6 +20,9 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  card: {
+    // borderTop: '5px solid #2C8943'
+  },
   chipContainer: {
     alignItems: 'center',
     padding: 5,
@@ -48,7 +51,7 @@ const styles = theme => ({
   },
   [theme.breakpoints.only('xs')]: {
     card: {
-      width: 340,
+      width: 310,
       margin: "2.5px",
     },
     title: {

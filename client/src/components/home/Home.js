@@ -151,13 +151,13 @@ class Home extends Component {
           {/*// Pages //*/}
           <Switch>
             <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>
-            <Route path='/memepage' component={MemePage}/>
             <Route path='/mostpopular' exact component={MostPopularContainer}/>
             <Route path='/mostrecent' exact component={RecentMemesContainer}/>
             <Route path='/favorites' component={!auth.pending && auth.loggedIn ? FavoriteMemesContainer : PleaseLogin}/>
             <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
             <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>
+            <Route path='/memepage' component={MemePage}/>
             <Route component={PageNotFound} />
           </Switch>
 

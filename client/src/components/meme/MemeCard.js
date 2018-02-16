@@ -12,7 +12,7 @@ import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-import MemePopup from './MemePopup'
+import MemePopup from './MemePopup';
 
 const styles = theme => ({
   frontCardWrapper: {
@@ -203,7 +203,7 @@ class MemeCard extends Component {
                   {data.characters.map((character, i) =>
                     <Chip
                       key={i}
-                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                      avatar={<Avatar src={"/images/characters/" + character + ".jpg"}/>}
                       label={character}
                       className={classes.chip}
                       component={"a"} href={"/memes?chars=" + character}

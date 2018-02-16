@@ -109,7 +109,7 @@ class FilterModal extends Component {
                   {characterNames.map(character =>
                     <Chip
                       key={character}
-                      avatar={<Avatar src={`/images/${character}.jpg`}/>}
+                      avatar={<Avatar src={`/images/characters/${character}.jpg`}/>}
                       label={character}
                       className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
                       onClick={toggleChar.bind(this, character)}

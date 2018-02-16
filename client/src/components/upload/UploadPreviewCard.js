@@ -108,7 +108,10 @@ class UploadPreviewCard extends Component {
 
   render() {
     const {file, classes} = this.props
-    const charEnum = ['charlie', 'dee', 'dennis', 'frank', 'mac']
+    const charEnum = [
+                      'charlie', 'dee', 'dennis', 'frank', 'mac', 'the waitress',
+                      'ben the soldier', 'uncle jack', 'the lawyer'
+                     ]
 
     return (
       <Card key={file.name} raised={true} className={classes.card}>
@@ -135,7 +138,7 @@ class UploadPreviewCard extends Component {
           {charEnum.map((charName) =>
             <Chip
               key={charName}
-              avatar={<Avatar src={"/images/" + charName + ".jpg"}/>}
+              avatar={<Avatar src={"/images/characters/" + charName + ".jpg"}/>}
               label={charName}
               className={!this.state.characters.includes(charName) ? classes.dimmed + " " + classes.chip : classes.chip}
               onClick={this.toggleChar.bind(this, file, charName)}

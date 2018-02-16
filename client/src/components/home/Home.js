@@ -10,6 +10,7 @@ import AccessTimeIcon from "material-ui-icons/AccessTime";
 import LoginModal from "../login/LoginModal";
 import FrontBanner from "../pages/FrontBanner";
 import PleaseLogin from "../pages/PleaseLogin";
+import MemePage from "../pages/MemePage";
 import MostPopularContainer from "../../containers/pages/MostPopularContainer";
 import MyMemesContainer from "../../containers/pages/MyMemesContainer";
 import NavMenu from "./NavMenu";
@@ -150,6 +151,7 @@ class Home extends Component {
           {/*// Pages //*/}
           <Switch>
             <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>
+            <Route path='/memepage' component={MemePage}/>
             <Route path='/mostpopular' exact component={MostPopularContainer}/>
             <Route path='/mostrecent' exact component={RecentMemesContainer}/>
             <Route path='/favorites' component={!auth.pending && auth.loggedIn ? FavoriteMemesContainer : PleaseLogin}/>

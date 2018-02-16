@@ -74,11 +74,8 @@ class FilterModal extends Component {
 
   render() {
     const {classes, characters, toggleChar} = this.props;
-    const characterNames =
-                     [
-                      'charlie', 'dee', 'dennis', 'frank', 'mac', 'the waitress',
-                      'ben the soldier', 'uncle jack', 'the lawyer'
-                     ]
+    const characterNames = ['charlie', 'dee', 'dennis', 'frank', 'mac']
+    const sideCharacterNames = ['the waitress','ben the soldier', 'uncle jack', 'the lawyer']
 
     return (
       <div>
@@ -110,7 +107,26 @@ class FilterModal extends Component {
             <Grid container spacing={0}>
               <Grid item xs={12} sm={12} md={12}>
                 <div className={classes.chipContainer}>
+                  <Typography variant="title" id="modal-title" gutterBottom>
+                    The Gang
+                  </Typography>
                   {characterNames.map(character =>
+                    <Chip
+                      key={character}
+                      avatar={<Avatar src={`/images/characters/${character}.jpg`}/>}
+                      label={character}
+                      className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                      onClick={toggleChar.bind(this, character)}
+                    />,
+                  )}
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12}>
+                <div className={classes.chipContainer}>
+                  <Typography variant="title" id="modal-title" gutterBottom>
+                    Side Characters
+                  </Typography>
+                  {sideCharacterNames.map(character =>
                     <Chip
                       key={character}
                       avatar={<Avatar src={`/images/characters/${character}.jpg`}/>}

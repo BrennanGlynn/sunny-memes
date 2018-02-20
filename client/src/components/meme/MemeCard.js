@@ -222,7 +222,7 @@ class MemeCard extends Component {
                   <ShareIcon/>
                 </IconButton>
                 <IconButton aria-label="Download">
-                  <a className={classes.download} href={"http://localhost:3001" + data.url}
+                  <a className={classes.download} href={data.url}
                      download=""><FileDownloadIcon/></a>
                 </IconButton>
               </CardActions>

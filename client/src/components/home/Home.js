@@ -20,6 +20,7 @@ import UploadContainer from "../../containers/UploadContainer"
 import NavDrawer from "./NavDrawer"
 import UserDrawer from "./UserDrawer"
 import FrontPage from "../pages/FrontPage";
+import SingleMemePage from "../pages/SingleMemePage"
 import RecentMemesContainer from "../../containers/pages/RecentMemesContainer";
 import PageNotFound from "../pages/PageNotFound";
 import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer";
@@ -158,6 +159,7 @@ class Home extends Component {
             <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>
             <Route path='/memepage' component={MemePage}/>
+            <Route path='/meme/:id' component={SingleMemePage} />
             <Route component={PageNotFound} />
           </Switch>
 

@@ -220,7 +220,7 @@ function memeRequest(dispatch, query, receivedAction) {
   fetch('memes/' + query, {credentials: "include"})
     .then(
       res => {
-        return res.json()
+        if (res.ok) return res.json()
       },
       error => console.log(error),
     ).then(json => {

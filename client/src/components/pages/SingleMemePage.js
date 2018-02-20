@@ -1,8 +1,9 @@
 
 import React, {Component} from 'react'
-import MemeContainer from "../../containers/memes/MemeContainer";
 import PropTypes from 'prop-types';
-import Grid from 'material-ui/Grid';
+import {withStyles} from 'material-ui/styles';
+import { Grid, Paper } from 'material-ui/';
+import MemeContainer from "../../containers/memes/MemeContainer";
 
 class SingleMemePage extends Component {
   constructor(props) {
@@ -49,7 +50,9 @@ class SingleMemePage extends Component {
                   </Grid>
 
                   <Grid item>
-                    comments
+                    <Paper style={{maxHeight: '100%', overflow: 'auto'}}>
+                      comments go here
+                    </Paper>
                   </Grid>
                 </Grid>
               )}
@@ -60,4 +63,4 @@ class SingleMemePage extends Component {
   }
 }
 
-export default SingleMemePage
+export default withStyles(styles) (SingleMemePage);

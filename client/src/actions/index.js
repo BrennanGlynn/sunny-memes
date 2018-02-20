@@ -83,7 +83,7 @@ export const updatedFilter = (characterArray) => {
 export const fetchAllMemes = () => {
   return (dispatch, getState) => {
     let characters = getState().filter.characters.slice()
-    let query = characters.length > 1 ? '?' : ''
+    let query = characters.length >= 1 ? '?' : ''
     characters.forEach((char, index) => {
       query += 'chars=' + char
       if (index + 1 < characters.length) query += '&'

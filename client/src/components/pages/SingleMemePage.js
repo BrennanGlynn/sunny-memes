@@ -1,6 +1,33 @@
 import React, {Component} from 'react'
+import MemeContainer from "../../containers/memes/MemeContainer";
 
 class SingleMemePage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentWillMount() {
+    let self = this
+    fetch('/memes/' + this.props.match.params.id)
+      .then(res => {
+        if (!res.ok) {
+          self.setState({loading: false, errorMessage: 'Error retrieving meme'})
+        } else {
+          return res.json()
+        }
+      })
+      .then(meme => {
+        console.log(meme)
+        self.setState({data: meme, loading: false})
+      })
+      .catch(err => {
+        console.log('error', err)
+        self.setState({loading: false, errorMessage: 'Error retrieving meme'})
+      })
+  }
 
   render() {
     const exampleData = {
@@ -21,9 +48,17 @@ class SingleMemePage extends Component {
 
     return(
       <div>
+        {this.state.loading ?
+          (<div>Loading</div>) :
+          (<div>
+            {this.state.errorMessage ?
+              (<div>{this.state.errorMessage}</div>) :
+              (<MemeContainer meme={this.state.data} />) }
+          </div>)
+        }
         Use this to design the single meme page.
         Title: {exampleData.title}
-
+        Id: {this.props.match.params.id}
       </div>
     )
   }

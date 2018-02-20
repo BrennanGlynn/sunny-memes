@@ -1,5 +1,8 @@
+
 import React, {Component} from 'react'
 import MemeContainer from "../../containers/memes/MemeContainer";
+import PropTypes from 'prop-types';
+import Grid from 'material-ui/Grid';
 
 class SingleMemePage extends Component {
   constructor(props) {
@@ -30,6 +33,7 @@ class SingleMemePage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const exampleData = {
       _id: "5a837c342e0c281450425cf0",
       title: "Raise a glass for the man in the room",

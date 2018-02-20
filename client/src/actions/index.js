@@ -82,13 +82,12 @@ export const updatedFilter = (characterArray) => {
 //============================================================================requesting memes
 export const fetchAllMemes = () => {
   return (dispatch, getState) => {
-    let query = '?'
     let characters = getState().filter.characters.slice()
+    let query = characters.length > 1 ? '?' : ''
     characters.forEach((char, index) => {
       query += 'chars=' + char
       if (index + 1 < characters.length) query += '&'
     })
-    console.log(query)
     dispatch(getMemes(query))
     dispatch(getRecentMemes(query))
 

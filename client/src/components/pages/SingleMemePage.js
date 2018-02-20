@@ -1,14 +1,36 @@
-import React, {Component} from 'react';
+
+import React, {Component} from 'react'
+import MemeContainer from "../../containers/memes/MemeContainer";
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-});
-
 class SingleMemePage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentWillMount() {
+    let self = this
+    fetch('/memes/' + this.props.match.params.id)
+      .then(res => {
+        if (!res.ok) {
+          self.setState({loading: false, errorMessage: 'Error retrieving meme'})
+        } else {
+          return res.json()
+        }
+      })
+      .then(meme => {
+        console.log(meme)
+        self.setState({data: meme, loading: false})
+      })
+      .catch(err => {
+        console.log('error', err)
+        self.setState({loading: false, errorMessage: 'Error retrieving meme'})
+      })
+  }
 
   render() {
     const { classes } = this.props;
@@ -30,17 +52,17 @@ class SingleMemePage extends Component {
 
     return(
       <div>
-        <Grid container spacing={24}>
-          <Grid item xs={12} sm={12} md={6}>
-            Meme card here
-          </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-
-          </Grid>
-        </Grid>
+        {this.state.loading ?
+          (<div>Loading</div>) :
+          (<div>
+            {this.state.errorMessage ?
+              (<div>{this.state.errorMessage}</div>) :
+              (<MemeContainer meme={this.state.data} />) }
+          </div>)
+        }
         Use this to design the single meme page.
         Title: {exampleData.title}
-
+        Id: {this.props.match.params.id}
       </div>
     )
   }

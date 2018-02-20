@@ -1,7 +1,6 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
 import { Grid, Paper } from 'material-ui/';
 import MemeContainer from "../../containers/memes/MemeContainer";
 
@@ -63,4 +62,4 @@ class SingleMemePage extends Component {
   }
 }
 
-export default withStyles(styles) (SingleMemePage);
+export default SingleMemePage

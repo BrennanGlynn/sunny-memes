@@ -153,7 +153,7 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user, admin} = this.props;
+    const {classes, data, user, admin, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
     return (
       <div className={classes.root}>
@@ -210,6 +210,7 @@ class MemeCard extends Component {
                       avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
                       label={character}
                       className={classes.chip}
+                      onClick={toggleCharacter.bind(this, character)}
                     />
                   )}
                 </CardContent>

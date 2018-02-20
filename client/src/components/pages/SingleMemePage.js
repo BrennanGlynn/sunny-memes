@@ -42,7 +42,17 @@ class SingleMemePage extends Component {
           (<div>
             {this.state.errorMessage ?
               (<div>{this.state.errorMessage}</div>) :
-              (<MemeContainer meme={this.state.data} />) }
+              (
+                <Grid container justify="center">
+                  <Grid item>
+                    <MemeContainer meme={this.state.data} />
+                  </Grid>
+
+                  <Grid item>
+                    comments
+                  </Grid>
+                </Grid>
+              )}
           </div>)
         }
       </div>

@@ -4,6 +4,8 @@ import {Grid, Button, Divider, ListItemIcon, Modal, Typography} from 'material-u
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import IconButton from 'material-ui/IconButton';
+import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
@@ -34,6 +36,20 @@ const styles = {
     marginBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  leftArrow: {
+    position: 'fixed',
+    top: '40%',
+    left: '-6%',
+    fontSize: 100,
+    color: '#fff',
+  },
+  rightArrow: {
+    position: 'fixed',
+    top: '40%',
+    right: '-6%',
+    fontSize: 100,
+    color: '#fff',
   },
 }
 
@@ -70,6 +86,12 @@ class MemePopup extends Component {
       >
         <div className={classes.openModal}>
           <Grid container justify="flex-end">
+            <IconButton className={classes.leftArrow} aria-label="Previous Meme">
+              <KeyboardArrowLeft/>
+            </IconButton>
+            <IconButton className={classes.rightArrow} aria-label="Next Meme">
+              <KeyboardArrowRight/>
+            </IconButton>
             <Grid item>
               <IconButton
                 aria-owns={anchorEl ? 'simple-menu' : null}

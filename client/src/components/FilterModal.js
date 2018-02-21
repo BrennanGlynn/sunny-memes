@@ -81,17 +81,29 @@ class FilterModal extends Component {
       <div>
         <Grid container className={classes.root} justify="flex-end" alignItems="center" spacing={0}>
           <Grid item xs={12} md={10} lg={5} xl={4}>
-              <IconButton
-                aria-haspopup="true"
-                onClick={this.handleOpen}
-              >
-                <Typography variant="caption" className={classes.filterText}>
-                  Filter
-                </Typography>
-                <FilterList/>
-              </IconButton>
-            </Grid>
+            <span className={classes.chipTopContainer}>
+              {characterNames.map(character =>
+                <Chip
+                  key={character}
+                  avatar={<Avatar src={`/images/${character}.jpg`}/>}
+                  label={character}
+                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                  onClick={toggleChar.bind(this, character)}
+                  onDelete={classes.chip}
+                />,
+              )}
+            </span>
+            <IconButton
+              aria-haspopup="true"
+              onClick={this.handleOpen}
+            >
+              <Typography variant="caption" className={classes.filterText}>
+                Filter
+              </Typography>
+              <FilterList/>
+            </IconButton>
           </Grid>
+        </Grid>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

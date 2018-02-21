@@ -42,6 +42,9 @@ const styles = theme => ({
     modal: {
       width: '80%',
     },
+    loginButtonWrapper: {
+      width: '100%',
+    },
     loginButton: {
       marginTop: 10,
       width: '90%',

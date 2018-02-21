@@ -35,6 +35,15 @@ const styles = theme => ({
     boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
     padding: 16,
   },
+  [theme.breakpoints.only('xs')]: {
+    modal: {
+      width: '80%',
+    },
+    loginButton: {
+      marginTop: 10,
+      width: '80%',
+    },
+  },
 })
 
 class LoginModal extends React.Component {

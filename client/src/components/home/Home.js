@@ -74,7 +74,7 @@ const styles = theme => ({
     color: "white",
   },
   uploadButton: {
-    color: 'green',
+    color: '#2c8943',
     textShadow: '1px 1px 2px rgba(0,0,0,.3)',
     backgroundColor: "rgba(255,255,255,1)",
   },

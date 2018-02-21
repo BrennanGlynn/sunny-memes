@@ -4,6 +4,7 @@ import {withStyles} from "material-ui/styles";
 import {Grid} from "material-ui/";
 import MostPopularContainer from "../../containers/pages/MostPopularContainer";
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
+import FilterBar from "../FilterModal";
 
 const styles = theme => ({
   root: {
@@ -52,6 +53,7 @@ class FrontPage extends Component {
       <div className={classes.root}>
         <Grid container spacing={0}>
           <Grid item xs={12}>
+            <FilterBar />
             <MostPopularContainer />
           </Grid>
         </Grid>

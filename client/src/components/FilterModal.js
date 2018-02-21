@@ -8,12 +8,11 @@ import FilterList from "material-ui-icons/FilterList";
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: 5,
     [theme.breakpoints.between('xs', 'sm')]: {
       width: '95%',
       marginRight: '2.5%',
       marginLeft: '2.5%',
-      textAlign: 'center',
+      textAlign: 'left',
     },
   },
   openModal: {
@@ -33,13 +32,14 @@ const styles = theme => ({
       minWidth: "80%",
     },
   },
+  filterIcon: {
+    marginTop: 7.5,
+  },
   filterText: {
-    marginRight: 10,
+    marginRight: 5,
   },
   chipTopContainer: {
-    marginRight: 10,
-    position: 'relative',
-    top: 10,
+    height: 50,
   },
   chipContainer: {
     margin: 20,
@@ -47,7 +47,9 @@ const styles = theme => ({
   },
   chip: {
     textTransform: 'capitalize',
-    marginRight: 5,
+    marginLeft: 10,
+    position: 'relative',
+    top: 10,
   },
   dimmed: {
     opacity: 0.4,
@@ -79,8 +81,17 @@ class FilterModal extends Component {
     return (
       <div>
         <Grid container className={classes.root} justify="flex-end" alignItems="center" spacing={0}>
-          <Grid item xs={12} md={10} lg={5} xl={4}>
-            <span className={classes.chipTopContainer}>
+          <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
+            <IconButton
+              aria-haspopup="true"
+              onClick={this.handleOpen}
+              className={classes.filterIcon}
+            >
+              <Typography variant="caption" className={classes.filterText}>
+                Filter
+              </Typography>
+              <FilterList/>
+            </IconButton>
               {characters.map(character =>
                 <Chip
                   key={character}
@@ -90,16 +101,6 @@ class FilterModal extends Component {
                   onDelete={toggleChar.bind(this, character)}
                 />,
               )}
-            </span>
-            <IconButton
-              aria-haspopup="true"
-              onClick={this.handleOpen}
-            >
-              <Typography variant="caption" className={classes.filterText}>
-                Filter
-              </Typography>
-              <FilterList/>
-            </IconButton>
           </Grid>
         </Grid>
         <Modal
@@ -114,7 +115,7 @@ class FilterModal extends Component {
               Select Characters to Filter
             </Typography>
             <Divider/>
-            <Grid container spacing={0}>
+            <Grid container justify="flex-end" spacing={0}>
               <Grid item xs={12} sm={12} md={12}>
                 <div className={classes.chipContainer}>
                   {characterNames.map(character =>

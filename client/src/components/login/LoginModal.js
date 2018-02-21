@@ -41,9 +41,6 @@ const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
     modal: {
       width: '80%',
-    },
-    loginButtonWrapper: {
-      width: '100%',
     }
   },
 })

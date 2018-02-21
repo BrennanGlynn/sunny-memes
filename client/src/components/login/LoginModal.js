@@ -12,7 +12,7 @@ const styles = theme => ({
     backgroundColor: '#fff',
   },
   loginButtonWrapper: {
-    width: '75%',
+    width: '100%',
     marginBottom: 10,
     textAlign: 'center',
     position: 'relative',
@@ -21,7 +21,7 @@ const styles = theme => ({
   },
   loginButton: {
     marginTop: 10,
-    width: 210,
+    width: '100%',
   },
   facebookIcon: {
     marginRight: 8,
@@ -41,14 +41,7 @@ const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
     modal: {
       width: '80%',
-    },
-    loginButtonWrapper: {
-      width: '100%',
-    },
-    loginButton: {
-      marginTop: 10,
-      width: '90%',
-    },
+    }
   },
 })
 
@@ -88,7 +81,7 @@ class LoginModal extends React.Component {
                   {`${loginMessage}`}
                 </Typography>
                 <Grid container justify="center" spacing={0}>
-                  <Grid item xs={12} md={12}>
+                  <Grid item xs={12}>
                     <div className={classes.loginButtonWrapper}>
                       <Button className={classes.loginButton} color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
                         <PeopleIcon className={classes.facebookIcon}/>

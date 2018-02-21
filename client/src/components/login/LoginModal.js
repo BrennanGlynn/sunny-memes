@@ -12,8 +12,12 @@ const styles = theme => ({
     backgroundColor: '#fff',
   },
   loginButtonWrapper: {
+    width: '75%',
     marginBottom: 10,
     textAlign: 'center',
+    position: 'relative',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   loginButton: {
     marginTop: 10,
@@ -40,7 +44,7 @@ const styles = theme => ({
     },
     loginButton: {
       marginTop: 10,
-      width: '80%',
+      width: '90%',
     },
   },
 })

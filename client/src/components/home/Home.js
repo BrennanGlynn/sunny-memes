@@ -34,7 +34,6 @@ const styles = theme => ({
     mobileLogo: {
       textAlign: "center",
       position: "relative",
-      top: 7.5,
     },
     mobileMenuButton: {
       color: "#fff",

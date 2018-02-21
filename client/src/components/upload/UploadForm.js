@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
-import {Typography, Grid, Button, withStyles} from 'material-ui'
-import Masonry from 'react-masonry-component'
-import Dropzone from 'react-dropzone'
+import React, {Component} from 'react';
+import {Typography, Grid, Button, withStyles} from 'material-ui';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import Masonry from 'react-masonry-component';
+import Dropzone from 'react-dropzone';
 import UploadPreviewCard from "./UploadPreviewCard";
 import Dialog, {
   DialogActions,
@@ -9,8 +10,12 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
+import { LinearProgress } from 'material-ui/Progress';
 
-const styles = {
+const styles = createMuiTheme({
+  primaryColorBar: {
+    backgroundColor: '#2f8a45',
+  },
   masonry: {
     margin: 'auto'
   },
@@ -41,7 +46,13 @@ const styles = {
     position: 'relative',
     top: 90,
   },
-};
+  uploadProgressContainer: {
+    flexGrow: 1,
+  },
+  uploadProgress: {
+    backgroundColor: '#fff',
+  },
+});
 
 class UploadForm extends Component {
   constructor(props) {
@@ -114,6 +125,20 @@ class UploadForm extends Component {
     this.setState({ open: !this.state.open });
   };
 
+  state = {
+    completed: 0,
+  };
+
+  componentDidMount() {
+    this.timer = setInterval(this.progress, 500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  timer = null;
+
   render() {
     const {classes} = this.props;
     return (
@@ -123,7 +148,10 @@ class UploadForm extends Component {
             <Dropzone className={classes.dropzone}
                       accept="image/gif, image/jpeg, image/png, image/svg+xml"
                       onDrop={this.onDrop}>
-              <Typography className={classes.uploadText} type="headline" gutterBottom>Click Here or Drag & Drop Memes</Typography>
+              <div className={classes.uploadProgressContainer}>
+                <LinearProgress className={classes.uploadProgress} variant="determinate" value={60} />
+              </div>
+                <Typography className={classes.uploadText} type="headline" gutterBottom>Click Here or Drag & Drop Memes</Typography>
             </Dropzone>
           </Grid>
         </Grid>

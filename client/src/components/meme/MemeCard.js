@@ -32,6 +32,10 @@ const styles = theme => ({
     textTransform: 'capitalize',
     textDecoration: 'none',
   },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none'
+  },
   download: {
     color: 'inherit',
     textDecoration: 'inherit',
@@ -149,7 +153,7 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user, admin} = this.props;
+    const {classes, data, user, admin, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
     return (
       <div className={classes.root}>
@@ -164,7 +168,7 @@ class MemeCard extends Component {
                     <MoreVertIcon/>
                   </IconButton>
                 </CardActions>
-                <Typography type="subheading" className={classes.title}>{data.title || 'Loading Title...'}</Typography>
+                <a className={classes.link} href={`/meme/${data._id}`}><Typography type="subheading" className={classes.title}>{data.title || 'Loading Title...'}</Typography></a>
                 <Typography
                   type="caption">{MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}</Typography>
               </CardContent>
@@ -206,7 +210,7 @@ class MemeCard extends Component {
                       avatar={<Avatar src={"/images/characters/" + character + ".jpg"}/>}
                       label={character}
                       className={classes.chip}
-                      component={"a"} href={"/memes?chars=" + character}
+                      onClick={toggleCharacter.bind(this, character)}
                     />
                   )}
                 </CardContent>
@@ -222,7 +226,7 @@ class MemeCard extends Component {
                   <ShareIcon/>
                 </IconButton>
                 <IconButton aria-label="Download">
-                  <a className={classes.download} href={"http://localhost:3001" + data.url}
+                  <a className={classes.download} href={data.url}
                      download=""><FileDownloadIcon/></a>
                 </IconButton>
               </CardActions>

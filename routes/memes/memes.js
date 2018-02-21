@@ -191,6 +191,9 @@ router.get('/:id', (req, res) => {
   Meme.findOne({_id: req.params.id}, function (err, meme) {
     if (meme) {
       return res.json(meme)
+    } else {
+      res.status(500)
+      return res.json(err)
     }
   })
 })

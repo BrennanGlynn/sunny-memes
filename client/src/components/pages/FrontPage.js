@@ -4,6 +4,7 @@ import {withStyles} from "material-ui/styles";
 import {Grid} from "material-ui/";
 import MostPopularContainer from "../../containers/pages/MostPopularContainer";
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
+import FilterModalListContainer from "../../containers/sorting/FilterModalListContainer";
 
 const styles = theme => ({
   root: {

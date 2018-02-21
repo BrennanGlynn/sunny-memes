@@ -6,6 +6,7 @@ import MemeContainer from "../../containers/memes/MemeContainer"
 import Masonry from "react-masonry-component"
 import Grid from "material-ui/Grid";
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
+import FilterModalListContainer from "../../containers/sorting/FilterModalListContainer";
 
 const styles = {
   root: {
@@ -43,6 +44,7 @@ class MostPopular extends Component {
 
     return (
       <div>
+        <FilterModalListContainer/>
         <FilterModalContainer/>
         <Grid container spacing={0}>
           <Grid item xs={12}>

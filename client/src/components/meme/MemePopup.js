@@ -74,7 +74,7 @@ class MemePopup extends Component {
   }
 
   render() {
-    const {classes, data, openModal, zoomed} = this.props;
+    const { classes, data, user, admin, openModal, zoomed } = this.props;
     const { anchorEl } = this.state;
     return (
       <Modal
@@ -113,11 +113,12 @@ class MemePopup extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
+                {(user === data.uploaded_by || admin) &&
                 <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete
-                </MenuItem>
+                </MenuItem>}
                 <Divider/>
                 <MenuItem onClick={this.handleClose}>
                   <ListItemIcon>

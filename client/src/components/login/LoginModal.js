@@ -9,8 +9,7 @@ const left = 50;
 const styles = theme => ({
   loginButtonHeader: {
     color: '#2c8943',
-    textShadow: '1px 1px 2px rgba(0,0,0,.3)',
-    backgroundColor: "rgba(255,255,255,1)",
+    backgroundColor: '#fff',
   },
   loginButtonWrapper: {
     marginBottom: 10,

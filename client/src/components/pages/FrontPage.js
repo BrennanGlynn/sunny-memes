@@ -8,7 +8,6 @@ import FilterModalContainer from "../../containers/sorting/FilterModalContainer"
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: 10,
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

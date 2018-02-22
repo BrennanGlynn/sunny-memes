@@ -74,7 +74,7 @@ class MemePopup extends Component {
   }
 
   render() {
-    const { classes, data, user, admin, openModal, zoomed } = this.props;
+    const { classes, data, changeCurrentIndex, lastIndex, stateIndex, user, admin, openModal, zoomed } = this.props;
     const { anchorEl } = this.state;
     return (
       <Modal
@@ -87,10 +87,10 @@ class MemePopup extends Component {
         <div className={classes.openModal}>
           <Grid container justify="flex-end">
             <IconButton className={classes.leftArrow} aria-label="Previous Meme">
-              <KeyboardArrowLeft/>
+              <KeyboardArrowLeft onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}/>
             </IconButton>
             <IconButton className={classes.rightArrow} aria-label="Next Meme">
-              <KeyboardArrowRight/>
+              <KeyboardArrowRight onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}/>
             </IconButton>
             <Grid item>
               <IconButton

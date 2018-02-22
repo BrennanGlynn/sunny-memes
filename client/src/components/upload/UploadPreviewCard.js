@@ -13,7 +13,7 @@ const styles = theme => ({
     right: '-8px',
     transition: '.3s',
     '&:hover': {
-      color: 'red',
+      color: '#f44336',
       transition: '.3s',
     },
   },

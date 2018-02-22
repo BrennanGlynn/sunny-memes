@@ -38,18 +38,17 @@ const styles = theme => ({
   filterText: {
     marginRight: 5,
   },
-  chipTopContainer: {
-    height: 50,
-  },
   chipContainer: {
-    margin: 20,
+    marginBottom: 20,
+    marginRight: 20,
+    marginLeft: 20,
     textAlign: "center",
   },
   chip: {
     textTransform: 'capitalize',
     marginLeft: 10,
     position: 'relative',
-    top: 10,
+    top: 15,
   },
   dimmed: {
     opacity: 0.4,

@@ -3,8 +3,20 @@ import {
   Avatar, Card, CardContent, CardMedia, Chip, TextField, Typography,
   withStyles
 } from "material-ui";
+import IconButton from 'material-ui/IconButton';
+import CancelIcon from 'material-ui-icons/Cancel';
 
 const styles = theme => ({
+  cancelUploadIcon: {
+    position: 'absolute',
+    top: '-8px',
+    right: '-8px',
+    transition: '.3s',
+    '&:hover': {
+      color: 'red',
+      transition: '.3s',
+    },
+  },
   card: {
     width: 335,
     marginLeft: '7.5px',
@@ -136,6 +148,11 @@ class UploadPreviewCard extends Component {
     return (
       <Card key={file.name} raised={true} className={classes.card}>
         <CardContent style={{height: 80}}>
+          <IconButton
+            className={classes.cancelUploadIcon}
+          >
+            <CancelIcon/>
+          </IconButton>
           <TextField
             label="Give your meme a title"
             placeholder="Give your meme a title"

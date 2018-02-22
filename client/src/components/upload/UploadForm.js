@@ -11,6 +11,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 import { LinearProgress } from 'material-ui/Progress';
+import ErrorDialog from "./ErrorDialog";
 
 const styles = createMuiTheme({
   primaryColorBar: {
@@ -65,6 +66,7 @@ class UploadForm extends Component {
   onDrop = (acceptedFiles, rejectedFiles) => {
     let underTenFiles = true
     let newFiles = this.state.files.slice()
+
     acceptedFiles.forEach(file => {
       if (newFiles.length < 10) {
         newFiles.push(file)
@@ -73,9 +75,14 @@ class UploadForm extends Component {
       }
     })
     if (!underTenFiles) {
-      this.toggleDialog("We only allow you to upload 10 memes at one time")
+      this.openDialog("Max Files Reached", "We only allow you to upload 10 memes at one time")
     }
     this.setState({files: newFiles})
+  }
+
+  onDropRejected = (acceptedFiles, rejectedFiles) => {
+    console.log(rejectedFiles)
+    this.openDialog("Invalid File", "We can only accept image files smaller than 2MB")
   }
 
   handleUpload() {
@@ -107,7 +114,7 @@ class UploadForm extends Component {
         err => console.log(err)
       )
     } else {
-      this.toggleDialog("Please make sure all titles are valid!")
+      this.openDialog("Title Error", "Please make sure all titles are valid!")
     }
   }
 
@@ -117,27 +124,13 @@ class UploadForm extends Component {
     this.setState({files: newFiles})
   }
 
-  state = {
-    open: false,
+  openDialog = (title, message) => {
+    this.setState({ open: true, error: {title,message} });
   };
 
-  toggleDialog = () => {
-    this.setState({ open: !this.state.open });
-  };
-
-  state = {
-    completed: 0,
-  };
-
-  componentDidMount() {
-    this.timer = setInterval(this.progress, 500);
+  closeDialog = () => {
+    this.setState({open: false})
   }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  timer = null;
 
   render() {
     const {classes} = this.props;
@@ -147,7 +140,9 @@ class UploadForm extends Component {
           <Grid item xs={10} sm={6} lg={4}>
             <Dropzone className={classes.dropzone}
                       accept="image/gif, image/jpeg, image/png, image/svg+xml"
-                      onDrop={this.onDrop}>
+                      onDrop={this.onDrop.bind(this)}
+                      onDropRejected={this.onDropRejected.bind(this)}
+            >
               <div className={classes.uploadProgressContainer}>
                 <LinearProgress className={classes.uploadProgress} variant="determinate" value={60} />
               </div>
@@ -171,24 +166,8 @@ class UploadForm extends Component {
           </Grid>
         </Grid>
 
-        <Dialog
-          open={this.state.open}
-          onClose={this.toggleDialog}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Missing title"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Enter a title for your meme between 1 and 60 characters.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.toggleDialog} color="primary" autoFocus>
-              Okay
-            </Button>
-          </DialogActions>
-        </Dialog>
+        {this.state.open && <ErrorDialog open={this.state.open} error={this.state.error} closeDialog={this.closeDialog.bind(this)} />}
+
       </div>
     );
   }

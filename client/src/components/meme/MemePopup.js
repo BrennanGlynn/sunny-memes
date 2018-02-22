@@ -14,7 +14,9 @@ import MemeComments from '../MemeComments';
 const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
     openModal: {
+      minWidth: '95%',
       width: '95%',
+      padding: 0,
     },
     leftArrow: {
       position: 'fixed',
@@ -52,6 +54,7 @@ const styles = theme => ({
     top: 2,
     width: 40,
     height: 40,
+    marginLeft: 5,
     borderRadius: '50%',
   },
   openModal: {
@@ -63,23 +66,27 @@ const styles = theme => ({
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0,0,0,.5)',
     padding: '32',
-    minWidth: '50%',
+    width: '50%',
     maxWidth: '90%',
     height: 'auto',
   },
   fullImage: {
     width: '94%',
   },
+  fullImageContainer: {
+    textAlign: 'center',
+  },
   root: {
     width: '100%',
     height: '80%',
     marginTop: 10,
     marginBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
   },
   modalTitle: {
     textAlign: 'left',
+  },
+  flex: {
+    flexGrow: 1,
   },
 })
 
@@ -115,21 +122,21 @@ class MemePopup extends Component {
         disableAutoFocus={true}
       >
         <div className={classes.openModal}>
-          <Grid container alignItems="center" justify="flex-end">
+          <Grid container alignItems="center" justify="flex-start">
             <IconButton className={classes.leftArrow} aria-label="Previous Meme">
               <KeyboardArrowLeft/>
             </IconButton>
             <IconButton className={classes.rightArrow} aria-label="Next Meme">
               <KeyboardArrowRight/>
             </IconButton>
-            <Grid item>
+            <Grid item className={classes.flex}>
               <a>
                 <img
                   src="https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/13907208_10155130051273508_4390268290353924855_n.jpg?oh=533cdb8478393477373035d285877209&oe=5AE15928"
                   className={classes.picture} alt="profile"/>
               </a>
             </Grid>
-            <Grid item className={classes.modalTitle}>
+            <Grid item className={classes.modalTitle + classes.flex}>
               <Typography type="title" id="modal-title">
                 {data.title}
               </Typography>
@@ -137,7 +144,7 @@ class MemePopup extends Component {
                 {data.uploaded_by}
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid item className={classes.flex}>
               <IconButton
                 aria-owns={anchorEl ? 'simple-menu' : null}
                 aria-haspopup="true"
@@ -176,10 +183,10 @@ class MemePopup extends Component {
 
             <div className={classes.root}>
               <Grid container spacing={0} justify="center">
-                <Grid item xs={12}>
+                <Grid item xs={12} md={6} className={classes.fullImageContainer}>
                     <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={6}>
                   <MemeComments />
                 </Grid>
               </Grid>

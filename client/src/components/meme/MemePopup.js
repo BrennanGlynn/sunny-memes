@@ -47,6 +47,13 @@ const styles = theme => ({
       color: '#fff',
     },
   },
+  picture: {
+    position: 'relative',
+    top: 2,
+    width: 40,
+    height: 40,
+    borderRadius: '50%',
+  },
   openModal: {
     position: 'absolute',
     top: '50%',
@@ -115,9 +122,19 @@ class MemePopup extends Component {
             <IconButton className={classes.rightArrow} aria-label="Next Meme">
               <KeyboardArrowRight/>
             </IconButton>
+            <Grid item>
+              <a>
+                <img
+                  src="https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/13907208_10155130051273508_4390268290353924855_n.jpg?oh=533cdb8478393477373035d285877209&oe=5AE15928"
+                  className={classes.picture} alt="profile"/>
+              </a>
+            </Grid>
             <Grid item className={classes.modalTitle}>
               <Typography type="title" id="modal-title">
                 {data.title}
+              </Typography>
+              <Typography type="subheading" id="simple-modal-description">
+                {data.uploaded_by}
               </Typography>
             </Grid>
             <Grid item>
@@ -128,7 +145,6 @@ class MemePopup extends Component {
               >
                 <MoreVertIcon />
               </IconButton>
-              <Button onClick={openModal}>Close</Button>
               <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}

@@ -6,22 +6,22 @@ import PeopleIcon from 'material-ui-icons/People'
 const top = 25;
 const left = 50;
 
-const styles = {
+const styles = theme => ({
   loginButtonHeader: {
-    color: '#fff',
-    textShadow: '1px 1px 2px rgba(0,0,0,.3)',
-    backgroundColor: "rgba(0,0,0,.8)",
-      '&:hover': {
-        backgroundColor: "rgba(0,0,0,.9)",
-    },
+    color: '#2c8943',
+    backgroundColor: '#fff',
   },
   loginButtonWrapper: {
+    width: '100%',
     marginBottom: 10,
     textAlign: 'center',
+    position: 'relative',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   loginButton: {
     marginTop: 10,
-    width: 210,
+    width: '100%',
   },
   facebookIcon: {
     marginRight: 8,
@@ -37,8 +37,13 @@ const styles = {
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
     padding: 16,
-  }
-}
+  },
+  [theme.breakpoints.only('xs')]: {
+    modal: {
+      width: '80%',
+    }
+  },
+})
 
 class LoginModal extends React.Component {
   state = {
@@ -54,7 +59,8 @@ class LoginModal extends React.Component {
   };
 
   render() {
-    const {classes} = this.props
+    const { classes } = this.props;
+    const loginMessage = "We use external authentication so we don't have to save your password."
     return (
       <div>
         <Button onClick={this.handleOpen} variant="raised" className={classes.loginButtonHeader}>
@@ -72,10 +78,10 @@ class LoginModal extends React.Component {
                   Login with your account
                 </Typography>
                 <Typography variant="subheading" id="simple-modal-description" gutterBottom>
-                  We use external authentication so we dont have to save your password.
+                  {`${loginMessage}`}
                 </Typography>
                 <Grid container justify="center" spacing={0}>
-                  <Grid item xs={6} md={6}>
+                  <Grid item xs={12}>
                     <div className={classes.loginButtonWrapper}>
                       <Button className={classes.loginButton} color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
                         <PeopleIcon className={classes.facebookIcon}/>

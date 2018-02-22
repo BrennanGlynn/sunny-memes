@@ -6,14 +6,22 @@ import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    marginBottom: 5,
-    [theme.breakpoints.between('xs', 'sm')]: {
+  [theme.breakpoints.only('xs')]: {
+    openModal: {
+      top: "25%",
+      minWidth: "80%",
+    },
+  },
+  [theme.breakpoints.between('xs', 'sm')]: {
+    root: {
+      flexGrow: 1,
       width: '95%',
       marginRight: '2.5%',
       marginLeft: '2.5%',
-      textAlign: 'center',
+      textAlign: 'left',
+    },
+    filterIcon: {
+      marginLeft: '2.5%',
     },
   },
   openModal: {
@@ -28,30 +36,31 @@ const styles = theme => ({
     minWidth: "20%",
     maxWidth: "90%",
     height: "auto",
-    [theme.breakpoints.only('xs')]: {
-      top: "25%",
-      minWidth: "80%",
-    },
+  },
+  filterIcon: {
+    marginTop: 7.5,
   },
   filterText: {
-    marginRight: 10,
+    marginRight: 5,
   },
   chipTopContainer: {
-    marginRight: 10,
-    position: 'relative',
-    top: 10,
+    marginLeft: '7.5%',
   },
   chipContainer: {
-    margin: 20,
-    textAlign: "center",
+    marginBottom: 20,
+    marginRight: 20,
+    marginLeft: 20,
+    textAlign: 'center',
   },
   chip: {
     textTransform: 'capitalize',
-    marginRight: 5,
+    marginLeft: 10,
+    position: 'relative',
+    top: 15,
   },
   dimmed: {
     opacity: 0.4,
-    filter: "alpha(opacity=40)",
+    filter: 'alpha(opacity=40)',
   },
 });
 
@@ -79,29 +88,27 @@ class FilterModal extends Component {
 
     return (
       <div>
-        <Grid container className={classes.root} justify="flex-end" alignItems="center" spacing={0}>
-          <Grid item xs={12} md={10} lg={5} xl={4}>
-            <span className={classes.chipTopContainer}>
-              {characterNames.map(character =>
-                <Chip
-                  key={character}
-                  avatar={<Avatar src={`/images/${character}.jpg`}/>}
-                  label={character}
-                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
-                  onClick={toggleChar.bind(this, character)}
-                  onDelete={classes.chip}
-                />,
-              )}
-            </span>
+        <Grid container className={classes.root} alignItems="center" spacing={0}>
+          <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
             <IconButton
               aria-haspopup="true"
               onClick={this.handleOpen}
+              className={classes.filterIcon}
             >
               <Typography variant="caption" className={classes.filterText}>
                 Filter
               </Typography>
               <FilterList/>
             </IconButton>
+              {characters.map(character =>
+                <Chip
+                  key={character}
+                  avatar={<Avatar src={`/images/${character}.jpg`}/>}
+                  label={character}
+                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                  onDelete={toggleChar.bind(this, character)}
+                />,
+              )}
           </Grid>
         </Grid>
         <Modal
@@ -116,7 +123,7 @@ class FilterModal extends Component {
               Select Characters to Filter
             </Typography>
             <Divider/>
-            <Grid container spacing={0}>
+            <Grid container justify="flex-end" spacing={0}>
               <Grid item xs={12} sm={12} md={12}>
                 <div className={classes.chipContainer}>
                   <Typography variant="title" id="modal-title" gutterBottom>

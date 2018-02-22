@@ -50,8 +50,8 @@ class RecentMemes extends Component {
               options={{fitWidth: true}}
               className={classes.memeWrapper}
             >
-              {memeArray.map((meme) =>
-                <MemeContainer key={meme._id} meme={meme}/>
+              {memeArray.map((meme, i) =>
+                <MemeContainer meme={meme} index={i} memeArray={memeArray} key={meme._id}/>
               )}
             </Masonry>
           </Grid>

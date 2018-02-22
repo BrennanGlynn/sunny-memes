@@ -34,7 +34,6 @@ const styles = theme => ({
     mobileLogo: {
       textAlign: "center",
       position: "relative",
-      top: 7.5,
     },
     mobileMenuButton: {
       color: "#fff",
@@ -74,11 +73,8 @@ const styles = theme => ({
     color: "white",
   },
   uploadButton: {
-    color: "white",
-    backgroundColor: "rgba(0,0,0,.8)",
-    '&:hover': {
-      backgroundColor: "rgba(0,0,0,.9)",
-    },
+    color: '#2c8943',
+    backgroundColor: "#fff",
   },
 });
 

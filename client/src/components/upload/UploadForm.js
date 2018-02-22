@@ -156,7 +156,7 @@ class UploadForm extends Component {
         >
           {
             this.state.files.map((file, index) =>
-              <UploadPreviewCard key={file.name} file={file} updateFile={this.handleFileChange.bind(this, index)}/>
+              <UploadPreviewCard key={file.name} file={file} />
             )
           }
         </Masonry>

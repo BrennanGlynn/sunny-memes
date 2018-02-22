@@ -15,30 +15,10 @@ const styles = theme => ({
     opacity: 0.4,
     filter: 'alpha(opacity=40)'
   },
-  title: {
-    textTransform: 'capitalize',
-    fontWeight: 500,
-  },
-  media: {
-    width: '100%',
-    minHeight: 275,
-  },
   frontCardWrapper: {
     position: 'relative',
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  flexGrow: {
-    flex: '1 1 auto',
   },
   chipContainer: {
     alignItems: 'center'
@@ -58,11 +38,6 @@ const styles = theme => ({
   favorite: {
     color: '#fed035'
   },
-  vertIcon: {
-    float: 'right',
-    marginTop: -8,
-    marginRight: -24
-  },
   masonry: {
     margin: 'auto'
   },
@@ -70,6 +45,54 @@ const styles = theme => ({
     marginTop: -8,
     width: '100%',
   },
+  [theme.breakpoints.only('xs')]: {
+    card: {
+      width: 310,
+      margin: "2.5px",
+    },
+    title: {
+      textTransform: 'capitalize',
+      fontWeight: 500,
+    },
+    rootMedia: {
+      backgroundSize: '100%',
+    },
+    media: {
+      width: '100%',
+    },
+  },
+  [theme.breakpoints.between('sm', 'md')]: {
+    card: {
+      width: 225,
+      margin: 5,
+    },
+    title: {
+      textTransform: 'capitalize',
+      fontWeight: 500,
+    },
+    rootMedia: {
+      backgroundSize: '100%',
+    },
+    media: {
+      width: 225,
+    },
+  },
+  [theme.breakpoints.between('lg', 'xl')]: {
+    card: {
+      width: 260,
+      margin: 5,
+    },
+    title: {
+      textTransform: 'capitalize',
+      fontWeight: 500,
+    },
+    rootMedia: {
+      backgroundSize: '100%',
+    },
+    media: {
+      width: 260,
+    },
+  }
 });
 
 class UploadPreviewCard extends Component {
@@ -126,11 +149,9 @@ class UploadPreviewCard extends Component {
           <Typography
             type="caption">{"January, 1st 2018"}</Typography>
         </CardContent>
-        <CardMedia
-          className={classes.media}
-          image={file.preview}
-          title={file.title || 'Title'}
-        />
+        <div className={classes.background}>
+          <img src={file.preview} alt={file.title} className={classes.media} />
+        </div>
         <CardContent className={classes.chipContainer}>
           {charEnum.map((charName) =>
             <Chip

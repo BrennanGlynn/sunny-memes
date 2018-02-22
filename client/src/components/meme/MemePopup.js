@@ -77,62 +77,64 @@ class MemePopup extends Component {
     const { classes, data, changeCurrentIndex, lastIndex, stateIndex, user, admin, openModal, zoomed } = this.props;
     const { anchorEl } = this.state;
     return (
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={zoomed}
-        onClose={openModal}
-        disableAutoFocus={true}
-      >
-        <div className={classes.openModal}>
-          <Grid container justify="flex-end">
-            <IconButton className={classes.leftArrow} aria-label="Previous Meme">
-              <KeyboardArrowLeft onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}/>
-            </IconButton>
-            <IconButton className={classes.rightArrow} aria-label="Next Meme">
-              <KeyboardArrowRight onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}/>
-            </IconButton>
-            <Grid item>
-              <IconButton
-                aria-owns={anchorEl ? 'simple-menu' : null}
-                aria-haspopup="true"
-                onClick={this.handleClick}
-              >
-                <MoreVertIcon />
-              </IconButton>
-              <Button onClick={openModal}>Close</Button>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={this.handleClose}
-              >
-                <MenuItem onClick={this.handleClose}>
-                  <ListItemIcon>
-                    <RemoveRedEyeIcon/>
-                  </ListItemIcon>Hide
-                </MenuItem>
-                <Divider/>
-                {(user === data.uploaded_by || admin) &&
-                <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
-                  <ListItemIcon>
-                    <HighlightOffIcon/>
-                  </ListItemIcon>Delete
-                </MenuItem>}
-                <Divider/>
-                <MenuItem onClick={this.handleClose}>
-                  <ListItemIcon>
-                    <ReportProblemIcon/>
-                  </ListItemIcon>Report
-                </MenuItem>
-              </Menu>
-            </Grid>
-          </Grid>
-          <Divider/>
+      <div>
+        {data ?
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={zoomed}
+            onClose={openModal}
+            disableAutoFocus={true}
+          >
+            <div className={classes.openModal}>
+              <Grid container justify="flex-end">
+                <IconButton className={classes.leftArrow} aria-label="Previous Meme">
+                  <KeyboardArrowLeft onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}/>
+                </IconButton>
+                <IconButton className={classes.rightArrow} aria-label="Next Meme">
+                  <KeyboardArrowRight onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}/>
+                </IconButton>
+                <Grid item>
+                  <IconButton
+                    aria-owns={anchorEl ? 'simple-menu' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleClick}
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                  <Button onClick={openModal}>Close</Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={this.handleClose}
+                  >
+                    <MenuItem onClick={this.handleClose}>
+                      <ListItemIcon>
+                        <RemoveRedEyeIcon/>
+                      </ListItemIcon>Hide
+                    </MenuItem>
+                    <Divider/>
+                    {(user === data.uploaded_by || admin) &&
+                    <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
+                      <ListItemIcon>
+                        <HighlightOffIcon/>
+                      </ListItemIcon>Delete
+                    </MenuItem>}
+                    <Divider/>
+                    <MenuItem onClick={this.handleClose}>
+                      <ListItemIcon>
+                        <ReportProblemIcon/>
+                      </ListItemIcon>Report
+                    </MenuItem>
+                  </Menu>
+                </Grid>
+              </Grid>
+              <Divider/>
 
-            <div className={classes.root}>
-              <Grid container spacing={8} justify="center">
-                <Grid item xs={6}>
+              <div className={classes.root}>
+                <Grid container spacing={8} justify="center">
+                  <Grid item xs={6}>
                     <Typography type="title" id="modal-title">
                       {data.title}
                     </Typography>
@@ -140,14 +142,16 @@ class MemePopup extends Component {
                       {data.uploaded_by}
                     </Typography>
                     <img className={classes.fullImage} src={data.url} alt="fullMeme" />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <MemeComments />
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <MemeComments />
-                </Grid>
-              </Grid>
+              </div>
             </div>
-        </div>
-      </Modal>
+          </Modal> :
+          <div></div>}
+      </div>
     );
   }
 }

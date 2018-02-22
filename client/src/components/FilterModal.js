@@ -75,7 +75,7 @@ class FilterModal extends Component {
   render() {
     const {classes, characters, toggleChar} = this.props;
     const characterNames = ['charlie', 'dee', 'dennis', 'frank', 'mac']
-    const sideCharacterNames = ['the waitress','ben the soldier', 'uncle jack', 'the lawyer']
+    const sideCharacterNames = ['waitress','ben', 'unclejack', 'lawyer']
 
     return (
       <div>

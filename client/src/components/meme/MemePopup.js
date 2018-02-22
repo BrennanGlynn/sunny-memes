@@ -26,7 +26,6 @@ const styles = {
     height: 'auto',
   },
   fullImage: {
-    minWidth: 325,
     width: '100%',
   },
   root: {
@@ -50,6 +49,9 @@ const styles = {
     right: '-6%',
     fontSize: 100,
     color: '#fff',
+  },
+  modalTitle: {
+    textAlign: 'left',
   },
 }
 
@@ -85,13 +87,18 @@ class MemePopup extends Component {
         disableAutoFocus={true}
       >
         <div className={classes.openModal}>
-          <Grid container justify="flex-end">
+          <Grid container alignItems="center" justify="flex-end">
             <IconButton className={classes.leftArrow} aria-label="Previous Meme">
               <KeyboardArrowLeft/>
             </IconButton>
             <IconButton className={classes.rightArrow} aria-label="Next Meme">
               <KeyboardArrowRight/>
             </IconButton>
+            <Grid item className={classes.modalTitle}>
+              <Typography type="title" id="modal-title">
+                {data.title}
+              </Typography>
+            </Grid>
             <Grid item>
               <IconButton
                 aria-owns={anchorEl ? 'simple-menu' : null}
@@ -132,16 +139,13 @@ class MemePopup extends Component {
 
             <div className={classes.root}>
               <Grid container spacing={8} justify="center">
-                <Grid item xs={6}>
-                    <Typography type="title" id="modal-title">
-                      {data.title}
-                    </Typography>
+                <Grid item xs={12}>
                     <Typography type="subheading" id="simple-modal-description">
                       {data.uploaded_by}
                     </Typography>
                     <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                   <MemeComments />
                 </Grid>
               </Grid>

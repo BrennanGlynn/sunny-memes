@@ -142,7 +142,7 @@ class UploadPreviewCard extends Component {
   }
 
   render() {
-    const {file, classes} = this.props
+    const {file, classes, cancelCard} = this.props
     const charEnum = ['charlie', 'dee', 'dennis', 'frank', 'mac']
 
     return (
@@ -151,7 +151,7 @@ class UploadPreviewCard extends Component {
           <IconButton
             className={classes.cancelUploadIcon}
           >
-            <CancelIcon/>
+            <CancelIcon onClick={cancelCard.bind(this)}/>
           </IconButton>
           <TextField
             label="Give your meme a title"

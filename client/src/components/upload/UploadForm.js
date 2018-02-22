@@ -124,6 +124,12 @@ class UploadForm extends Component {
     this.setState({files: newFiles})
   }
 
+  cancelFileUpload = (index) => {
+    let files = this.state.files.slice()
+    files.splice(index, 1)
+    this.setState({files})
+  }
+
   openDialog = (title, message) => {
     this.setState({ open: true, error: {title,message} });
   };
@@ -156,7 +162,7 @@ class UploadForm extends Component {
         >
           {
             this.state.files.map((file, index) =>
-              <UploadPreviewCard key={file.name} file={file} />
+              <UploadPreviewCard key={file.name} file={file} cancelCard={this.cancelFileUpload.bind(this, index)} />
             )
           }
         </Masonry>

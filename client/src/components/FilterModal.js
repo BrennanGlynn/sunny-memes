@@ -100,18 +100,18 @@ class FilterModal extends Component {
               </Typography>
               <FilterList/>
             </IconButton>
-              {characters.map(character =>
-                <Chip
-                  key={character}
-                  avatar={<Avatar src={`/images/${character}.jpg`}/>}
-                  label={character}
-                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
-                  onDelete={toggleChar.bind(this, character)}
-                />,
-              )}
+            {characters && characters.map(character =>
+              <Chip
+                key={character}
+                avatar={<Avatar src={`/images/${character}.jpg`}/>}
+                label={character}
+                className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                onDelete={toggleChar.bind(this, character)}
+              />,
+            )}
           </Grid>
         </Grid>
-        <Modal
+        {characters && <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.open}
@@ -158,7 +158,7 @@ class FilterModal extends Component {
               </Grid>
             </Grid>
           </div>
-        </Modal>
+        </Modal>}
       </div>
     )
   }

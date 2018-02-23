@@ -5,6 +5,7 @@ import {withStyles} from 'material-ui/styles';
 const styles = theme =>  ({
   root: {
     flexGrow: 1,
+    marginRight: 20,
   },
   row: {
     marginTop: 100,

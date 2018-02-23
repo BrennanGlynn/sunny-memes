@@ -1,12 +1,14 @@
 import React from 'react';
-import {Grid} from 'material-ui/';
+import {Grid, Paper, Avatar, Typography, TextField} from 'material-ui/';
 import {withStyles} from 'material-ui/styles';
 
-const styles = {
+const styles = theme =>  ({
   root: {
     flexGrow: 1,
-    minWidth: '300px',
-    margin: 'auto',
+  },
+  row: {
+    marginTop: 100,
+    display: 'flex',
   },
   commentContainer: {
     position: 'relative',
@@ -18,24 +20,58 @@ const styles = {
     marginLeft: 5,
     width: '95%',
   },
-  picture: {
-    height: 50,
-    width: 50,
-    borderRadius: '50%',
-    padding: '5px',
-    margin: 'auto',
-  },
-  avatar: {
+  firstCommentWrapper: {
     position: 'relative',
-    top: '-10px',
-    margin: 'auto',
+    height: 75,
   },
-  comment: {
-    position: 'relative',
+  firstCommentAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: '#2c8943',
+  },
+  replyAvatar: {
+    width: 20,
+    height: 20,
+    marginTop: 5,
+    marginLeft: 60,
     fontSize: 12,
-    border: '1px solid rgba(0,0,0,.2)',
-    borderRadius: '5px 5px',
-    padding: 10,
+  },
+  addCommentAvatar: {
+    width: 30,
+    height: 30,
+    margin: 10,
+    marginLeft: 20,
+  },
+  firstCommentName: {
+    marginTop: 5,
+  },
+  replyName: {
+    marginLeft: 5,
+  },
+  firstComment: {
+    marginRight: 5,
+    background: '#e0e0e0',
+    borderRadius: '4px 4px',
+    padding: '5px',
+  },
+  replyComment: {
+    marginRight: 5,
+    marginLeft: 5,
+    width: '80%',
+    background: '#e0e0e0',
+    borderRadius: '4px 4px',
+    padding: '5px',
+  },
+  addComment: {
+    marginTop: 12.5,
+  },
+  firstCommentControls: {
+    marginTop: 5,
+    marginLeft: 65,
+  },
+  replyCommentControls: {
+    marginTop: 5,
+    marginLeft: 90,
   },
   commentBottom: {
     fontSize: 11,
@@ -47,32 +83,100 @@ const styles = {
     paddingLeft: '2.5px',
     paddingRight: '2.5px',
   },
-}
+  textFieldRoot: {
+    padding: 0,
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  textFieldInput: {
+    borderRadius: 4,
+    backgroundColor: '#fff',
+    border: '1px solid #ced4da',
+    fontSize: 12,
+    padding: '5px 12px',
+    width: 'calc(100% - 24px)',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+})
 
 const MemeComments = ({classes}) => {
   return (
-    <Grid container className={classes.commentContainer} justify="center">
-      <Grid item xs={2} sm={2} className={classes.avatar}>
-        <a>
-          <img
-            src="https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/13907208_10155130051273508_4390268290353924855_n.jpg?oh=533cdb8478393477373035d285877209&oe=5AE15928"
-            className={classes.picture} alt="profile"/>
-        </a>
+    <div>
+      <Grid container spacing={0} wrap="nowrap">
+        <Grid item xs={12} md={12} zeroMinWidth>
+          <Paper className={classes.root} elevation={4}>
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item>
+                <Avatar className={classes.firstCommentAvatar}>BJ</Avatar>
+              </Grid>
+              <Grid item xs>
+                <Typography variant="body2" className={classes.firstCommentName}>
+                  Ben Jeske
+                </Typography>
+                <Typography variant="caption" className={classes.firstComment}>
+                  This is a comment by someone and Im making it longer for demonstration. Here is some typed words.
+                  And an additional line of text. Looking good!
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item className={classes.firstCommentControls}>
+                <Typography variant="caption">
+                  {'Like \u00b7 Reply'}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={0} justify="flex-start">
+              <Grid item>
+                <Avatar className={classes.replyAvatar}>BJ</Avatar>
+              </Grid>
+              <Grid item xs>
+                <Typography variant="body2" className={classes.replyName}>
+                  Brennan Glynn
+                </Typography>
+                <Typography variant="caption" className={classes.replyComment}>
+                  This is a nested reply! It should appear a little less wide on the page than the first comment
+                  in a meme thread.
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item className={classes.replyCommentControls}>
+                <Typography variant="caption">
+                  {'Like \u00b7 Reply'}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item>
+                <Avatar className={classes.addCommentAvatar}>BJ</Avatar>
+              </Grid>
+              <Grid item xs={10} className={classes.addComment}>
+                <TextField
+                  defaultValue="Type a comment"
+                  InputProps={{
+                    disableUnderline: true,
+                    classes: {
+                      root: classes.textFieldRoot,
+                      input: classes.textFieldInput,
+                    },
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    className: classes.textFieldFormLabel,
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={10} sm={10}>
-        <h4>Ben Jeske</h4>
-        <p>They took you nightman and you dont belong to them. They locked me in a world</p>
-        <div className={classes.commentBottom}>
-          <a className={classes.atag}>
-            Reply
-          </a>
-          |
-          <a className={classes.atag}>
-            Salt
-          </a>
-        </div>
-      </Grid>
-    </Grid>
+    </div>
   )
 }
 

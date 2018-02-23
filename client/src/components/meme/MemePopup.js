@@ -26,7 +26,6 @@ const styles = {
     height: 'auto',
   },
   fullImage: {
-    minWidth: 325,
     width: '100%',
   },
   root: {

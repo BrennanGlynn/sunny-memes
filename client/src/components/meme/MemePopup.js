@@ -11,7 +11,42 @@ import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MemeComments from '../MemeComments';
 
-const styles = {
+const styles = theme => ({
+  [theme.breakpoints.only('xs')]: {
+    openModal: {
+      width: '95%',
+    },
+    leftArrow: {
+      position: 'fixed',
+      top: '100%',
+      left: '-2.5%',
+      fontSize: 100,
+      color: '#fff',
+    },
+    rightArrow: {
+      position: 'fixed',
+      top: '100%',
+      right: '-2.5%',
+      fontSize: 100,
+      color: '#fff',
+    },
+  },
+  [theme.breakpoints.between('sm', 'xl')]: {
+    leftArrow: {
+      position: 'fixed',
+      top: '40%',
+      left: '-6%',
+      fontSize: 100,
+      color: '#fff',
+    },
+    rightArrow: {
+      position: 'fixed',
+      top: '40%',
+      right: '-6%',
+      fontSize: 100,
+      color: '#fff',
+    },
+  },
   openModal: {
     position: 'absolute',
     top: '50%',
@@ -26,7 +61,7 @@ const styles = {
     height: 'auto',
   },
   fullImage: {
-    width: '100%',
+    width: '94%',
   },
   root: {
     width: '100%',
@@ -36,22 +71,10 @@ const styles = {
     paddingLeft: 10,
     paddingRight: 10,
   },
-  leftArrow: {
-    position: 'fixed',
-    top: '40%',
-    left: '-6%',
-    fontSize: 100,
-    color: '#fff',
+  modalTitle: {
+    textAlign: 'left',
   },
-  rightArrow: {
-    position: 'fixed',
-    top: '40%',
-    right: '-6%',
-    fontSize: 100,
-    color: '#fff',
-  },
-}
-
+})
 
 class MemePopup extends Component {
 

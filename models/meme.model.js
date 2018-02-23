@@ -17,6 +17,10 @@ const MemeSchema = new Schema({
     type: String,
     required: true
   },
+  author_name: {
+    type: String,
+    required: true
+  },
   characters: {
     type: [String],
     default: []
@@ -29,7 +33,7 @@ const MemeSchema = new Schema({
   favorites: {
     type: [String],
     default: []
-  }
+  },
 })
 
 module.exports = mongoose.model('Meme', MemeSchema);

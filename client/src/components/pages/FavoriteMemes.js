@@ -21,8 +21,8 @@ class Favorites extends Component {
               options={{fitWidth: true}}
               className={classes.memeWrapper}
             >
-              {memesArray.map((meme) =>
-                <MemeContainer key={meme._id} meme={meme}/>,
+              {memesArray.map((meme, i) =>
+                <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
               )}
             </Masonry>
           </Grid>

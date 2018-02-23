@@ -12,7 +12,7 @@ import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-import MemePopup from './MemePopup'
+import MemePopupContainer from '../../containers/memes/MemePopupContainer'
 
 const styles = theme => ({
   frontCardWrapper: {
@@ -132,6 +132,7 @@ class MemeCard extends Component {
   }
 
   toggleFullMeme = () => {
+    this.props.changeCurrentIndex(this.props.index)
     this.setState({zoomed: !this.state.zoomed})
   }
 
@@ -153,7 +154,7 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user, admin, toggleCharacter} = this.props;
+    const {classes, data, user, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
     return (
       <div className={classes.root}>
@@ -198,8 +199,9 @@ class MemeCard extends Component {
                   </ListItemIcon>Report
                 </MenuItem>
               </Menu>
+              <Divider/>
               <div className={classes.background}>
-                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme}/>
+                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme.bind(this, index)}/>
               </div>
               {data.characters[0] !== 'undefined' &&
               <div>
@@ -233,7 +235,7 @@ class MemeCard extends Component {
             </Card>
 
 
-            <MemePopup data={data} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>
+            {memeArray && <MemePopupContainer memes={memeArray} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>}
           </div>
         )}
       </div>

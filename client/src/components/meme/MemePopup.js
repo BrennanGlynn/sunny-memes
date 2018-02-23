@@ -156,7 +156,7 @@ class MemePopup extends Component {
 
               <div className={classes.root}>
                 <Grid container spacing={0} justify="center">
-                  <Grid item xs={6}>
+                  <Grid item xs={12} md={6}>
                     <Typography type="title" id="modal-title">
                       {data.title}
                     </Typography>
@@ -165,7 +165,7 @@ class MemePopup extends Component {
                     </Typography>
                     <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} md={6}>
                     <MemeComments />
                   </Grid>
                 </Grid>

@@ -38,14 +38,14 @@ const styles = theme => ({
     leftArrow: {
       position: 'fixed',
       top: '40%',
-      left: '-6%',
+      left: '-4%',
       fontSize: 100,
       color: '#fff',
     },
     rightArrow: {
       position: 'fixed',
       top: '40%',
-      right: '-6%',
+      right: '-4%',
       fontSize: 100,
       color: '#fff',
     },
@@ -59,8 +59,8 @@ const styles = theme => ({
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0,0,0,.5)',
     padding: '32',
-    width: '80%',
-    height: '90%',
+    width: '90%',
+    height: '95%',
   },
   fullImage: {
     width: '94%',
@@ -75,6 +75,12 @@ const styles = theme => ({
   },
   modalTitle: {
     textAlign: 'left',
+  },
+  titleContainer: {
+    textAlign: 'left',
+  },
+  menuContainer: {
+    textAlign: 'right',
   },
 })
 
@@ -111,18 +117,27 @@ class MemePopup extends Component {
             disableAutoFocus={true}
           >
             <div className={classes.openModal}>
-              <Grid container justify="flex-end">
-                <div className={classes.leftArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}>
-                  <IconButton className={classes.leftArrow} aria-label="Previous Meme">
-                    <KeyboardArrowLeft />
-                  </IconButton>
-                </div>
-                <div className={classes.rightArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}>
-                  <IconButton className={classes.rightArrow} aria-label="Next Meme">
-                    <KeyboardArrowRight />
-                  </IconButton>
-                </div>
-                <Grid item>
+              <div className={classes.leftArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}>
+                <IconButton className={classes.leftArrow} aria-label="Previous Meme">
+                  <KeyboardArrowLeft />
+                </IconButton>
+              </div>
+              <div className={classes.rightArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}>
+                <IconButton className={classes.rightArrow} aria-label="Next Meme">
+                  <KeyboardArrowRight />
+                </IconButton>
+              </div>
+              <Grid container alignItems="center">
+                <Grid item md={6} className={classes.titleContainer}>
+                  <Typography variant="title" type="title" id="modal-title">
+                    {data.title}
+                  </Typography>
+                  <Typography type="subheading" id="simple-modal-description">
+                    {data.author_name || data.uploaded_by}
+                  </Typography>
+                </Grid>
+
+                <Grid item md={6} className={classes.menuContainer}>
                   <IconButton
                     aria-owns={anchorEl ? 'simple-menu' : null}
                     aria-haspopup="true"
@@ -163,12 +178,6 @@ class MemePopup extends Component {
               <div className={classes.root}>
                 <Grid container spacing={8} justify="center">
                   <Grid item xs={6}>
-                    <Typography type="title" id="modal-title">
-                      {data.title}
-                    </Typography>
-                    <Typography type="subheading" id="simple-modal-description">
-                      {data.author_name || data.uploaded_by}
-                    </Typography>
                     <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                   </Grid>
                   <Grid item xs={6}>

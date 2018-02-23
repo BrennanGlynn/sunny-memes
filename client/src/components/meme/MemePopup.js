@@ -59,9 +59,8 @@ const styles = theme => ({
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0,0,0,.5)',
     padding: '32',
-    minWidth: '50%',
-    maxWidth: '90%',
-    height: 'auto',
+    width: '80%',
+    height: '90%',
   },
   fullImage: {
     width: '94%',

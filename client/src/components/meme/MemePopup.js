@@ -16,6 +16,9 @@ const styles = theme => ({
     openModal: {
       width: '95%',
     },
+    leftArrowContainer: {
+      backgroundColor: 'red',
+    },
     leftArrow: {
       position: 'fixed',
       top: '100%',
@@ -110,12 +113,16 @@ class MemePopup extends Component {
           >
             <div className={classes.openModal}>
               <Grid container justify="flex-end">
-                <IconButton className={classes.leftArrow} aria-label="Previous Meme">
-                  <KeyboardArrowLeft onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}/>
-                </IconButton>
-                <IconButton className={classes.rightArrow} aria-label="Next Meme">
-                  <KeyboardArrowRight onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}/>
-                </IconButton>
+                <div className={classes.leftArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}>
+                  <IconButton className={classes.leftArrow} aria-label="Previous Meme">
+                    <KeyboardArrowLeft />
+                  </IconButton>
+                </div>
+                <div className={classes.rightArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}>
+                  <IconButton className={classes.rightArrow} aria-label="Next Meme">
+                    <KeyboardArrowRight />
+                  </IconButton>
+                </div>
                 <Grid item>
                   <IconButton
                     aria-owns={anchorEl ? 'simple-menu' : null}

@@ -142,8 +142,22 @@ const styles = theme => ({
     rootMedia: {
       backgroundSize: '100%',
     },
-    media: {
+    background: {
+      height: 260,
       width: 260,
+      position: 'relative',
+    },
+    media: {
+      maxHeight: '100%',
+      maxWidth: '100%',
+      width: 'auto',
+      height: 'auto',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: 'auto',
     },
   },
 });

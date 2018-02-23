@@ -39,12 +39,13 @@ const styles = theme => ({
   },
   filterIcon: {
     marginTop: 7.5,
+    marginRight: 20
   },
   filterText: {
     marginRight: 5,
   },
   chipTopContainer: {
-    marginLeft: '7.5%',
+    textAlign: 'right',
   },
   chipContainer: {
     marginBottom: 20,
@@ -54,7 +55,7 @@ const styles = theme => ({
   },
   chip: {
     textTransform: 'capitalize',
-    marginLeft: 10,
+    marginRight: 10,
     position: 'relative',
     top: 15,
   },
@@ -89,6 +90,15 @@ class FilterModal extends Component {
       <div>
         <Grid container className={classes.root} alignItems="center" spacing={0}>
           <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
+            {characters.map(character =>
+              <Chip
+                key={character}
+                avatar={<Avatar src={`/images/${character}.jpg`}/>}
+                label={character}
+                className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                onDelete={toggleChar.bind(this, character)}
+              />,
+            )}
             <IconButton
               aria-haspopup="true"
               onClick={this.handleOpen}
@@ -99,15 +109,6 @@ class FilterModal extends Component {
               </Typography>
               <FilterList/>
             </IconButton>
-              {characters.map(character =>
-                <Chip
-                  key={character}
-                  avatar={<Avatar src={`/images/${character}.jpg`}/>}
-                  label={character}
-                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
-                  onDelete={toggleChar.bind(this, character)}
-                />,
-              )}
           </Grid>
         </Grid>
         <Modal

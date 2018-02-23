@@ -49,7 +49,7 @@ class LoginModal extends React.Component {
   state = {
     open: false,
   };
-
+  
   handleOpen = () => {
     this.setState({open: true});
   };

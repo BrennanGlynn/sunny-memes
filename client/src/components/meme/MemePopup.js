@@ -155,7 +155,7 @@ class MemePopup extends Component {
               <Divider/>
 
               <div className={classes.root}>
-                <Grid container spacing={8} justify="center">
+                <Grid container spacing={0} justify="center">
                   <Grid item xs={6}>
                     <Typography type="title" id="modal-title">
                       {data.title}

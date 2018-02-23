@@ -20,6 +20,23 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  background: {
+    height: 260,
+    width: 260,
+    position: 'relative',
+  },
+  media: {
+    maxHeight: '100%',
+    maxWidth: '100%',
+    width: 'auto',
+    height: 'auto',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    margin: 'auto',
+  },
   card: {
     // borderTop: '5px solid #2C8943'
   },
@@ -65,8 +82,22 @@ const styles = theme => ({
     rootMedia: {
       backgroundSize: '100%',
     },
+    background: {
+      height: 310,
+      width: 310,
+      position: 'relative',
+    },
     media: {
-      width: '100%',
+      maxHeight: '100%',
+      maxWidth: '100%',
+      width: 'auto',
+      height: 'auto',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: 'auto',
     },
   },
   [theme.breakpoints.between('sm', 'md')]: {
@@ -81,8 +112,22 @@ const styles = theme => ({
     rootMedia: {
       backgroundSize: '100%',
     },
-    media: {
+    background: {
+      height: 225,
       width: 225,
+      position: 'relative',
+    },
+    media: {
+      maxHeight: '100%',
+      maxWidth: '100%',
+      width: 'auto',
+      height: 'auto',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: 'auto',
     },
   },
   [theme.breakpoints.between('lg', 'xl')]: {
@@ -97,8 +142,22 @@ const styles = theme => ({
     rootMedia: {
       backgroundSize: '100%',
     },
-    media: {
+    background: {
+      height: 260,
       width: 260,
+      position: 'relative',
+    },
+    media: {
+      maxHeight: '100%',
+      maxWidth: '100%',
+      width: 'auto',
+      height: 'auto',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: 'auto',
     },
   },
 });
@@ -199,6 +258,7 @@ class MemeCard extends Component {
                   </ListItemIcon>Report
                 </MenuItem>
               </Menu>
+              <Divider/>
               <div className={classes.background}>
                 <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme.bind(this, index)}/>
               </div>

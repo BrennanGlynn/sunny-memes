@@ -11,52 +11,7 @@ import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MemeComments from '../MemeComments';
 
-const styles = theme => ({
-  [theme.breakpoints.only('xs')]: {
-    openModal: {
-      minWidth: '95%',
-      width: '95%',
-      padding: 0,
-    },
-    leftArrow: {
-      position: 'fixed',
-      top: '100%',
-      left: '-2.5%',
-      fontSize: 100,
-      color: '#fff',
-    },
-    rightArrow: {
-      position: 'fixed',
-      top: '100%',
-      right: '-2.5%',
-      fontSize: 100,
-      color: '#fff',
-    },
-  },
-  [theme.breakpoints.between('sm', 'xl')]: {
-    leftArrow: {
-      position: 'fixed',
-      top: '40%',
-      left: '-6%',
-      fontSize: 100,
-      color: '#fff',
-    },
-    rightArrow: {
-      position: 'fixed',
-      top: '40%',
-      right: '-6%',
-      fontSize: 100,
-      color: '#fff',
-    },
-  },
-  picture: {
-    position: 'relative',
-    top: 2,
-    width: 40,
-    height: 40,
-    marginLeft: 5,
-    borderRadius: '50%',
-  },
+const styles = {
   openModal: {
     position: 'absolute',
     top: '50%',
@@ -66,29 +21,37 @@ const styles = theme => ({
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0,0,0,.5)',
     padding: '32',
-    width: '50%',
+    minWidth: '50%',
     maxWidth: '90%',
     height: 'auto',
   },
   fullImage: {
-    width: '94%',
-  },
-  fullImageContainer: {
-    textAlign: 'center',
+    minWidth: 325,
+    width: '100%',
   },
   root: {
     width: '100%',
     height: '80%',
     marginTop: 10,
     marginBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
-  modalTitle: {
-    textAlign: 'left',
+  leftArrow: {
+    position: 'fixed',
+    top: '40%',
+    left: '-6%',
+    fontSize: 100,
+    color: '#fff',
   },
-  flex: {
-    flexGrow: 1,
+  rightArrow: {
+    position: 'fixed',
+    top: '40%',
+    right: '-6%',
+    fontSize: 100,
+    color: '#fff',
   },
-})
+}
 
 
 class MemePopup extends Component {
@@ -122,29 +85,14 @@ class MemePopup extends Component {
         disableAutoFocus={true}
       >
         <div className={classes.openModal}>
-          <Grid container alignItems="center" justify="flex-start">
+          <Grid container justify="flex-end">
             <IconButton className={classes.leftArrow} aria-label="Previous Meme">
               <KeyboardArrowLeft/>
             </IconButton>
             <IconButton className={classes.rightArrow} aria-label="Next Meme">
               <KeyboardArrowRight/>
             </IconButton>
-            <Grid item className={classes.flex}>
-              <a>
-                <img
-                  src="https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/13907208_10155130051273508_4390268290353924855_n.jpg?oh=533cdb8478393477373035d285877209&oe=5AE15928"
-                  className={classes.picture} alt="profile"/>
-              </a>
-            </Grid>
-            <Grid item className={classes.modalTitle + classes.flex}>
-              <Typography type="title" id="modal-title">
-                {data.title}
-              </Typography>
-              <Typography type="subheading" id="simple-modal-description">
-                {data.uploaded_by}
-              </Typography>
-            </Grid>
-            <Grid item className={classes.flex}>
+            <Grid item>
               <IconButton
                 aria-owns={anchorEl ? 'simple-menu' : null}
                 aria-haspopup="true"
@@ -152,6 +100,7 @@ class MemePopup extends Component {
               >
                 <MoreVertIcon />
               </IconButton>
+              <Button onClick={openModal}>Close</Button>
               <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -182,11 +131,17 @@ class MemePopup extends Component {
           <Divider/>
 
             <div className={classes.root}>
-              <Grid container spacing={0} justify="center">
-                <Grid item xs={12} md={6} className={classes.fullImageContainer}>
+              <Grid container spacing={8} justify="center">
+                <Grid item xs={6}>
+                    <Typography type="title" id="modal-title">
+                      {data.title}
+                    </Typography>
+                    <Typography type="subheading" id="simple-modal-description">
+                      {data.uploaded_by}
+                    </Typography>
                     <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={6}>
                   <MemeComments />
                 </Grid>
               </Grid>

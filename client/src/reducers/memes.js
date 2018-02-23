@@ -5,6 +5,7 @@ let favoriteMemes = {}
 
 function memeReducer(state = {
   pending: false,
+  currentIndex: 0,
 }, action) {
   switch (action.type) {
     case "FAVORITE_MEMES_RECEIVED":
@@ -55,6 +56,11 @@ function memeReducer(state = {
         myMemes,
         recentMemes,
         favoriteMemes
+      }
+    case "CHANGE_CURRENT_INDEX":
+      return {
+        ...state,
+        currentIndex: action.index
       }
     default:
       return state

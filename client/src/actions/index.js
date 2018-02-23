@@ -79,6 +79,12 @@ export const updatedFilter = (characterArray) => {
 }
 
 //==========================================================================================================Meme actions
+export const changeCurrentIndex = (index) => {
+  return {
+    type: "CHANGE_CURRENT_INDEX",
+    index
+  }
+}
 //============================================================================requesting memes
 export const fetchAllMemes = () => {
   return (dispatch, getState) => {

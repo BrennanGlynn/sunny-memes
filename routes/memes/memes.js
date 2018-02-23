@@ -4,6 +4,17 @@ const Meme = require('../../models/meme.model');
 const router = express.Router();
 const memesPerPage = 30;
 
+const projectionTemplate = {
+  "url": 1,
+  "title": 1,
+  "uploaded_by": 1,
+  "author_name": 1,
+  "characters": 1,
+  "favorites": 1,
+  "numFaves": {"$size": "$favorites"},
+  "visits": 1
+}
+
 router.delete('/:id', (req, res) => {
 
   // get details about meme getting deleted
@@ -91,14 +102,7 @@ router.use('/mine', (req, res) => {
   Meme.aggregate(
     {$match: query},
     {
-      $project: {
-        "url": 1,
-        "title": 1,
-        "uploaded_by": 1,
-        "characters": 1,
-        "favorites": 1,
-        "numFaves": {"$size": "$favorites"}
-      }
+      $project: projectionTemplate
     },
     {
       $sort: {
@@ -127,14 +131,7 @@ router.use('/recent', (req, res) => {
   Meme.aggregate(
     {$match: query},
     {
-      $project: {
-        "url": 1,
-        "title": 1,
-        "uploaded_by": 1,
-        "characters": 1,
-        "favorites": 1,
-        "numFaves": {"$size": "$favorites"}
-      }
+      $project: projectionTemplate
     },
     {
       $sort: {
@@ -165,14 +162,7 @@ router.use('/favorites', (req, res) => {
   Meme.aggregate(
     {$match: query},
     {
-      $project: {
-        "url": 1,
-        "title": 1,
-        "uploaded_by": 1,
-        "characters": 1,
-        "favorites": 1,
-        "numFaves": {"$size": "$favorites"}
-      }
+      $project: projectionTemplate
     },
     {
       $sort: {
@@ -213,14 +203,7 @@ router.use('/', (req, res) => {
   Meme.aggregate(
     {$match: query},
     {
-      $project: {
-        "url": 1,
-        "title": 1,
-        "uploaded_by": 1,
-        "characters": 1,
-        "favorites": 1,
-        "numFaves": {"$size": "$favorites"}
-      }
+      $project: projectionTemplate
     },
     {
       $sort: {

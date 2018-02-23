@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Paper, Avatar, Typography, TextField} from 'material-ui/';
+import {Grid, Paper, Button, Avatar, Typography, TextField} from 'material-ui/';
 import {withStyles} from 'material-ui/styles';
 
 const styles = theme =>  ({
@@ -10,19 +10,12 @@ const styles = theme =>  ({
     marginTop: 100,
     display: 'flex',
   },
-  commentContainer: {
-    position: 'relative',
-    fontSize: 12,
-    border: '1px solid rgba(0,0,0,.2)',
-    borderRadius: '5px 5px',
-    padding: 10,
-    marginTop: 5,
-    marginLeft: 5,
-    width: '95%',
-  },
   firstCommentWrapper: {
     position: 'relative',
     height: 75,
+  },
+  replyWrapper: {
+    marginTop: 2.5,
   },
   firstCommentAvatar: {
     margin: 10,
@@ -54,6 +47,9 @@ const styles = theme =>  ({
     borderRadius: '4px 4px',
     padding: '5px',
   },
+  replyButton: {
+    margin: theme.spacing.unit,
+  },
   replyComment: {
     marginRight: 5,
     marginLeft: 5,
@@ -63,7 +59,7 @@ const styles = theme =>  ({
     padding: '5px',
   },
   addComment: {
-    marginTop: 12.5,
+    marginTop: 2.5,
   },
   firstCommentControls: {
     marginTop: 5,
@@ -78,16 +74,8 @@ const styles = theme =>  ({
     paddingTop: 5,
     paddingBottom: 5,
   },
-  atag: {
-    textDecoration: 'none',
-    paddingLeft: '2.5px',
-    paddingRight: '2.5px',
-  },
   textFieldRoot: {
     padding: 0,
-    'label + &': {
-      marginTop: theme.spacing.unit * 3,
-    },
   },
   textFieldInput: {
     borderRadius: 4,
@@ -133,9 +121,9 @@ const MemeComments = ({classes}) => {
             </Grid>
             <Grid container spacing={0} justify="flex-start">
               <Grid item>
-                <Avatar className={classes.replyAvatar}>BJ</Avatar>
+                <Avatar className={classes.replyAvatar}>BG</Avatar>
               </Grid>
-              <Grid item xs>
+              <Grid item xs className={classes.replyWrapper}>
                 <Typography variant="body2" className={classes.replyName}>
                   Brennan Glynn
                 </Typography>
@@ -171,6 +159,9 @@ const MemeComments = ({classes}) => {
                     className: classes.textFieldFormLabel,
                   }}
                 />
+                <Button size="small" className={classes.replyButton}>
+                  Reply
+                </Button>
               </Grid>
             </Grid>
           </Paper>

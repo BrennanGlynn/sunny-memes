@@ -1,6 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Set up comment schema
+const CommentSchema = new Schema({
+  author_name: {
+    type: String,
+    require: true
+  },
+  comment: {
+    type: String,
+    required: true
+  }
+})
+
 // Set up new meme schema
 const MemeSchema = new Schema({
   url: {
@@ -17,6 +29,10 @@ const MemeSchema = new Schema({
     type: String,
     required: true
   },
+  author_name: {
+    type: String,
+    required: true
+  },
   characters: {
     type: [String],
     default: []
@@ -28,6 +44,10 @@ const MemeSchema = new Schema({
   },
   favorites: {
     type: [String],
+    default: []
+  },
+  comments: {
+    type: [CommentSchema],
     default: []
   }
 })

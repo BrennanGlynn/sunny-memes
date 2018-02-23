@@ -6,13 +6,22 @@ import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    [theme.breakpoints.between('xs', 'sm')]: {
+  [theme.breakpoints.only('xs')]: {
+    openModal: {
+      top: "25%",
+      minWidth: "80%",
+    },
+  },
+  [theme.breakpoints.between('xs', 'sm')]: {
+    root: {
+      flexGrow: 1,
       width: '95%',
       marginRight: '2.5%',
       marginLeft: '2.5%',
       textAlign: 'left',
+    },
+    filterIcon: {
+      marginLeft: '2.5%',
     },
   },
   openModal: {
@@ -27,10 +36,6 @@ const styles = theme => ({
     minWidth: "20%",
     maxWidth: "90%",
     height: "auto",
-    [theme.breakpoints.only('xs')]: {
-      top: "25%",
-      minWidth: "80%",
-    },
   },
   filterIcon: {
     marginTop: 7.5,
@@ -40,11 +45,14 @@ const styles = theme => ({
     marginRight: 5,
   },
   chipTopContainer: {
-    textAlign: 'right'
+    textAlign: 'right',
+    marginLeft: '7.5%',
   },
   chipContainer: {
-    margin: 20,
-    textAlign: "center",
+    marginBottom: 20,
+    marginRight: 20,
+    marginLeft: 20,
+    textAlign: 'center',
   },
   chip: {
     textTransform: 'capitalize',
@@ -54,7 +62,7 @@ const styles = theme => ({
   },
   dimmed: {
     opacity: 0.4,
-    filter: "alpha(opacity=40)",
+    filter: 'alpha(opacity=40)',
   },
 });
 
@@ -81,7 +89,7 @@ class FilterModal extends Component {
 
     return (
       <div>
-        <Grid container className={classes.root} justify="flex-end" alignItems="center" spacing={0}>
+        <Grid container className={classes.root} alignItems="center" spacing={0}>
           <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
             {characters.map(character =>
               <Chip

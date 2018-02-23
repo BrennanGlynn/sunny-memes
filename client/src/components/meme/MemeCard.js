@@ -12,13 +12,30 @@ import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-import MemePopup from './MemePopup'
+import MemePopupContainer from '../../containers/memes/MemePopupContainer'
 
 const styles = theme => ({
   frontCardWrapper: {
     position: 'relative',
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+  background: {
+    height: 260,
+    width: 260,
+    position: 'relative',
+  },
+  media: {
+    maxHeight: '100%',
+    maxWidth: '100%',
+    width: 'auto',
+    height: 'auto',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    margin: 'auto',
   },
   card: {
     // borderTop: '5px solid #2C8943'
@@ -65,8 +82,22 @@ const styles = theme => ({
     rootMedia: {
       backgroundSize: '100%',
     },
+    background: {
+      height: 310,
+      width: 310,
+      position: 'relative',
+    },
     media: {
-      width: '100%',
+      maxHeight: '100%',
+      maxWidth: '100%',
+      width: 'auto',
+      height: 'auto',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: 'auto',
     },
   },
   [theme.breakpoints.between('sm', 'md')]: {
@@ -81,8 +112,22 @@ const styles = theme => ({
     rootMedia: {
       backgroundSize: '100%',
     },
-    media: {
+    background: {
+      height: 225,
       width: 225,
+      position: 'relative',
+    },
+    media: {
+      maxHeight: '100%',
+      maxWidth: '100%',
+      width: 'auto',
+      height: 'auto',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: 'auto',
     },
   },
   [theme.breakpoints.between('lg', 'xl')]: {
@@ -97,8 +142,22 @@ const styles = theme => ({
     rootMedia: {
       backgroundSize: '100%',
     },
-    media: {
+    background: {
+      height: 260,
       width: 260,
+      position: 'relative',
+    },
+    media: {
+      maxHeight: '100%',
+      maxWidth: '100%',
+      width: 'auto',
+      height: 'auto',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: 'auto',
     },
   },
 });
@@ -132,6 +191,7 @@ class MemeCard extends Component {
   }
 
   toggleFullMeme = () => {
+    this.props.changeCurrentIndex(this.props.index)
     this.setState({zoomed: !this.state.zoomed})
   }
 
@@ -153,7 +213,7 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user, admin, toggleCharacter} = this.props;
+    const {classes, data, user, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
     return (
       <div className={classes.root}>
@@ -198,8 +258,9 @@ class MemeCard extends Component {
                   </ListItemIcon>Report
                 </MenuItem>
               </Menu>
+              <Divider/>
               <div className={classes.background}>
-                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme}/>
+                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme.bind(this, index)}/>
               </div>
               {data.characters[0] !== 'undefined' &&
               <div>
@@ -233,7 +294,7 @@ class MemeCard extends Component {
             </Card>
 
 
-            <MemePopup data={data} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>
+            {memeArray && <MemePopupContainer memes={memeArray} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>}
           </div>
         )}
       </div>

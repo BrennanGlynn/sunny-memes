@@ -6,8 +6,7 @@ const Meme = require('../../models/meme.model');
 const typesAllowed = ['image/gif', 'image/jpeg', 'image/png', 'image/svg+xml']
 
 // use this route to test upload features
-// does everything but store to the database
-// logs data to console instead
+
 router.use('/test', (req, res) => {
   const form = new formidable.IncomingForm();
   form.keepExtensions = true
@@ -67,6 +66,7 @@ router.use('/', (req, res) => {
           title: fields.title,
           url: '/images/memes/' + route,
           uploaded_by: req.user.facebookId,
+          author_name: req.user.name,
           characters
         };
 

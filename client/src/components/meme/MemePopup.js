@@ -139,7 +139,7 @@ class MemePopup extends Component {
                       {data.title}
                     </Typography>
                     <Typography type="subheading" id="simple-modal-description">
-                      {data.uploaded_by}
+                      {data.author_name || data.uploaded_by}
                     </Typography>
                     <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                   </Grid>

@@ -46,7 +46,10 @@ const styles = theme => ({
   },
   chipTopContainer: {
     textAlign: 'right',
+<<<<<<< HEAD
     marginLeft: '7.5%',
+=======
+>>>>>>> cbc68bfb05ce720890ee609bdb4e6557d8355817
   },
   chipContainer: {
     marginBottom: 20,

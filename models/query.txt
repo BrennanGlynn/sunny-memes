@@ -1,0 +1,13 @@
+Meme.findByIdAndUpdate("5a8267cdd7459f90357ce66e", {$addToSet: {comments: "5a90a16b6fbef0dab1ff7c82"}}, {
+        safe: true,
+        new: true,
+      }
+})
+
+{
+_id: "5a90a16b6fbef0dab1ff7c82",
+uploaded_by: "5a7a4fa7a6ff00702179ad56",
+text: "This is a comment",
+likes: [],
+children: [],
+meme_id: "5a8267cdd7459f90357ce66e"}

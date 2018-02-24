@@ -1,18 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Set up comment schema
-const CommentSchema = new Schema({
-  author_name: {
-    type: String,
-    require: true
-  },
-  comment: {
-    type: String,
-    required: true
-  }
-})
-
 // Set up new meme schema
 const MemeSchema = new Schema({
   url: {
@@ -26,7 +14,7 @@ const MemeSchema = new Schema({
     maxlength: 65
   },
   uploaded_by: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true
   },
   author_name: {
@@ -47,7 +35,7 @@ const MemeSchema = new Schema({
     default: []
   },
   comments: {
-    type: [CommentSchema],
+    type: [Schema.Types.ObjectId],
     default: []
   }
 })

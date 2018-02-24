@@ -16,6 +16,9 @@ const styles = theme => ({
     openModal: {
       width: '95%',
     },
+    leftArrowContainer: {
+      backgroundColor: 'red',
+    },
     leftArrow: {
       position: 'fixed',
       top: '100%',
@@ -35,14 +38,14 @@ const styles = theme => ({
     leftArrow: {
       position: 'fixed',
       top: '40%',
-      left: '-6%',
+      left: '-4%',
       fontSize: 100,
       color: '#fff',
     },
     rightArrow: {
       position: 'fixed',
       top: '40%',
-      right: '-6%',
+      right: '-4%',
       fontSize: 100,
       color: '#fff',
     },
@@ -56,23 +59,43 @@ const styles = theme => ({
     backgroundColor: '#fff',
     boxShadow: '0 5px 15px rgba(0,0,0,.5)',
     padding: '32',
-    minWidth: '50%',
-    maxWidth: '90%',
+    width: '90%',
+    height: '95%',
+  },
+  fullImageContainer: {
+    position: 'relative',
+    margin: 'auto',
+    width: '100%',
+    height: '100%',
+  },
+  fullImageBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundRepeat: 'no-repeat',
+    width: '100%',
     height: 'auto',
   },
   fullImage: {
-    width: '94%',
+    objectFit: 'fill',
   },
   root: {
     width: '100%',
-    height: '80%',
-    marginTop: 10,
+    height: '100%',
     marginBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
   },
   modalTitle: {
     textAlign: 'left',
+  },
+  titleContainer: {
+    textAlign: 'left',
+  },
+  menuContainer: {
+    textAlign: 'right',
   },
 })
 
@@ -109,14 +132,27 @@ class MemePopup extends Component {
             disableAutoFocus={true}
           >
             <div className={classes.openModal}>
-              <Grid container justify="flex-end">
+              <div className={classes.leftArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}>
                 <IconButton className={classes.leftArrow} aria-label="Previous Meme">
-                  <KeyboardArrowLeft onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}/>
+                  <KeyboardArrowLeft />
                 </IconButton>
+              </div>
+              <div className={classes.rightArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}>
                 <IconButton className={classes.rightArrow} aria-label="Next Meme">
-                  <KeyboardArrowRight onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}/>
+                  <KeyboardArrowRight />
                 </IconButton>
-                <Grid item>
+              </div>
+              <Grid container alignItems="center">
+                <Grid item md={6} className={classes.titleContainer}>
+                  <Typography variant="title" type="title" id="modal-title">
+                    {data.title}
+                  </Typography>
+                  <Typography type="subheading" id="simple-modal-description">
+                    {data.author_name || data.uploaded_by}
+                  </Typography>
+                </Grid>
+
+                <Grid item md={6} className={classes.menuContainer}>
                   <IconButton
                     aria-owns={anchorEl ? 'simple-menu' : null}
                     aria-haspopup="true"
@@ -157,13 +193,12 @@ class MemePopup extends Component {
               <div className={classes.root}>
                 <Grid container spacing={0} justify="center">
                   <Grid item xs={12} md={6}>
-                    <Typography type="title" id="modal-title">
-                      {data.title}
-                    </Typography>
-                    <Typography type="subheading" id="simple-modal-description">
-                      {data.author_name || data.uploaded_by}
-                    </Typography>
-                    <img className={classes.fullImage} src={data.url} alt="fullMeme" />
+                    <div className={classes.fullImageContainer}>
+                      {/*<div className={classes.fullImageBackground} style={{backgroundImage: 'url(' + data.url + ')'}}>
+
+                      </div>*/}
+                      <img className={classes.fullImage} src={data.url} alt="fullMeme" />
+                    </div>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <MemeComments />

@@ -31,7 +31,7 @@ const MemeSchema = new Schema({
     default: 0
   },
   favorites: {
-    type: [String],
+    type: [Schema.Types.ObjectId],
     default: []
   },
   comments: {

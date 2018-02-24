@@ -16,7 +16,7 @@ router.use('/test', (req, res) => {
         console.log('bad type error', files.file.type)
         return res.json({error: 'bad type'})
       }
-      const route = req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
+      const route = req.user._id + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
       const oldPath = files.file.path;
       const newPath = './public/images/memes/' + route;
       fs.rename(oldPath, newPath, function (error) {
@@ -24,7 +24,7 @@ router.use('/test', (req, res) => {
         let memeData = {
           title: fields.title,
           url: '/images/memes/' + route,
-          uploaded_by: req.user.facebookId,
+          uploaded_by: req.user._id,
           characters: fields.characters.split(',')
         };
 
@@ -56,7 +56,7 @@ router.use('/', (req, res) => {
 
       // Ensure file is one of the allowed types above
       if (!typesAllowed.includes(files.file.type)) return res.json({error: 'not saved'})
-      const route = req.user.facebookId + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
+      const route = req.user._id + Math.floor(Math.random() * 100000) + files.file.name.slice(files.file.name.indexOf('.'));
       const oldPath = files.file.path;
       const newPath = './public/images/memes/' + route;
       const characters = fields.characters && fields.characters !== "" ? fields.characters.split(',') : []
@@ -65,7 +65,7 @@ router.use('/', (req, res) => {
         let memeData = {
           title: fields.title,
           url: '/images/memes/' + route,
-          uploaded_by: req.user.facebookId,
+          uploaded_by: req.user._id,
           author_name: req.user.name,
           characters
         };

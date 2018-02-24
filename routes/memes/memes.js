@@ -22,7 +22,7 @@ router.delete("/:id", (req, res) => {
   Meme.findOne({_id: req.params.id}, function (err, meme) {
     if (meme) {
       // if authorized
-      if (req.user.facebookId === meme.uploaded_by || req.user.admin) {
+      if (req.user._id === meme.uploaded_by || req.user.admin) {
         // delete meme
         Meme.remove({_id: req.params.id}, function (err, result) {
           if (err) console.log(err)
@@ -52,9 +52,9 @@ router.use("/favorite", (req, res) => {
       return res.json({error: err})
 
       // add favorite if user hasn't already
-    } else if (meme.favorites.indexOf(req.user.facebookId) === -1) {
+    } else if (meme.favorites.indexOf(req.user._id) === -1) {
 
-      Meme.findByIdAndUpdate(req.body.meme, {$addToSet: {favorites: req.user.facebookId}}, {
+      Meme.findByIdAndUpdate(req.body.meme, {$addToSet: {favorites: req.user._id}}, {
         safe: true,
         new: true,
       }, (err, meme) => {
@@ -63,18 +63,16 @@ router.use("/favorite", (req, res) => {
         } else return res.json({
           meme: req.body.meme,
           updatedMeme: meme,
-          id: req.user.facebookId,
         })
       })
       // remove favorite if user had set it as a favorite before
     } else {
-      Meme.findByIdAndUpdate(req.body.meme, {$pull: {favorites: req.user.facebookId}}, {new: true}, (err, meme) => {
+      Meme.findByIdAndUpdate(req.body.meme, {$pull: {favorites: req.user._id}}, {new: true}, (err, meme) => {
         if (err) {
           return res.json({message: err});
         } else return res.json({
           updatedMeme: meme,
           meme: req.body.meme,
-          id: req.user.facebookId,
         })
       })
     }
@@ -90,7 +88,7 @@ router.use("/mine", (req, res) => {
   const chars = req.query.chars;
 
   let query = {
-    uploaded_by: req.user.facebookId,
+    uploaded_by: req.user._id,
   };
 
   if (typeof chars === "object") {
@@ -168,7 +166,7 @@ router.use("/favorites", (req, res) => {
   const page = req.query.page;
   const chars = req.query.chars;
   let query = {
-    favorites: req.user.facebookId,
+    favorites: req.user._id,
   };
 
   if (typeof chars === "object") {

@@ -132,27 +132,39 @@ class MemePopup extends Component {
             disableAutoFocus={true}
           >
             <div className={classes.openModal}>
+
+              {/*previous meme button*/}
               <div className={classes.leftArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex - 1, lastIndex)}>
                 <IconButton className={classes.leftArrow} aria-label="Previous Meme">
                   <KeyboardArrowLeft />
                 </IconButton>
               </div>
+              {/*next meme button*/}
               <div className={classes.rightArrowContainer} onClick={changeCurrentIndex.bind(this, stateIndex + 1, lastIndex)}>
                 <IconButton className={classes.rightArrow} aria-label="Next Meme">
                   <KeyboardArrowRight />
                 </IconButton>
               </div>
+
+              {/*Popup Modal Header Row*/}
               <Grid container alignItems="center">
                 <Grid item md={6} className={classes.titleContainer}>
+
+                  {/*Title*/}
                   <Typography variant="title" type="title" id="modal-title">
                     {data.title}
                   </Typography>
+
+                  {/*Meme Author*/}
                   <Typography type="subheading" id="simple-modal-description">
                     {data.author_name || data.uploaded_by}
                   </Typography>
                 </Grid>
 
+                {/*Options Menu and Close Button*/}
                 <Grid item md={6} className={classes.menuContainer}>
+
+                  {/*options menu button*/}
                   <IconButton
                     aria-owns={anchorEl ? 'simple-menu' : null}
                     aria-haspopup="true"
@@ -160,19 +172,27 @@ class MemePopup extends Component {
                   >
                     <MoreVertIcon />
                   </IconButton>
+
+                  {/*close button*/}
                   <Button onClick={openModal}>Close</Button>
+
+                  {/*options menu*/}
                   <Menu
                     id="simple-menu"
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                   >
+
+                    {/*hide button*/}
                     <MenuItem onClick={this.handleClose}>
                       <ListItemIcon>
                         <RemoveRedEyeIcon/>
                       </ListItemIcon>Hide
                     </MenuItem>
                     <Divider/>
+
+                    {/*delete button*/}
                     {(user === data.uploaded_by || admin) &&
                     <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                       <ListItemIcon>
@@ -180,6 +200,8 @@ class MemePopup extends Component {
                       </ListItemIcon>Delete
                     </MenuItem>}
                     <Divider/>
+
+                    {/*report button*/}
                     <MenuItem onClick={this.handleClose}>
                       <ListItemIcon>
                         <ReportProblemIcon/>
@@ -190,6 +212,7 @@ class MemePopup extends Component {
               </Grid>
               <Divider/>
 
+              {/*Popup Modal Body*/}
               <div className={classes.root}>
                 <Grid container spacing={0} justify="center">
                   <Grid item xs={12} md={6}>

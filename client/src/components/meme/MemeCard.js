@@ -156,6 +156,7 @@ class MemeCard extends Component {
   render() {
     const {classes, data, user, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
+    console.log(user)
     return (
       <div className={classes.root}>
         {data._id && (

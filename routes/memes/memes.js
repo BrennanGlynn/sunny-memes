@@ -180,7 +180,6 @@ router.use("/recent", (req, res) => {
       visits: {$first: "$visits"},
       tags:{$first:"$tags"},
       characters:{$first:"$characters"},
-      numFaves: {$first: "$numFaves"},
       comments: {$push: "$comments"}
     }
   },

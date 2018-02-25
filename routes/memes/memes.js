@@ -155,6 +155,21 @@ router.use("/recent", (req, res) => {
         as: "comments",
       },
     },
+    {
+      $group: {
+        _id: "$_id",
+        title:{$first:"$title"},
+        url:{$first:"$url"},
+        uploaded_by:{$first:"$uploaded_by"},
+        author_name:{$first:"$author_name"},
+        favorites: {$first: "$favorites"},
+        visits: {$first: "$visits"},
+        tags:{$first:"$tags"},
+        characters:{$first:"$characters"},
+        numFaves: {$first: "$numFaves"},
+        comments: {$push: "$comments"}
+      }
+    },
     {$limit: memesPerPage},
     function (err, docs) {
       if (!err) res.json({documents: docs})

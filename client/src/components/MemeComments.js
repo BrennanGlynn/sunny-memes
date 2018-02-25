@@ -147,7 +147,7 @@ const MemeComments = ({classes}) => {
               </Grid>
               <Grid item xs={10} className={classes.addComment}>
                 <TextField
-                  defaultValue="Type a comment"
+                  placeholder="Type a comment"
                   InputProps={{
                     disableUnderline: true,
                     classes: {

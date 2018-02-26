@@ -96,7 +96,7 @@ class UploadForm extends Component {
         formData.append('title', f.title)
         formData.append('characters', f.characters)
 
-        promises.push(fetch('upload', {
+        promises.push(fetch('memes', {
           credentials: 'include',
           method: 'post',
           body: formData,

@@ -7,8 +7,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const auth = require('./api/auth');
-const upload = require('./api/memes/upload');
-const memeRouter = require('./api/memes/memes');
+const memeRouter = require('./api/memes/index');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -37,7 +36,6 @@ app.set('view engine', 'hbs');
 
 app.use('/auth', auth);
 app.use('/memes', memeRouter);
-app.use('/upload', upload);
 
 // app.use(express.static(path.join(__dirname, '/client/build')));
 // app.get('*', function(req, res) {

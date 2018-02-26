@@ -85,6 +85,13 @@ export const changeCurrentIndex = (index) => {
     index
   }
 }
+
+export const uploadedMemes = () => {
+  return dispatch => {
+    dispatch(getMyMemes(""))
+    dispatch(getRecentMemes(""))
+  }
+}
 //============================================================================requesting memes
 export const fetchAllMemes = () => {
   return (dispatch, getState) => {
@@ -209,13 +216,6 @@ export const memeDeleted = (memeId) => {
   return {
     type: "MEME_DELETED",
     meme: memeId,
-  }
-}
-
-export const uploadedMemes = () => {
-  return dispatch => {
-    dispatch(getMyMemes(""))
-    dispatch(getRecentMemes(""))
   }
 }
 

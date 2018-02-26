@@ -13,7 +13,7 @@ import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-import ChatBubbleIcon from 'material-ui-icons/ChatBubble';
+import CommentsIcon from 'material-ui-icons/Forum';
 import Collapse from 'material-ui/transitions/Collapse';
 import MemePopupContainer from '../../containers/memes/MemePopupContainer'
 
@@ -248,7 +248,7 @@ class MemeCard extends Component {
                   aria-expanded={this.state.expanded}
                   aria-label="Show more"
                 >
-                  <ChatBubbleIcon />
+                  <CommentsIcon />
                 </IconButton>
                 <IconButton aria-label="Share">
                   <ShareIcon/>

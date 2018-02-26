@@ -129,24 +129,25 @@ router.use("/recent", (req, res) => {
   }
 
   Meme.aggregate(
+    // Only find memes with all characters
     {$match: query},
+    // Sort them by most recent
     {
       $sort: {
         "_id": -1,
       },
     },
+    // Skip to page needed
     {$skip: page * memesPerPage || 0},
-    {
-      $addFields: {
-        "numFaves": {"$size": "$favorites"},
-      },
-    },
+
+    // Make a separate meme for each comment id
     {
       $unwind: {
         path: "$comments",
         preserveNullAndEmptyArrays: true,
       },
     },
+    // For each meme convert comment id to the comment from the database
     {
       $lookup: {
         from: "comments",
@@ -155,45 +156,49 @@ router.use("/recent", (req, res) => {
         as: "comments",
       },
     },
+    // Convert comment array to object
     {
       $unwind: {
         path: "$comments",
         preserveNullAndEmptyArrays: true,
       }
     },
+    // Do the same thing recursively for replies
     {
-      $lookup: {
+      $graphLookup: {
         from: "comments",
-        localField: "comments.children",
-        foreignField: "_id",
-        as: "comments.children"
+        startWith: "$comments.children",
+        connectFromField: "comments.children",
+        connectToField: "_id",
+        as: "comments.children",
       }
     },
-  {
-    $group: {
-      _id: "$_id",
-      title:{$first:"$title"},
-      url:{$first:"$url"},
-      uploaded_by:{$first:"$uploaded_by"},
-      author_name:{$first:"$author_name"},
-      favorites: {$first: "$favorites"},
-      visits: {$first: "$visits"},
-      tags:{$first:"$tags"},
-      characters:{$first:"$characters"},
-      comments: {$push: "$comments"}
+    //  Merge all of the comments back into 1 meme object
+    {
+      $group: {
+        _id: "$_id",
+        title: {$first: "$title"},
+        url: {$first: "$url"},
+        uploaded_by: {$first: "$uploaded_by"},
+        author_name: {$first: "$author_name"},
+        favorites: {$first: "$favorites"},
+        visits: {$first: "$visits"},
+        tags: {$first: "$tags"},
+        characters: {$first: "$characters"},
+        comments: {$push: "$comments"}
+      }
+    },
+    {
+      $limit: memesPerPage
     }
-  },
-  {
-    $limit: memesPerPage
-  }
-,
+    ,
 
-  function (err, docs) {
-    if (!err) res.json({documents: docs})
-  }
+    function (err, docs) {
+      if (!err) res.json({documents: docs})
+    }
 
-,
-)
+    ,
+  )
 })
 
 router.use("/favorites", (req, res) => {

@@ -6,9 +6,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const auth = require('./routes/auth');
-const upload = require('./routes/memes/upload');
-const memeRouter = require('./routes/memes/memes');
+const auth = require('./api/auth');
+const upload = require('./api/memes/upload');
+const memeRouter = require('./api/memes/memes');
 
 const app = express();
 const port = process.env.PORT || 3001;

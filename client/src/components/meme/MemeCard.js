@@ -6,12 +6,15 @@ import {Avatar, Chip, Divider, ListItemIcon, Typography} from 'material-ui/';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
 import StarIcon from 'material-ui-icons/Star';
+import classnames from 'classnames';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
+import ChatBubbleIcon from 'material-ui-icons/ChatBubble';
+import Collapse from 'material-ui/transitions/Collapse';
 import MemePopupContainer from '../../containers/memes/MemePopupContainer'
 
 const styles = theme => ({
@@ -19,6 +22,9 @@ const styles = theme => ({
     position: 'relative',
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+  collapseWrapper: {
+    height: '100%',
   },
   card: {
     // borderTop: '5px solid #2C8943'
@@ -109,9 +115,14 @@ class MemeCard extends Component {
     this.state = {
       anchorEl: null,
       favorite: this.props.data.favorites.includes(this.props.user),
-      zoomed: false
+      zoomed: false,
+      expanded: false,
     }
   }
+
+  handleExpandClick = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
 
   handleVertClick = event => {
     this.setState({anchorEl: event.currentTarget});
@@ -154,10 +165,16 @@ class MemeCard extends Component {
   }
 
   render() {
-    const {classes, data, user, admin, memeArray, index, toggleCharacter} = this.props;
+    const {classes, data, user, loggedIn, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
+    const contentStyle = {  transition: 'margin-top 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
+    console.log(user)
+
+    if (this.state.expanded) {
+      contentStyle.marginBottom = 256;
+    }
     return (
-      <div className={classes.root}>
+      <div style={contentStyle} className={classes.root}>
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
@@ -220,8 +237,18 @@ class MemeCard extends Component {
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon
-                    className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}/><Typography
-                  type={'body2'} className={classes.favoriteNumber}>{data.favorites.length}</Typography>
+                    className={loggedIn && (data.favorites.includes(user) || this.state.favorite) ? classes.favorite : ''}/><Typography
+                    type={'body2'} className={classes.favoriteNumber}>{data.numFaves}</Typography>
+                </IconButton>
+                <IconButton
+                  className={classnames(classes.expand, {
+                    [classes.expandOpen]: this.state.expanded,
+                  })}
+                  onClick={this.handleExpandClick}
+                  aria-expanded={this.state.expanded}
+                  aria-label="Show more"
+                >
+                  <ChatBubbleIcon />
                 </IconButton>
                 <IconButton aria-label="Share">
                   <ShareIcon/>
@@ -231,6 +258,35 @@ class MemeCard extends Component {
                      download=""><FileDownloadIcon/></a>
                 </IconButton>
               </CardActions>
+              <Collapse className={classes.collapseWrapper} in={this.state.expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography paragraph variant="body2">
+                    Method:
+                  </Typography>
+                  <Typography paragraph>
+                    Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+                    minutes.
+                  </Typography>
+                  <Typography paragraph>
+                    Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+                    heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+                    browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+                    chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
+                    salt and pepper, and cook, stirring often until thickened and fragrant, about 10
+                    minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                  </Typography>
+                  <Typography paragraph>
+                    Add rice and stir very gently to distribute. Top with artichokes and peppers, and
+                    cook without stirring, until most of the liquid is absorbed, 15 to 18 minutes.
+                    Reduce heat to medium-low, add reserved shrimp and mussels, tucking them down into
+                    the rice, and cook again without stirring, until mussels have opened and rice is
+                    just tender, 5 to 7 minutes more. (Discard any mussels that don’t open.)
+                  </Typography>
+                  <Typography>
+                    Set aside off of the heat to let rest for 10 minutes, and then serve.
+                  </Typography>
+                </CardContent>
+              </Collapse>
             </Card>
 
 

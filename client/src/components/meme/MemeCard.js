@@ -156,7 +156,6 @@ class MemeCard extends Component {
   render() {
     const {classes, data, user, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
-    console.log(user)
     return (
       <div className={classes.root}>
         {data._id && (
@@ -222,7 +221,7 @@ class MemeCard extends Component {
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon
                     className={data.favorites.includes(user) || this.state.favorite ? classes.favorite : ''}/><Typography
-                  type={'body2'} className={classes.favoriteNumber}>{data.numFaves}</Typography>
+                  type={'body2'} className={classes.favoriteNumber}>{data.favorites.length}</Typography>
                 </IconButton>
                 <IconButton aria-label="Share">
                   <ShareIcon/>

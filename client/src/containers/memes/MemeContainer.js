@@ -6,6 +6,7 @@ import {changeCurrentIndex} from "../../actions";
 const mapStateToProps = (state, props) => {
   return {
     user: state.auth.user.id,
+    loggedIn: state.auth.loggedIn,
     admin: state.auth.user.admin,
     memeIndex: props.memeIndex,
     data: props.meme

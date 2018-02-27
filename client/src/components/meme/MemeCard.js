@@ -267,7 +267,7 @@ class MemeCard extends Component {
               {/*Expanded section*/}
               <Collapse in={this.state.expanded} className={classes.collapse} timeout="100">
                 <CardContent>
-                  <MemeComments />
+                  <MemeComments meme={data} />
                 </CardContent>
               </Collapse>
             </Card>

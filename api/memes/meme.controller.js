@@ -6,6 +6,7 @@
  * GET     /memes/recent       ->  getRecent
  * GET     /memes/favorites    ->  getFavs
  * POST    /memes/favorite     ->  favorite
+ * PUT     /memes/:id/comment  ->  comment
  * DELETE  /memes/:id          ->  destroy
  */
 
@@ -266,40 +267,28 @@ exports.getFavs = (req, res) => {
 }
 
 exports.favorite = (req, res) => {
+  const memeId = req.body.meme
+  const userId = req.user._id
+
   // login check
   if (!req.user) return res.json({message: "Please login first"})
 
   // find meme being updated
-  Meme.findOne({_id: req.body.meme}, "favorites", function (err, meme) {
+  Meme.findOne({_id: memeId}, "favorites", function (err, meme) {
     if (err) {
       return res.json({error: err})
-
       // add favorite if user hasn't already
-    } else if (meme.favorites.indexOf(req.user._id) === -1) {
-
-      Meme.findByIdAndUpdate(req.body.meme, {$addToSet: {favorites: req.user._id}}, {
-        safe: true,
-        new: true,
-      }, (err, meme) => {
-        if (err) {
-          return res.json({"Error adding favorite": err});
-        } else return res.json({
-          meme: req.body.meme,
-          updatedMeme: meme,
-        })
-      })
+    } else if (meme.favorites.indexOf(userId) === -1) {
+      updateMeme({$addToSet: {favorites: userId}}, req, res)
       // remove favorite if user had set it as a favorite before
     } else {
-      Meme.findByIdAndUpdate(req.body.meme, {$pull: {favorites: req.user._id}}, {new: true}, (err, meme) => {
-        if (err) {
-          return res.json({message: err});
-        } else return res.json({
-          updatedMeme: meme,
-          meme: req.body.meme,
-        })
-      })
+      updateMeme({$pull: {favorites: userId}}, req, res)
     }
   })
+}
+
+exports.comment = (req, res) => {
+
 }
 
 exports.destroy = (req, res) => {
@@ -325,5 +314,25 @@ exports.destroy = (req, res) => {
         return res.json({error: "not authorized to delete this file"})
       }
     }
+  })
+}
+
+function updateMeme(update, req, res) {
+  Meme.findOne({_id: req.body.meme}, "favorites", function (err, meme) {
+    if (err) {
+      return res.json({error: err})
+    }
+
+    Meme.findByIdAndUpdate(req.body.meme, update, {
+      safe: true,
+      new: true,
+    }, (err, meme) => {
+      if (err) {
+        return res.json({"Error adding favorite": err});
+      } else return res.json({
+        meme: req.body.meme,
+        updatedMeme: meme,
+      })
+    })
   })
 }

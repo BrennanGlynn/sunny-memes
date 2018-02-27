@@ -35,6 +35,7 @@ class RecentMemes extends Component {
   render() {
     const {classes, memes} = this.props;
     let memeArray = [];
+    let masonry = this.masonry
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
         memeArray.push(memes[key])
@@ -47,11 +48,12 @@ class RecentMemes extends Component {
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <Masonry
+              ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
               options={{fitWidth: true}}
               className={classes.memeWrapper}
             >
               {memeArray.map((meme, i) =>
-                <MemeContainer meme={meme} index={i} memeArray={memeArray} key={meme._id}/>
+                <MemeContainer meme={meme} index={i} memeArray={memeArray} key={meme._id} masonry={masonry}/>
               )}
             </Masonry>
           </Grid>

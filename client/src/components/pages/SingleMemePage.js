@@ -41,7 +41,9 @@ class SingleMemePage extends Component {
               (
                 <Grid container justify="center">
                   <Grid item>
-                    <MemeContainer meme={this.state.data} />
+                    <MemeContainer meme={this.state.data} masonry={{layout: function () {
+                        console.log("masonry not enabled")
+                      }}} />
                   </Grid>
 
                   <Grid item>

@@ -101,7 +101,7 @@ const styles = theme => ({
 })
 
 const MemeComments = ({classes, meme}) => {
-  const comments = meme.comments ? meme.comments : false
+  const comments = meme && meme.comments ? meme.comments : false
   return (
     <div>
       {meme && comments ? meme.comments.map((comment) =>

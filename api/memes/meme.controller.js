@@ -28,6 +28,55 @@ const projectionTemplate = {
   "comments": 1,
 }
 
+const commentAggregation = [// Make a separate meme for each comment id
+  {
+    $unwind: {
+      path: "$comments",
+      preserveNullAndEmptyArrays: true,
+    },
+  },
+  // For each meme convert comment id to the comment from the database
+  {
+    $lookup: {
+      from: "comments",
+      localField: "comments",
+      foreignField: "_id",
+      as: "comments",
+    },
+  },
+  // Convert comment array to object
+  {
+    $unwind: {
+      path: "$comments",
+      preserveNullAndEmptyArrays: true,
+    }
+  },
+  // Do the same thing recursively for replies
+  {
+    $graphLookup: {
+      from: "comments",
+      startWith: "$comments.children",
+      connectFromField: "comments.children",
+      connectToField: "_id",
+      as: "comments.children",
+    }
+  },
+  //  Merge all of the comments back into 1 meme object
+  {
+    $group: {
+      _id: "$_id",
+      title: {$first: "$title"},
+      url: {$first: "$url"},
+      uploaded_by: {$first: "$uploaded_by"},
+      author_name: {$first: "$author_name"},
+      favorites: {$first: "$favorites"},
+      visits: {$first: "$visits"},
+      tags: {$first: "$tags"},
+      characters: {$first: "$characters"},
+      comments: {$push: "$comments"}
+    }
+  }]
+
 exports.index = (req, res) => {
   const page = req.query.page;
   const chars = req.query.chars;
@@ -41,9 +90,7 @@ exports.index = (req, res) => {
 
   Meme.aggregate(
     {$match: query},
-    {
-      $project: projectionTemplate,
-    },
+    ...commentAggregation,
     {
       $sort: {
         "numFaves": -1,
@@ -136,9 +183,7 @@ exports.getMine = (req, res) => {
 
   Meme.aggregate(
     {$match: query},
-    {
-      $project: projectionTemplate,
-    },
+    ...commentAggregation,
     {
       $sort: {
         "_id":
@@ -168,54 +213,7 @@ exports.getRecent = (req, res) => {
   Meme.aggregate(
     // Only find memes with all characters
     {$match: query},
-    // Make a separate meme for each comment id
-    {
-      $unwind: {
-        path: "$comments",
-        preserveNullAndEmptyArrays: true,
-      },
-    },
-    // For each meme convert comment id to the comment from the database
-    {
-      $lookup: {
-        from: "comments",
-        localField: "comments",
-        foreignField: "_id",
-        as: "comments",
-      },
-    },
-    // Convert comment array to object
-    {
-      $unwind: {
-        path: "$comments",
-        preserveNullAndEmptyArrays: true,
-      }
-    },
-    // Do the same thing recursively for replies
-    {
-      $graphLookup: {
-        from: "comments",
-        startWith: "$comments.children",
-        connectFromField: "comments.children",
-        connectToField: "_id",
-        as: "comments.children",
-      }
-    },
-    //  Merge all of the comments back into 1 meme object
-    {
-      $group: {
-        _id: "$_id",
-        title: {$first: "$title"},
-        url: {$first: "$url"},
-        uploaded_by: {$first: "$uploaded_by"},
-        author_name: {$first: "$author_name"},
-        favorites: {$first: "$favorites"},
-        visits: {$first: "$visits"},
-        tags: {$first: "$tags"},
-        characters: {$first: "$characters"},
-        comments: {$push: "$comments"}
-      }
-    },
+    ...commentAggregation,
     // Sort them by most recent
     {
       $sort: {
@@ -250,9 +248,7 @@ exports.getFavs = (req, res) => {
 
   Meme.aggregate(
     {$match: query},
-    {
-      $project: projectionTemplate,
-    },
+    ...commentAggregation,
     {
       $sort: {
         "_id": -1,

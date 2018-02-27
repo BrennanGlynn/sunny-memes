@@ -20,6 +20,7 @@ class MyMemes extends Component {
   render() {
     const {classes, memes} = this.props;
     const memesArray = []
+    const masonry = this.masonry
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
         memesArray.push(memes[key])
@@ -34,11 +35,12 @@ class MyMemes extends Component {
               <Grid item xs={12}>
                 <div className="center">
                   <Masonry
+                    ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
                     options={{fitWidth: true}}
                     className={classes.masonry}
                   >
                     {memesArray.map((meme, i) =>
-                      <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+                      <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id} masonry={masonry}/>
                     )}
                   </Masonry>
                 </div>

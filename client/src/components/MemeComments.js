@@ -101,9 +101,10 @@ const styles = theme => ({
 })
 
 const MemeComments = ({classes, meme}) => {
+  const comments = meme.comments ? meme.comments : false
   return (
     <div>
-      {meme && meme.comments[0]._id ? meme.comments.map((comment) =>
+      {meme && comments ? meme.comments.map((comment) =>
         <Paper key={comment._id} className={classes.root} style={{boxShadow: 'none'}}>
           <Grid container spacing={0} justify="flex-start" wrap="nowrap">
             <Grid item>

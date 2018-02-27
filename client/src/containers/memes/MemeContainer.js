@@ -9,7 +9,8 @@ const mapStateToProps = (state, props) => {
     loggedIn: state.auth.loggedIn,
     admin: state.auth.user.admin,
     memeIndex: props.memeIndex,
-    data: props.meme
+    data: props.meme,
+    masonry: props.masonry
   }
 }
 

@@ -20,38 +20,32 @@ const styles = {
 }
 
 class MostPopular extends Component {
-  // todo fix character sorting
+  //
   // componentDidMount() {
-  //   // Get the current users details from the backend server
-  //   const chars = queryString.parse(this.props.location.search).chars
-  //   let query = 'memes';
-  //   if (typeof chars === 'object') {
-  //     query = query + '?chars=' + chars.join('&chars=');
-  //   } else if (typeof chars === 'string') {
-  //     query = query + '?chars=' + chars;
-  //   }
+  //   this.setState({masonry: this.masonry})
   // }
 
   render() {
     const {classes, memes} = this.props;
+    let masonry = this.masonry
     let memesArray = []
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
         memesArray.push(memes[key])
       }
     }
-
     return (
       <div>
         <FilterModalContainer/>
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <Masonry
+              ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
               options={{fitWidth: true}}
               className={classes.memeWrapper}
             >
               {memesArray.map((meme, i) =>
-                <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+                <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id} masonry={masonry}/>
               )}
             </Masonry>
           </Grid>

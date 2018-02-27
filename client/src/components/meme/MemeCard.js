@@ -23,11 +23,11 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  collapseWrapper: {
-    height: '100%',
-  },
   card: {
     // borderTop: '5px solid #2C8943'
+  },
+  collapse: {
+    marginBottom: 10
   },
   chipContainer: {
     alignItems: 'center',
@@ -121,7 +121,12 @@ class MemeCard extends Component {
   }
 
   handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
+    let masonry = this.props.masonry
+    this.setState({expanded: !this.state.expanded}, function () {
+      setTimeout(function () {
+        masonry.layout()
+      }, 300)
+    });
   };
 
   handleVertClick = event => {
@@ -167,12 +172,8 @@ class MemeCard extends Component {
   render() {
     const {classes, data, user, loggedIn, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
-    const contentStyle = {  transition: 'margin-top 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
-    console.log(user)
+    const contentStyle = {transition: 'margin-top 450ms cubic-bezier(0.23, 1, 0.32, 1)'};
 
-    if (this.state.expanded) {
-      contentStyle.marginBottom = 256;
-    }
     return (
       <div style={contentStyle} className={classes.root}>
         {data._id && (
@@ -186,7 +187,8 @@ class MemeCard extends Component {
                     <MoreVertIcon/>
                   </IconButton>
                 </CardActions>
-                <a className={classes.link} href={`/meme/${data._id}`}><Typography type="subheading" className={classes.title}>{data.title || 'Loading Title...'}</Typography></a>
+                <a className={classes.link} href={`/meme/${data._id}`}><Typography type="subheading"
+                                                                                   className={classes.title}>{data.title || 'Loading Title...'}</Typography></a>
                 <Typography
                   type="caption">{MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}</Typography>
               </CardContent>
@@ -217,7 +219,8 @@ class MemeCard extends Component {
                 </MenuItem>
               </Menu>
               <div className={classes.background}>
-                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme.bind(this, index)}/>
+                <img src={data.url} alt={data.title} className={classes.media}
+                     onClick={this.toggleFullMeme.bind(this, index)}/>
               </div>
               {data.characters[0] !== 'undefined' &&
               <div>
@@ -238,7 +241,7 @@ class MemeCard extends Component {
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon
                     className={loggedIn && (data.favorites.includes(user) || this.state.favorite) ? classes.favorite : ''}/><Typography
-                    type={'body2'} className={classes.favoriteNumber}>{data.numFaves}</Typography>
+                  type={'body2'} className={classes.favoriteNumber}>{data.favorites.length}</Typography>
                 </IconButton>
                 <IconButton
                   className={classnames(classes.expand, {
@@ -248,7 +251,7 @@ class MemeCard extends Component {
                   aria-expanded={this.state.expanded}
                   aria-label="Show more"
                 >
-                  <CommentsIcon />
+                  <CommentsIcon/>
                 </IconButton>
                 <IconButton aria-label="Share">
                   <ShareIcon/>
@@ -258,7 +261,10 @@ class MemeCard extends Component {
                      download=""><FileDownloadIcon/></a>
                 </IconButton>
               </CardActions>
-              <Collapse className={classes.collapseWrapper} in={this.state.expanded} timeout="auto" unmountOnExit>
+
+
+              {/*Expanded section*/}
+              <Collapse in={this.state.expanded} className={classes.collapse} timeout="100">
                 <CardContent>
                   <Typography paragraph variant="body2">
                     Method:
@@ -289,8 +295,8 @@ class MemeCard extends Component {
               </Collapse>
             </Card>
 
-
-            {memeArray && <MemePopupContainer memes={memeArray} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>}
+            {memeArray &&
+            <MemePopupContainer memes={memeArray} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>}
           </div>
         )}
       </div>

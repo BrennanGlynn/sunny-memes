@@ -5,7 +5,6 @@ import {withStyles} from 'material-ui/styles';
 const styles = theme =>  ({
   root: {
     flexGrow: 1,
-    marginRight: 20,
   },
   row: {
     marginTop: 100,
@@ -19,6 +18,8 @@ const styles = theme =>  ({
     marginTop: 2.5,
   },
   firstCommentAvatar: {
+    width: 30,
+    height: 30,
     margin: 10,
     color: '#fff',
     backgroundColor: '#2c8943',
@@ -28,11 +29,12 @@ const styles = theme =>  ({
     height: 20,
     marginTop: 5,
     marginLeft: 60,
-    fontSize: 12,
+    fontSize: 10,
   },
   addCommentAvatar: {
     width: 30,
     height: 30,
+    fontSize: 12,
     margin: 10,
     marginLeft: 20,
   },
@@ -64,11 +66,11 @@ const styles = theme =>  ({
   },
   firstCommentControls: {
     marginTop: 5,
-    marginLeft: 65,
+    marginLeft: 5,
   },
   replyCommentControls: {
     marginTop: 5,
-    marginLeft: 90,
+    marginLeft: 10,
   },
   commentBottom: {
     fontSize: 11,
@@ -91,14 +93,17 @@ const styles = theme =>  ({
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },
   },
+  [theme.breakpoints.between('lg', 'xl')]: {
+    root: {
+      flexGrow: 1,
+    },
+  },
 })
 
 const MemeComments = ({classes}) => {
   return (
-    <div>
-      <Grid container spacing={0} wrap="nowrap">
-        <Grid item xs={12} md={12} zeroMinWidth>
-          <Paper className={classes.root} elevation={4}>
+      <div>
+          <Paper className={classes.root} style={{boxShadow: 'none'}}>
             <Grid container spacing={0} justify="flex-start" wrap="nowrap">
               <Grid item>
                 <Avatar className={classes.firstCommentAvatar}>BJ</Avatar>
@@ -111,13 +116,11 @@ const MemeComments = ({classes}) => {
                   This is a comment by someone and Im making it longer for demonstration. Here is some typed words.
                   And an additional line of text. Looking good!
                 </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
-              <Grid item className={classes.firstCommentControls}>
-                <Typography variant="caption">
-                  {'Like \u00b7 Reply'}
-                </Typography>
+                <div className={classes.firstCommentControls}>
+                  <Typography variant="caption">
+                    {'Like \u00b7 Reply'}
+                  </Typography>
+                </div>
               </Grid>
             </Grid>
             <Grid container spacing={0} justify="flex-start">
@@ -132,13 +135,11 @@ const MemeComments = ({classes}) => {
                   This is a nested reply! It should appear a little less wide on the page than the first comment
                   in a meme thread.
                 </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
-              <Grid item className={classes.replyCommentControls}>
-                <Typography variant="caption">
-                  {'Like \u00b7 Reply'}
-                </Typography>
+                <div className={classes.replyCommentControls}>
+                  <Typography variant="caption">
+                    {'Like \u00b7 Reply'}
+                  </Typography>
+                </div>
               </Grid>
             </Grid>
             <Grid container spacing={0} justify="flex-start" wrap="nowrap">
@@ -166,9 +167,73 @@ const MemeComments = ({classes}) => {
               </Grid>
             </Grid>
           </Paper>
-        </Grid>
-      </Grid>
-    </div>
+
+          <Paper className={classes.root} style={{boxShadow: 'none'}}>
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item>
+                <Avatar className={classes.firstCommentAvatar}>BJ</Avatar>
+              </Grid>
+              <Grid item xs>
+                <Typography variant="body2" className={classes.firstCommentName}>
+                  Ben Jeske
+                </Typography>
+                <Typography variant="caption" className={classes.firstComment}>
+                  This is a comment by someone and Im making it longer for demonstration. Here is some typed words.
+                  And an additional line of text. Looking good!
+                </Typography>
+                <div className={classes.firstCommentControls}>
+                  <Typography variant="caption">
+                    {'Like \u00b7 Reply'}
+                  </Typography>
+                </div>
+              </Grid>
+            </Grid>
+            <Grid container spacing={0} justify="flex-start">
+              <Grid item>
+                <Avatar className={classes.replyAvatar}>BG</Avatar>
+              </Grid>
+              <Grid item xs className={classes.replyWrapper}>
+                <Typography variant="body2" className={classes.replyName}>
+                  Brennan Glynn
+                </Typography>
+                <Typography variant="caption" className={classes.replyComment}>
+                  This is a nested reply! It should appear a little less wide on the page than the first comment
+                  in a meme thread.
+                </Typography>
+
+                <div className={classes.replyCommentControls}>
+                  <Typography variant="caption">
+                    {'Like \u00b7 Reply'}
+                  </Typography>
+                </div>
+              </Grid>
+            </Grid>
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item>
+                <Avatar className={classes.addCommentAvatar}>BJ</Avatar>
+              </Grid>
+              <Grid item xs={10} className={classes.addComment}>
+                <TextField
+                  placeholder="Type a comment"
+                  InputProps={{
+                    disableUnderline: true,
+                    classes: {
+                      root: classes.textFieldRoot,
+                      input: classes.textFieldInput,
+                    },
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    className: classes.textFieldFormLabel,
+                  }}
+                />
+                <Button size="small" className={classes.replyButton}>
+                  Reply
+                </Button>
+              </Grid>
+            </Grid>
+          </Paper>
+        </div>
   )
 }
 

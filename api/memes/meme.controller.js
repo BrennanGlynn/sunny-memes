@@ -29,6 +29,21 @@ const projectionTemplate = {
 }
 
 const commentAggregation = [// Make a separate meme for each comment id
+  //Get meme authors info
+  {
+    $lookup: {
+      from: "users",
+      localField: "uploaded_by",
+      foreignField: "_id",
+      as: "uploaded_by"
+    }
+  },
+  {
+    $unwind: {
+      path: "$uploaded_by",
+      preserveNullAndEmptyArrays: true,
+    }
+  },
   {
     $unwind: {
       path: "$comments",
@@ -51,6 +66,14 @@ const commentAggregation = [// Make a separate meme for each comment id
       preserveNullAndEmptyArrays: true,
     }
   },
+  {
+    $lookup: {
+      from: "users",
+      localField: "comments.uploaded_by",
+      foreignField: "_id",
+      as: "comments.uploaded_by"
+    }
+  },
   // Do the same thing recursively for replies
   {
     $graphLookup: {
@@ -59,6 +82,20 @@ const commentAggregation = [// Make a separate meme for each comment id
       connectFromField: "comments.children",
       connectToField: "_id",
       as: "comments.children",
+    }
+  },
+  {
+    $unwind: {
+      path: "$comments.children",
+      preserveNullAndEmptyArrays: true,
+    }
+  },
+  {
+    $lookup: {
+      from: "users",
+      localField: "comments.children.uploaded_by",
+      foreignField: "_id",
+      as: "comments.children.uploaded_by"
     }
   },
   //  Merge all of the comments back into 1 meme object
@@ -91,6 +128,9 @@ exports.index = (req, res) => {
   Meme.aggregate(
     {$match: query},
     ...commentAggregation,
+    {
+      $addFields: {numFaves: {$size: "$favorites"}}
+    },
     {
       $sort: {
         "numFaves": -1,

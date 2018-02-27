@@ -1,16 +1,10 @@
 import React, {Component} from 'react';
-import {Typography, Grid, Button, withStyles} from 'material-ui';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import {Button, Grid, Typography, withStyles} from 'material-ui';
+import {createMuiTheme} from 'material-ui/styles';
 import Masonry from 'react-masonry-component';
 import Dropzone from 'react-dropzone';
 import UploadPreviewCard from "./UploadPreviewCard";
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog';
-import { LinearProgress } from 'material-ui/Progress';
+import {LinearProgress} from 'material-ui/Progress';
 import ErrorDialog from "./ErrorDialog";
 
 const styles = createMuiTheme({

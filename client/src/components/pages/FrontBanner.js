@@ -1,22 +1,9 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-import {Typography, Grid, Paper} from "material-ui/";
+import {Grid} from "material-ui/";
 import MostPopularContainer from "../../containers/pages/MostPopularContainer";
 
-let bannerBackgroundUrl = '/images/front-page-dayman-nightman.png'
 const styles = theme => ({
-  // bannerWrapper: {
-  //   textAlign: 'center',
-  //   position: 'relative',
-  //   marginLeft: 'auto',
-  //   marginRight: 'auto',
-  //   height: '350px',
-  //   paddingTop: '5px',
-  //   backgroundColor: '#2f8a45',
-  //   backgroundImage: 'url(' + bannerBackgroundUrl + ')',
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundPosition: 'center',
-  // },
   root: theme.mixins.gutters({
     paddingTop: 16,
     paddingBottom: 16,
@@ -37,7 +24,6 @@ const styles = theme => ({
 
 class FrontBanner extends Component {
   render() {
-    const {classes} = this.props;
     return (
       <div>
         <Grid container spacing={0}>

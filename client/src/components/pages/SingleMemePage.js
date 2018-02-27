@@ -1,7 +1,5 @@
-
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
-import { Grid, Paper } from 'material-ui/';
+import {Grid, Paper} from 'material-ui/';
 import MemeContainer from "../../containers/memes/MemeContainer";
 
 class SingleMemePage extends Component {
@@ -33,8 +31,6 @@ class SingleMemePage extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-
     return(
       <div>
         {this.state.loading ?

@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles";
-import {Typography, Grid, Avatar, Chip, Modal, Divider} from "material-ui/";
+import {Avatar, Chip, Divider, Grid, Modal, Typography} from "material-ui/";
 import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 

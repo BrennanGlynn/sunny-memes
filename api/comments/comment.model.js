@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const UserSchema = require("./auth/user.model")
+const UserSchema = require("../auth/user.model")
 
 const CommentSchema = new Schema({
   userId: {

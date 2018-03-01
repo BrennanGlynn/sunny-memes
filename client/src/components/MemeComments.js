@@ -106,13 +106,14 @@ const MemeComments = ({classes, meme}) => {
     <div>
       {comments && comments[0] && comments[0]._id ? meme.comments.map((comment) =>
         <Paper key={comment._id} className={classes.root} style={{boxShadow: 'none'}}>
+          {console.log(comment)}
           <Grid container spacing={0} justify="flex-start" wrap="nowrap">
             <Grid item>
               <Avatar className={classes.firstCommentAvatar}>BJ</Avatar>
             </Grid>
             <Grid item xs>
               <Typography variant="body2" className={classes.firstCommentName}>
-                {comment.uploaded_by}
+                {comment.uploaded_by._id}
               </Typography>
               <Typography variant="caption" className={classes.firstComment}>
                 {comment.text}
@@ -124,7 +125,7 @@ const MemeComments = ({classes, meme}) => {
               </div>
             </Grid>
           </Grid>
-          {comment.children && comment.children.map(comment =>
+          {comment.children && comment.children[0] && comment.children.map(comment =>
             <div key={comment._id}>
               <Grid container spacing={0} justify="flex-start">
                 <Grid item>

@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const UserSchema = require("./auth/user.model")
 
 const CommentSchema = new Schema({
-  uploaded_by: {
+  userId: {
     type: Object.Schema.Types.ObjectId,
-    required: true
+  },
+  user: {
+    type: UserSchema
   },
   text: {
     type: String,
@@ -20,7 +23,7 @@ const CommentSchema = new Schema({
   meme_id: {
     type: Schema.Types.ObjectId,
     required: true
-  }
+  },
 })
 
 // example adding a comment to database

@@ -74,6 +74,12 @@ const commentAggregation = [// Make a separate meme for each comment id
       as: "comments.uploaded_by"
     }
   },
+  {
+    $unwind: {
+      path: "$comments.uploaded_by",
+      preserveNullAndEmptyArrays: true
+    }
+  },
   // Do the same thing recursively for replies
   {
     $graphLookup: {
@@ -84,20 +90,14 @@ const commentAggregation = [// Make a separate meme for each comment id
       as: "comments.children",
     }
   },
-  {
-    $unwind: {
-      path: "$comments.children",
-      preserveNullAndEmptyArrays: true,
-    }
-  },
-  {
-    $lookup: {
-      from: "users",
-      localField: "comments.children.uploaded_by",
-      foreignField: "_id",
-      as: "comments.children.uploaded_by"
-    }
-  },
+  // {
+  //   $lookup: {
+  //     from: "users",
+  //     localField: "comments.children.uploaded_by",
+  //     foreignField: "_id",
+  //     as: "comments.children.uploaded_by"
+  //   }
+  // },
   //  Merge all of the comments back into 1 meme object
   {
     $group: {
@@ -110,9 +110,10 @@ const commentAggregation = [// Make a separate meme for each comment id
       visits: {$first: "$visits"},
       tags: {$first: "$tags"},
       characters: {$first: "$characters"},
-      comments: {$push: "$comments"}
+      comments: {$push: "$comments"},
     }
-  }]
+  }
+]
 
 exports.index = (req, res) => {
   const page = req.query.page;

@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const auth = require('./api/auth');
+const auth = require('./api/auth/auth');
 const memeRouter = require('./api/memes/index');
 
 const app = express();

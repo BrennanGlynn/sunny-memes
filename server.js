@@ -10,7 +10,7 @@ const passport = require('passport');
 // Grab API routers
 const auth = require('./api/auth/auth');
 const memeRouter = require('./api/memes/index');
-const commentRouter = require('./api/comments/index')
+const commentRouter = require('./api/comments/index');
 
 // Set up express app
 const app = express();

@@ -75,8 +75,8 @@ function deleteMeme(memeCollection, memeId) {
 
 function toggleFavorite(memeCollection, memeId, newMeme) {
   memeCollection[memeId] = {
-    ...newMeme,
-    numFaves: newMeme.favorites.length,
+    ...memeCollection[memeId],
+    favorites: newMeme.favorites
   }
 
   return memeCollection

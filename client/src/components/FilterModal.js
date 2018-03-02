@@ -90,9 +90,12 @@ class FilterModal extends Component {
   render() {
     const {classes, characters, toggleChar} = this.props;
     const characterNames = ["dennis", "mac", "charlie", "dee", "frank",
-                            "waitress", "cricket", "artemis", "lawyer", "lilkev",
-                            "gailthesnail", "luther", "bonnie", "mrsmac", "benthesolider",
-                            "liam", "ryan", "margaret",
+                            "waitress", "cricket", "artemis", "lawyer", "lilkev", "countrymac",
+                            "gailthesnail", "unclejack", "bonnie", "luther", "mrsmac", "barbara",
+                            "benthesolider", "pondy", "maureen",
+                            "liam", "ryan", "margaret", "pappy",
+                            "roxy", "gladys", "z", "duncan", "maniac", "rex", "hwang", "ingrid",
+                            "rubytaft",
                            ]
 
     return (

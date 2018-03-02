@@ -16,7 +16,7 @@ import MoreVertIcon from 'material-ui-icons/MoreVert';
 import CommentsIcon from 'material-ui-icons/Forum';
 import Collapse from 'material-ui/transitions/Collapse';
 import MemePopupContainer from '../../containers/memes/MemePopupContainer';
-import MemeComments from '../MemeComments';
+import MemeComments from '../comments/MemeComments';
 
 const styles = theme => ({
   frontCardWrapper: {

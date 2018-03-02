@@ -25,6 +25,9 @@ const styles = theme => ({
       marginLeft: '2.5%',
     },
   },
+  root: {
+    paddingRight: '5%',
+  },
   openModal: {
     position: "absolute",
     top: "50%",
@@ -110,7 +113,7 @@ class FilterModal extends Component {
     return (
         <div>
           <Grid container className={classes.root} alignItems="center" spacing={0}>
-            <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
+            <Grid item xs={12} md={12} lg={12} xl={12} className={classes.chipTopContainer}>
               {characters.map(character =>
                 <Chip
                   key={character}

@@ -1,7 +1,8 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles";
-import {Typography, Grid, Avatar, Chip, Modal, Divider} from "material-ui/";
+import {Typography, Grid, Avatar, Checkbox, Chip, Modal, Divider} from "material-ui/";
+import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 
@@ -33,9 +34,8 @@ const styles = theme => ({
     backgroundColor: "#fff",
     boxShadow: "0 5px 15px rgba(0,0,0,.5)",
     padding: 16,
-    minWidth: "20%",
-    maxWidth: "90%",
-    height: "auto",
+    width: "20%",
+    height: 525,
   },
   filterIcon: {
     marginTop: 7.5,
@@ -43,6 +43,11 @@ const styles = theme => ({
   },
   filterText: {
     marginRight: 5,
+  },
+  characterFilterList: {
+    maxHeight: 500,
+    overflow: 'auto',
+    textTransform: 'capitalize',
   },
   chipTopContainer: {
     textAlign: 'right',
@@ -84,7 +89,11 @@ class FilterModal extends Component {
 
   render() {
     const {classes, characters, toggleChar} = this.props;
-    const characterNames = ["dennis", "mac", "charlie", "dee", "frank"]
+    const characterNames = ["dennis", "mac", "charlie", "dee", "frank",
+                            "waitress", "cricket", "artemis", "lawyer", "lilkev",
+                            "gailthesnail", "luther", "bonnie", "mrsmac", "benthesolider",
+                            "liam", "ryan", "margaret",
+                           ]
 
     return (
       <div>
@@ -125,17 +134,20 @@ class FilterModal extends Component {
             <Divider/>
             <Grid container justify="flex-end" spacing={0}>
               <Grid item xs={12} sm={12} md={12}>
-                <div className={classes.chipContainer}>
-                  {characterNames.map(character =>
-                    <Chip
-                      key={character}
-                      avatar={<Avatar src={`/images/${character}.jpg`}/>}
-                      label={character}
-                      className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
-                      onClick={toggleChar.bind(this, character)}
-                    />,
-                  )}
-                </div>
+                <List className={classes.characterFilterList}>
+                  {characterNames.map(character => (
+                    <ListItem key={character} onClick={toggleChar.bind(this, character)} dense button className={classes.listItem}>
+                      <Avatar alt={`${character}`} src={`/images/${character}.jpg`}/>
+                      <ListItemText primary={`${character}`} />
+                      <ListItemSecondaryAction>
+                        <Checkbox
+                          onChange={toggleChar.bind(this, character)}
+                          checked={characters.includes(character)}
+                        />
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+                </List>
               </Grid>
             </Grid>
           </div>

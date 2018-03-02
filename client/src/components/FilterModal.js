@@ -126,7 +126,7 @@ class FilterModal extends Component {
             <Grid container justify="flex-end" spacing={0}>
               <Grid item xs={12} sm={12} md={12}>
                 <div className={classes.chipContainer}>
-                  {characterNames.map(character =>
+                  {characters.map(character =>
                     <Chip
                       key={character}
                       avatar={<Avatar src={`/images/${character}.jpg`}/>}

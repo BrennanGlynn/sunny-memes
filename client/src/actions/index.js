@@ -64,6 +64,12 @@ export const toggleCharacter = (character) => {
   }
 }
 
+export const removeFilter = () => {
+  return dispatch => {
+    dispatch(updateFilter([]))
+  }
+}
+
 export const updateFilter = (characterArray) => {
   return dispatch => {
     dispatch(updatedFilter(characterArray))
@@ -238,5 +244,3 @@ function memeRequest(dispatch, query, receivedAction) {
     dispatch(receivedAction(memes))
   })
 }
-
-

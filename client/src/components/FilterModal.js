@@ -1,7 +1,8 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types";
-import {withStyles} from "material-ui/styles";
-import {Typography, Grid, Avatar, Chip, Modal, Divider} from "material-ui/";
+import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
+import {Typography, Grid, Avatar, Checkbox, Chip, Modal, Divider} from "material-ui/";
+import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 
@@ -33,9 +34,8 @@ const styles = theme => ({
     backgroundColor: "#fff",
     boxShadow: "0 5px 15px rgba(0,0,0,.5)",
     padding: 16,
-    minWidth: "20%",
-    maxWidth: "90%",
-    height: "auto",
+    width: "20%",
+    height: 525,
   },
   filterIcon: {
     marginTop: 7.5,
@@ -43,6 +43,14 @@ const styles = theme => ({
   },
   filterText: {
     marginRight: 5,
+  },
+  characterFilterList: {
+    maxHeight: 500,
+    overflow: 'auto',
+    textTransform: 'capitalize',
+  },
+  checkedSecondary: {
+    color: '#2c8943',
   },
   chipTopContainer: {
     textAlign: 'right',
@@ -65,6 +73,12 @@ const styles = theme => ({
   },
 });
 
+const checkboxTheme = createMuiTheme({
+  checkedSecondary: {
+    color: '#2c8943',
+  },
+});
+
 class FilterModal extends Component {
   constructor(props) {
     super(props)
@@ -84,63 +98,76 @@ class FilterModal extends Component {
 
   render() {
     const {classes, characters, toggleChar} = this.props;
-    const characterNames = ["dennis", "mac", "charlie", "dee", "frank"]
+    const characterNames = ["dennis", "mac", "charlie", "dee", "frank",
+                            "waitress", "cricket", "artemis", "lawyer", "lilkev", "countrymac",
+                            "gailthesnail", "unclejack", "bonnie", "luther", "mrsmac", "barbara",
+                            "ben", "pondy", "maureen",
+                            "liam", "ryan", "margaret", "pappy",
+                            "roxy", "gladys", "z", "duncan", "maniac", "rex", "hwang", "ingrid",
+                            "rubytaft",
+                           ]
 
     return (
-      <div>
-        <Grid container className={classes.root} alignItems="center" spacing={0}>
-          <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
-            {characters.map(character =>
-              <Chip
-                key={character}
-                avatar={<Avatar src={`/images/${character}.jpg`}/>}
-                label={character}
-                className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
-                onDelete={toggleChar.bind(this, character)}
-              />,
-            )}
-            <IconButton
-              aria-haspopup="true"
-              onClick={this.handleOpen}
-              className={classes.filterIcon}
-            >
-              <Typography variant="caption" className={classes.filterText}>
-                Filter
-              </Typography>
-              <FilterList/>
-            </IconButton>
-          </Grid>
-        </Grid>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.open}
-          onClose={this.handleClose}
-          disableAutoFocus={true}
-        >
-          <div className={classes.openModal}>
-            <Typography variant="title" id="modal-title">
-              Select Characters to Filter
-            </Typography>
-            <Divider/>
-            <Grid container justify="flex-end" spacing={0}>
-              <Grid item xs={12} sm={12} md={12}>
-                <div className={classes.chipContainer}>
-                  {characterNames.map(character =>
-                    <Chip
-                      key={character}
-                      avatar={<Avatar src={`/images/${character}.jpg`}/>}
-                      label={character}
-                      className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
-                      onClick={toggleChar.bind(this, character)}
-                    />,
-                  )}
-                </div>
-              </Grid>
+        <div>
+          <Grid container className={classes.root} alignItems="center" spacing={0}>
+            <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
+              {characters.map(character =>
+                <Chip
+                  key={character}
+                  avatar={<Avatar src={`/images/characters/${character}.jpg`}/>}
+                  label={character}
+                  className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
+                  onDelete={toggleChar.bind(this, character)}
+                />,
+              )}
+              <IconButton
+                aria-haspopup="true"
+                onClick={this.handleOpen}
+                className={classes.filterIcon}
+              >
+                <Typography variant="caption" className={classes.filterText}>
+                  Filter
+                </Typography>
+                <FilterList/>
+              </IconButton>
             </Grid>
-          </div>
-        </Modal>
-      </div>
+          </Grid>
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.open}
+            onClose={this.handleClose}
+            disableAutoFocus={true}
+          >
+            <div className={classes.openModal}>
+              <Typography variant="title" id="modal-title">
+                Select Characters to Filter
+              </Typography>
+              <Divider/>
+              <Grid container justify="flex-end" spacing={0}>
+                <Grid item xs={12} sm={12} md={12}>
+                  <List className={classes.characterFilterList}>
+                    {characterNames.map(character => (
+                      <ListItem key={character} onClick={toggleChar.bind(this, character)} dense button className={classes.listItem}>
+                        <Avatar alt={`${character}`} src={`/images/characters/${character}.jpg`}/>
+                        <ListItemText primary={`${character}`} />
+                        <ListItemSecondaryAction>
+                          <Checkbox
+                            classes={{
+                              checkedSecondary: classes.checkedSecondary,
+                            }}
+                            onChange={toggleChar.bind(this, character)}
+                            checked={characters.includes(character)}
+                          />
+                        </ListItemSecondaryAction>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Grid>
+              </Grid>
+            </div>
+          </Modal>
+        </div>
     )
   }
 }

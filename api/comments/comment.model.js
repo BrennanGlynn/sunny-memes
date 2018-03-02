@@ -3,9 +3,6 @@ const Schema = mongoose.Schema;
 const UserSchema = require("../auth/user.model")
 
 const CommentSchema = new Schema({
-  userId: {
-    type: Object.Schema.Types.ObjectId,
-  },
   user: {
     type: UserSchema
   },

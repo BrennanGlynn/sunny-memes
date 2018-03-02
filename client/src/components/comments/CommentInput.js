@@ -5,7 +5,7 @@ class CommentInput extends Component {
     super(props)
     this.state = {
       memeToReply: this.props.meme || "5a987e5f0a02a22150486709",
-      parentComment: this.props.parent,
+      parentComment: this.props.parent || "",
       comment: ''
     }
 

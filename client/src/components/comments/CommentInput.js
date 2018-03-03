@@ -1,4 +1,24 @@
 import React, {Component} from "react"
+import {Input, TextField, withStyles} from "material-ui";
+
+const styles = theme => ({
+  textFieldRoot: {
+    padding: 0,
+  },
+  textFieldInput: {
+    borderRadius: 4,
+    backgroundColor: '#fff',
+    border: '1px solid #ced4da',
+    fontSize: 12,
+    padding: '5px 12px',
+    width: '100%',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+})
 
 class CommentInput extends Component {
   constructor(props) {
@@ -34,12 +54,27 @@ class CommentInput extends Component {
 
 
   render() {
+    const {classes} = this.props
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.comment} onChange={this.handleChange} placeholder="Write a comment here!"/>
-        <button type="submit">Submit</button>
+        <TextField
+          placeholder="Write a comment!"
+          onChange={this.handleChange}
+          value={this.comment}
+          InputProps={{
+            disableUnderline: true,
+            classes: {
+              root: classes.textFieldRoot,
+              input: classes.textFieldInput,
+            },
+          }}
+          InputLabelProps={{
+            shrink: true,
+            className: classes.textFieldFormLabel,
+          }}
+        />
       </form>)
   }
 }
 
-export default CommentInput
+export default withStyles(styles)(CommentInput)

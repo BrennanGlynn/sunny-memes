@@ -145,8 +145,6 @@ class Home extends Component {
             </Toolbar>
           </AppBar>
 
-          <TestComment/>
-
           {/*// Pages //*/}
           <Switch>
             <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>

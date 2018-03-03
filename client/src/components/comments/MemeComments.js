@@ -1,6 +1,7 @@
 import React from 'react';
 import {Avatar, Button, Grid, Paper, TextField, Typography} from 'material-ui/';
 import {withStyles} from 'material-ui/styles';
+import CommentInput from "./CommentInput";
 
 const styles = theme => ({
   root: {
@@ -77,22 +78,6 @@ const styles = theme => ({
     paddingTop: 5,
     paddingBottom: 5,
   },
-  textFieldRoot: {
-    padding: 0,
-  },
-  textFieldInput: {
-    borderRadius: 4,
-    backgroundColor: '#fff',
-    border: '1px solid #ced4da',
-    fontSize: 12,
-    padding: '5px 12px',
-    width: '100%',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    '&:focus': {
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
-  },
   [theme.breakpoints.between('lg', 'xl')]: {
     root: {
       flexGrow: 1,
@@ -152,20 +137,7 @@ const MemeComments = ({classes, meme}) => {
                 <Avatar className={classes.addCommentAvatar}>BJ</Avatar>
               </Grid>
               <Grid item xs={10} className={classes.addComment}>
-                <TextField
-                  placeholder="Type a comment"
-                  InputProps={{
-                    disableUnderline: true,
-                    classes: {
-                      root: classes.textFieldRoot,
-                      input: classes.textFieldInput,
-                    },
-                  }}
-                  InputLabelProps={{
-                    shrink: true,
-                    className: classes.textFieldFormLabel,
-                  }}
-                />
+                <CommentInput meme={meme._id}/>
               </Grid>
             </Grid>
           </Paper>
@@ -173,20 +145,7 @@ const MemeComments = ({classes, meme}) => {
       ) :
         <Grid container spacing={0} justify="flex-start" wrap="nowrap">
           <Grid item xs={12} className={classes.addComment}>
-            <TextField
-              placeholder="Be first!"
-              InputProps={{
-                disableUnderline: true,
-                classes: {
-                  root: classes.textFieldRoot,
-                  input: classes.textFieldInput,
-                },
-              }}
-              InputLabelProps={{
-                shrink: true,
-                className: classes.textFieldFormLabel,
-              }}
-            />
+            <CommentInput meme={meme._id} />
           </Grid>
         </Grid>}
     </div>

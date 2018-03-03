@@ -105,69 +105,71 @@ const MemeComments = ({classes, meme}) => {
   return (
     <div>
       {comments && comments[0] && comments[0]._id ? meme.comments.map((comment) =>
-        <Paper key={comment._id} className={classes.root} style={{boxShadow: 'none'}}>
-          <Grid container spacing={0} justify="flex-start" wrap="nowrap">
-            <Grid item>
-              <Avatar src={comment.user.picture} className={classes.firstCommentAvatar} />
-            </Grid>
-            <Grid item xs>
-              <Typography variant="body2" className={classes.firstCommentName}>
-                {comment.user.name}
-              </Typography>
-              <Typography variant="caption" className={classes.firstComment}>
-                {comment.text}
-              </Typography>
-              <div className={classes.firstCommentControls}>
-                <Typography variant="caption">
-                  {'Like \u00b7 Reply'}
-                </Typography>
-              </div>
-            </Grid>
-          </Grid>
-          {comment.children && comment.children[0] && comment.children.map(comment =>
-            <div key={comment._id}>
-              <Grid container spacing={0} justify="flex-start">
-                <Grid item>
-                  <Avatar src={comment.user.picture} className={classes.replyAvatar} />
-                </Grid>
-                <Grid item xs className={classes.replyWrapper}>
-                  <Typography variant="body2" className={classes.replyName}>
-                    {comment.user.name}
-                  </Typography>
-                  <Typography variant="caption" className={classes.replyComment}>
-                    {comment.text}
-                  </Typography>
-                  <div className={classes.replyCommentControls}>
-                    <Typography variant="caption">
-                      {'Like \u00b7 Reply'}
-                    </Typography>
-                  </div>
-                </Grid>
+        {if (comment.user) return (
+          <Paper key={comment._id} className={classes.root} style={{boxShadow: 'none'}}>
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item>
+                <Avatar src={comment.user.picture} className={classes.firstCommentAvatar} />
               </Grid>
-            </div>
-          )}
-          <Grid container spacing={0} justify="flex-start" wrap="nowrap">
-            <Grid item>
-              <Avatar className={classes.addCommentAvatar}>BJ</Avatar>
+              <Grid item xs>
+                <Typography variant="body2" className={classes.firstCommentName}>
+                  {comment.user.name}
+                </Typography>
+                <Typography variant="caption" className={classes.firstComment}>
+                  {comment.text}
+                </Typography>
+                <div className={classes.firstCommentControls}>
+                  <Typography variant="caption">
+                    {'Like \u00b7 Reply'}
+                  </Typography>
+                </div>
+              </Grid>
             </Grid>
-            <Grid item xs={10} className={classes.addComment}>
-              <TextField
-                placeholder="Type a comment"
-                InputProps={{
-                  disableUnderline: true,
-                  classes: {
-                    root: classes.textFieldRoot,
-                    input: classes.textFieldInput,
-                  },
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  className: classes.textFieldFormLabel,
-                }}
-              />
+            {comment.children && comment.children[0] && comment.children.map(comment =>
+              <div key={comment._id}>
+                <Grid container spacing={0} justify="flex-start">
+                  <Grid item>
+                    <Avatar src={comment.user.picture} className={classes.replyAvatar} />
+                  </Grid>
+                  <Grid item xs className={classes.replyWrapper}>
+                    <Typography variant="body2" className={classes.replyName}>
+                      {comment.user.name}
+                    </Typography>
+                    <Typography variant="caption" className={classes.replyComment}>
+                      {comment.text}
+                    </Typography>
+                    <div className={classes.replyCommentControls}>
+                      <Typography variant="caption">
+                        {'Like \u00b7 Reply'}
+                      </Typography>
+                    </div>
+                  </Grid>
+                </Grid>
+              </div>
+            )}
+            <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+              <Grid item>
+                <Avatar className={classes.addCommentAvatar}>BJ</Avatar>
+              </Grid>
+              <Grid item xs={10} className={classes.addComment}>
+                <TextField
+                  placeholder="Type a comment"
+                  InputProps={{
+                    disableUnderline: true,
+                    classes: {
+                      root: classes.textFieldRoot,
+                      input: classes.textFieldInput,
+                    },
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    className: classes.textFieldFormLabel,
+                  }}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
+          </Paper>
+        )}
       ) :
         <Grid container spacing={0} justify="flex-start" wrap="nowrap">
           <Grid item xs={12} className={classes.addComment}>

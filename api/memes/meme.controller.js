@@ -74,6 +74,16 @@ const commentAggregation = [// Make a separate meme for each comment id
       as: "comments.children"
     }
   },
+  // Do the same thing recursively for replies
+  // {
+  //   $graphLookup: {
+  //     from: "comments",
+  //     startWith: "$comments.children",
+  //     connectFromField: "comments.children",
+  //     connectToField: "_id",
+  //     as: "comments.children",
+  //   }
+  // },
   //  Merge all of the comments back into 1 meme object
   {
     $group: {

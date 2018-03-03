@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, {Component} from "react"
 
 class CommentInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      memeToReply: this.props.meme || "5a987e5f0a02a22150486709",
-      parentComment: this.props.parent || "",
-      comment: ''
+      meme: this.props.meme || "5a9a0461af40470fba91a9eb",
+      parent: this.props.parent,
+      comment: "",
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -19,20 +19,19 @@ class CommentInput extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    if (!this.state.parentComment) {
-      fetch(`/comments/${this.state.memeToReply}`, {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({text: this.state.comment}),
-        headers: {"Content-Type": "application/json"}
-      }).then(
-        response => response.json(),
-        err => console.log(err)
-      ).then(json => {
-        console.log(json)
-      })
-    }
+    fetch(`/comments/${this.state.meme}`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify({state: this.state}),
+      headers: {"Content-Type": "application/json"},
+    }).then(
+      response => response.json(),
+      err => console.log(err),
+    ).then(json => {
+      console.log(json)
+    })
   }
+
 
   render() {
     return (

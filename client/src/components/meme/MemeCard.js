@@ -208,7 +208,7 @@ class MemeCard extends Component {
                   {data.characters.map((character, i) =>
                     <Chip
                       key={i}
-                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                      avatar={<Avatar src={"/images/characters/" + character + ".jpg"}/>}
                       label={character}
                       className={classes.chip}
                       onClick={toggleCharacter.bind(this, character)}

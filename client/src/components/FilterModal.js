@@ -104,7 +104,7 @@ class FilterModal extends Component {
     const characterNames = ["dennis", "mac", "charlie", "dee", "frank",
                             "waitress", "cricket", "artemis", "lawyer", "lilkev", "countrymac",
                             "gailthesnail", "unclejack", "bonnie", "luther", "mrsmac", "barbara",
-                            "ben", "pondy", "maureen",
+                            "ben", "pondy", "maureen", "therapist",
                             "liam", "ryan", "margaret", "pappy",
                             "roxy", "gladys", "z", "duncan", "maniac", "rex", "hwang", "ingrid",
                             "rubytaft",

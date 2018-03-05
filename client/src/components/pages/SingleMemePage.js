@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Grid, Paper} from 'material-ui/';
-import MemeContainer from "../../containers/memes/MemeContainer";
+import MemeContainer from "../../containers/memes/MemeCardContainer";
 
 class SingleMemePage extends Component {
   constructor(props) {

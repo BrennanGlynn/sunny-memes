@@ -24,7 +24,7 @@ class CommentInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      meme: this.props.meme || "5a9a0461af40470fba91a9eb",
+      meme: this.props.meme,
       parent: this.props.parent,
       comment: "",
     }
@@ -58,7 +58,7 @@ class CommentInput extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <TextField
-          placeholder="Write a comment!"
+          placeholder="Write a comment here..."
           onChange={this.handleChange}
           value={this.comment}
           InputProps={{

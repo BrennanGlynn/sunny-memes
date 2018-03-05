@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {withStyles} from "material-ui/styles/index";
-import MemeContainer from "../../containers/memes/MemeContainer";
+import MemeContainer from "../../containers/memes/MemeCardContainer";
 import Masonry from "react-masonry-component"
 import {Grid} from "material-ui";
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";

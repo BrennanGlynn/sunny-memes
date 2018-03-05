@@ -115,7 +115,7 @@ class MemeCard extends Component {
     super(props);
     this.state = {
       anchorEl: null,
-      favorite: this.props.data.favorites.includes(this.props.user),
+      favorite: this.props.data.favorites.includes(this.props.user.id),
       zoomed: false,
       expanded: false,
     }
@@ -206,7 +206,7 @@ class MemeCard extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                {(user === data.uploaded_by || admin) &&
+                {(user.id === data.uploaded_by || admin) &&
                 <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
@@ -241,7 +241,7 @@ class MemeCard extends Component {
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon
-                    className={loggedIn && (data.favorites.includes(user) || this.state.favorite) ? classes.favorite : ''}/><Typography
+                    className={loggedIn && (data.favorites.includes(user.id) || this.state.favorite) ? classes.favorite : ''}/><Typography
                   type={'body2'} className={classes.favoriteNumber}>{data.favorites.length}</Typography>
                 </IconButton>
                 <IconButton
@@ -267,7 +267,7 @@ class MemeCard extends Component {
               {/*Expanded section*/}
               <Collapse in={this.state.expanded} className={classes.collapse}>
                 <CardContent>
-                  <MemeComments meme={data} />
+                  <MemeComments meme={data} user={user} />
                 </CardContent>
               </Collapse>
             </Card>

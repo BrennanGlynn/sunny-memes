@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles";
 import {Grid} from "material-ui/";
 import MostPopularContainer from "../../containers/pages/MostPopularContainer";
-import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 
 const styles = theme => ({
   root: {

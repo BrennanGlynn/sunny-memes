@@ -1,8 +1,8 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types";
-import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
-import {Typography, Grid, Avatar, Checkbox, Chip, Modal, Divider} from "material-ui/";
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import {withStyles} from "material-ui/styles";
+import {Avatar, Checkbox, Chip, Divider, Grid, Modal, Typography} from "material-ui/";
+import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 
@@ -24,6 +24,9 @@ const styles = theme => ({
     filterIcon: {
       marginLeft: '2.5%',
     },
+  },
+  root: {
+    paddingRight: '5%',
   },
   openModal: {
     position: "absolute",
@@ -73,12 +76,6 @@ const styles = theme => ({
   },
 });
 
-const checkboxTheme = createMuiTheme({
-  checkedSecondary: {
-    color: '#2c8943',
-  },
-});
-
 class FilterModal extends Component {
   constructor(props) {
     super(props)
@@ -101,7 +98,7 @@ class FilterModal extends Component {
     const characterNames = ["dennis", "mac", "charlie", "dee", "frank",
                             "waitress", "cricket", "artemis", "lawyer", "lilkev", "countrymac",
                             "gailthesnail", "unclejack", "bonnie", "luther", "mrsmac", "barbara",
-                            "ben", "pondy", "maureen",
+                            "ben", "pondy", "maureen", "therapist",
                             "liam", "ryan", "margaret", "pappy",
                             "roxy", "gladys", "z", "duncan", "maniac", "rex", "hwang", "ingrid",
                             "rubytaft",
@@ -110,7 +107,7 @@ class FilterModal extends Component {
     return (
         <div>
           <Grid container className={classes.root} alignItems="center" spacing={0}>
-            <Grid item xs={11} md={11} lg={11} xl={11} className={classes.chipTopContainer}>
+            <Grid item xs={12} md={12} lg={12} xl={12} className={classes.chipTopContainer}>
               {characters.map(character =>
                 <Chip
                   key={character}

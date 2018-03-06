@@ -9,7 +9,7 @@ import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
-import MemeComments from '../MemeComments';
+import MemeComments from '../comments/MemeComments';
 
 const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
@@ -65,8 +65,9 @@ const styles = theme => ({
   fullImageContainer: {
     position: 'relative',
     margin: 'auto',
-    width: '100%',
-    height: '100%',
+    width: 795,
+    height: 795,
+    textAlign: 'center',
   },
   fullImageBackground: {
     position: 'absolute',
@@ -79,7 +80,9 @@ const styles = theme => ({
     height: 'auto',
   },
   fullImage: {
-    objectFit: 'fill',
+    width: 'auto',
+    height: 795,
+    overflow: 'scroll',
   },
   root: {
     width: '100%',
@@ -217,14 +220,12 @@ class MemePopup extends Component {
                 <Grid container spacing={0} justify="center">
                   <Grid item xs={12} md={6}>
                     <div className={classes.fullImageContainer}>
-                      {/*<div className={classes.fullImageBackground} style={{backgroundImage: 'url(' + data.url + ')'}}>
-
-                      </div>*/}
+                      {/*<div className={classes.fullImageBackground} style={{backgroundImage: 'url(' + data.url + ')'}}></div>*/}
                       <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                     </div>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <MemeComments />
+                    <MemeComments meme={data} user={user} />
                   </Grid>
                 </Grid>
               </div>

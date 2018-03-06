@@ -6,13 +6,17 @@ import {Avatar, Chip, Divider, ListItemIcon, Typography} from 'material-ui/';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
 import StarIcon from 'material-ui-icons/Star';
+import classnames from 'classnames';
 import ShareIcon from 'material-ui-icons/Share';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
-import MemePopupContainer from '../../containers/memes/MemePopupContainer'
+import CommentsIcon from 'material-ui-icons/Forum';
+import Collapse from 'material-ui/transitions/Collapse';
+import MemePopupContainer from '../../containers/memes/MemePopupContainer';
+import MemeComments from '../comments/MemeComments';
 
 const styles = theme => ({
   frontCardWrapper: {
@@ -22,6 +26,9 @@ const styles = theme => ({
   },
   card: {
     // borderTop: '5px solid #2C8943'
+  },
+  collapse: {
+    marginBottom: 10
   },
   chipContainer: {
     alignItems: 'center',
@@ -108,10 +115,20 @@ class MemeCard extends Component {
     super(props);
     this.state = {
       anchorEl: null,
-      favorite: this.props.data.favorites.includes(this.props.user),
-      zoomed: false
+      favorite: this.props.data.favorites.includes(this.props.user.id),
+      zoomed: false,
+      expanded: false,
     }
   }
+
+  handleExpandClick = () => {
+    let masonry = this.props.masonry
+    this.setState({expanded: !this.state.expanded}, function () {
+      setTimeout(function () {
+        if (masonry) masonry.layout()
+      }, 300)
+    });
+  };
 
   handleVertClick = event => {
     this.setState({anchorEl: event.currentTarget});
@@ -156,8 +173,10 @@ class MemeCard extends Component {
   render() {
     const {classes, data, user, loggedIn, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
+    const contentStyle = {transition: 'margin-top 450ms cubic-bezier(0.23, 1, 0.32, 1)'};
+
     return (
-      <div className={classes.root}>
+      <div style={contentStyle} className={classes.root}>
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
@@ -169,7 +188,8 @@ class MemeCard extends Component {
                     <MoreVertIcon/>
                   </IconButton>
                 </CardActions>
-                <a className={classes.link} href={`/meme/${data._id}`}><Typography type="subheading" className={classes.title}>{data.title || 'Loading Title...'}</Typography></a>
+                <a className={classes.link} href={`/meme/${data._id}`}><Typography type="subheading"
+                                                                                   className={classes.title}>{data.title || 'Loading Title...'}</Typography></a>
                 <Typography
                   type="caption">{MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}</Typography>
               </CardContent>
@@ -186,7 +206,7 @@ class MemeCard extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                {(user === data.uploaded_by || admin) &&
+                {(user.id === data.uploaded_by || admin) &&
                 <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>
@@ -200,7 +220,8 @@ class MemeCard extends Component {
                 </MenuItem>
               </Menu>
               <div className={classes.background}>
-                <img src={data.url} alt={data.title} className={classes.media} onClick={this.toggleFullMeme.bind(this, index)}/>
+                <img src={data.url} alt={data.title} className={classes.media}
+                     onClick={this.toggleFullMeme.bind(this, index)}/>
               </div>
               {data.characters[0] !== 'undefined' &&
               <div>
@@ -208,7 +229,7 @@ class MemeCard extends Component {
                   {data.characters.map((character, i) =>
                     <Chip
                       key={i}
-                      avatar={<Avatar src={"/images/" + character + ".jpg"}/>}
+                      avatar={<Avatar src={"/images/characters/" + character + ".jpg"}/>}
                       label={character}
                       className={classes.chip}
                       onClick={toggleCharacter.bind(this, character)}
@@ -220,8 +241,18 @@ class MemeCard extends Component {
               <CardActions disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon
-                    className={loggedIn && (data.favorites.includes(user) || this.state.favorite) ? classes.favorite : ''}/><Typography
-                  type={'body2'} className={classes.favoriteNumber}>{data.numFaves}</Typography>
+                    className={loggedIn && (data.favorites.includes(user.id) || this.state.favorite) ? classes.favorite : ''}/><Typography
+                  type={'body2'} className={classes.favoriteNumber}>{data.favorites.length}</Typography>
+                </IconButton>
+                <IconButton
+                  className={classnames(classes.expand, {
+                    [classes.expandOpen]: this.state.expanded,
+                  })}
+                  onClick={this.handleExpandClick}
+                  aria-expanded={this.state.expanded}
+                  aria-label="Show more"
+                >
+                  <CommentsIcon/>
                 </IconButton>
                 <IconButton aria-label="Share">
                   <ShareIcon/>
@@ -231,10 +262,18 @@ class MemeCard extends Component {
                      download=""><FileDownloadIcon/></a>
                 </IconButton>
               </CardActions>
+
+
+              {/*Expanded section*/}
+              <Collapse in={this.state.expanded} className={classes.collapse}>
+                <CardContent>
+                  <MemeComments meme={data} user={user} />
+                </CardContent>
+              </Collapse>
             </Card>
 
-
-            {memeArray && <MemePopupContainer memes={memeArray} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>}
+            {memeArray &&
+            <MemePopupContainer memes={memeArray} openModal={this.toggleFullMeme} zoomed={this.state.zoomed}/>}
           </div>
         )}
       </div>

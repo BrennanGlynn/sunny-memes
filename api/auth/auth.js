@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const User = require('../models/user.model');
+const User = require('./user.model');
 
 passport.use(new FacebookStrategy({
   clientID: '316389025537007',

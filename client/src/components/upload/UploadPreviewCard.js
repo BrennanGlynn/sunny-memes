@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
-import {
-  Avatar, Card, CardContent, CardMedia, Chip, TextField, Typography,
-  withStyles
-} from "material-ui";
+import {Avatar, Card, CardContent, Chip, TextField, Typography, withStyles} from "material-ui";
 import IconButton from 'material-ui/IconButton';
 import CancelIcon from 'material-ui-icons/Cancel';
 

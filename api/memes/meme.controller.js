@@ -11,6 +11,7 @@
  */
 
 const Meme = require("./meme.model");
+const mongoose = require("mongoose")
 const fs = require("fs");
 const formidable = require('formidable');
 const typesAllowed = ['image/gif', 'image/jpeg', 'image/png', 'image/svg+xml']
@@ -180,14 +181,16 @@ exports.create = (req, res) => {
 }
 
 exports.show = (req, res) => {
-  Meme.findOne({_id: req.params.id}, function (err, meme) {
-    if (meme) {
-      return res.json(meme)
-    } else {
-      res.status(500)
-      return res.json(err)
-    }
-  })
+  Meme.aggregate(
+    {$match: {_id: mongoose.Types.ObjectId(req.params.id)}},
+    ...commentAggregation,
+    {
+      $addFields: {numFaves: {$size: "$favorites"}}
+    },
+    function (err, docs) {
+      if (!err) res.json(docs[0])
+    },
+  )
 }
 
 exports.getMine = (req, res) => {

@@ -50,7 +50,7 @@ class CommentInput extends Component {
       err => console.log(err),
     ).then(json => {
       self.setState({comment: ""})
-      console.log(json)
+      self.props.uploadedComment(this.state.meme)
     })
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid} from 'material-ui/';
 import {withStyles} from 'material-ui/styles';
-import CommentInput from "./CommentInput";
+import CommentInput from "../../containers/comments/CommentInputContainer";
 import Comment from "./Comment";
 
 const styles = {

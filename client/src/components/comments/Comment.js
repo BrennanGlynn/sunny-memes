@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Avatar, Grid, Paper, Typography, withStyles} from "material-ui";
-import CommentInput from "./CommentInput";
+import CommentInput from "../../containers/comments/CommentInputContainer";
 
 const styles = theme => ({
   root: {

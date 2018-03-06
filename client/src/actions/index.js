@@ -225,6 +225,29 @@ export const memeDeleted = (memeId) => {
   }
 }
 
+//=======================================================================================================Comment Actions
+export const uploadedComment = (memeId) => {
+  return dispatch => {
+    fetch('/memes/' + memeId)
+      .then(res => {
+        if (res.ok) return res.json()
+      })
+      .then(meme => {
+        dispatch(updatedMemeReceived(meme))
+      })
+      .catch(err => {
+        console.log('error', err)
+      })
+  }
+}
+
+export const updatedMemeReceived = (meme) => {
+  return {
+    type: "UPDATED_MEME",
+    updatedMeme: meme
+  }
+}
+
 
 //======================================================================================================Helper functions
 function memeRequest(dispatch, query, receivedAction) {

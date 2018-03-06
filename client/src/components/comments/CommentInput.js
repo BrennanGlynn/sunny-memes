@@ -39,6 +39,7 @@ class CommentInput extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    let self = this
     fetch(`/comments/${this.state.meme}`, {
       method: "POST",
       credentials: "include",
@@ -48,6 +49,7 @@ class CommentInput extends Component {
       response => response.json(),
       err => console.log(err),
     ).then(json => {
+      self.setState({comment: ""})
       console.log(json)
     })
   }
@@ -60,7 +62,7 @@ class CommentInput extends Component {
         <TextField
           placeholder="Write a comment here..."
           onChange={this.handleChange}
-          value={this.comment}
+          value={this.state.comment}
           InputProps={{
             disableUnderline: true,
             classes: {

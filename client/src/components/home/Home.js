@@ -24,7 +24,6 @@ import SingleMemePage from "../pages/SingleMemePage"
 import RecentMemesContainer from "../../containers/pages/RecentMemesContainer";
 import PageNotFound from "../pages/PageNotFound";
 import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer";
-import TestComment from "../comments/CommentInput";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {

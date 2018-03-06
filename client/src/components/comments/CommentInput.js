@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {Input, TextField, withStyles} from "material-ui";
+import {TextField, withStyles} from "material-ui";
 
 const styles = theme => ({
   textFieldRoot: {

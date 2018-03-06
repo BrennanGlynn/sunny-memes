@@ -6,10 +6,6 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  row: {
-    marginTop: 100,
-    display: 'flex',
-  },
   firstCommentWrapper: {
     position: 'relative',
     height: 75,
@@ -91,6 +87,12 @@ class ReplyComment extends Component {
     this.state = {
       reply: false
     }
+
+    this.openReply = this.openReply.bind(this)
+  }
+
+  openReply() {
+    this.setState({reply: true})
   }
 
   render() {
@@ -110,7 +112,10 @@ class ReplyComment extends Component {
             </Typography>
             <div className={classes.firstCommentControls}>
               <Typography variant="caption">
-                {'Like \u00b7 Reply'}
+                Like
+              </Typography>
+              <Typography variant="caption" onClick={this.openReply}>
+                Reply
               </Typography>
             </div>
           </Grid>
@@ -130,7 +135,10 @@ class ReplyComment extends Component {
                 </Typography>
                 <div className={classes.replyCommentControls}>
                   <Typography variant="caption">
-                    {'Like \u00b7 Reply'}
+                    Like
+                  </Typography>
+                  <Typography variant="caption" onClick={this.openReply}>
+                    Reply
                   </Typography>
                 </div>
               </Grid>
@@ -145,7 +153,7 @@ class ReplyComment extends Component {
             <Avatar src={user.picture} className={classes.addCommentAvatar}/>
           </Grid>
           <Grid item xs={10} className={classes.addComment}>
-            <CommentInput meme={meme._id}/>
+            <CommentInput meme={meme._id} parent={comment._id}/>
           </Grid>
         </Grid>}
       </Paper>

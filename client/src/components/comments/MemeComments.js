@@ -16,7 +16,7 @@ const MemeComments = ({classes, meme, user}) => {
     <div>
       {comments && comments.map((comment) => {
           if (comment.user) return (
-            <Comment meme={meme} comment={comment} user={user}/>
+            <Comment key={comment._id} meme={meme} comment={comment} user={user}/>
           )
         }
       )}

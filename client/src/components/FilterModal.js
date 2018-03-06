@@ -1,8 +1,8 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types";
-import {createMuiTheme, withStyles} from "material-ui/styles";
+import {withStyles} from "material-ui/styles";
 import {Avatar, Checkbox, Chip, Divider, Grid, Modal, Typography} from "material-ui/";
-import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
+import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
 
@@ -73,12 +73,6 @@ const styles = theme => ({
   dimmed: {
     opacity: 0.4,
     filter: 'alpha(opacity=40)',
-  },
-});
-
-const checkboxTheme = createMuiTheme({
-  checkedSecondary: {
-    color: '#2c8943',
   },
 });
 

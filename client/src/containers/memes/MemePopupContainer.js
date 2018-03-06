@@ -5,7 +5,6 @@ import {attemptFavorite, attemptDelete, toggleCharacter, changeCurrentIndex} fro
 const mapStateToProps = (state, props) => {
   const memeIndex = state.memes.currentIndex || 0
   const lastIndex = props.memes ? props.memes.length : 0
-  const data = props.memes ? props.memes[memeIndex] : props.meme
   return {
     user: state.auth.user.id,
     admin: state.auth.user.admin,

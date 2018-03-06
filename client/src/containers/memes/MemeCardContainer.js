@@ -5,11 +5,12 @@ import {changeCurrentIndex} from "../../actions";
 
 const mapStateToProps = (state, props) => {
   return {
-    user: state.auth.user.id,
+    user: state.auth.user,
     loggedIn: state.auth.loggedIn,
     admin: state.auth.user.admin,
     memeIndex: props.memeIndex,
-    data: props.meme
+    data: props.meme,
+    masonry: props.masonry
   }
 }
 
@@ -30,9 +31,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const MemesContainer = connect(
+const MemeCardContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(MemeCard);
 
-export default MemesContainer
+export default MemeCardContainer

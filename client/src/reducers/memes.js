@@ -57,6 +57,19 @@ function memeReducer(state = {
         recentMemes,
         favoriteMemes
       }
+    case "UPDATED_MEME":
+      memes = {...updateMeme(state.memes, action.updatedMeme)}
+      myMemes = {...updateMeme(state.myMemes, action.updatedMeme)}
+      recentMemes = {...updateMeme(state.recentMemes, action.updatedMeme)}
+      favoriteMemes = {...updateMeme(state.favoriteMemes, action.updatedMeme)}
+
+      return {
+        ...state,
+        memes,
+        myMemes,
+        recentMemes,
+        favoriteMemes
+      }
     case "CHANGE_CURRENT_INDEX":
       return {
         ...state,
@@ -75,8 +88,16 @@ function deleteMeme(memeCollection, memeId) {
 
 function toggleFavorite(memeCollection, memeId, newMeme) {
   memeCollection[memeId] = {
-    ...newMeme,
-    numFaves: newMeme.favorites.length,
+    ...memeCollection[memeId],
+    favorites: newMeme.favorites
+  }
+
+  return memeCollection
+}
+
+function updateMeme(memeCollection, meme) {
+  memeCollection[meme._id] = {
+    ...meme
   }
 
   return memeCollection

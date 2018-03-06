@@ -9,7 +9,7 @@ import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
-import MemeComments from '../MemeComments';
+import MemeComments from '../comments/MemeComments';
 
 const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
@@ -225,7 +225,7 @@ class MemePopup extends Component {
                     </div>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <MemeComments />
+                    <MemeComments meme={data} user={user} />
                   </Grid>
                 </Grid>
               </div>

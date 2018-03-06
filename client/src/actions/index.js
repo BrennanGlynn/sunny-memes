@@ -91,6 +91,13 @@ export const changeCurrentIndex = (index) => {
     index
   }
 }
+
+export const uploadedMemes = () => {
+  return dispatch => {
+    dispatch(getMyMemes(""))
+    dispatch(getRecentMemes(""))
+  }
+}
 //============================================================================requesting memes
 export const fetchAllMemes = () => {
   return (dispatch, getState) => {
@@ -218,10 +225,26 @@ export const memeDeleted = (memeId) => {
   }
 }
 
-export const uploadedMemes = () => {
+//=======================================================================================================Comment Actions
+export const uploadedComment = (memeId) => {
   return dispatch => {
-    dispatch(getMyMemes(""))
-    dispatch(getRecentMemes(""))
+    fetch('/memes/' + memeId)
+      .then(res => {
+        if (res.ok) return res.json()
+      })
+      .then(meme => {
+        dispatch(updatedMemeReceived(meme))
+      })
+      .catch(err => {
+        console.log('error', err)
+      })
+  }
+}
+
+export const updatedMemeReceived = (meme) => {
+  return {
+    type: "UPDATED_MEME",
+    updatedMeme: meme
   }
 }
 

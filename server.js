@@ -6,10 +6,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const auth = require('./routes/auth');
-const upload = require('./routes/memes/upload');
-const memeRouter = require('./routes/memes/memes');
 
+// Grab API routers
+const auth = require('./api/auth/auth');
+const memeRouter = require('./api/memes/index');
+const commentRouter = require('./api/comments/index');
+
+// Set up express app
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -25,19 +28,26 @@ mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g
 
 app.use(logger('dev'));
 app.use(cookieParser('fortified secret'));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('express-session')({secret: 'fortified secret', resave: true, saveUninitialized: true}));
+
+// serve static images
+app.use(express.static(path.join(__dirname, 'public')));
+
+// set up passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// allows us to read post requests body data
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json('application/json'));
-app.use('/static', express.static(path.join(__dirname, 'public')));
+
+// set up view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use('/auth', auth);
 app.use('/memes', memeRouter);
-app.use('/upload', upload);
+app.use('/comments', commentRouter);
 
 // app.use(express.static(path.join(__dirname, '/client/build')));
 // app.get('*', function(req, res) {

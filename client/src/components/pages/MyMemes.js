@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import {Grid} from 'material-ui';
 //import queryString from 'query-string';
-import MemeContainer from '../../containers/memes/MemeContainer'
+import MemeContainer from '../../containers/memes/MemeCardContainer'
 import Masonry from 'react-masonry-component'
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 
@@ -20,6 +20,7 @@ class MyMemes extends Component {
   render() {
     const {classes, memes} = this.props;
     const memesArray = []
+    const masonry = this.masonry
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
         memesArray.push(memes[key])
@@ -34,11 +35,12 @@ class MyMemes extends Component {
               <Grid item xs={12}>
                 <div className="center">
                   <Masonry
+                    ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
                     options={{fitWidth: true}}
                     className={classes.masonry}
                   >
                     {memesArray.map((meme, i) =>
-                      <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+                      <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id} masonry={masonry}/>
                     )}
                   </Masonry>
                 </div>

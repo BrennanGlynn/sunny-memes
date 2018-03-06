@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import {Avatar, Card, CardContent, Chip, TextField, Typography, withStyles} from "material-ui";
+import React, {Component} from 'react';
+import {Avatar, Card, CardContent, Chip, Checkbox, TextField, Typography, withStyles} from "material-ui";
+import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import IconButton from 'material-ui/IconButton';
 import CancelIcon from 'material-ui-icons/Cancel';
 
@@ -110,7 +111,8 @@ class UploadPreviewCard extends Component {
     this.state = {
       title: "",
       characters: [],
-      error: true
+      error: true,
+      characters: this.props.characters
     }
   }
 
@@ -139,8 +141,15 @@ class UploadPreviewCard extends Component {
   }
 
   render() {
-    const {file, classes, cancelCard} = this.props
-    const charEnum = ['charlie', 'dee', 'dennis', 'frank', 'mac']
+    const {file, classes, characters, toggleChar, cancelCard} = this.props
+    const characterNames = ["dennis", "mac", "charlie", "dee", "frank",
+                      "waitress", "cricket", "artemis", "lawyer", "lilkev", "countrymac",
+                      "gailthesnail", "unclejack", "bonnie", "luther", "mrsmac", "barbara",
+                      "ben", "pondy", "maureen", "therapist",
+                      "liam", "ryan", "margaret", "pappy",
+                      "roxy", "gladys", "z", "duncan", "maniac", "rex", "hwang", "ingrid",
+                      "rubytaft",
+                     ]
 
     return (
       <Card key={file.name} raised={true} className={classes.card}>
@@ -167,15 +176,32 @@ class UploadPreviewCard extends Component {
           <img src={file.preview} alt={file.title} className={classes.media} />
         </div>
         <CardContent className={classes.chipContainer}>
-          {charEnum.map((charName) =>
+        {/*}  {charEnum.map((charName) =>
             <Chip
               key={charName}
-              avatar={<Avatar src={"/images/" + charName + ".jpg"}/>}
+              avatar={<Avatar src={"/images/characters/" + charName + ".jpg"}/>}
               label={charName}
               className={!this.state.characters.includes(charName) ? classes.dimmed + " " + classes.chip : classes.chip}
               onClick={this.toggleChar.bind(this, file, charName)}
             />
-          )}
+          )} */}
+          <List className={classes.characterFilterList}>
+            {characterNames.map(character => (
+              <ListItem key={character} onClick={toggleChar.bind(this, character)} dense button className={classes.listItem}>
+                <Avatar alt={`${character}`} src={`/images/characters/${character}.jpg`}/>
+                <ListItemText primary={`${character}`} />
+                <ListItemSecondaryAction>
+                  <Checkbox
+                    classes={{
+                      checkedSecondary: classes.checkedSecondary,
+                    }}
+                    onChange={toggleChar.bind(this, character)}
+                    checked={characters.includes(character)}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
         </CardContent>
       </Card>)
   }

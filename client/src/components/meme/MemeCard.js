@@ -125,7 +125,7 @@ class MemeCard extends Component {
     let masonry = this.props.masonry
     this.setState({expanded: !this.state.expanded}, function () {
       setTimeout(function () {
-        masonry.layout()
+        if (masonry) masonry.layout()
       }, 300)
     });
   };

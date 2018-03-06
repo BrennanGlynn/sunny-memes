@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Avatar, Grid, Paper, Typography, withStyles} from "material-ui";
 import CommentInput from "../../containers/comments/CommentInputContainer";
+import ErrorDialog from "../upload/ErrorDialog";
 
 const styles = theme => ({
   root: {
@@ -85,14 +86,30 @@ class ReplyComment extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      reply: false
+      reply: false,
+      dialog: false
     }
 
     this.openReply = this.openReply.bind(this)
+    this.openDialog = this.openDialog.bind(this)
+    this.closeDialog = this.closeDialog.bind(this)
   }
 
   openReply() {
-    this.setState({reply: true})
+    if (this.props.user.id) {
+      this.setState({reply: true})
+    } else {
+      this.openDialog("Upload Error", "You must be logged in to comment!")
+      console.log(this.props)
+    }
+  }
+
+  openDialog(title, message) {
+    this.setState({dialog: true, error: {title, message}});
+  };
+
+  closeDialog() {
+    this.setState({dialog: false})
   }
 
   render() {
@@ -150,12 +167,15 @@ class ReplyComment extends Component {
         {this.state.reply &&
         <Grid container spacing={0} justify="flex-start" wrap="nowrap">
           <Grid item>
-            <Avatar src={user.picture} className={classes.addCommentAvatar}/>
+            <Avatar src={user.picture || "/images/user-icon.png"} className={classes.addCommentAvatar}/>
           </Grid>
           <Grid item xs={10} className={classes.addComment}>
             <CommentInput meme={meme._id} parent={comment._id}/>
           </Grid>
         </Grid>}
+
+        {/*Show dialog if needed*/}
+        {this.state.dialog && <ErrorDialog open={this.state.dialog} error={this.state.error} closeDialog={this.closeDialog} />}
       </Paper>
     )
   }

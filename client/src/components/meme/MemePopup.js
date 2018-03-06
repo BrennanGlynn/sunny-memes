@@ -225,7 +225,7 @@ class MemePopup extends Component {
                     </div>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <MemeComments />
+                    <MemeComments meme={data} user={user} />
                   </Grid>
                 </Grid>
               </div>

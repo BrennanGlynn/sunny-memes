@@ -95,14 +95,42 @@ class FilterModal extends Component {
 
   render() {
     const {classes, characters, toggleChar} = this.props;
-    const characterNames = ["dennis", "mac", "charlie", "dee", "frank",
-                            "waitress", "cricket", "artemis", "lawyer", "lilkev", "countrymac",
-                            "gailthesnail", "unclejack", "bonnie", "luther", "mrsmac", "barbara",
-                            "ben", "pondy", "maureen", "therapist",
-                            "liam", "ryan", "margaret", "pappy",
-                            "roxy", "gladys", "z", "duncan", "maniac", "rex", "hwang", "ingrid",
-                            "rubytaft",
-                           ]
+    const characterNames = {
+      dennis: "Dennis",
+      mac: "Mac",
+      charlie: "Charlie",
+      dee: "Dee",
+      frank: "Frank",
+      waitress: "The Waitress",
+      cricket: "Cricket",
+      artemis: "Artemis",
+      lawyer: "Lawyer",
+      lilkev: "Lil Kev",
+      countrymac: "Country Mac",
+      gailthesnail: "Gail the Snail",
+      unclejack: "Uncle Jack",
+      bonnie: "Bonnie",
+      luther: "Luther",
+      mrsmac: "Mrs. McDonald",
+      barbara: "Barbara Reynolds",
+      ben: "Ben the Soldier",
+      pondy: "Pondy",
+      maureen: "Maureen Ponderosa",
+      therapist: "Therapist",
+      liam: "Liam McPoyle",
+      ryan: "Ryan McPoyle",
+      margaret: "Margaret McPoyle",
+      pappy: "Pappy McPoyle",
+      roxy: "Roxy",
+      gladys: "Gladys",
+      z: "Z",
+      duncan: "Duncan",
+      maniac: "Da' Maniac",
+      rex: "Rex",
+      hwang: "Hwang",
+      ingrid: "Ingrid Nelson",
+      ruby: "Ruby Taft"
+    }
 
     return (
         <div>
@@ -112,7 +140,7 @@ class FilterModal extends Component {
                 <Chip
                   key={character}
                   avatar={<Avatar src={`/images/characters/${character}.jpg`}/>}
-                  label={character}
+                  label={characterNames[character]}
                   className={characters.includes(character) ? classes.chip : [classes.chip, classes.dimmed].join(" ")}
                   onDelete={toggleChar.bind(this, character)}
                 />,
@@ -144,10 +172,10 @@ class FilterModal extends Component {
               <Grid container justify="flex-end" spacing={0}>
                 <Grid item xs={12} sm={12} md={12}>
                   <List className={classes.characterFilterList}>
-                    {characterNames.map(character => (
+                    {Object.keys(characterNames).map(character => (
                       <ListItem key={character} onClick={toggleChar.bind(this, character)} dense button className={classes.listItem}>
                         <Avatar alt={`${character}`} src={`/images/characters/${character}.jpg`}/>
-                        <ListItemText primary={`${character}`} />
+                        <ListItemText primary={`${characterNames[character]}`} />
                         <ListItemSecondaryAction>
                           <Checkbox
                             classes={{

@@ -174,6 +174,42 @@ class MemeCard extends Component {
     const {classes, data, user, loggedIn, admin, memeArray, index, toggleCharacter} = this.props;
     const {anchorEl} = this.state;
     const contentStyle = {transition: 'margin-top 450ms cubic-bezier(0.23, 1, 0.32, 1)'};
+    const characterNames = {
+      dennis: "Dennis",
+      mac: "Mac",
+      charlie: "Charlie",
+      dee: "Dee",
+      frank: "Frank",
+      waitress: "The Waitress",
+      cricket: "Cricket",
+      artemis: "Artemis",
+      lawyer: "Lawyer",
+      lilkev: "Lil Kev",
+      countrymac: "Country Mac",
+      gailthesnail: "Gail the Snail",
+      unclejack: "Uncle Jack",
+      bonnie: "Bonnie",
+      luther: "Luther",
+      mrsmac: "Mrs. McDonald",
+      barbara: "Barbara Reynolds",
+      ben: "Ben the Soldier",
+      pondy: "Pondy",
+      maureen: "Maureen Ponderosa",
+      therapist: "Therapist",
+      liam: "Liam McPoyle",
+      ryan: "Ryan McPoyle",
+      margaret: "Margaret McPoyle",
+      pappy: "Pappy McPoyle",
+      roxy: "Roxy",
+      gladys: "Gladys",
+      z: "Z",
+      duncan: "Duncan",
+      maniac: "Da' Maniac",
+      rex: "Rex",
+      hwang: "Hwang",
+      ingrid: "Ingrid Nelson",
+      ruby: "Ruby Taft"
+    }
 
     return (
       <div style={contentStyle} className={classes.root}>
@@ -230,7 +266,7 @@ class MemeCard extends Component {
                     <Chip
                       key={i}
                       avatar={<Avatar src={"/images/characters/" + character + ".jpg"}/>}
-                      label={character}
+                      label={characterNames[character]}
                       className={classes.chip}
                       onClick={toggleCharacter.bind(this, character)}
                     />

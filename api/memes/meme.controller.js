@@ -193,16 +193,12 @@ exports.show = (req, res) => {
   )
 }
 
-exports.getMine = (req, res) => {
-  // login check
-  if (!req.user) {
-    return res.json({documents: []})
-  }
+exports.byUser = (req, res) => {
   const page = req.query.page;
   const chars = req.query.chars;
 
   let query = {
-    uploaded_by: req.user._id
+    uploaded_by: mongoose.Types.ObjectId(req.params.id)
   };
 
   if (typeof chars === "object") {

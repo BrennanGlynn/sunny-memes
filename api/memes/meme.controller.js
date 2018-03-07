@@ -11,6 +11,7 @@
  */
 
 const Meme = require("./meme.model");
+const User = require('../auth/user.model');
 const mongoose = require("mongoose")
 const fs = require("fs");
 const formidable = require('formidable');
@@ -221,8 +222,12 @@ exports.byUser = (req, res) => {
       $limit: memesPerPage,
     },
     function (err, docs) {
-      if (!err) res.json({documents: docs})
-    })
+      if (!err) {
+        User.findOne({_id: query.uploaded_by}, function(err, user) {
+          if (err) return res.json({error: "User does not exist!"})
+          res.json({documents: docs, user})
+        })
+    }})
 }
 
 exports.getRecent = (req, res) => {

@@ -12,6 +12,10 @@ import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MemeComments from '../comments/MemeComments';
 
 const styles = theme => ({
+  link: {
+    color: 'inherit',
+    textDecoration: 'none'
+  },
   [theme.breakpoints.only('xs')]: {
     openModal: {
       width: '95%',
@@ -147,9 +151,9 @@ class MemePopup extends Component {
                   </Typography>
 
                   {/*Meme Author*/}
-                  <Typography type="subheading" id="simple-modal-description">
+                  <a className={classes.link} href={`/user/${data.uploaded_by._id}`}><Typography type="subheading" id="simple-modal-description">
                     {data.author_name || data.uploaded_by}
-                  </Typography>
+                  </Typography></a>
                 </Grid>
 
                 {/*Options Menu and Close Button*/}

@@ -74,6 +74,10 @@ const styles = theme => ({
     paddingTop: 5,
     paddingBottom: 5,
   },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none'
+  },
   [theme.breakpoints.between('lg', 'xl')]: {
     root: {
       flexGrow: 1,
@@ -121,9 +125,9 @@ class ReplyComment extends Component {
             <Avatar src={comment.user.picture} className={classes.firstCommentAvatar}/>
           </Grid>
           <Grid item xs>
-            <Typography variant="body2" className={classes.firstCommentName}>
+            <a className={classes.link} href={`/user/${comment.user._id}`}><Typography variant="body2" className={classes.firstCommentName}>
               {comment.user.name}
-            </Typography>
+            </Typography></a>
             <Typography variant="caption" className={classes.firstComment}>
               {comment.text}
             </Typography>
@@ -144,9 +148,9 @@ class ReplyComment extends Component {
                 <Avatar src={comment.user.picture} className={classes.replyAvatar}/>
               </Grid>
               <Grid item xs className={classes.replyWrapper}>
-                <Typography variant="body2" className={classes.replyName}>
+                <a className={classes.link} href={`/user/${comment.user._id}`}><Typography variant="body2" className={classes.replyName}>
                   {comment.user.name}
-                </Typography>
+                </Typography></a>
                 <Typography variant="caption" className={classes.replyComment}>
                   {comment.text}
                 </Typography>

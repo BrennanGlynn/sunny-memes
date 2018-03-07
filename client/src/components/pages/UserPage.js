@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Grid, Paper} from 'material-ui/';
 import MemeContainer from "../../containers/memes/MemeCardContainer";
 import Masonry from "react-masonry-component"
+import {Typography} from "material-ui";
 
 class UserPage extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class UserPage extends Component {
       })
       .then(json => {
         console.log(json.documents)
-        self.setState({memes: json.documents, loading: false})
+        self.setState({memes: json.documents, requestedUser: json.user, loading: false})
       })
       .catch(err => {
         console.log('error', err)
@@ -42,6 +43,8 @@ class UserPage extends Component {
               (<div>{this.state.errorMessage}</div>) :
               (
                 <Grid container spacing={0} align="center">
+                  <Grid item xs={12}>
+                    <Typography variant={'display1'}>The following are memes posted by {this.state.requestedUser.name}</Typography></Grid>
                   <Grid item xs={12}>
                     <Masonry
                       ref={function (c) {

@@ -124,8 +124,8 @@ export const getMemes = (query) => {
 }
 
 export const getMyMemes = (query) => {
-  return dispatch => {
-    return memeRequest(dispatch, 'mine' + query, myMemesReceived)
+  return (dispatch, getState) => {
+    return memeRequest(dispatch, `user/${getState().auth.user.id}${query}`, myMemesReceived)
   }
 }
 

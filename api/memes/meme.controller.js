@@ -11,6 +11,7 @@
  */
 
 const Meme = require("./meme.model");
+const User = require('../auth/user.model');
 const mongoose = require("mongoose")
 const fs = require("fs");
 const formidable = require('formidable');
@@ -193,16 +194,12 @@ exports.show = (req, res) => {
   )
 }
 
-exports.getMine = (req, res) => {
-  // login check
-  if (!req.user) {
-    return res.json({documents: []})
-  }
+exports.byUser = (req, res) => {
   const page = req.query.page;
   const chars = req.query.chars;
 
   let query = {
-    uploaded_by: req.user._id
+    uploaded_by: mongoose.Types.ObjectId(req.params.id)
   };
 
   if (typeof chars === "object") {
@@ -225,8 +222,12 @@ exports.getMine = (req, res) => {
       $limit: memesPerPage,
     },
     function (err, docs) {
-      if (!err) res.json({documents: docs})
-    })
+      if (!err) {
+        User.findOne({_id: query.uploaded_by}, function(err, user) {
+          if (err) return res.json({error: "User does not exist!"})
+          res.json({documents: docs, user})
+        })
+    }})
 }
 
 exports.getRecent = (req, res) => {

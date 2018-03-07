@@ -1,29 +1,30 @@
-import React, {Component} from "react";
-import {Route, Switch} from "react-router-dom";
-import PropTypes from "prop-types";
-import {withStyles} from "material-ui/styles";
-import withWidth from "material-ui/utils/withWidth";
-import compose from "recompose/compose";
-import {AppBar, Button, Grid, Toolbar} from "material-ui";
-import StarIcon from "material-ui-icons/Star";
-import AccessTimeIcon from "material-ui-icons/AccessTime";
-import LoginModal from "../login/LoginModal";
-import FrontBanner from "../pages/FrontBanner";
-import PleaseLogin from "../pages/PleaseLogin";
-import MemePage from "../pages/MemePage";
-import MostPopularContainer from "../../containers/pages/MostPopularContainer";
-import MyMemesContainer from "../../containers/pages/MyMemesContainer";
-import NavMenu from "./NavMenu";
-import MobileUploadButton from "./MobileUploadButton";
+import React, {Component} from "react"
+import {Route, Switch} from "react-router-dom"
+import PropTypes from "prop-types"
+import {withStyles} from "material-ui/styles"
+import withWidth from "material-ui/utils/withWidth"
+import compose from "recompose/compose"
+import {AppBar, Button, Grid, Toolbar} from "material-ui"
+import StarIcon from "material-ui-icons/Star"
+import AccessTimeIcon from "material-ui-icons/AccessTime"
+import LoginModal from "../login/LoginModal"
+import FrontBanner from "../pages/FrontBanner"
+import PleaseLogin from "../pages/PleaseLogin"
+import MemePage from "../pages/MemePage"
+import MostPopularContainer from "../../containers/pages/MostPopularContainer"
+import MyMemesContainer from "../../containers/pages/MyMemesContainer"
+import NavMenu from "./NavMenu"
+import MobileUploadButton from "./MobileUploadButton"
 import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/UploadContainer"
 import NavDrawer from "./NavDrawer"
 import UserDrawer from "./UserDrawer"
-import FrontPage from "../pages/FrontPage";
+import FrontPage from "../pages/FrontPage"
 import SingleMemePage from "../pages/SingleMemePage"
-import RecentMemesContainer from "../../containers/pages/RecentMemesContainer";
-import PageNotFound from "../pages/PageNotFound";
-import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer";
+import UserPage from "../pages/UserPage"
+import RecentMemesContainer from "../../containers/pages/RecentMemesContainer"
+import PageNotFound from "../pages/PageNotFound"
+import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer"
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -139,7 +140,8 @@ class Home extends Component {
                   Uploaded</Button>
               </div>
               {!auth.loggedIn && <LoginModal/>}
-              {auth.loggedIn && <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>}
+              {auth.loggedIn &&
+              <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>}
               {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
             </Toolbar>
           </AppBar>
@@ -154,12 +156,13 @@ class Home extends Component {
             <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
             <Route path='/admin' component={AdminInterface}/>
             <Route path='/memepage' component={MemePage}/>
-            <Route path='/meme/:id' component={SingleMemePage} />
-            <Route component={PageNotFound} />
+            <Route path='/meme/:id' component={SingleMemePage}/>
+            <Route path='/user/:id' component={UserPage}/>
+            <Route component={PageNotFound}/>
           </Switch>
 
           {auth.loggedIn &&
-            <MobileUploadButton />
+          <MobileUploadButton/>
           }
         </div>
         }

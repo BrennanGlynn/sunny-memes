@@ -30,8 +30,9 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  chipContainer: {
-    alignItems: 'center'
+  characterListContainer: {
+    maxHeight: 200,
+    overflow: 'auto',
   },
   chip: {
     marginLeft: '2.5px',
@@ -54,6 +55,12 @@ const styles = theme => ({
   textField: {
     marginTop: -8,
     width: '100%',
+  },
+  characterUploadList: {
+    textTransform: 'capitalize',
+  },
+  checkedSecondary: {
+    color: '#2c8943',
   },
   [theme.breakpoints.only('xs')]: {
     card: {
@@ -89,7 +96,7 @@ const styles = theme => ({
   },
   [theme.breakpoints.between('lg', 'xl')]: {
     card: {
-      width: 260,
+      width: 280,
       margin: 5,
     },
     title: {
@@ -100,7 +107,7 @@ const styles = theme => ({
       backgroundSize: '100%',
     },
     media: {
-      width: 260,
+      width: 280,
     },
   }
 });
@@ -157,7 +164,7 @@ class UploadPreviewCard extends Component {
       unclejack: "Uncle Jack",
       bonnie: "Bonnie",
       luther: "Luther",
-      mrsmac: "Mrs. McDonald",
+      mrsmac: "Mrs. Mac",
       barbara: "Barbara Reynolds",
       ben: "Ben the Soldier",
       pondy: "Pondy",
@@ -206,8 +213,8 @@ class UploadPreviewCard extends Component {
         <div className={classes.background}>
           <img src={file.preview} alt={file.title} className={classes.media}/>
         </div>
-        <CardContent className={classes.chipContainer}>
-          <List className={classes.characterFilterList}>
+        <CardContent className={classes.characterListContainer}>
+          <List className={classes.characterUploadList}>
             {Object.keys(characterNames).map((character) => (
               <ListItem key={character} onClick={this.toggleChar.bind(this, file, character)} dense button
                         className={classes.listItem}>

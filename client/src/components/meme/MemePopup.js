@@ -63,26 +63,14 @@ const styles = theme => ({
     height: '95%',
   },
   fullImageContainer: {
-    position: 'relative',
-    margin: 'auto',
-    width: 795,
-    height: 795,
-    textAlign: 'center',
-  },
-  fullImageBackground: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundRepeat: 'no-repeat',
-    width: '100%',
-    height: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden'
   },
   fullImage: {
-    width: 'auto',
-    height: 795,
-    overflow: 'scroll',
+    maxHeight: 500,
+    maxWidth: '100%'
   },
   root: {
     width: '100%',
@@ -216,11 +204,9 @@ class MemePopup extends Component {
               <Divider/>
 
               {/*Popup Modal Body*/}
-              <div className={classes.root}>
                 <Grid container spacing={0} justify="center">
                   <Grid item xs={12} md={6}>
                     <div className={classes.fullImageContainer}>
-                      {/*<div className={classes.fullImageBackground} style={{backgroundImage: 'url(' + data.url + ')'}}></div>*/}
                       <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                     </div>
                   </Grid>
@@ -228,7 +214,6 @@ class MemePopup extends Component {
                     <MemeComments meme={data} user={user} />
                   </Grid>
                 </Grid>
-              </div>
             </div>
           </Modal> :
           <div></div>}

@@ -53,8 +53,45 @@ exports.create = (req, res) => {
   }
 }
 
-exports.update = (req, res) => {
-  res.json({todo: true})
+exports.likeComment = (req, res) => {
+  const commentId = req.params.id
+  const user = req.user || {_id: "5a7a4fa7a6ff00702179ad56"}
+
+  // login check
+  if (!user) return res.status(500).send("Must be logged in first")
+
+  // find meme being updated
+  Comment.findOne({_id: commentId}, function (err, comment) {
+    if (err) {
+      return res.status(500).json({err})
+      // add favorite if user hasn't already
+    } else if (comment.likes.indexOf(user._id) === -1) {
+      safeUpdate(commentId, {$addToSet: {likes: user._id}}, req, res)
+      // remove favorite if user had set it as a favorite before
+    } else {
+      safeUpdate(commentId, {$pull: {likes: user._id}}, req, res)
+    }
+  })
+}
+
+function safeUpdate(id, update, req, res) {
+  Comment.findOne({_id: id}, function (err, model) {
+    if (err) {
+      return res.status(500).json({error: err})
+    }
+
+    Comment.findByIdAndUpdate(id, update, {
+      safe: true,
+      new: true,
+    }, (err, model) => {
+      if (err) {
+        return res.status(500).json({err});
+      } else return res.json({
+        objectId: id,
+        updatedObject: model,
+      })
+    })
+  })
 }
 
 exports.destroy = (req, res) => {

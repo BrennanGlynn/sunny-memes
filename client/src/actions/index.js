@@ -248,6 +248,12 @@ export const updatedMemeReceived = (meme) => {
   }
 }
 
+export const likeComment = (commentId, updateObject) => {
+  return dispatch => {
+    fetch(`/comments/${commentId}`)
+  }
+}
+
 
 //======================================================================================================Helper functions
 function memeRequest(dispatch, query, receivedAction) {

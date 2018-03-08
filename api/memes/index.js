@@ -9,7 +9,6 @@ router.get("/user/:id", controller.byUser)
 router.get("/recent", controller.getRecent)
 router.get("/favorites", controller.getFavs)
 router.post("/favorite", controller.favorite)
-router.put("/:id/comment", controller.comment)
 router.get("/:id", controller.show)
 router.delete("/:id", controller.destroy)
 

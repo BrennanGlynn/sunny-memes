@@ -314,10 +314,6 @@ exports.favorite = (req, res) => {
   })
 }
 
-exports.comment = (req, res) => {
-
-}
-
 exports.destroy = (req, res) => {
 
   // get details about meme getting deleted
@@ -345,7 +341,7 @@ exports.destroy = (req, res) => {
 }
 
 function updateMeme(update, req, res) {
-  Meme.findOne({_id: req.body.meme}, "favorites", function (err, meme) {
+  Meme.findOne({_id: req.body.meme}, function (err, meme) {
     if (err) {
       return res.json({error: err})
     }

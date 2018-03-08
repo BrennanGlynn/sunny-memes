@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(toggleCharacter(character))
     },
     changeCurrentIndex: (newIndex, max) => {
-      if (newIndex >= 0 && newIndex <= max) dispatch(changeCurrentIndex(newIndex))
+      dispatch(changeCurrentIndex(newIndex))
     }
   }
 }

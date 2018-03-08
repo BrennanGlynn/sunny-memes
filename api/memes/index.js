@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get("/", controller.index)
 router.post("/", controller.create)
-router.get("/mine", controller.getMine)
+router.get("/user/:id", controller.byUser)
 router.get("/recent", controller.getRecent)
 router.get("/favorites", controller.getFavs)
 router.post("/favorite", controller.favorite)

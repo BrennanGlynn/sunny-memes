@@ -1,11 +1,9 @@
 import {connect} from 'react-redux'
-import {updatedComments} from "../../actions";
-import CommentInput from '../../components/comments/CommentInput'
+import {likeComment, updatedComments} from "../../actions";
+import Comment from '../../components/comments/Comment'
 
 const mapStateToProps = (state, props) => {
   return {
-    meme: props.meme,
-    parent: props.parent
   }
 }
 
@@ -13,13 +11,16 @@ const mapDispatchToProps = dispatch => {
   return {
     uploadedComment: (memeId) => {
       dispatch(updatedComments(memeId))
+    },
+    likeComment: (commentId) => {
+      dispatch(likeComment(commentId))
     }
   }
 }
 
-const CommentInputContainer = connect(
+const CommentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommentInput);
+)(Comment);
 
-export default CommentInputContainer
+export default CommentContainer

@@ -2,10 +2,14 @@ import React, {Component} from 'react'
 import {Avatar, Grid, Paper, Typography, withStyles} from "material-ui";
 import CommentInput from "../../containers/comments/CommentInputContainer";
 import ErrorDialog from "../upload/ErrorDialog";
+import {likeComment} from "../../actions";
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
+  },
+  activeLike: {
+    fontWeight: 'bold'
   },
   firstCommentWrapper: {
     position: 'relative',
@@ -104,7 +108,6 @@ class ReplyComment extends Component {
       this.setState({reply: true})
     } else {
       this.openDialog("Upload Error", "You must be logged in to comment!")
-      console.log(this.props)
     }
   }
 
@@ -117,7 +120,7 @@ class ReplyComment extends Component {
   }
 
   render() {
-    const {comment, classes, meme, user} = this.props
+    const {comment, likeComment, classes, meme, user} = this.props
     return (
       <Paper key={comment._id} className={classes.root} style={{boxShadow: 'none'}}>
         <Grid container spacing={0} justify="flex-start" wrap="nowrap">
@@ -132,8 +135,8 @@ class ReplyComment extends Component {
               {comment.text}
             </Typography>
             <div className={classes.firstCommentControls}>
-              <Typography variant="caption">
-                Like
+              <Typography variant="caption" className={comment.likes.includes(user.id) ? classes.activeLike : ''} onClick={likeComment.bind(this, comment._id)}>
+                Like ({comment.likes.length})
               </Typography>
               <Typography variant="caption" onClick={this.openReply}>
                 Reply
@@ -141,22 +144,22 @@ class ReplyComment extends Component {
             </div>
           </Grid>
         </Grid>
-        {comment.children && comment.children[0] && comment.children.map(comment =>
-          <div key={comment._id}>
+        {comment.children && comment.children[0] && comment.children.map(reply =>
+          <div key={reply._id}>
             <Grid container spacing={0} justify="flex-start">
               <Grid item>
-                <Avatar src={comment.user.picture} className={classes.replyAvatar}/>
+                <Avatar src={reply.user.picture} className={classes.replyAvatar}/>
               </Grid>
               <Grid item xs className={classes.replyWrapper}>
-                <a className={classes.link} href={`/user/${comment.user._id}`}><Typography variant="body2" className={classes.replyName}>
-                  {comment.user.name}
+                <a className={classes.link} href={`/user/${reply.user._id}`}><Typography variant="body2" className={classes.replyName}>
+                  {reply.user.name}
                 </Typography></a>
                 <Typography variant="caption" className={classes.replyComment}>
-                  {comment.text}
+                  {reply.text}
                 </Typography>
                 <div className={classes.replyCommentControls}>
-                  <Typography variant="caption">
-                    Like
+                  <Typography variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''} onClick={likeComment.bind(this, reply._id)}>
+                    Like ({reply.likes.length})
                   </Typography>
                   <Typography variant="caption" onClick={this.openReply}>
                     Reply

@@ -44,7 +44,9 @@ class UserPage extends Component {
               (
                 <Grid container spacing={0} align="center">
                   <Grid item xs={12}>
-                    <Typography variant={'display1'}>The following are memes posted by {this.state.requestedUser.name}</Typography></Grid>
+                    <Typography variant={'display1'}>The following are memes posted by {this.state.requestedUser.name}</Typography>
+                    <img src={this.state.requestedUser.picture} alt="requested user" />
+                  </Grid>
                   <Grid item xs={12}>
                     <Masonry
                       ref={function (c) {

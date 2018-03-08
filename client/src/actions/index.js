@@ -226,7 +226,7 @@ export const memeDeleted = (memeId) => {
 }
 
 //=======================================================================================================Comment Actions
-export const uploadedComment = (memeId) => {
+export const updatedComments = (memeId) => {
   return dispatch => {
     fetch('/memes/' + memeId)
       .then(res => {
@@ -248,9 +248,19 @@ export const updatedMemeReceived = (meme) => {
   }
 }
 
-export const likeComment = (commentId, updateObject) => {
+export const likeComment = (commentId) => {
   return dispatch => {
-    fetch(`/comments/${commentId}`)
+    fetch(`/comments/like/${commentId}`, {
+      method: "put",
+      credentials: "include",
+    }).then(
+      res => {
+        if (res.ok) return res.json()
+      },
+      error => console.log(error)
+    ).then(json => {
+      if (json) dispatch(updatedComments(json.updatedObject.meme_id))
+    })
   }
 }
 

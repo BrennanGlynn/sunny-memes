@@ -55,10 +55,10 @@ exports.create = (req, res) => {
 
 exports.likeComment = (req, res) => {
   const commentId = req.params.id
-  const user = req.user || {_id: "5a7a4fa7a6ff00702179ad56"}
+  const user = req.user
 
   // login check
-  if (!user) return res.status(500).send("Must be logged in first")
+  if (!user) return res.status(500).json({err: "Must be logged in"})
 
   // find meme being updated
   Comment.findOne({_id: commentId}, function (err, comment) {
@@ -77,7 +77,7 @@ exports.likeComment = (req, res) => {
 function safeUpdate(id, update, req, res) {
   Comment.findOne({_id: id}, function (err, model) {
     if (err) {
-      return res.status(500).json({error: err})
+      return res.status(500).json({err})
     }
 
     Comment.findByIdAndUpdate(id, update, {

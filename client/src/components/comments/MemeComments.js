@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid} from 'material-ui/';
 import {withStyles} from 'material-ui/styles';
 import CommentInput from "../../containers/comments/CommentInputContainer";
-import Comment from "./Comment";
+import CommentContainer from "../../containers/comments/CommentContainer";
 
 const styles = {
   addComment: {
@@ -16,7 +16,7 @@ const MemeComments = ({classes, meme, user}) => {
     <div>
       {comments && comments.map((comment) => {
           if (comment.user) return (
-            <Comment key={comment._id} meme={meme} comment={comment} user={user}/>
+            <CommentContainer key={comment._id} meme={meme} comment={comment} user={user}/>
           )
         }
       )}

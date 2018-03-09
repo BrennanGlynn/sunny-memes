@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -15,7 +16,7 @@ const port = process.env.PORT || 3001;
 
 //set up mongodb
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g6c7z.mongodb.net:27017,cluster0-shard-00-01-g6c7z.mongodb.net:27017,cluster0-shard-00-02-g6c7z.mongodb.net:27017/sunny?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', {useMongoClient: true}, function (error) {
+mongoose.connect(process.env.MONGO_URI, {useMongoClient: true}, function (error) {
   if (error) {
     console.log(error);
   } else {
@@ -39,10 +40,13 @@ app.use('/auth', auth);
 app.use('/memes', memeRouter);
 app.use('/upload', upload);
 
-// app.use(express.static(path.join(__dirname, '/client/build')));
-// app.get('*', function(req, res) {
-//   res.sendFile(path.resolve(__dirname, './client/build/index.html'));
-// });
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, '/client/build')));
+  app.get('*', function(req, res) {
+    res.sendFile(path.resolve(__dirname, './client/build/index.html'));
+  });
+}
 
 
 // catch 404 and forward to error handler

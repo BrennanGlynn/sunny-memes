@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
 import Card, {CardActions, CardContent} from 'material-ui/Card';
 import Menu, {MenuItem} from 'material-ui/Menu';
-import {Avatar, Chip, Divider, ListItemIcon, Typography} from 'material-ui/';
+import {Avatar, Chip, Divider, Grid, ListItemIcon, Typography} from 'material-ui/';
 import Fade from 'material-ui/transitions/Fade';
 import IconButton from 'material-ui/IconButton';
 import StarIcon from 'material-ui-icons/Star';
@@ -30,6 +30,31 @@ const styles = theme => ({
   collapse: {
     marginBottom: 10
   },
+  date: {
+    fontSize: 11,
+  },
+  dateContent: {
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  uploadedBy: {
+    fontSize: 10,
+    display: 'inline-block',
+    top: -3,
+    position: 'relative',
+  },
+  picture: {
+    display: 'inline-block',
+    height: 15,
+    width: 15,
+    marginRight: 5,
+    borderRadius: '50%',
+  },
+  descriptionContent: {
+    padding: 5,
+  },
   chipContainer: {
     alignItems: 'center',
     padding: 5,
@@ -40,6 +65,8 @@ const styles = theme => ({
     textDecoration: 'none',
   },
   link: {
+    fontSize: 12,
+    fontWeight: 'normal',
     color: 'inherit',
     textDecoration: 'none'
   },
@@ -65,10 +92,6 @@ const styles = theme => ({
       width: 310,
       margin: "2.5px",
     },
-    title: {
-      textTransform: 'capitalize',
-      fontWeight: 500,
-    },
     rootMedia: {
       backgroundSize: '100%',
     },
@@ -81,10 +104,6 @@ const styles = theme => ({
       width: 225,
       margin: 5,
     },
-    title: {
-      textTransform: 'capitalize',
-      fontWeight: 500,
-    },
     rootMedia: {
       backgroundSize: '100%',
     },
@@ -96,10 +115,6 @@ const styles = theme => ({
     card: {
       width: 260,
       margin: 5,
-    },
-    title: {
-      textTransform: 'capitalize',
-      fontWeight: 500,
     },
     rootMedia: {
       backgroundSize: '100%',
@@ -216,19 +231,6 @@ class MemeCard extends Component {
         {data._id && (
           <div className={classes.frontCardWrapper}>
             <Card raised={true} className={classes.card}>
-              <CardContent style={{minHeight: 20}}>
-                <CardActions className={classes.vertIcon}>
-                  <IconButton
-                    aria-haspopup="true"
-                    onClick={this.handleVertClick.bind(this)}>
-                    <MoreVertIcon/>
-                  </IconButton>
-                </CardActions>
-                <a className={classes.link} href={`/meme/${data._id}`}><Typography type="subheading"
-                                                                                   className={classes.title}>{data.title || 'Loading Title...'}</Typography></a>
-                <Typography
-                  type="caption">{MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}</Typography>
-              </CardContent>
               <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -259,6 +261,22 @@ class MemeCard extends Component {
                 <img src={data.url} alt={data.title} className={classes.media}
                      onClick={this.toggleFullMeme.bind(this, index)}/>
               </div>
+              <CardContent classes={{root: classes.dateContent}}>
+                <Grid container spacing={8}>
+                  <Grid item>
+                    <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile" />
+                    <Typography type="caption" className={classes.uploadedBy}>
+                      {data.uploaded_by.name} on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </CardContent>
+              <Divider/>
+              <CardContent classes={{root: classes.descriptionContent}}>
+                <a className={classes.link} href={`/meme/${data._id}`}>
+                  <Typography type="caption" className={classes.title}>{data.title || 'Loading Description...'}</Typography>
+                </a>
+              </CardContent>
               {data.characters[0] !== 'undefined' &&
               <div>
                 <CardContent className={classes.chipContainer}>
@@ -296,6 +314,11 @@ class MemeCard extends Component {
                 <IconButton aria-label="Download">
                   <a className={classes.download} href={data.url}
                      download=""><FileDownloadIcon/></a>
+                </IconButton>
+                <IconButton
+                  aria-haspopup="true"
+                  onClick={this.handleVertClick.bind(this)}>
+                  <MoreVertIcon/>
                 </IconButton>
               </CardActions>
 

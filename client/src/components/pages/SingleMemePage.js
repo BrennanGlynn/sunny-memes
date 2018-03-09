@@ -1,8 +1,6 @@
-
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
-import { Grid, Paper } from 'material-ui/';
-import MemeContainer from "../../containers/memes/MemeContainer";
+import {Grid, Paper} from 'material-ui/';
+import MemeContainer from "../../containers/memes/MemeCardContainer";
 
 class SingleMemePage extends Component {
   constructor(props) {
@@ -23,7 +21,6 @@ class SingleMemePage extends Component {
         }
       })
       .then(meme => {
-        console.log(meme)
         self.setState({data: meme, loading: false})
       })
       .catch(err => {
@@ -33,8 +30,6 @@ class SingleMemePage extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-
     return(
       <div>
         {this.state.loading ?
@@ -43,9 +38,11 @@ class SingleMemePage extends Component {
             {this.state.errorMessage ?
               (<div>{this.state.errorMessage}</div>) :
               (
-                <Grid container justify="center">
+                <Grid container spacing={0} justify="center">
                   <Grid item>
-                    <MemeContainer meme={this.state.data} />
+                    <MemeContainer meme={this.state.data} masonry={{layout: function () {
+                        console.log("masonry not enabled")
+                      }}} />
                   </Grid>
 
                   <Grid item>

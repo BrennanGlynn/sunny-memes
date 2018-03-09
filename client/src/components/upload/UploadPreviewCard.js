@@ -1,8 +1,6 @@
-import React, {Component} from 'react'
-import {
-  Avatar, Card, CardContent, CardMedia, Chip, TextField, Typography,
-  withStyles
-} from "material-ui";
+import React, {Component} from 'react';
+import {Avatar, Card, CardContent, Chip, Checkbox, TextField, Typography, withStyles} from "material-ui";
+import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import IconButton from 'material-ui/IconButton';
 import CancelIcon from 'material-ui-icons/Cancel';
 
@@ -112,8 +110,8 @@ class UploadPreviewCard extends Component {
     super(props)
     this.state = {
       title: "",
-      characters: [],
-      error: true
+      error: true,
+      characters: []
     }
   }
 
@@ -143,7 +141,46 @@ class UploadPreviewCard extends Component {
 
   render() {
     const {file, classes, cancelCard} = this.props
-    const charEnum = ['charlie', 'dee', 'dennis', 'frank', 'mac']
+    const characterNames = {
+      dennis: "Dennis",
+      mac: "Mac",
+      charlie: "Charlie",
+      dee: "Dee",
+      frank: "Frank",
+      waitress: "The Waitress",
+      cricket: "Cricket",
+      artemis: "Artemis",
+      lawyer: "Lawyer",
+      lilkev: "Lil Kev",
+      countrymac: "Country Mac",
+      gailthesnail: "Gail the Snail",
+      unclejack: "Uncle Jack",
+      bonnie: "Bonnie",
+      luther: "Luther",
+      mrsmac: "Mrs. McDonald",
+      barbara: "Barbara Reynolds",
+      ben: "Ben the Soldier",
+      pondy: "Pondy",
+      maureen: "Maureen Ponderosa",
+      therapist: "Therapist",
+      liam: "Liam McPoyle",
+      ryan: "Ryan McPoyle",
+      margaret: "Margaret McPoyle",
+      pappy: "Pappy McPoyle",
+      roxy: "Roxy",
+      gladys: "Gladys",
+      z: "Z",
+      duncan: "Duncan",
+      maniac: "Da' Maniac",
+      rex: "Rex",
+      hwang: "Hwang",
+      ingrid: "Ingrid Nelson",
+      ruby: "Ruby Taft"
+    }
+
+
+
+
 
     return (
       <Card key={file.name} raised={true} className={classes.card}>
@@ -167,18 +204,27 @@ class UploadPreviewCard extends Component {
             type="caption">{"January, 1st 2018"}</Typography>
         </CardContent>
         <div className={classes.background}>
-          <img src={file.preview} alt={file.title} className={classes.media} />
+          <img src={file.preview} alt={file.title} className={classes.media}/>
         </div>
         <CardContent className={classes.chipContainer}>
-          {charEnum.map((charName) =>
-            <Chip
-              key={charName}
-              avatar={<Avatar src={"/images/" + charName + ".jpg"}/>}
-              label={charName}
-              className={!this.state.characters.includes(charName) ? classes.dimmed + " " + classes.chip : classes.chip}
-              onClick={this.toggleChar.bind(this, file, charName)}
-            />
-          )}
+          <List className={classes.characterFilterList}>
+            {Object.keys(characterNames).map((character) => (
+              <ListItem key={character} onClick={this.toggleChar.bind(this, file, character)} dense button
+                        className={classes.listItem}>
+                <Avatar alt={`${character}`} src={`/images/characters/${character}.jpg`}/>
+                <ListItemText primary={`${characterNames[character]}`}/>
+                <ListItemSecondaryAction>
+                  <Checkbox
+                    classes={{
+                      checkedSecondary: classes.checkedSecondary,
+                    }}
+                    onChange={this.toggleChar.bind(this, file, character)}
+                    checked={this.state.characters.includes(character)}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
         </CardContent>
       </Card>)
   }

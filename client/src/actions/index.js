@@ -64,6 +64,12 @@ export const toggleCharacter = (character) => {
   }
 }
 
+export const removeFilter = () => {
+  return dispatch => {
+    dispatch(updateFilter([]))
+  }
+}
+
 export const updateFilter = (characterArray) => {
   return dispatch => {
     dispatch(updatedFilter(characterArray))
@@ -83,6 +89,13 @@ export const changeCurrentIndex = (index) => {
   return {
     type: "CHANGE_CURRENT_INDEX",
     index
+  }
+}
+
+export const uploadedMemes = () => {
+  return dispatch => {
+    dispatch(getMyMemes(""))
+    dispatch(getRecentMemes(""))
   }
 }
 //============================================================================requesting memes
@@ -111,8 +124,8 @@ export const getMemes = (query) => {
 }
 
 export const getMyMemes = (query) => {
-  return dispatch => {
-    return memeRequest(dispatch, 'mine' + query, myMemesReceived)
+  return (dispatch, getState) => {
+    return memeRequest(dispatch, `user/${getState().auth.user.id}${query}`, myMemesReceived)
   }
 }
 
@@ -212,10 +225,42 @@ export const memeDeleted = (memeId) => {
   }
 }
 
-export const uploadedMemes = () => {
+//=======================================================================================================Comment Actions
+export const updatedComments = (memeId) => {
   return dispatch => {
-    dispatch(getMyMemes(""))
-    dispatch(getRecentMemes(""))
+    fetch('/memes/' + memeId)
+      .then(res => {
+        if (res.ok) return res.json()
+      })
+      .then(meme => {
+        dispatch(updatedMemeReceived(meme))
+      })
+      .catch(err => {
+        console.log('error', err)
+      })
+  }
+}
+
+export const updatedMemeReceived = (meme) => {
+  return {
+    type: "UPDATED_MEME",
+    updatedMeme: meme
+  }
+}
+
+export const likeComment = (commentId) => {
+  return dispatch => {
+    fetch(`/comments/like/${commentId}`, {
+      method: "put",
+      credentials: "include",
+    }).then(
+      res => {
+        if (res.ok) return res.json()
+      },
+      error => console.log(error)
+    ).then(json => {
+      if (json) dispatch(updatedComments(json.updatedObject.meme_id))
+    })
   }
 }
 
@@ -238,5 +283,3 @@ function memeRequest(dispatch, query, receivedAction) {
     dispatch(receivedAction(memes))
   })
 }
-
-

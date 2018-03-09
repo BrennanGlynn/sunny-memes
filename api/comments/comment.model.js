@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const UserSchema = require("../auth/user.model")
 
 const CommentSchema = new Schema({
-  uploaded_by: {
-    type: Object.Schema.Types.ObjectId,
+  user: {
+    type: Schema.Types.Mixed,
     required: true
   },
   text: {
@@ -15,12 +16,12 @@ const CommentSchema = new Schema({
   },
   children: {
     type: [Schema.Types.ObjectId],
-    default: null
+    default: []
   },
   meme_id: {
     type: Schema.Types.ObjectId,
     required: true
-  }
+  },
 })
 
-export default CommentSchema
+module.exports = mongoose.model('Comment', CommentSchema);

@@ -11,7 +11,7 @@ const MemeSchema = new Schema({
   title: {
     type: String,
     required: true,
-    maxlength: 65
+    maxlength: 10000
   },
   uploaded_by: {
     type: Schema.Types.ObjectId,

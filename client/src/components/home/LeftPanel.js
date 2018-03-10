@@ -13,6 +13,9 @@ const styles = theme => ({
     maxWidth: 250,
     backgroundColor: theme.palette.background.paper,
   },
+  icon: {
+    marginRight: 0,
+  },
 });
 
 class LeftPanel extends Component {
@@ -25,14 +28,14 @@ class LeftPanel extends Component {
             <List component="nav">
               <ListItem button>
                 <ListItemText primary="Trending" />
-                <ListItemIcon>
+                <ListItemIcon className={classes.icon}>
                   <TrendingUpIcon />
                 </ListItemIcon>
               </ListItem>
               <a href="/mostpopular">
                 <ListItem button>
                   <ListItemText primary="Top Favorites" />
-                  <ListItemIcon>
+                  <ListItemIcon className={classes.icon}>
                     <StarIcon />
                   </ListItemIcon>
                 </ListItem>
@@ -40,7 +43,7 @@ class LeftPanel extends Component {
               <a href="mostRecent">
                 <ListItem button>
                   <ListItemText primary="Most Recent" />
-                  <ListItemIcon>
+                  <ListItemIcon className={classes.icon}>
                     <AccessTimeIcon />
                   </ListItemIcon>
                 </ListItem>

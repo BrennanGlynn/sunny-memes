@@ -21,6 +21,7 @@ const styles = theme => ({
     marginTop: 5,
   },
   picture: {
+    marginLeft: 5,
     height: 40,
     width: 40,
     borderRadius: '50%',
@@ -35,19 +36,28 @@ const styles = theme => ({
   logout: {
     fontSize: 10,
     top: -20,
-    left: 45,
+    left: 50,
     position: 'relative',
   },
   sunnyStatus: {
+    paddingLeft: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
   },
-  sunnyStatusIcon: {
-    marginRight: 0,
+  sunnyIcon: {
+    marginRight: 2.5,
+  },
+  sunnyTotal: {
+    paddingLeft: 5,
   },
   uploadButton: {
     marginTop: 20,
-    marginLeft: 20,
+    marginLeft: 10,
     backgroundColor: '#2c8943',
     color: '#fff',
+  },
+  icon: {
+    paddingLeft: 5,
   },
 });
 
@@ -72,16 +82,16 @@ class RightPanel extends Component {
               </a>
             </Typography>
             <ListItem button className={classes.sunnyStatus}>
-              <ListItemIcon className={classes.SunnyStatusIcon}>
+              <ListItemIcon className={classes.sunnyIcon}>
                 <WbSunnyIcon />
               </ListItemIcon>
-              <ListItemText primary="5" />
+              <ListItemText className={classes.sunnyTotal} primary="5" />
             </ListItem>
 
             <Divider />
             <List component="nav">
               <a href="/favorites">
-                <ListItem button >
+                <ListItem button className={classes.icon}>
                   <ListItemIcon>
                     <StarIcon />
                   </ListItemIcon>
@@ -89,7 +99,7 @@ class RightPanel extends Component {
                 </ListItem>
               </a>
               <a href="/mymemes">
-                <ListItem button>
+                <ListItem button className={classes.icon}>
                   <ListItemIcon>
                     <PhotoLibraryIcon />
                   </ListItemIcon>

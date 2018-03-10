@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { Typography, Grid, Avatar, Divider } from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
+import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 
 const styles = theme => ({
   root: {
@@ -12,6 +13,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   rightPanel: {
+    borderLeft: '1px solid rgba(0,0,0,.1)',
+    paddingLeft: 5,
     marginTop: 5,
   },
   picture: {
@@ -49,13 +52,13 @@ class RightPanel extends Component {
                 <ListItemIcon>
                   <StarIcon />
                 </ListItemIcon>
-                <ListItemText primary="Trending" />
+                <ListItemText primary="My Favorites" />
               </ListItem>
               <ListItem button>
                 <ListItemIcon>
-                  <StarIcon />
+                  <PhotoLibraryIcon />
                 </ListItemIcon>
-                <ListItemText primary="Top Favorites" />
+                <ListItemText primary="My Memes" />
               </ListItem>
               <ListItem button>
                 <ListItemIcon>
@@ -64,6 +67,7 @@ class RightPanel extends Component {
                 <ListItemText primary="Most Recent" />
               </ListItem>
             </List>
+            <Divider />
           </Grid>
         </Grid>
       </div>

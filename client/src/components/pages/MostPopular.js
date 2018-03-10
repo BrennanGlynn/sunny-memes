@@ -26,6 +26,12 @@ const styles = {
     marginTop: 5,
     top: 50,
   },
+  rightPanel: {
+    position: "-webkit-sticky",
+    position: "sticky",
+    marginTop: 5,
+    top: 70,
+  },
   memes: {
     position: 'relative',
     margin: 'auto',
@@ -58,7 +64,7 @@ class MostPopular extends Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={6} lg={5} className={classes.memes}>
+          <Grid item  className={classes.memes}>
             {/*}<Masonry
               ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
               options={{fitWidth: true}}
@@ -69,8 +75,12 @@ class MostPopular extends Component {
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item md={3} lg={3}>
-            <RightPanel />
+          <Grid item md={3} lg={4}>
+            <Grid container spacing={0} className={classes.leftPanel}>
+              <Grid item>
+                <RightPanel />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </div>

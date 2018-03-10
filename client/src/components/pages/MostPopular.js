@@ -34,7 +34,6 @@ const styles = {
   },
   memes: {
     position: 'relative',
-    margin: 'auto',
   },
 }
 
@@ -56,7 +55,7 @@ class MostPopular extends Component {
     return (
       <div>
         <Grid container spacing={0}>
-          <Grid item md={3} lg={4}>
+          <Grid item md={3} lg={3}>
             <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
               <Grid item>
                 <LeftPanel />
@@ -71,11 +70,11 @@ class MostPopular extends Component {
               className={classes.memeWrapper}
             >*/}
               {memesArray.map((meme, i) =>
-                <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id} masonry={masonry}/>
+                <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item md={3} lg={4}>
+          <Grid item md={3} lg={3}>
             <Grid container spacing={0} className={classes.leftPanel}>
               <Grid item>
                 <RightPanel />

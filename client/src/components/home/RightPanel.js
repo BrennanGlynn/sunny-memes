@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { Typography, Grid, Avatar, Divider } from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
+import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 
 const styles = theme => ({
@@ -13,7 +14,6 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   rightPanel: {
-    borderLeft: '1px solid rgba(0,0,0,.1)',
     paddingLeft: 5,
     marginTop: 5,
   },
@@ -28,6 +28,11 @@ const styles = theme => ({
     position: 'relative',
     top: -25,
     display: 'inline-block',
+  },
+  sunnyStatus: {
+  },
+  sunnyStatusIcon: {
+    marginRight: 0,
   },
 });
 
@@ -46,6 +51,13 @@ class RightPanel extends Component {
             <Typography type="caption" className={classes.userName}>
               Ben Jeske
             </Typography>
+            <ListItem button className={classes.sunnyStatus}>
+              <ListItemIcon className={classes.SunnyStatusIcon}>
+                <WbSunnyIcon />
+              </ListItemIcon>
+              <ListItemText primary="5" />
+            </ListItem>
+
             <Divider />
             <List component="nav">
               <ListItem button>

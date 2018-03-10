@@ -29,8 +29,8 @@ const styles = {
   rightPanel: {
     position: "-webkit-sticky",
     position: "sticky",
-    marginTop: 5,
-    top: 70,
+    marginTop: 50,
+    top: 100,
   },
   memes: {
     position: 'relative',
@@ -55,7 +55,7 @@ class MostPopular extends Component {
     return (
       <div>
         <Grid container spacing={0}>
-          <Grid item md={3} lg={3}>
+          <Grid item md={3} lg={4}>
             <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
               <Grid item>
                 <LeftPanel />
@@ -63,7 +63,7 @@ class MostPopular extends Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item  className={classes.memes}>
+          <Grid item className={classes.memes}>
             {/*}<Masonry
               ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
               options={{fitWidth: true}}
@@ -74,7 +74,7 @@ class MostPopular extends Component {
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item md={3} lg={3}>
+          <Grid item md={3} lg={2}>
             <Grid container spacing={0} className={classes.leftPanel}>
               <Grid item>
                 <RightPanel />

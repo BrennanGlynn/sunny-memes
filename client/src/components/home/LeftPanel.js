@@ -5,13 +5,15 @@ import {Grid, Divider} from 'material-ui/';
 import TrendingUpIcon from 'material-ui-icons/TrendingUp';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
+import FilterCharacterList from "../../containers/sorting/FilterCharacterListContainer";
 
 const styles = theme => ({
   root: {
     textAlign: 'right',
     width: '100%',
     maxWidth: 250,
-    backgroundColor: theme.palette.background.paper,
+    marginRight: 5,
+    backgroundColor: "#fff",
   },
   icon: {
     marginRight: 0,
@@ -49,6 +51,8 @@ class LeftPanel extends Component {
                 </ListItem>
               </a>
             </List>
+
+            <FilterCharacterList />
           </Grid>
         </Grid>
         <Divider />

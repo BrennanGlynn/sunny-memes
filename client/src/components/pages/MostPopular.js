@@ -8,11 +8,13 @@ import { Grid } from "material-ui/";
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 import LeftPanel from "../home/LeftPanel";
 import RightPanel from "../home/RightPanel";
-import FilterCharacterList from "../../containers/sorting/FilterCharacterListContainer";
 
 const styles = {
   root: {
     flexGrow: 1,
+  },
+  siteBackground: {
+    backgroundColor: '#2c8943',
   },
   memeWrapper: {
     margin: 'auto',
@@ -23,16 +25,20 @@ const styles = {
   leftPanel: {
     position: "-webkit-sticky",
     position: "sticky",
-    marginTop: 5,
-    top: 50,
+    top: 0,
+    marginTop: 0,
+  },
+  rightPanelContainer: {
+    height: "100%",
   },
   rightPanel: {
     position: "-webkit-sticky",
     position: "sticky",
-    marginTop: 50,
-    top: 100,
+    top: 0,
+    backgroundColor: "#fff",
   },
   memes: {
+    backgroundColor: "#fff",
     position: 'relative',
   },
 }
@@ -53,13 +59,12 @@ class MostPopular extends Component {
       }
     }
     return (
-      <div>
+      <div className={classes.siteBackground}>
         <Grid container spacing={0}>
           <Grid item md={3} lg={4}>
             <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
               <Grid item>
                 <LeftPanel />
-                <FilterCharacterList />
               </Grid>
             </Grid>
           </Grid>
@@ -74,8 +79,8 @@ class MostPopular extends Component {
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item md={4} lg={2}>
-            <Grid container spacing={0} className={classes.leftPanel}>
+          <Grid item md={4} lg={2} className={classes.rightPanelContainer}>
+            <Grid container spacing={0} className={classes.rightPanel}>
               <Grid item>
                 <RightPanel />
               </Grid>

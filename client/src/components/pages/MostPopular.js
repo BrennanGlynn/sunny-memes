@@ -2,10 +2,12 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles";
 // import queryString from 'query-string';
-import MemeContainer from "../../containers/memes/MemeCardContainer"
-import Masonry from "react-masonry-component"
+import MemeContainer from "../../containers/memes/MemeCardContainer";
+import Masonry from "react-masonry-component";
 import Grid from "material-ui/Grid";
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
+import LeftPanel from "../home/LeftPanel";
+import FilterCharacterList from "../../containers/sorting/FilterCharacterListContainer";
 
 const styles = {
   root: {
@@ -16,7 +18,11 @@ const styles = {
   },
   masonry: {
     margin: 'auto'
-  }
+  },
+  memes: {
+    position: 'relative',
+    margin: 'auto',
+  },
 }
 
 class MostPopular extends Component {
@@ -38,16 +44,23 @@ class MostPopular extends Component {
       <div>
         <FilterModalContainer/>
         <Grid container spacing={0}>
-          <Grid item xs={12}>
-            <Masonry
+          <Grid item lg={3}>
+            <LeftPanel />
+            <FilterCharacterList />
+          </Grid>
+          <Grid item lg={6} className={classes.memes}>
+            {/*}<Masonry
               ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
               options={{fitWidth: true}}
               className={classes.memeWrapper}
-            >
+            >*/}
               {memesArray.map((meme, i) =>
                 <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id} masonry={masonry}/>
               )}
-            </Masonry>
+            {/*}</Masonry>*/}
+          </Grid>
+          <Grid item lg={3}>
+          test
           </Grid>
         </Grid>
       </div>

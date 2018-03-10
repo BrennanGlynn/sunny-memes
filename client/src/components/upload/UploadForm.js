@@ -84,7 +84,7 @@ class UploadForm extends Component {
     let promises = []
     let dispatchUploads = this.props.onUpload
     this.state.files.forEach(function (f) {
-      if (f.title && f.title.length > 0 && f.title.length <= 65) {
+      if (f.title && f.title.length > 0 && f.title.length <= 10000) {
         let formData = new FormData();
         formData.append('file', f);
         formData.append('title', f.title)

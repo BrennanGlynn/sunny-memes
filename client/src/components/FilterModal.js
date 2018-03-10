@@ -5,6 +5,7 @@ import {Avatar, Checkbox, Chip, Divider, Grid, Modal, Typography} from "material
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
+import FilterCharacterListContainer from "../containers/sorting/FilterCharacterListContainer";
 
 const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
@@ -171,23 +172,7 @@ class FilterModal extends Component {
               <Divider/>
               <Grid container justify="flex-end" spacing={0}>
                 <Grid item xs={12} sm={12} md={12}>
-                  <List className={classes.characterFilterList}>
-                    {Object.keys(characterNames).map(character => (
-                      <ListItem key={character} onClick={toggleChar.bind(this, character)} dense button className={classes.listItem}>
-                        <Avatar alt={`${character}`} src={`/images/characters/${character}.jpg`}/>
-                        <ListItemText primary={`${characterNames[character]}`} />
-                        <ListItemSecondaryAction>
-                          <Checkbox
-                            classes={{
-                              checkedSecondary: classes.checkedSecondary,
-                            }}
-                            onChange={toggleChar.bind(this, character)}
-                            checked={characters.includes(character)}
-                          />
-                        </ListItemSecondaryAction>
-                      </ListItem>
-                    ))}
-                  </List>
+                  <FilterCharacterListContainer />
                 </Grid>
               </Grid>
             </div>

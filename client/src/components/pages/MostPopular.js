@@ -4,9 +4,10 @@ import {withStyles} from "material-ui/styles";
 // import queryString from 'query-string';
 import MemeContainer from "../../containers/memes/MemeCardContainer";
 import Masonry from "react-masonry-component";
-import Grid from "material-ui/Grid";
+import { Grid } from "material-ui/";
 import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
 import LeftPanel from "../home/LeftPanel";
+import RightPanel from "../home/RightPanel";
 import FilterCharacterList from "../../containers/sorting/FilterCharacterListContainer";
 
 const styles = {
@@ -18,6 +19,12 @@ const styles = {
   },
   masonry: {
     margin: 'auto'
+  },
+  leftPanel: {
+    position: "-webkit-sticky",
+    position: "sticky",
+    marginTop: 5,
+    top: 50,
   },
   memes: {
     position: 'relative',
@@ -42,13 +49,16 @@ class MostPopular extends Component {
     }
     return (
       <div>
-        <FilterModalContainer/>
         <Grid container spacing={0}>
-          <Grid item lg={3}>
-            <LeftPanel />
-            <FilterCharacterList />
+          <Grid item md={3} lg={4}>
+            <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
+              <Grid item>
+                <LeftPanel />
+                <FilterCharacterList />
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item lg={6} className={classes.memes}>
+          <Grid item md={6} lg={5} className={classes.memes}>
             {/*}<Masonry
               ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
               options={{fitWidth: true}}
@@ -59,8 +69,8 @@ class MostPopular extends Component {
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item lg={3}>
-          test
+          <Grid item md={3} lg={3}>
+            <RightPanel />
           </Grid>
         </Grid>
       </div>

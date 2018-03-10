@@ -13,6 +13,7 @@ const styles = theme => ({
     marginRight: 5,
   },
   characterFilterList: {
+    maxWidth: 250,
     maxHeight: 500,
     overflow: 'auto',
     textTransform: 'capitalize',
@@ -97,6 +98,7 @@ class FilterCharacterList extends Component {
             </ListItemSecondaryAction>
           </ListItem>
         ))}
+          <Divider />
       </List>
     )
   }

@@ -99,7 +99,7 @@ const styles = theme => ({
       width: '100%',
     },
   },
-  [theme.breakpoints.between('sm', 'md')]: {
+  [theme.breakpoints.only('sm')]: {
     card: {
       width: 225,
       margin: 5,
@@ -111,16 +111,28 @@ const styles = theme => ({
       width: 225,
     },
   },
-  [theme.breakpoints.between('lg', 'xl')]: {
+  [theme.breakpoints.only('md')]: {
     card: {
-      width: 600,
+      width: 500,
       margin: 5,
     },
     rootMedia: {
       backgroundSize: '100%',
     },
     media: {
-      width: 600,
+      width: 500,
+    },
+  },
+  [theme.breakpoints.between('lg', 'xl')]: {
+    card: {
+      width: 735,
+      margin: 5,
+    },
+    rootMedia: {
+      backgroundSize: '100%',
+    },
+    media: {
+      width: 735,
     },
   },
 });

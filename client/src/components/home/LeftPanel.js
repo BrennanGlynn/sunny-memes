@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import InboxIcon from 'material-ui-icons/Inbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
+import {Grid, Divider} from 'material-ui/';
+import TrendingUpIcon from 'material-ui-icons/TrendingUp';
+import StarIcon from 'material-ui-icons/Star';
+import AccessTimeIcon from 'material-ui-icons/AccessTime';
 
 const styles = theme => ({
   root: {
     textAlign: 'right',
     width: '100%',
-    maxWidth: 200,
+    maxWidth: 250,
     backgroundColor: theme.palette.background.paper,
   },
 });
@@ -19,29 +20,31 @@ class LeftPanel extends Component {
     const { classes } = this.props;
     return(
       <div className={classes.root}>
-        <List component="nav">
-          <ListItem button>
-            <ListItemText primary="Inbox" />
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Drafts" />
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-          </ListItem>
-        </List>
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
+            <List component="nav">
+              <ListItem button>
+                <ListItemText primary="Trending" />
+                <ListItemIcon>
+                  <TrendingUpIcon />
+                </ListItemIcon>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Top Favorites" />
+                <ListItemIcon>
+                  <StarIcon />
+                </ListItemIcon>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Most Recent" />
+                <ListItemIcon>
+                  <AccessTimeIcon />
+                </ListItemIcon>
+              </ListItem>
+            </List>
+          </Grid>
+        </Grid>
         <Divider />
-        <List component="nav">
-          <ListItem button>
-            <ListItemText primary="Trash" />
-          </ListItem>
-          <ListItem button component="a" href="#simple-list">
-            <ListItemText primary="Spam" />
-          </ListItem>
-        </List>
       </div>
     )
   }

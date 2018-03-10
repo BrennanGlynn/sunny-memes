@@ -12,6 +12,7 @@ const styles = theme => ({
     textAlign: 'right',
     width: '100%',
     maxWidth: 250,
+    minHeight: "100%",
     marginRight: 5,
     backgroundColor: "#fff",
   },

@@ -14,7 +14,7 @@ const styles = {
     flexGrow: 1,
   },
   siteBackground: {
-    backgroundColor: '#2c8943',
+    backgroundColor: 'rgba(245,245,245,.9)',
   },
   memeWrapper: {
     margin: 'auto',
@@ -22,20 +22,25 @@ const styles = {
   masonry: {
     margin: 'auto'
   },
+  leftPanelContainer: {
+    minHeight: "100%",
+  },
   leftPanel: {
     position: "-webkit-sticky",
     position: "sticky",
     top: 0,
     marginTop: 0,
+    minHeight: "100%",
   },
   rightPanelContainer: {
-    height: "100%",
+    minHeight: "100%",
   },
   rightPanel: {
     position: "-webkit-sticky",
     position: "sticky",
     top: 0,
     backgroundColor: "#fff",
+    minHeight: "100%",
   },
   memes: {
     backgroundColor: "#fff",
@@ -61,7 +66,7 @@ class MostPopular extends Component {
     return (
       <div className={classes.siteBackground}>
         <Grid container spacing={0}>
-          <Grid item md={3} lg={4}>
+          <Grid item md={3} lg={4} className={classes.leftPanelContainer}>
             <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
               <Grid item>
                 <LeftPanel />
@@ -79,7 +84,7 @@ class MostPopular extends Component {
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item md={4} lg={2} className={classes.rightPanelContainer}>
+          <Grid item md={5} lg={2} className={classes.rightPanelContainer}>
             <Grid container spacing={0} className={classes.rightPanel}>
               <Grid item>
                 <RightPanel />

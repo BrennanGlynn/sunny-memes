@@ -29,18 +29,22 @@ class LeftPanel extends Component {
                   <TrendingUpIcon />
                 </ListItemIcon>
               </ListItem>
-              <ListItem button>
-                <ListItemText primary="Top Favorites" />
-                <ListItemIcon>
-                  <StarIcon />
-                </ListItemIcon>
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Most Recent" />
-                <ListItemIcon>
-                  <AccessTimeIcon />
-                </ListItemIcon>
-              </ListItem>
+              <a href="/mostpopular">
+                <ListItem button>
+                  <ListItemText primary="Top Favorites" />
+                  <ListItemIcon>
+                    <StarIcon />
+                  </ListItemIcon>
+                </ListItem>
+              </a>
+              <a href="mostRecent">
+                <ListItem button>
+                  <ListItemText primary="Most Recent" />
+                  <ListItemIcon>
+                    <AccessTimeIcon />
+                  </ListItemIcon>
+                </ListItem>
+              </a>
             </List>
           </Grid>
         </Grid>

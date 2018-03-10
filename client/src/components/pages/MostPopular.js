@@ -74,7 +74,7 @@ class MostPopular extends Component {
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item md={3} lg={2}>
+          <Grid item md={4} lg={2}>
             <Grid container spacing={0} className={classes.leftPanel}>
               <Grid item>
                 <RightPanel />

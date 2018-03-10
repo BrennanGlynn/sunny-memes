@@ -113,14 +113,14 @@ const styles = theme => ({
   },
   [theme.breakpoints.only('md')]: {
     card: {
-      width: 600,
+      width: 575,
       margin: 5,
     },
     rootMedia: {
       backgroundSize: '100%',
     },
     media: {
-      width: 600,
+      width: 575,
     },
   },
   [theme.breakpoints.between('lg', 'xl')]: {

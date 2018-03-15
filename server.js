@@ -28,8 +28,12 @@ mongoose.connect(config.mongoUri, {useMongoClient: true}, function (error) {
 });
 
 app.use(logger('dev'));
-app.use(cookieParser('fortified secret'));
-app.use(require('express-session')({secret: 'fortified secret', resave: true, saveUninitialized: true}));
+app.use(cookieParser('fortifiedsecret'));
+
+let cookieExpirationDate = new Date()
+const cookieExpirationDays = 365
+cookieExpirationDate.setDate(cookieExpirationDate.getDate() + cookieExpirationDays)
+app.use(require('cookie-session')({secret: 'fortifiedsecret', resave: true, saveUninitialized: true, cookie: {expires: cookieExpirationDate}}));
 
 // serve static images
 app.use(express.static(path.join(__dirname, 'public')));

@@ -103,7 +103,7 @@ class UploadForm extends Component {
     if (valid) {
       Promise.all(promises).then(() => {
           dispatchUploads()
-          window.location.replace('/mymemes')
+          this.setState({files: []})
         },
         err => console.log(err)
       )

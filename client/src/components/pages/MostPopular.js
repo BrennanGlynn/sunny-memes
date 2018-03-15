@@ -23,14 +23,14 @@ const styles = {
     margin: 'auto'
   },
   leftPanelContainer: {
-    minHeight: "100%",
-  },
-  leftPanel: {
     position: "-webkit-sticky",
     position: "sticky",
     top: 0,
+    minHeight: "100vh",
+  },
+  leftPanel: {
+    minHeight: "100vh",
     marginTop: 0,
-    minHeight: "100%",
   },
   rightPanelContainer: {
     minHeight: "100%",
@@ -38,7 +38,7 @@ const styles = {
   rightPanel: {
     position: "-webkit-sticky",
     position: "sticky",
-    top: 0,
+    top: 50,
     backgroundColor: "#fff",
     minHeight: "100%",
   },
@@ -84,7 +84,7 @@ class MostPopular extends Component {
               )}
             {/*}</Masonry>*/}
           </Grid>
-          <Grid item md={5} lg={2} className={classes.rightPanelContainer}>
+          <Grid item md={3} lg={2} className={classes.rightPanelContainer}>
             <Grid container spacing={0} className={classes.rightPanel}>
               <Grid item>
                 <RightPanel />

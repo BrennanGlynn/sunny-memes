@@ -4,9 +4,11 @@ import PersonIcon from 'material-ui-icons/Person';
 import HomeIcon from 'material-ui-icons/Home';
 import StarIcon from 'material-ui-icons/Star';
 import PowerIcon from 'material-ui-icons/PowerSettingsNew';
-import UploadIcon from 'material-ui-icons/Publish'
+import UploadIcon from 'material-ui-icons/Publish';
+import RightPanel from '../home/RightPanel';
 
-const styles = {}
+const styles = theme => ({
+});
 
 class UserDrawer extends Component {
 
@@ -30,7 +32,7 @@ class UserDrawer extends Component {
           open={open}
           onClose={openUserDrawer}
         >
-          <List component="nav">
+        {/*}  <List component="nav">
             <Divider />
             <ListItem button onClick={this.goTo.bind(this, 'addmeme')}>
               <ListItemIcon>
@@ -60,7 +62,8 @@ class UserDrawer extends Component {
               <ListItemText primary="Log out"/>
             </ListItem>
             <Divider />
-          </List>
+          </List>*/}
+          <RightPanel />
         </Drawer>
       </div>
     )

@@ -4,6 +4,7 @@ import HomeIcon from 'material-ui-icons/Home';
 import MenuIcon from 'material-ui-icons/Menu';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
+import LeftPanel from '../home/LeftPanel';
 
 const styles = {
 }
@@ -18,7 +19,7 @@ class NavDrawer extends Component {
     const {open, openRightDrawer} = this.props
     return(
       <div>
-        <IconButton
+      <IconButton
         color="inherit"
         aria-label="open drawer"
         onClick={openRightDrawer}
@@ -29,7 +30,7 @@ class NavDrawer extends Component {
           open={open}
           onClose={openRightDrawer}
         >
-          <List component="nav">
+        {/*  <List component="nav">
             <Divider />
             <ListItem
               button
@@ -61,7 +62,8 @@ class NavDrawer extends Component {
               <ListItemText primary="Recently Uploaded" />
             </ListItem>
             <Divider />
-          </List>
+          </List>*/}
+          <LeftPanel />
         </Drawer>
       </div>
     )

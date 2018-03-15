@@ -10,6 +10,11 @@ import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 
 const styles = theme => ({
+    [theme.breakpoints.between('xs', 'md')]: {
+      desktopMenu: {
+        display: 'none',
+      },
+    },
   root: {
     textAlign: 'right',
     width: '100%',
@@ -69,7 +74,7 @@ class RightPanel extends Component {
   render() {
     const { classes, onLogoutClick, auth } = this.props;
     return(
-      <div>
+      <div className={classes.desktopMenu}>
         <Grid container spacing={0} justify="flex-start" className={classes.rightPanel}>
           <Grid item>
             <img src={"../images/characters/dennis.jpg"} className={classes.picture} alt="profile" />

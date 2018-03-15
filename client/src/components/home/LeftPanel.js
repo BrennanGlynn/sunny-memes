@@ -8,6 +8,11 @@ import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import FilterCharacterList from "../../containers/sorting/FilterCharacterListContainer";
 
 const styles = theme => ({
+  [theme.breakpoints.between('xs', 'md')]: {
+    desktopMenu: {
+      display: 'none',
+    },
+  },
   root: {
     textAlign: 'right',
     width: '100%',
@@ -25,7 +30,7 @@ class LeftPanel extends Component {
   render() {
     const { classes } = this.props;
     return(
-      <div className={classes.root}>
+      <div className={classes.root + " " + classes.desktopMenu}>
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <List component="nav">

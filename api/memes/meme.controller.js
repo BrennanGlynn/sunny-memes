@@ -135,11 +135,10 @@ exports.index = (req, res) => {
 }
 
 exports.create = (req, res) => {
-
+  console.log("que")
   // Ensure user is in session
   if (!req.user) {
-    //TODO change in production
-    return res.redirect('http://localhost/pleaseLogin')
+    return res.json({err: 'pleaseLogin'})
   }
 
   // Read incoming form
@@ -173,8 +172,7 @@ exports.create = (req, res) => {
             res.status = 501;
             return res.send('Error creating meme: ' + err);
           }
-          //TODO change in production
-          return res.redirect('http://localhost:3000/myMemes');
+          return res.json({meme});
         });
       })
     } else res.json({});

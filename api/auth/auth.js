@@ -3,11 +3,12 @@ const router = express.Router();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('./user.model');
+const config = require('../../config')
 
 passport.use(new FacebookStrategy({
-  clientID: '316389025537007',
-  clientSecret: '78bcf0c5451347fb5b637d1b2299fa0e',
-  callbackURL: 'http://localhost:3001/auth/facebook/return',
+  clientID: config.facebook.clientID,
+  clientSecret: config.facebook.clientSecret,
+  callbackURL: config.facebook.callbackUrl,
   profileFields: ['id', 'displayName', 'emails', 'picture.type(large)']
 }, function (accessToken, refreshToken, profile, done) {
   const me = new User({
@@ -50,8 +51,8 @@ router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/return', passport.authenticate('facebook', {failureRedirect: '/auth'}),
   function (req, res) {
-    //TODO change this in production
-    res.redirect('http://localhost:3000')
+    let home = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000'
+    res.redirect(home)
   });
 
 router.get('/logout', function (req, res) {

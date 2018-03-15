@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const config = require('./config')
 
 // Grab API routers
 const auth = require('./api/auth/auth');
@@ -18,7 +19,7 @@ const port = process.env.PORT || 3001;
 
 //set up mongodb
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://BrennanGlynn:o570tMuCzjttCMMI@cluster0-shard-00-00-g6c7z.mongodb.net:27017,cluster0-shard-00-01-g6c7z.mongodb.net:27017,cluster0-shard-00-02-g6c7z.mongodb.net:27017/sunny?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', {useMongoClient: true}, function (error) {
+mongoose.connect(config.mongoUri, {useMongoClient: true}, function (error) {
   if (error) {
     console.log(error);
   } else {
@@ -49,10 +50,13 @@ app.use('/auth', auth);
 app.use('/memes', memeRouter);
 app.use('/comments', commentRouter);
 
-// app.use(express.static(path.join(__dirname, '/client/build')));
-// app.get('*', function(req, res) {
-//   res.sendFile(path.resolve(__dirname, './client/build/index.html'));
-// });
+// Serve build files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/client/build')));
+  app.get('*', function(req, res) {
+    res.sendFile(path.resolve(__dirname, './client/build/index.html'));
+  });
+}
 
 
 // catch 404 and forward to error handler
@@ -72,12 +76,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login')
-}
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

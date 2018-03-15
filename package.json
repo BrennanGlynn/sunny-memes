@@ -2,9 +2,12 @@
   "name": "sunny",
   "version": "0.0.1",
   "scripts": {
+    "start": "node server",
     "client": "cd client && yarn start",
     "server": "node server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "postinstall": "yarn build",
+    "build": "cd client && npm install && yarn build"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -18,7 +21,6 @@
     "formidable": "^1.1.1",
     "fs": "0.0.1-security",
     "hbs": "~4.0.1",
-    "material-design-icons": "^3.0.1",
     "material-ui": "^1.0.0-beta.32",
     "material-ui-icons": "^1.0.0-beta.17",
     "mongoose": "^4.13.9",
@@ -29,7 +31,6 @@
     "passport-local-mongoose": "^4.4.0",
     "query-string": "^5.0.1",
     "react-dropzone": "^4.2.7",
-    "react-fontawesome": "^1.6.1",
     "react-masonry-component": "^6.0.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",

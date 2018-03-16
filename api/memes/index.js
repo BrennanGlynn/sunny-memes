@@ -1,10 +1,11 @@
 const express = require('express')
 const controller = require('./meme.controller')
+const uploadController = require('./upload.controller')
 
 const router = express.Router()
 
 router.get("/", controller.index)
-router.post("/", controller.create)
+router.post("/", uploadController.upload)
 router.get("/user/:id", controller.byUser)
 router.get("/recent", controller.getRecent)
 router.get("/favorites", controller.getFavs)

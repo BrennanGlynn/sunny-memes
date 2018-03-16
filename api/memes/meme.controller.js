@@ -9,7 +9,6 @@
  * PUT     /memes/:id/comment  ->  comment
  * DELETE  /memes/:id          ->  destroy
  */
-
 const Meme = require("./meme.model");
 const User = require('../auth/user.model');
 const mongoose = require("mongoose")
@@ -134,13 +133,11 @@ exports.index = (req, res) => {
   )
 }
 
-exports.create = (req, res) => {
-  console.log("que")
+exports.create = (req, res, next) => {
   // Ensure user is in session
   if (!req.user) {
     return res.json({err: 'pleaseLogin'})
   }
-
   // Read incoming form
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
@@ -221,11 +218,12 @@ exports.byUser = (req, res) => {
     },
     function (err, docs) {
       if (!err) {
-        User.findOne({_id: query.uploaded_by}, function(err, user) {
+        User.findOne({_id: query.uploaded_by}, function (err, user) {
           if (err) return res.json({error: "User does not exist!"})
           res.json({documents: docs, user})
         })
-    }})
+      }
+    })
 }
 
 exports.getRecent = (req, res) => {

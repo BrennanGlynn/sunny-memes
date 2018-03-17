@@ -151,9 +151,11 @@ class MemePopup extends Component {
                   </Typography>
 
                   {/*Meme Author*/}
-                  <a className={classes.link} href={`/user/${data.uploaded_by._id}`}><Typography type="subheading" id="simple-modal-description">
-                    {data.author_name || data.uploaded_by}
-                  </Typography></a>
+                  <a className={classes.link} href={`/user/${data.uploaded_by._id}`}>
+                    <Typography type="subheading" id="simple-modal-description">
+                    {data.uploaded_by.name}
+                  </Typography>
+                  </a>
                 </Grid>
 
                 {/*Options Menu and Close Button*/}

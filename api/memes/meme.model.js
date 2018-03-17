@@ -17,10 +17,6 @@ const MemeSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true
   },
-  author_name: {
-    type: String,
-    required: true
-  },
   characters: {
     type: [String],
     default: []

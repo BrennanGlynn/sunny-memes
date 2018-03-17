@@ -51,7 +51,6 @@ router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/return', passport.authenticate('facebook', {failureRedirect: '/auth'}),
   function (req, res) {
-    console.log(req.user)
     let home = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000'
     res.redirect(home)
   });

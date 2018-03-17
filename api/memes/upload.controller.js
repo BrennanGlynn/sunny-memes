@@ -59,6 +59,7 @@ exports.upload = [multer.single('file'), uploadToGcs, function (req, res) {
     data.imageUrl = req.file.cloudStoragePublicUrl
     let memeData = {
       title: data.title,
+      fileName: req.file.cloudStorageObject,
       url: data.imageUrl,
       uploaded_by: req.user._id,
       characters: req.body.characters ? req.body.characters.split(',') : []

@@ -322,9 +322,8 @@ exports.destroy = (req, res) => {
           if (err) console.log(err)
 
           // remove image from server
-          fs.unlink("./public" + meme.url, function () {
-            console.log("image deleted from server")
-          })
+          let file = bucket.file(meme.fileName)
+          file.delete(function (err, response) {console.log("deleted from gcs")})
 
           // return original meme
           return res.json(meme)

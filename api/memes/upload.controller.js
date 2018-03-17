@@ -76,3 +76,28 @@ exports.upload = [multer.single('file'), uploadToGcs, function (req, res) {
   }
 
 }]
+
+exports.destroy = (req, res) => {
+
+  // get details about meme getting deleted
+  Meme.findOne({_id: req.params.id}, function (err, meme) {
+    if (meme) {
+      // if authorized
+      if (req.user._id === meme.uploaded_by || req.user.admin) {
+        // delete meme
+        Meme.remove({_id: req.params.id}, function (err, result) {
+          if (err) console.log(err)
+
+          // remove image from server
+          let file = bucket.file(meme.fileName)
+          file.delete(function (err, response) {})
+
+          // return original meme
+          return res.json(meme)
+        })
+      } else {
+        return res.json({error: "not authorized to delete this file"})
+      }
+    }
+  })
+}

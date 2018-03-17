@@ -1,6 +1,6 @@
 const express = require('express')
 const controller = require('./meme.controller')
-const cloudController = require('./upload.controller')
+const cloudController = require('./cloud.controller')
 
 const router = express.Router()
 

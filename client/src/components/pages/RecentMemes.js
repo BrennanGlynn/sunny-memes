@@ -20,6 +20,10 @@ const styles = {
 }
 
 class RecentMemes extends Component {
+  componentDidMount() {
+    this.props.getMemes()
+  }
+
   render() {
     const {classes, memes} = this.props;
     let memeArray = [];
@@ -33,6 +37,7 @@ class RecentMemes extends Component {
     return (
       <div>
         <FilterModalContainer/>
+        {memeArray[0] ? (
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <Masonry
@@ -45,16 +50,12 @@ class RecentMemes extends Component {
               )}
             </Masonry>
           </Grid>
-        </Grid>
+        </Grid>) : (
+          <div>loading...</div>
+        )}
       </div>
     )
   }
-}
-
-RecentMemes.propTypes = {
-  classes: PropTypes.object.isRequired,
-  memes: PropTypes.object.isRequired,
-  user: PropTypes.string.isRequired,
 }
 
 export default withStyles(styles)(RecentMemes);

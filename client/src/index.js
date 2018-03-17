@@ -9,7 +9,7 @@ import storage from 'redux-persist/lib/storage';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
 import 'babel-polyfill';
-import registerServiceWorker, {unregister} from './registerServiceWorker';
+import {unregister} from './registerServiceWorker';
 import './index.css';
 import App from './App';
 import {attemptFacebookAuth} from "./actions";
@@ -43,5 +43,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'));
 
-// registerServiceWorker();
 unregister();

@@ -17,6 +17,10 @@ const styles = {
 }
 
 class MyMemes extends Component {
+  componentDidMount() {
+    this.props.getMemes()
+  }
+
   render() {
     const {classes, memes} = this.props;
     const memesArray = []
@@ -52,12 +56,6 @@ class MyMemes extends Component {
         )}
       </div>)
   }
-}
-
-MyMemes.propTypes = {
-  classes: PropTypes.object.isRequired,
-  memes: PropTypes.object.isRequired,
-  user: PropTypes.string.isRequired,
 }
 
 export default withStyles(styles)(MyMemes);

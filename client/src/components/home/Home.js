@@ -88,10 +88,6 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.fetchAllMemes()
-  }
-
   toggleNavDrawer() {
     this.setState({navDrawerOpen: !this.state.navDrawerOpen})
   }

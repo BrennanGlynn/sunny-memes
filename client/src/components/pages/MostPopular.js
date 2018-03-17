@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles";
-// import queryString from 'query-string';
 import MemeContainer from "../../containers/memes/MemeCardContainer"
 import Masonry from "react-masonry-component"
 import Grid from "material-ui/Grid";
@@ -20,10 +18,10 @@ const styles = {
 }
 
 class MostPopular extends Component {
-  //
-  // componentDidMount() {
-  //   this.setState({masonry: this.masonry})
-  // }
+
+  componentDidMount() {
+    this.props.getMemes()
+  }
 
   render() {
     const {classes, memes} = this.props;
@@ -53,11 +51,6 @@ class MostPopular extends Component {
       </div>
     )
   }
-}
-
-MostPopular.propTypes = {
-  classes: PropTypes.object.isRequired,
-  memes: PropTypes.object.isRequired,
 }
 
 export default withStyles(styles)(MostPopular);

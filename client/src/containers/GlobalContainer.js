@@ -1,6 +1,6 @@
 import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
-import {attemptLogout, fetchAllMemes, updateFilter} from "../actions"
+import {attemptLogout, updateFilter} from "../actions"
 import Home from "../components/home/Home"
 
 const mapStateToProps = state => {
@@ -11,9 +11,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllMemes: () => {
-      dispatch(fetchAllMemes())
-    },
     onLogoutClick: () => {
       dispatch(attemptLogout())
     },

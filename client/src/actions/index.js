@@ -94,49 +94,47 @@ export const changeCurrentIndex = (index) => {
 
 export const uploadedMemes = () => {
   return dispatch => {
-    dispatch(getMyMemes(""))
-    dispatch(getRecentMemes(""))
+    dispatch(getMyMemes())
+    dispatch(getRecentMemes())
   }
 }
 //============================================================================requesting memes
 export const fetchAllMemes = () => {
   return (dispatch, getState) => {
-    let characters = getState().filter.characters.slice()
-    let query = characters.length >= 1 ? '?' : ''
-    characters.forEach((char, index) => {
-      query += 'chars=' + char
-      if (index + 1 < characters.length) query += '&'
-    })
-    dispatch(getMemes(query))
-    dispatch(getRecentMemes(query))
+    dispatch(getMemes())
+    dispatch(getRecentMemes())
 
     if (getState().auth.loggedIn) {
-      dispatch(getMyMemes(query))
-      dispatch(getFavoriteMemes(query))
+      dispatch(getMyMemes())
+      dispatch(getFavoriteMemes())
     }
   }
 }
 
-export const getMemes = (query) => {
-  return dispatch => {
+export const getMemes = () => {
+  return (dispatch, getState) => {
+    let query = getQuery(getState)
     return memeRequest(dispatch, query, memesReceived)
   }
 }
 
-export const getMyMemes = (query) => {
+export const getMyMemes = () => {
   return (dispatch, getState) => {
+    let query = getQuery(getState)
     return memeRequest(dispatch, `user/${getState().auth.user.id}${query}`, myMemesReceived)
   }
 }
 
 export const getRecentMemes = (query) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    let query = getQuery(getState)
     return memeRequest(dispatch, 'recent' + query, recentMemesReceived)
   }
 }
 
 export const getFavoriteMemes = (query) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    let query = getQuery(getState)
     return memeRequest(dispatch, 'favorites' + query, favoriteMemesReceived);
   }
 }
@@ -188,7 +186,7 @@ export const attemptFavorite = (memeId) => {
           res => res.json(),
           error => console.log(error),
         ).then(json => {
-          dispatch(getFavoriteMemes(""))
+          dispatch(getFavoriteMemes())
           dispatch(toggleFavorite(json))
         })
     }
@@ -282,4 +280,14 @@ function memeRequest(dispatch, query, receivedAction) {
     }
     dispatch(receivedAction(memes))
   })
+}
+
+function getQuery(getState) {
+  let characters = getState().filter.characters.slice()
+  let query = characters.length >= 1 ? '?' : ''
+  characters.forEach((char, index) => {
+    query += 'chars=' + char
+    if (index + 1 < characters.length) query += '&'
+  })
+  return query
 }

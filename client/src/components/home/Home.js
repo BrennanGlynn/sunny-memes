@@ -124,7 +124,7 @@ class Home extends Component {
           </AppBar>
 
           {/*// Desktop Navbar //*/}
-          <AppBar position="sticky" className={classes.desktopMenu}>
+          {/*//<AppBar position="sticky" className={classes.desktopMenu}>
             <Toolbar>
               <Button href='/'>
                 <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
@@ -140,7 +140,7 @@ class Home extends Component {
               <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>}
               {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
             </Toolbar>
-          </AppBar>
+          </AppBar>//*/}
 
           {/*// Pages //*/}
           <Switch>

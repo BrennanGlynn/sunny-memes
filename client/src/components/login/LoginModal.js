@@ -61,6 +61,7 @@ class LoginModal extends React.Component {
   render() {
     const { classes } = this.props;
     const loginMessage = "We use external authentication so we don't have to save your password."
+    const host = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001'
     return (
       <div>
         <Button onClick={this.handleOpen} variant="raised" className={classes.loginButtonHeader}>
@@ -83,7 +84,7 @@ class LoginModal extends React.Component {
                 <Grid container justify="center" spacing={0}>
                   <Grid item xs={12}>
                     <div className={classes.loginButtonWrapper}>
-                      <Button className={classes.loginButton} color="primary" variant="raised" href="http://localhost:3001/auth/facebook">
+                      <Button className={classes.loginButton} color="primary" variant="raised" href={`${host}/auth/facebook`}>
                         <PeopleIcon className={classes.facebookIcon}/>
                         Login With Facebook
                       </Button>

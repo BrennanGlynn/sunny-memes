@@ -9,7 +9,6 @@
  * PUT     /memes/:id/comment  ->  comment
  * DELETE  /memes/:id          ->  destroy
  */
-
 const Meme = require("./meme.model");
 const User = require('../auth/user.model');
 const mongoose = require("mongoose")
@@ -134,14 +133,11 @@ exports.index = (req, res) => {
   )
 }
 
-exports.create = (req, res) => {
-
+exports.create = (req, res, next) => {
   // Ensure user is in session
   if (!req.user) {
-    //TODO change in production
-    return res.redirect('http://localhost/pleaseLogin')
+    return res.json({err: 'pleaseLogin'})
   }
-
   // Read incoming form
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
@@ -173,8 +169,7 @@ exports.create = (req, res) => {
             res.status = 501;
             return res.send('Error creating meme: ' + err);
           }
-          //TODO change in production
-          return res.redirect('http://localhost:3000/myMemes');
+          return res.json({meme});
         });
       })
     } else res.json({});
@@ -223,11 +218,12 @@ exports.byUser = (req, res) => {
     },
     function (err, docs) {
       if (!err) {
-        User.findOne({_id: query.uploaded_by}, function(err, user) {
+        User.findOne({_id: query.uploaded_by}, function (err, user) {
           if (err) return res.json({error: "User does not exist!"})
           res.json({documents: docs, user})
         })
-    }})
+      }
+    })
 }
 
 exports.getRecent = (req, res) => {
@@ -310,32 +306,6 @@ exports.favorite = (req, res) => {
       // remove favorite if user had set it as a favorite before
     } else {
       updateMeme({$pull: {favorites: userId}}, req, res)
-    }
-  })
-}
-
-exports.destroy = (req, res) => {
-
-  // get details about meme getting deleted
-  Meme.findOne({_id: req.params.id}, function (err, meme) {
-    if (meme) {
-      // if authorized
-      if (req.user._id === meme.uploaded_by || req.user.admin) {
-        // delete meme
-        Meme.remove({_id: req.params.id}, function (err, result) {
-          if (err) console.log(err)
-
-          // remove image from server
-          fs.unlink("./public" + meme.url, function () {
-            console.log("image deleted from server")
-          })
-
-          // return original meme
-          return res.json(meme)
-        })
-      } else {
-        return res.json({error: "not authorized to delete this file"})
-      }
     }
   })
 }

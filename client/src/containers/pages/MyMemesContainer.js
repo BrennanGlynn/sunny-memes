@@ -1,5 +1,6 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import MyMemes from '../../components/pages/MyMemes'
+import {getMyMemes} from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -8,9 +9,17 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getMemes: () => {
+      dispatch(getMyMemes())
+    }
+  }
+}
+
 const MyMemesContainer = connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(MyMemes);
 
 export default MyMemesContainer

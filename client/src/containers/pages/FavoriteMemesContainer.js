@@ -1,5 +1,6 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import FavoriteMemes from '../../components/pages/FavoriteMemes'
+import {getFavoriteMemes} from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -8,9 +9,17 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getMemes: () => {
+      dispatch(getFavoriteMemes())
+    }
+  }
+}
+
 const FavoriteMemesContainer = connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(FavoriteMemes);
 
 export default FavoriteMemesContainer

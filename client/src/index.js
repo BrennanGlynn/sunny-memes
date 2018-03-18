@@ -9,10 +9,10 @@ import storage from 'redux-persist/lib/storage';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
 import 'babel-polyfill';
-import registerServiceWorker from './registerServiceWorker';
+import {unregister} from './registerServiceWorker';
 import './index.css';
 import App from './App';
-import {attemptFacebookAuth, fetchAllMemes} from "./actions";
+import {attemptFacebookAuth} from "./actions";
 
 const loggerMiddleware = createLogger()
 const persistConfig = {
@@ -43,4 +43,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'));
 
-registerServiceWorker();
+unregister();

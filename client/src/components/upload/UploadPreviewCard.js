@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Avatar, Card, CardContent, Chip, Checkbox, TextField, Typography, withStyles} from "material-ui";
+import {Avatar, Card, CardContent, Checkbox, TextField, Typography, withStyles} from "material-ui";
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import IconButton from 'material-ui/IconButton';
 import CancelIcon from 'material-ui-icons/Cancel';

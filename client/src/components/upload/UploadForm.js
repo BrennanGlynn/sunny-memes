@@ -50,8 +50,8 @@ const styles = createMuiTheme({
 });
 
 class UploadForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       files: [],
     }
@@ -103,7 +103,8 @@ class UploadForm extends Component {
     if (valid) {
       Promise.all(promises).then(() => {
           dispatchUploads()
-          window.location.replace('/mymemes')
+          this.setState({files: []})
+          this.props.history.push('/mymemes')
         },
         err => console.log(err)
       )

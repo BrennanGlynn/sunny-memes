@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import MostPopular from '../../components/pages/MostPopular'
+import {getMemes} from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -8,17 +9,17 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onFavorite: (memeId) => {
-//       dispatch(attemptFavorite(memeId))
-//     }
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    getMemes: () => {
+      dispatch(getMemes())
+    }
+  }
+}
 
 const MostPopularContainer = connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(MostPopular);
 
 export default MostPopularContainer

@@ -256,7 +256,7 @@ class MemeCard extends Component {
                   </ListItemIcon>Hide
                 </MenuItem>
                 <Divider/>
-                {(user.id === data.uploaded_by || admin) &&
+                {(user.id === data.uploaded_by._id || admin) &&
                 <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                   <ListItemIcon>
                     <HighlightOffIcon/>

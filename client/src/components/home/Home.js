@@ -5,21 +5,17 @@ import {withStyles} from "material-ui/styles"
 import withWidth from "material-ui/utils/withWidth"
 import compose from "recompose/compose"
 import {AppBar, Button, Grid, Toolbar} from "material-ui"
-import StarIcon from "material-ui-icons/Star"
-import AccessTimeIcon from "material-ui-icons/AccessTime"
 import LoginModal from "../login/LoginModal"
 import FrontBanner from "../pages/FrontBanner"
 import PleaseLogin from "../pages/PleaseLogin"
 import MemePage from "../pages/MemePage"
 import MostPopularContainer from "../../containers/pages/MostPopularContainer"
 import MyMemesContainer from "../../containers/pages/MyMemesContainer"
-import NavMenu from "./NavMenu"
 import MobileUploadButton from "./MobileUploadButton"
 import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/UploadContainer"
 import NavDrawer from "./NavDrawer"
 import UserDrawer from "./UserDrawer"
-import FrontPage from "../pages/FrontPage"
 import SingleMemePage from "../pages/SingleMemePage"
 import UserPage from "../pages/UserPage"
 import RecentMemesContainer from "../../containers/pages/RecentMemesContainer"
@@ -144,7 +140,7 @@ class Home extends Component {
 
           {/*// Pages //*/}
           <Switch>
-            <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : FrontPage}/>
+            <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : MostPopularContainer}/>
             <Route path='/mostpopular' exact component={MostPopularContainer}/>
             <Route path='/mostrecent' exact component={RecentMemesContainer}/>
             <Route path='/favorites' component={!auth.pending && auth.loggedIn ? FavoriteMemesContainer : PleaseLogin}/>

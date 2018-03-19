@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from "prop-types"
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import { Button, Typography, Grid, Avatar, Divider } from 'material-ui/';
-import LoginModal from "../login/LoginModal";
-import NavMenu from "./NavMenu"
+import React from 'react';
+import {withStyles} from 'material-ui/styles';
+import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
+import {Button, Divider, Grid, Typography} from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
 import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
+import LoginModal from "../login/LoginModal";
 
 const styles = theme => ({
-    [theme.breakpoints.between('xs', 'md')]: {
-      desktopMenu: {
-        display: 'none',
-      },
+  [theme.breakpoints.between('xs', 'md')]: {
+    desktopMenu: {
+      display: 'none',
     },
+  },
   root: {
     textAlign: 'right',
     width: '100%',
@@ -66,65 +64,55 @@ const styles = theme => ({
   },
 });
 
-class RightPanel extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { classes, onLogoutClick, auth } = this.props;
-    return(
-      <div className={classes.desktopMenu}>
-        <Grid container spacing={0} justify="flex-start" className={classes.rightPanel}>
-          <Grid item>
-            <img src={"../images/characters/dennis.jpg"} className={classes.picture} alt="profile" />
-            <Typography type="caption" className={classes.userName}>
-              Ben Jeske
-            </Typography>
-            <Typography type="caption" className={classes.logout}>
-              <a onClick={this.props.logout}>
-                Logout
-              </a>
-            </Typography>
-            <ListItem button className={classes.sunnyStatus}>
-              <ListItemIcon className={classes.sunnyIcon}>
-                <WbSunnyIcon />
+const RightPanel = ({classes, logout, auth}) =>
+  <div className={classes.desktopMenu}>
+    <Grid container spacing={0} justify="flex-start" className={classes.rightPanel}>
+      <Grid item>
+        {auth.loggedIn ?
+        <div>
+          <img src={auth.user.picture} className={classes.picture} alt="profile"/>
+          <Typography type="caption" className={classes.userName}>
+            {auth.user.name}
+          </Typography>
+          <Typography type="caption" className={classes.logout}>
+            <a onClick={logout.bind(this)}>
+              Logout
+            </a>
+          </Typography>
+          <ListItem button className={classes.sunnyStatus}>
+            <ListItemIcon className={classes.sunnyIcon}>
+              <WbSunnyIcon/>
+            </ListItemIcon>
+            <ListItemText className={classes.sunnyTotal} primary="5"/>
+          </ListItem>
+        </div> :
+        <div>
+          <LoginModal/>
+        </div>}
+        <Divider/>
+        <List component="nav">
+          <a href="/favorites">
+            <ListItem button className={classes.icon}>
+              <ListItemIcon>
+                <StarIcon/>
               </ListItemIcon>
-              <ListItemText className={classes.sunnyTotal} primary="5" />
+              <ListItemText primary="My Favorites"/>
             </ListItem>
+          </a>
+          <a href="/mymemes">
+            <ListItem button className={classes.icon}>
+              <ListItemIcon>
+                <PhotoLibraryIcon/>
+              </ListItemIcon>
+              <ListItemText primary="My Memes"/>
+            </ListItem>
+          </a>
+        </List>
+        <Divider/>
+        <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
+      </Grid>
+    </Grid>
+  </div>
 
-            <Divider />
-            <List component="nav">
-              <a href="/favorites">
-                <ListItem button className={classes.icon}>
-                  <ListItemIcon>
-                    <StarIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="My Favorites" />
-                </ListItem>
-              </a>
-              <a href="/mymemes">
-                <ListItem button className={classes.icon}>
-                  <ListItemIcon>
-                    <PhotoLibraryIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="My Memes" />
-                </ListItem>
-              </a>
-            </List>
-            <Divider />
-            <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
-          </Grid>
-        </Grid>
-      </div>
-    )
-  }
-}
 
-RightPanel.propTypes = {
-  classes: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  onLogoutClick: PropTypes.func.isRequired,
-}
-
-export default withStyles(styles) (RightPanel);
+export default withStyles(styles)(RightPanel);

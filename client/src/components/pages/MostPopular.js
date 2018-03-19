@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import {withStyles} from "material-ui/styles";
 import MemeContainer from "../../containers/memes/MemeCardContainer";
-import Masonry from "react-masonry-component";
-import { Grid } from "material-ui/";
-import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
+import {Grid} from "material-ui/";
 import LeftPanel from "../home/LeftPanel";
-import RightPanel from "../home/RightPanel";
+import RightPanelContainer from "../../containers/panels/RightPanelContainer";
 
 const styles = {
   root: {
@@ -54,7 +52,6 @@ class MostPopular extends Component {
 
   render() {
     const {classes, memes} = this.props;
-    let masonry = this.masonry
     let memesArray = []
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
@@ -72,20 +69,14 @@ class MostPopular extends Component {
             </Grid>
           </Grid>
           <Grid item className={classes.memes}>
-            {/*}<Masonry
-              ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
-              options={{fitWidth: true}}
-              className={classes.memeWrapper}
-            >*/}
               {memesArray.map((meme, i) =>
                 <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
               )}
-            {/*}</Masonry>*/}
           </Grid>
           <Grid item md={3} lg={2} className={classes.rightPanelContainer}>
             <Grid container spacing={0} className={classes.rightPanel}>
               <Grid item>
-                <RightPanel />
+                <RightPanelContainer/>
               </Grid>
             </Grid>
           </Grid>

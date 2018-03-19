@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import MostPopular from '../../components/pages/MostPopular'
-import {getMemes} from "../../actions";
+import {attemptLogout, getMemes} from "../../actions";
 
 const mapStateToProps = state => {
   return {
     memes: state.memes.memes,
-    user: state.auth.user.id
+    user: state.auth.user
   }
 }
 
@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getMemes: () => {
       dispatch(getMemes())
+    },
+    logout: () => {
+      dispatch(attemptLogout())
     }
   }
 }

@@ -15,7 +15,7 @@ class SingleMemePage extends Component {
     fetch('/memes/' + this.props.match.params.id)
       .then(res => {
         if (!res.ok) {
-          self.setState({loading: false, errorMessage: 'Error retrieving meme'})
+          self.setState({loading: false, errorMessage: 'Error retrieving memes'})
         } else {
           return res.json()
         }
@@ -25,7 +25,7 @@ class SingleMemePage extends Component {
       })
       .catch(err => {
         console.log('error', err)
-        self.setState({loading: false, errorMessage: 'Error retrieving meme'})
+        self.setState({loading: false, errorMessage: 'Error retrieving memes'})
       })
   }
 

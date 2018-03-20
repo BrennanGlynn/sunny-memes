@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import RightPanel from '../../components/home/RightPanel'
-import {attemptLogout} from "../../actions";
+import RightPanel from '../../../components/home/panels/RightPanel'
+import {attemptLogout} from "../../../actions/index";
 
 const mapStateToProps = state => {
   return {

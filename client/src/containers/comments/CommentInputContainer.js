@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {updatedComments} from "../../actions";
-import CommentInput from '../../components/comments/CommentInput'
+import CommentInput from '../../components/memes/comments/CommentInput'
 
 const mapStateToProps = (state, props) => {
   return {

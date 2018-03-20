@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { uploadedMemes } from "../actions"
-import UploadForm from '../components/upload/UploadForm'
+import { uploadedMemes } from "../../actions/index"
+import UploadForm from '../../components/upload/UploadForm'
 
 const mapStateToProps = state => {
   return {

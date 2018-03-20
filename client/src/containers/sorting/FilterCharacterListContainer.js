@@ -1,6 +1,6 @@
 import {connect} from "react-redux"
 import {toggleCharacter} from "../../actions"
-import FilterCharacterList from "../../components/FilterCharacterList"
+import FilterCharacterList from "../../components/sorting/FilterCharacterList"
 
 const mapStateToProps = state => {
   return {

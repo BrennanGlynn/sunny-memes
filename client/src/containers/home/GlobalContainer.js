@@ -1,7 +1,7 @@
 import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
-import {attemptLogout, updateFilter} from "../actions"
-import Home from "../components/home/Home"
+import {attemptLogout, updateFilter} from "../../actions/index"
+import Home from "../../components/home/Home"
 
 const mapStateToProps = state => {
   return {

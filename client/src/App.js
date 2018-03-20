@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import GlobalContainer from './containers/GlobalContainer'
+import GlobalContainer from './containers/home/GlobalContainer'
 
 import './App.css';
 

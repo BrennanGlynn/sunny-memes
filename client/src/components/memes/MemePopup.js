@@ -9,7 +9,7 @@ import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
-import MemeComments from '../comments/MemeComments';
+import MemeComments from './comments/MemeComments';
 
 const styles = theme => ({
   link: {

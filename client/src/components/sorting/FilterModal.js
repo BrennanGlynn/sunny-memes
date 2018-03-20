@@ -5,7 +5,7 @@ import {Avatar, Checkbox, Chip, Divider, Grid, Modal, Typography} from "material
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 import IconButton from "material-ui/IconButton";
 import FilterList from "material-ui-icons/FilterList";
-import FilterCharacterListContainer from "../containers/sorting/FilterCharacterListContainer";
+import FilterCharacterListContainer from "../../containers/sorting/FilterCharacterListContainer";
 
 const styles = theme => ({
   [theme.breakpoints.only('xs')]: {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Grid} from 'material-ui/';
 import {withStyles} from 'material-ui/styles';
-import CommentInput from "../../containers/comments/CommentInputContainer";
-import CommentContainer from "../../containers/comments/CommentContainer";
+import CommentInput from "../../../containers/comments/CommentInputContainer";
+import CommentContainer from "../../../containers/comments/CommentContainer";
 
 const styles = {
   addComment: {

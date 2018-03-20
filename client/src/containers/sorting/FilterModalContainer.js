@@ -1,6 +1,6 @@
 import {connect} from "react-redux"
 import {toggleCharacter} from "../../actions"
-import FilterModal from "../../components/FilterModal"
+import FilterModal from "../../components/sorting/FilterModal"
 
 const mapStateToProps = state => {
   return {

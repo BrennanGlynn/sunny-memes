@@ -6,21 +6,19 @@ import withWidth from "material-ui/utils/withWidth"
 import compose from "recompose/compose"
 import {AppBar, Button, Grid, Toolbar} from "material-ui"
 import LoginModal from "../login/LoginModal"
-import FrontBanner from "../pages/FrontBanner"
 import PleaseLogin from "../pages/PleaseLogin"
 import MemePage from "../pages/MemePage"
 import MostPopularContainer from "../../containers/pages/MostPopularContainer"
 import MyMemesContainer from "../../containers/pages/MyMemesContainer"
-import MobileUploadButton from "./MobileUploadButton"
 import AdminInterface from "../admin/AdminInterface"
-import UploadContainer from "../../containers/UploadContainer"
-import NavDrawer from "./NavDrawer"
-import UserDrawer from "./UserDrawer"
+import UploadContainer from "../../containers/upload/UploadContainer"
+import LeftDrawer from "./drawers/LeftDrawer"
 import SingleMemePage from "../pages/SingleMemePage"
 import UserPage from "../pages/UserPage"
 import RecentMemesContainer from "../../containers/pages/RecentMemesContainer"
 import PageNotFound from "../pages/PageNotFound"
 import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer"
+import RightDrawerContainer from "../../containers/home/drawers/RightDrawerContainer";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -93,7 +91,7 @@ class Home extends Component {
   }
 
   render() {
-    const {classes, onLogoutClick, auth} = this.props
+    const {classes, auth} = this.props
     return (
       <div>
         {!auth.pending &&
@@ -102,7 +100,7 @@ class Home extends Component {
             <Toolbar>
               <Grid container spacing={0} alignItems="center">
                 <Grid item xs={4} className={classes.leftIcon}>
-                  <NavDrawer open={this.state.navDrawerOpen} openRightDrawer={this.toggleNavDrawer.bind(this)}/>
+                  <LeftDrawer open={this.state.navDrawerOpen} openRightDrawer={this.toggleNavDrawer.bind(this)}/>
                 </Grid>
                 <Grid item xs={4} className={classes.mobileLogo}>
                   <Button href='/'>
@@ -111,36 +109,16 @@ class Home extends Component {
                 </Grid>
                 <Grid item xs={4} className={classes.rightIcon}>
                   {auth.loggedIn ?
-                    <UserDrawer open={this.state.userDrawerOpen} openUserDrawer={this.toggleUserDrawer.bind(this)}
-                                logout={onLogoutClick}/> :
+                    <RightDrawerContainer open={this.state.userDrawerOpen} openUserDrawer={this.toggleUserDrawer.bind(this)}/> :
                     <LoginModal className={classes.mobileLogin}/>}
                 </Grid>
               </Grid>
             </Toolbar>
           </AppBar>
 
-          {/*// Desktop Navbar //*/}
-          {/*//<AppBar position="sticky" className={classes.desktopMenu}>
-            <Toolbar>
-              <Button href='/'>
-                <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
-              </Button>
-              <div className={classes.flex}>
-                <Button href='/mostpopular' className={classes.label}><StarIcon style={{marginRight: 16}}/> Most Popular</Button>
-                <Button href='/mostRecent' className={classes.label}><AccessTimeIcon
-                  style={{marginRight: 16}}/> Recently
-                  Uploaded</Button>
-              </div>
-              {!auth.loggedIn && <LoginModal/>}
-              {auth.loggedIn &&
-              <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>}
-              {auth.loggedIn && <NavMenu name={auth.user.name} picture={auth.user.picture} logout={onLogoutClick}/>}
-            </Toolbar>
-          </AppBar>//*/}
-
           {/*// Pages //*/}
           <Switch>
-            <Route path='/' exact component={!auth.pending && !auth.loggedIn ? FrontBanner : MostPopularContainer}/>
+            <Route path='/' exact component={MostPopularContainer}/>
             <Route path='/mostpopular' exact component={MostPopularContainer}/>
             <Route path='/mostrecent' exact component={RecentMemesContainer}/>
             <Route path='/favorites' component={!auth.pending && auth.loggedIn ? FavoriteMemesContainer : PleaseLogin}/>
@@ -152,14 +130,9 @@ class Home extends Component {
             <Route path='/user/:id' component={UserPage}/>
             <Route component={PageNotFound}/>
           </Switch>
-
-          {auth.loggedIn &&
-          <MobileUploadButton/>
-          }
         </div>
         }
-      </div>
-    )
+      </div>)
   }
 }
 

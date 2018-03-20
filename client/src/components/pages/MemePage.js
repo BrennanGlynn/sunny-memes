@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withStyles} from "material-ui/styles";
-import MemeCard from "../meme/MemeCard";
+import MemeCard from "../memes/MemeCard";
 
 const styles = theme => ({
   marginTop: {

@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import WrapperPanels from "../home/panels/WrapperPanels";
+import {Typography} from "material-ui";
 
 class PleaseLogin extends Component {
 
   render() {
     return(
-      <div>
-        You must be logged in to view this page!
-      </div>
+      <WrapperPanels>
+        <Typography>You must be logged in to view this page!</Typography>
+      </WrapperPanels>
     );
   }
 

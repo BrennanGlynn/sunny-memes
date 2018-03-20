@@ -65,11 +65,11 @@ exports.upload = [multer.single('file'), uploadToGcs, function (req, res) {
       characters: req.body.characters ? req.body.characters.split(',') : []
     };
 
-    // Store meme in database
+    // Store memes in database
     Meme.create(memeData, function (err, meme) {
       if (err) {
         console.log(err);
-        return res.status(500).send({err: 'Error creating meme: '});
+        return res.status(500).send({err: 'Error creating memes: '});
       }
       return res.json({meme});
     });
@@ -79,12 +79,12 @@ exports.upload = [multer.single('file'), uploadToGcs, function (req, res) {
 
 exports.destroy = (req, res) => {
 
-  // get details about meme getting deleted
+  // get details about memes getting deleted
   Meme.findOne({_id: req.params.id}, function (err, meme) {
     if (meme) {
       // if authorized
       if (JSON.stringify(req.user._id) ===  JSON.stringify(meme.uploaded_by) || req.user.admin) {
-        // delete meme
+        // delete memes
         Meme.remove({_id: req.params.id}, function (err, result) {
           if (err) console.log(err)
 
@@ -92,7 +92,7 @@ exports.destroy = (req, res) => {
           let file = bucket.file(meme.fileName)
           file.delete(function (err, response) {})
 
-          // return original meme
+          // return original memes
           return res.json(meme)
         })
       } else {

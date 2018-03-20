@@ -1,11 +1,8 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles";
-// import queryString from 'query-string';
-import MemeCardContainer from "../../containers/memes/MemeCardContainer"
-import Masonry from "react-masonry-component"
+import MemeContainer from "../../containers/memes/MemeCardContainer"
 import Grid from "material-ui/Grid";
-import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
+import WrapperPanels from "../home/panels/WrapperPanels";
 
 const styles = {
   root: {
@@ -26,34 +23,23 @@ class RecentMemes extends Component {
 
   render() {
     const {classes, memes} = this.props;
-    let memeArray = [];
-    let masonry = this.masonry
+    let memesArray = [];
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
-        memeArray.push(memes[key])
+        memesArray.push(memes[key])
       }
     }
 
     return (
-      <div>
-        <FilterModalContainer/>
-        {memeArray[0] ? (
+      <WrapperPanels className={classes.siteBackground}>
         <Grid container spacing={0}>
-          <Grid item xs={12}>
-            <Masonry
-              ref={function(c) {this.masonry = this.masonry || c.masonry;}.bind(this)}
-              options={{fitWidth: true}}
-              className={classes.memeWrapper}
-            >
-              {memeArray.map((meme, i) =>
-                <MemeCardContainer meme={meme} index={i} memeArray={memeArray} key={meme._id} masonry={masonry}/>
-              )}
-            </Masonry>
+          <Grid item className={classes.memes}>
+            {memesArray.map((meme, i) =>
+              <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+            )}
           </Grid>
-        </Grid>) : (
-          <div>loading...</div>
-        )}
-      </div>
+        </Grid>
+      </WrapperPanels>
     )
   }
 }

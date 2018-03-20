@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import MemeCard from '../../components/meme/MemeCard'
+import MemeCard from '../../components/memes/MemeCard'
 import {attemptFavorite, attemptDelete, toggleCharacter} from "../../actions/index";
 import {changeCurrentIndex} from "../../actions";
 

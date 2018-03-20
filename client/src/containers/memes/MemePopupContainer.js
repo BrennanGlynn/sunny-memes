@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import MemePopup from '../../components/meme/MemePopup'
+import MemePopup from '../../components/memes/MemePopup'
 import {attemptFavorite, attemptDelete, toggleCharacter, changeCurrentIndex} from "../../actions/index";
 
 const mapStateToProps = (state, props) => {

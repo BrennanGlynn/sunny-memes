@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {likeComment, updatedComments} from "../../actions";
-import Comment from '../../components/comments/Comment'
+import Comment from '../../components/memes/comments/Comment'
 
 const mapStateToProps = (state, props) => {
   return {

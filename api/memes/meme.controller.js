@@ -29,8 +29,8 @@ const projectionTemplate = {
   "comments": 1,
 }
 
-const commentAggregation = [// Make a separate meme for each comment id
-  //Get meme authors info
+const commentAggregation = [// Make a separate memes for each comment id
+  //Get memes authors info
   {
     $lookup: {
       from: "users",
@@ -51,7 +51,7 @@ const commentAggregation = [// Make a separate meme for each comment id
       preserveNullAndEmptyArrays: true,
     },
   },
-  // For each meme convert comment id to the comment from the database
+  // For each memes convert comment id to the comment from the database
   {
     $lookup: {
       from: "comments",
@@ -85,7 +85,7 @@ const commentAggregation = [// Make a separate meme for each comment id
   //     as: "comments.children",
   //   }
   // },
-  //  Merge all of the comments back into 1 meme object
+  //  Merge all of the comments back into 1 memes object
   {
     $group: {
       _id: "$_id",
@@ -162,12 +162,12 @@ exports.create = (req, res, next) => {
           characters
         };
 
-        // Store meme in server
+        // Store memes in server
         Meme.create(memeData, function (err, meme) {
           if (err) {
             console.log(err);
             res.status = 501;
-            return res.send('Error creating meme: ' + err);
+            return res.send('Error creating memes: ' + err);
           }
           return res.json({meme});
         });
@@ -296,7 +296,7 @@ exports.favorite = (req, res) => {
   // login check
   if (!req.user) return res.json({message: "Please login first"})
 
-  // find meme being updated
+  // find memes being updated
   Meme.findOne({_id: memeId}, "favorites", function (err, meme) {
     if (err) {
       return res.json({error: err})

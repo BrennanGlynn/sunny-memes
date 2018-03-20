@@ -3,6 +3,7 @@ import {Grid} from 'material-ui/';
 import MemeContainer from "../../containers/memes/MemeCardContainer";
 import Masonry from "react-masonry-component"
 import {Typography} from "material-ui";
+import WrapperPanels from "../home/panels/WrapperPanels";
 
 class UserPage extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class UserPage extends Component {
     this.state = {
       loading: true
     }
+    console.log(this.props)
   }
 
   componentWillMount() {
@@ -35,7 +37,7 @@ class UserPage extends Component {
   render() {
     let masonry = this.masonry
     return (
-      <div>
+      <WrapperPanels>
         {this.state.loading ?
           (<div>Loading</div>) :
           (<div>
@@ -46,26 +48,15 @@ class UserPage extends Component {
                   <Grid item xs={12}>
                     <Typography variant={'display1'}>The following are memes posted by {this.state.requestedUser.name}</Typography>
                     <img src={this.state.requestedUser.picture} alt="requested user" />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Masonry
-                      ref={function (c) {
-                        this.masonry = this.masonry || c.masonry;
-                      }.bind(this)}
-                      options={{fitWidth: true}}
-                      // className={classes.masonry}
-                    >
                       {this.state.memes.map((meme, i) =>
-                        <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}
-                                       masonry={masonry}/>
+                        <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
                       )}
-                    </Masonry>
                   </Grid>
                 </Grid>
               )}
           </div>)
         }
-      </div>
+      </WrapperPanels>
     )
   }
 }

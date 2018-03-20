@@ -5,7 +5,7 @@ import {getMyMemes} from "../../actions";
 const mapStateToProps = state => {
   return {
     memes: state.memes.myMemes,
-    user: state.auth.user.id
+    auth: state.auth
   }
 }
 

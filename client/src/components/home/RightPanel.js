@@ -85,31 +85,31 @@ const RightPanel = ({classes, logout, auth}) =>
             </ListItemIcon>
             <ListItemText className={classes.sunnyTotal} primary="5"/>
           </ListItem>
+          <Divider/>
+          <List component="nav">
+            <a href="/favorites">
+              <ListItem button className={classes.icon}>
+                <ListItemIcon>
+                  <StarIcon/>
+                </ListItemIcon>
+                <ListItemText primary="My Favorites"/>
+              </ListItem>
+            </a>
+            <a href="/mymemes">
+              <ListItem button className={classes.icon}>
+                <ListItemIcon>
+                  <PhotoLibraryIcon/>
+                </ListItemIcon>
+                <ListItemText primary="My Memes"/>
+              </ListItem>
+            </a>
+          </List>
+          <Divider/>
+          <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
         </div> :
         <div>
           <LoginModal/>
         </div>}
-        <Divider/>
-        <List component="nav">
-          <a href="/favorites">
-            <ListItem button className={classes.icon}>
-              <ListItemIcon>
-                <StarIcon/>
-              </ListItemIcon>
-              <ListItemText primary="My Favorites"/>
-            </ListItem>
-          </a>
-          <a href="/mymemes">
-            <ListItem button className={classes.icon}>
-              <ListItemIcon>
-                <PhotoLibraryIcon/>
-              </ListItemIcon>
-              <ListItemText primary="My Memes"/>
-            </ListItem>
-          </a>
-        </List>
-        <Divider/>
-        <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
       </Grid>
     </Grid>
   </div>

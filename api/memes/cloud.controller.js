@@ -83,7 +83,7 @@ exports.destroy = (req, res) => {
   Meme.findOne({_id: req.params.id}, function (err, meme) {
     if (meme) {
       // if authorized
-      if (req.user._id === meme.uploaded_by || req.user.admin) {
+      if (JSON.stringify(req.user._id) ===  JSON.stringify(meme.uploaded_by) || req.user.admin) {
         // delete meme
         Meme.remove({_id: req.params.id}, function (err, result) {
           if (err) console.log(err)

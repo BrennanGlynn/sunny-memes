@@ -275,12 +275,14 @@ class MemeCard extends Component {
               </div>
               <CardContent classes={{root: classes.dateContent}}>
                 <Grid container spacing={8}>
-                  <Grid item>
+                  <a href={`user/${data.uploaded_by._id}`}>
+                    <Grid item>
                     <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile" />
                     <Typography type="caption" className={classes.uploadedBy}>
-                      {data.uploaded_by.name} on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id)) || 'January, 1st, 2018'}
+                      {data.uploaded_by.name} on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
                     </Typography>
                   </Grid>
+                  </a>
                 </Grid>
               </CardContent>
               <Divider/>

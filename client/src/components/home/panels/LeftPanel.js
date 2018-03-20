@@ -33,12 +33,12 @@ class LeftPanel extends Component {
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <List component="nav">
-              <ListItem button>
-                <ListItemText primary="Trending" />
-                <ListItemIcon className={classes.icon}>
-                  <TrendingUpIcon />
-                </ListItemIcon>
-              </ListItem>
+              {/*<ListItem button>*/}
+                {/*<ListItemText primary="Trending" />*/}
+                {/*<ListItemIcon className={classes.icon}>*/}
+                  {/*<TrendingUpIcon />*/}
+                {/*</ListItemIcon>*/}
+              {/*</ListItem>*/}
               <a href="/mostpopular">
                 <ListItem button>
                   <ListItemText primary="Top Favorites" />

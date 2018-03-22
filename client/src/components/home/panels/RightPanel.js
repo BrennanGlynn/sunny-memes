@@ -64,9 +64,11 @@ const RightPanel = ({classes, logout, auth}) =>
     {auth.loggedIn ?
       <div>
         <img src={auth.user.picture} className={classes.picture} alt="profile"/>
-        <Typography type="caption" className={classes.userName}>
-          {auth.user.name}
-        </Typography>
+        <NavLink to={`/user/${auth.user.id}`}>
+          <Typography type="caption" className={classes.userName}>
+            {auth.user.name}
+          </Typography>
+        </NavLink>
         <Typography type="caption" className={classes.logout}>
           <a onClick={logout.bind(this)}>
             Logout
@@ -103,7 +105,6 @@ const RightPanel = ({classes, logout, auth}) =>
       <div>
         <LoginModal/>
       </div>}
-
   </div>
 
 

@@ -12,15 +12,11 @@ class Favorites extends Component {
     let memesArray = Object.keys(memes).map(key => memes[key])
 
     return (
-      <WrapperPanels className={classes.siteBackground}>
-          <Grid container spacing={0}>
-            <Grid item className={classes.memes}>
-              {memesArray.map((meme, i) =>
-                <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
-              )}
-            </Grid>
-          </Grid>
-      </WrapperPanels>
+      <div>
+        {memesArray.map((meme, i) =>
+          <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+        )}
+      </div>
     )
   }
 }

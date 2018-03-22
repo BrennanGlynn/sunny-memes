@@ -10,6 +10,7 @@ import RemoveRedEyeIcon from 'material-ui-icons/RemoveRedEye';
 import HighlightOffIcon from 'material-ui-icons/HighlightOff';
 import ReportProblemIcon from 'material-ui-icons/ReportProblem';
 import MemeComments from './comments/MemeComments';
+import {NavLink} from "react-router-dom";
 
 const styles = theme => ({
   link: {
@@ -151,11 +152,11 @@ class MemePopup extends Component {
                   </Typography>
 
                   {/*Meme Author*/}
-                  <a className={classes.link} href={`/user/${data.uploaded_by._id}`}>
+                  <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
                     <Typography type="subheading" id="simple-modal-description">
                     {data.uploaded_by.name}
                   </Typography>
-                  </a>
+                  </NavLink>
                 </Grid>
 
                 {/*Options Menu and Close Button*/}

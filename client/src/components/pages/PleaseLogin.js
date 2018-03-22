@@ -6,9 +6,7 @@ class PleaseLogin extends Component {
 
   render() {
     return(
-      <WrapperPanels>
         <Typography>You must be logged in to view this page!</Typography>
-      </WrapperPanels>
     );
   }
 

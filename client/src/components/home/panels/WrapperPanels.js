@@ -32,7 +32,7 @@ class WrapperPanels extends Component {
     const {classes} = this.props;
     return (
       <Grid container justify={'center'} spacing={0}>
-        <Grid item xs={0} sm={4} className={classes.panelContainer}>
+        <Grid item sm={4} className={classes.panelContainer}>
           <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
             <Grid item>
               <LeftPanel/>
@@ -40,13 +40,9 @@ class WrapperPanels extends Component {
           </Grid>
         </Grid>
         <Grid item sm={4}>
-          <Grid container justify={'center'} spacing={0}>
-            <Grid item>
-              {this.props.children}
-            </Grid>
-          </Grid>
+          {this.props.children}
         </Grid>
-        <Grid item xs={0} sm={4} className={classes.panelContainer}>
+        <Grid itemm sm={4} className={classes.panelContainer}>
           <Grid container spacing={0} className={classes.rightPanel}>
             <Grid item>
               <RightPanelContainer/>

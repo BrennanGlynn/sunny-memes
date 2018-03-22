@@ -34,7 +34,7 @@ class UserPage extends Component {
   render() {
     return (
       <div>
-        {this.state.memes && this.state.memes.map((meme, i) =>
+        {this.state.requestedUser ?
           <Grid container spacing={0}>
             <Grid item xs={4}>
               <img src={this.state.requestedUser.picture} alt={this.state.requestedUser.name}/>
@@ -42,9 +42,12 @@ class UserPage extends Component {
             <Grid item xs={8}>
               <Typography>{this.state.requestedUser.name}</Typography>
             </Grid>
-            <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
-          </Grid>
-        )}
+            {this.state.memes && this.state.memes.map((meme, i) =>
+              <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
+            )}
+          </Grid> :
+          <div>Loading...</div>
+        }
       </div>
     )
   }

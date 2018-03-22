@@ -31,8 +31,6 @@ class LeftPanel extends Component {
     const { classes } = this.props;
     return(
       <div className={classes.root + " " + classes.desktopMenu}>
-        <Grid container spacing={0}>
-          <Grid item xs={12}>
             <List component="nav">
               {/*<ListItem button>*/}
                 {/*<ListItemText primary="Trending" />*/}
@@ -59,8 +57,6 @@ class LeftPanel extends Component {
             </List>
 
             <FilterCharacterList />
-          </Grid>
-        </Grid>
         <Divider />
       </div>
     )

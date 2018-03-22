@@ -88,54 +88,9 @@ const styles = theme => ({
     marginTop: -8,
     marginRight: -24
   },
-  [theme.breakpoints.only('xs')]: {
-    card: {
-      width: 310,
-      margin: "2.5px",
-    },
-    rootMedia: {
-      backgroundSize: '100%',
-    },
-    media: {
-      width: '100%',
-    },
-  },
-  [theme.breakpoints.only('sm')]: {
-    card: {
-      width: 225,
-      margin: 5,
-    },
-    rootMedia: {
-      backgroundSize: '100%',
-    },
-    media: {
-      width: 225,
-    },
-  },
-  [theme.breakpoints.only('md')]: {
-    card: {
-      width: 575,
-      margin: 5,
-    },
-    rootMedia: {
-      backgroundSize: '100%',
-    },
-    media: {
-      width: 575,
-    },
-  },
-  [theme.breakpoints.between('lg', 'xl')]: {
-    card: {
-      width: 600,
-      margin: 5,
-    },
-    rootMedia: {
-      backgroundSize: '100%',
-    },
-    media: {
-      width: 600,
-    },
-  },
+  media: {
+    width: '100%'
+  }
 });
 
 class MemeCard extends Component {
@@ -278,18 +233,19 @@ class MemeCard extends Component {
                 <Grid container spacing={8}>
                   <NavLink to={`user/${data.uploaded_by._id}`}>
                     <Grid item>
-                    <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile" />
-                    <Typography type="caption" className={classes.uploadedBy}>
-                      {data.uploaded_by.name} on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
-                    </Typography>
-                  </Grid>
+                      <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile"/>
+                      <Typography type="caption" className={classes.uploadedBy}>
+                        {data.uploaded_by.name} on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
+                      </Typography>
+                    </Grid>
                   </NavLink>
                 </Grid>
               </CardContent>
               <Divider/>
               <CardContent classes={{root: classes.descriptionContent}}>
                 <NavLink className={classes.link} to={`/meme/${data._id}`}>
-                  <Typography type="caption" className={classes.title}>{data.title || 'Loading Description...'}</Typography>
+                  <Typography type="caption"
+                              className={classes.title}>{data.title || 'Loading Description...'}</Typography>
                 </NavLink>
               </CardContent>
               {data.characters[0] !== 'undefined' &&
@@ -341,7 +297,7 @@ class MemeCard extends Component {
               {/*Expanded section*/}
               <Collapse in={this.state.expanded} className={classes.collapse}>
                 <CardContent>
-                  <MemeComments meme={data} user={user} />
+                  <MemeComments meme={data} user={user}/>
                 </CardContent>
               </Collapse>
             </Card>

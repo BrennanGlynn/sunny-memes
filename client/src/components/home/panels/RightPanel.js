@@ -60,53 +60,50 @@ const styles = theme => ({
 });
 
 const RightPanel = ({classes, logout, auth}) =>
-  <div className={classes.desktopMenu}>
-    <Grid container spacing={0} justify="flex-start" className={classes.rightPanel}>
-      <Grid item>
-        {auth.loggedIn ?
-        <div>
-          <img src={auth.user.picture} className={classes.picture} alt="profile"/>
-          <Typography type="caption" className={classes.userName}>
-            {auth.user.name}
-          </Typography>
-          <Typography type="caption" className={classes.logout}>
-            <a onClick={logout.bind(this)}>
-              Logout
-            </a>
-          </Typography>
-          <ListItem button className={classes.sunnyStatus}>
-            <ListItemIcon className={classes.sunnyIcon}>
-              <WbSunnyIcon/>
-            </ListItemIcon>
-            <ListItemText className={classes.sunnyTotal} primary="5"/>
-          </ListItem>
-          <Divider/>
-          <List component="nav">
-            <NavLink to="/favorites">
-              <ListItem button className={classes.icon}>
-                <ListItemIcon>
-                  <StarIcon/>
-                </ListItemIcon>
-                <ListItemText primary="My Favorites"/>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/mymemes">
-              <ListItem button className={classes.icon}>
-                <ListItemIcon>
-                  <PhotoLibraryIcon/>
-                </ListItemIcon>
-                <ListItemText primary="My Memes"/>
-              </ListItem>
-            </NavLink>
-          </List>
-          <Divider/>
-          <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
-        </div> :
-        <div>
-          <LoginModal/>
-        </div>}
-      </Grid>
-    </Grid>
+  <div className={classes.desktopMenu + ' ' + classes.rightPanel}>
+    {auth.loggedIn ?
+      <div>
+        <img src={auth.user.picture} className={classes.picture} alt="profile"/>
+        <Typography type="caption" className={classes.userName}>
+          {auth.user.name}
+        </Typography>
+        <Typography type="caption" className={classes.logout}>
+          <a onClick={logout.bind(this)}>
+            Logout
+          </a>
+        </Typography>
+        <ListItem button className={classes.sunnyStatus}>
+          <ListItemIcon className={classes.sunnyIcon}>
+            <WbSunnyIcon/>
+          </ListItemIcon>
+          <ListItemText className={classes.sunnyTotal} primary="5"/>
+        </ListItem>
+        <Divider/>
+        <List component="nav">
+          <NavLink to="/favorites">
+            <ListItem button className={classes.icon}>
+              <ListItemIcon>
+                <StarIcon/>
+              </ListItemIcon>
+              <ListItemText primary="My Favorites"/>
+            </ListItem>
+          </NavLink>
+          <NavLink to="/mymemes">
+            <ListItem button className={classes.icon}>
+              <ListItemIcon>
+                <PhotoLibraryIcon/>
+              </ListItemIcon>
+              <ListItemText primary="My Memes"/>
+            </ListItem>
+          </NavLink>
+        </List>
+        <Divider/>
+        <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
+      </div> :
+      <div>
+        <LoginModal/>
+      </div>}
+
   </div>
 
 

@@ -39,7 +39,7 @@ class WrapperPanels extends Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item sm={4}>
+        <Grid item xs={12} sm={4}>
           {this.props.children}
         </Grid>
         <Grid itemm sm={4} className={classes.panelContainer}>

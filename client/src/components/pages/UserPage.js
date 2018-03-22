@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {Grid} from 'material-ui/';
 import MemeContainer from "../../containers/memes/MemeCardContainer";
-import Masonry from "react-masonry-component"
 import {Typography} from "material-ui";
-import WrapperPanels from "../home/panels/WrapperPanels";
 
 class UserPage extends Component {
   constructor(props) {
@@ -11,7 +9,6 @@ class UserPage extends Component {
     this.state = {
       loading: true
     }
-    console.log(this.props)
   }
 
   componentWillMount() {
@@ -35,28 +32,20 @@ class UserPage extends Component {
   }
 
   render() {
-    let masonry = this.masonry
     return (
-      <WrapperPanels>
-        {this.state.loading ?
-          (<div>Loading</div>) :
-          (<div>
-            {this.state.errorMessage ?
-              (<div>{this.state.errorMessage}</div>) :
-              (
-                <Grid container spacing={0} align="center">
-                  <Grid item xs={12}>
-                    <Typography variant={'display1'}>The following are memes posted by {this.state.requestedUser.name}</Typography>
-                    <img src={this.state.requestedUser.picture} alt="requested user" />
-                      {this.state.memes.map((meme, i) =>
-                        <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
-                      )}
-                  </Grid>
-                </Grid>
-              )}
-          </div>)
-        }
-      </WrapperPanels>
+      <div>
+        {this.state.memes && this.state.memes.map((meme, i) =>
+          <Grid container spacing={0}>
+            <Grid item xs={4}>
+              <img src={this.state.requestedUser.picture} alt={this.state.requestedUser.name}/>
+            </Grid>
+            <Grid item xs={8}>
+              <Typography>{this.state.requestedUser.name}</Typography>
+            </Grid>
+            <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
+          </Grid>
+        )}
+      </div>
     )
   }
 }

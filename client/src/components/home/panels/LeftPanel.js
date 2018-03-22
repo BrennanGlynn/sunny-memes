@@ -6,6 +6,7 @@ import TrendingUpIcon from 'material-ui-icons/TrendingUp';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import FilterCharacterList from "../../../containers/sorting/FilterCharacterListContainer";
+import {NavLink} from "react-router-dom";
 
 const styles = theme => ({
   // [theme.breakpoints.down('xs')]: {
@@ -39,22 +40,22 @@ class LeftPanel extends Component {
                   {/*<TrendingUpIcon />*/}
                 {/*</ListItemIcon>*/}
               {/*</ListItem>*/}
-              <a href="/mostpopular">
+              <NavLink to="/mostpopular">
                 <ListItem button>
                   <ListItemText primary="Top Favorites" />
                   <ListItemIcon className={classes.icon}>
                     <StarIcon />
                   </ListItemIcon>
                 </ListItem>
-              </a>
-              <a href="mostRecent">
+              </NavLink>
+              <NavLink to="/mostRecent">
                 <ListItem button>
                   <ListItemText primary="Most Recent" />
                   <ListItemIcon className={classes.icon}>
                     <AccessTimeIcon />
                   </ListItemIcon>
                 </ListItem>
-              </a>
+              </NavLink>
             </List>
 
             <FilterCharacterList />

@@ -17,6 +17,7 @@ import CommentsIcon from 'material-ui-icons/Forum';
 import Collapse from 'material-ui/transitions/Collapse';
 import MemePopupContainer from '../../containers/memes/MemePopupContainer';
 import MemeComments from './comments/MemeComments';
+import {NavLink} from "react-router-dom";
 
 const styles = theme => ({
   frontCardWrapper: {
@@ -275,21 +276,21 @@ class MemeCard extends Component {
               </div>
               <CardContent classes={{root: classes.dateContent}}>
                 <Grid container spacing={8}>
-                  <a href={`user/${data.uploaded_by._id}`}>
+                  <NavLink to={`user/${data.uploaded_by._id}`}>
                     <Grid item>
                     <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile" />
                     <Typography type="caption" className={classes.uploadedBy}>
                       {data.uploaded_by.name} on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
                     </Typography>
                   </Grid>
-                  </a>
+                  </NavLink>
                 </Grid>
               </CardContent>
               <Divider/>
               <CardContent classes={{root: classes.descriptionContent}}>
-                <a className={classes.link} href={`/meme/${data._id}`}>
+                <NavLink className={classes.link} to={`/meme/${data._id}`}>
                   <Typography type="caption" className={classes.title}>{data.title || 'Loading Description...'}</Typography>
-                </a>
+                </NavLink>
               </CardContent>
               {data.characters[0] !== 'undefined' &&
               <div>

@@ -6,6 +6,7 @@ import StarIcon from 'material-ui-icons/Star';
 import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 import LoginModal from "../../login/LoginModal";
+import {NavLink} from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -81,22 +82,22 @@ const RightPanel = ({classes, logout, auth}) =>
           </ListItem>
           <Divider/>
           <List component="nav">
-            <a href="/favorites">
+            <NavLink to="/favorites">
               <ListItem button className={classes.icon}>
                 <ListItemIcon>
                   <StarIcon/>
                 </ListItemIcon>
                 <ListItemText primary="My Favorites"/>
               </ListItem>
-            </a>
-            <a href="/mymemes">
+            </NavLink>
+            <NavLink to="/mymemes">
               <ListItem button className={classes.icon}>
                 <ListItemIcon>
                   <PhotoLibraryIcon/>
                 </ListItemIcon>
                 <ListItemText primary="My Memes"/>
               </ListItem>
-            </a>
+            </NavLink>
           </List>
           <Divider/>
           <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>

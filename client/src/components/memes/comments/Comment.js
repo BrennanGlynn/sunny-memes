@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Avatar, Grid, Paper, Typography, withStyles} from "material-ui";
 import CommentInput from "../../../containers/comments/CommentInputContainer";
 import ErrorDialog from "../../upload/ErrorDialog";
+import {NavLink} from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -127,14 +128,18 @@ class ReplyComment extends Component {
             <Avatar src={comment.user.picture} className={classes.firstCommentAvatar}/>
           </Grid>
           <Grid item xs>
-            <a className={classes.link} href={`/user/${comment.user._id}`}><Typography variant="body2" className={classes.firstCommentName}>
+            <NavLink className={classes.link} to={`/user/${comment.user._id}`}>
+              <Typography variant="body2"
+                                                                                           className={classes.firstCommentName}>
               {comment.user.name}
-            </Typography></a>
+            </Typography>
+            </NavLink>
             <Typography variant="caption" className={classes.firstComment}>
               {comment.text}
             </Typography>
             <div className={classes.firstCommentControls}>
-              <Typography variant="caption" className={comment.likes.includes(user.id) ? classes.activeLike : ''} onClick={likeComment.bind(this, comment._id)}>
+              <Typography variant="caption" className={comment.likes.includes(user.id) ? classes.activeLike : ''}
+                          onClick={likeComment.bind(this, comment._id)}>
                 Like ({comment.likes.length})
               </Typography>
               <Typography variant="caption" onClick={this.openReply}>
@@ -150,14 +155,17 @@ class ReplyComment extends Component {
                 <Avatar src={reply.user.picture} className={classes.replyAvatar}/>
               </Grid>
               <Grid item xs className={classes.replyWrapper}>
-                <a className={classes.link} href={`/user/${reply.user._id}`}><Typography variant="body2" className={classes.replyName}>
+                <NavLink className={classes.link} to={`/user/${reply.user._id}`}><Typography variant="body2"
+                                                                                             className={classes.replyName}>
                   {reply.user.name}
-                </Typography></a>
+                </Typography>
+                </NavLink>
                 <Typography variant="caption" className={classes.replyComment}>
                   {reply.text}
                 </Typography>
                 <div className={classes.replyCommentControls}>
-                  <Typography variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''} onClick={likeComment.bind(this, reply._id)}>
+                  <Typography variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''}
+                              onClick={likeComment.bind(this, reply._id)}>
                     Like ({reply.likes.length})
                   </Typography>
                   <Typography variant="caption" onClick={this.openReply}>
@@ -181,7 +189,8 @@ class ReplyComment extends Component {
         </Grid>}
 
         {/*Show dialog if needed*/}
-        {this.state.dialog && <ErrorDialog open={this.state.dialog} error={this.state.error} closeDialog={this.closeDialog} />}
+        {this.state.dialog &&
+        <ErrorDialog open={this.state.dialog} error={this.state.error} closeDialog={this.closeDialog}/>}
       </Paper>
     )
   }

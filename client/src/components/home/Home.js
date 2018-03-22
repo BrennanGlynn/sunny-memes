@@ -19,6 +19,7 @@ import RecentMemesContainer from "../../containers/pages/RecentMemesContainer"
 import PageNotFound from "../pages/PageNotFound"
 import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer"
 import RightDrawerContainer from "../../containers/home/drawers/RightDrawerContainer";
+import WrapperPanels from "./panels/WrapperPanels";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -109,27 +110,31 @@ class Home extends Component {
                 </Grid>
                 <Grid item xs={4} className={classes.rightIcon}>
                   {auth.loggedIn ?
-                    <RightDrawerContainer open={this.state.userDrawerOpen} openUserDrawer={this.toggleUserDrawer.bind(this)}/> :
+                    <RightDrawerContainer open={this.state.userDrawerOpen}
+                                          openUserDrawer={this.toggleUserDrawer.bind(this)}/> :
                     <LoginModal className={classes.mobileLogin}/>}
                 </Grid>
               </Grid>
             </Toolbar>
           </AppBar>
 
-          {/*// Pages //*/}
-          <Switch>
-            <Route path='/' exact component={MostPopularContainer}/>
-            <Route path='/mostpopular' exact component={MostPopularContainer}/>
-            <Route path='/mostrecent' exact component={RecentMemesContainer}/>
-            <Route path='/favorites' component={!auth.pending && auth.loggedIn ? FavoriteMemesContainer : PleaseLogin}/>
-            <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
-            <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
-            <Route path='/admin' component={AdminInterface}/>
-            <Route path='/memepage' component={MemePage}/>
-            <Route path='/meme/:id' component={SingleMemePage}/>
-            <Route path='/user/:id' component={UserPage}/>
-            <Route component={PageNotFound}/>
-          </Switch>
+          <WrapperPanels>
+            {/*// Pages //*/}
+            <Switch>
+              <Route path='/' exact component={MostPopularContainer}/>
+              <Route path='/mostpopular' exact component={MostPopularContainer}/>
+              <Route path='/mostrecent' exact component={RecentMemesContainer}/>
+              <Route path='/favorites'
+                     component={!auth.pending && auth.loggedIn ? FavoriteMemesContainer : PleaseLogin}/>
+              <Route path='/addmeme' component={!auth.pending && auth.loggedIn ? UploadContainer : PleaseLogin}/>
+              <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
+              <Route path='/admin' component={AdminInterface}/>
+              <Route path='/memepage' component={MemePage}/>
+              <Route path='/meme/:id' component={SingleMemePage}/>
+              <Route path='/user/:id' component={UserPage}/>
+              <Route component={PageNotFound}/>
+            </Switch>
+          </WrapperPanels>
         </div>
         }
       </div>)

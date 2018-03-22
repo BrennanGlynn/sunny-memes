@@ -32,11 +32,9 @@ class MyMemes extends Component {
 
     return (
       <div>
-        <WrapperPanels>
-                {memesArray.map((meme, i) =>
-                  <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
-                )}
-        </WrapperPanels>
+        {memesArray.map((meme, i) =>
+          <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+        )}
       </div>)
   }
 }

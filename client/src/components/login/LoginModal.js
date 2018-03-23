@@ -19,6 +19,9 @@ const styles = theme => ({
     marginTop: 10,
     width: '100%',
   },
+  loginModalButton: {
+    textDecoration: 'none',
+  },
   facebookIcon: {
     marginRight: 8,
     marginLeft: -8
@@ -60,7 +63,7 @@ class LoginModal extends React.Component {
     const host = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001'
     return (
       <div>
-        <Button onClick={this.handleOpen} variant="raised" className={classes.loginButtonHeader}>
+        <Button onClick={this.handleOpen} className="loginModalButton" variant="raised" color="secondary">
           Login
         </Button>
             <Modal

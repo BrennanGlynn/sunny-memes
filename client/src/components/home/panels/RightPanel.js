@@ -15,8 +15,13 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   rightPanel: {
+    width: 250,
     paddingLeft: 5,
     marginTop: 5,
+  },
+  navList: {
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   picture: {
     marginLeft: 5,
@@ -74,7 +79,7 @@ const RightPanel = ({classes, logout, auth}) =>
           </a>
         </Typography>
         <Divider/>
-        <List component="nav">
+        <List component="nav" className={classes.navList}>
           <NavLink to="/favorites">
             <ListItem button className={classes.icon}>
               <ListItemIcon>
@@ -83,6 +88,7 @@ const RightPanel = ({classes, logout, auth}) =>
               <ListItemText primary="My Favorites"/>
             </ListItem>
           </NavLink>
+          <Divider />
           <NavLink to="/mymemes">
             <ListItem button className={classes.icon}>
               <ListItemIcon>
@@ -93,9 +99,11 @@ const RightPanel = ({classes, logout, auth}) =>
           </NavLink>
         </List>
         <Divider/>
-        <NavLink to="/addmeme">
-          <Button color="primary" variant="raised">Upload</Button>
-        </NavLink>
+        <div style={{ marginTop: 10, textAlign: 'center' }}>
+          <NavLink to="/addmeme" style={{ textDecoration: 'none' }}>
+            <Button color="primary" variant="raised">Upload</Button>
+          </NavLink>
+        </div>
       </div> :
       <div>
         <LoginModal/>
@@ -103,4 +111,4 @@ const RightPanel = ({classes, logout, auth}) =>
   </div>
 
 
-export default withStyles(styles, {withStyles: true})(RightPanel);
+export default withStyles(styles)(RightPanel);

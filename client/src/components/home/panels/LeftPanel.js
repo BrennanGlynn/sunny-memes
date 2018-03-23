@@ -18,7 +18,6 @@ const styles = theme => ({
     textAlign: 'right',
     width: 250,
     minHeight: "100%",
-    marginRight: 5,
     backgroundColor: "#fff",
   },
   icon: {

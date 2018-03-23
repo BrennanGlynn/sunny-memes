@@ -1,5 +1,13 @@
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
+  /*background: linear-gradient(to bottom right, #2c8943, #52c234, #52c234);*/
+  /*background-repeat: no-repeat;*/
+  /*background-attachment: fixed;*/
   font-family: sans-serif;
+}
+
+html {
+  height: 100%;
 }

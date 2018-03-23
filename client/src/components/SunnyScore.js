@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {withStyles} from 'material-ui/styles';
+import {Typography} from 'material-ui';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import WbSunnyIcon from 'material-ui-icons/WbSunny';
+import IconButton from 'material-ui/IconButton';
 
 const styles = {
   sunnyStatus: {
@@ -9,12 +11,12 @@ const styles = {
     paddingTop: 5,
     paddingBottom: 5,
   },
-  sunnyIcon: {
+  sunnyScore: {
     marginRight: 2.5,
     color: 'gold',
   },
-  sunnyTotal: {
-    paddingLeft: 0,
+  sunnyScoreNumber: {
+    color: '#fff',
   },
 }
 
@@ -23,12 +25,12 @@ class SunnyScore extends Component {
     const {classes} = this.props;
     return(
       <div>
-        <ListItem button className={classes.sunnyStatus}>
-          <ListItemIcon className={classes.sunnyIcon}>
-            <WbSunnyIcon/>
-          </ListItemIcon>
-          <ListItemText className={classes.sunnyTotal} primary="5"/>
-        </ListItem>
+        <IconButton aria-label="Sunny Score">
+          <WbSunnyIcon className={classes.sunnyScore} />
+          <Typography type={'body2'} className={classes.sunnyScoreNumber}>
+            345
+          </Typography>
+        </IconButton>
       </div>
     )
   }

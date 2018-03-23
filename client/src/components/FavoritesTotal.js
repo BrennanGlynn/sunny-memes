@@ -1,36 +1,37 @@
 import React, { Component } from 'react';
 import {withStyles} from 'material-ui/styles';
-import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
-import WbSunnyIcon from 'material-ui-icons/WbSunny';
+import {Typography} from 'material-ui/';
+import StarIcon from 'material-ui-icons/Star';
+import IconButton from 'material-ui/IconButton';
 
 const styles = {
-  sunnyStatus: {
+  favoritesTotal: {
     paddingLeft: 5,
     paddingTop: 5,
     paddingBottom: 5,
   },
-  sunnyIcon: {
-    marginRight: 2.5,
-    color: 'gold',
+  favoriteIcon: {
+    color: '#fed035',
   },
-  sunnyTotal: {
-    paddingLeft: 0,
+  favoriteNumber: {
+    color: '#fff',
   },
 }
 
 class FavoritesTotal extends Component {
   render() {
+    const { classes } = this.props;
     return(
       <div>
-        <ListItem button className={classes.sunnyStatus}>
-          <ListItemIcon className={classes.sunnyIcon}>
-            <WbSunnyIcon/>
-          </ListItemIcon>
-          <ListItemText className={classes.sunnyTotal} primary="5"/>
-        </ListItem>
+        <IconButton aria-label="Total Favorites">
+          <StarIcon className={classes.favoriteIcon} />
+          <Typography type={'body2'} className={classes.favoriteNumber}>
+            568
+          </Typography>
+        </IconButton>
       </div>
     )
   }
 }
 
-export default FavoritesTotal;
+export default withStyles(styles) (FavoritesTotal);

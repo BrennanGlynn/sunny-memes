@@ -6,6 +6,7 @@ import {Typography} from "material-ui";
 import { withStyles } from 'material-ui/styles';
 import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import SunnyScore from '../SunnyScore';
+import FavoritesTotal from '../FavoritesTotal';
 
 const styles = {
   profileWrapper: {
@@ -32,6 +33,7 @@ const styles = {
     fontSize: 16,
     borderBottom: "1px solid #fff",
     color: '#fff',
+    width: '50%',
   },
   joinDate: {
     fontSize: 12,
@@ -43,8 +45,10 @@ const styles = {
     marginLeft: 15,
   },
   scoreWrapper: {
-    marginLeft: 25,
-    color: '#fff !important',
+    paddingLeft: '25px',
+  },
+  favoritesWrapper: {
+    paddingRight: '25px',
   },
 }
 
@@ -89,8 +93,15 @@ class UserPage extends Component {
                 <Typography className={classes.joinDate}>Joined on March 11, 2018</Typography>
               </Grid>
               <Grid container spacing={0}>
-                <Grid item xs={12} className={classes.scoreWrapper}>
+                <Grid item xs={3} className={classes.scoreWrapper}>
                   <SunnyScore />
+                </Grid>
+                <Grid item xs={9} className={classes.favoritesWrapper}>
+                  <Grid container justify="flex-end" spacing={0}>
+                    <Grid item>
+                      <FavoritesTotal />
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </div>

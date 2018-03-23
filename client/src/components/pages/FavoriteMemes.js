@@ -7,6 +7,10 @@ import WrapperPanels from "../home/panels/WrapperPanels";
 const styles = {}
 
 class Favorites extends Component {
+  componentDidMount() {
+    this.props.getMemes()
+  }
+
   render() {
     const {classes, memes} = this.props;
     let memesArray = Object.keys(memes).map(key => memes[key])

@@ -11,8 +11,11 @@ import reducer from './reducers';
 import 'babel-polyfill';
 import {unregister} from './registerServiceWorker';
 import './index.css';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import App from './App';
 import {attemptFacebookAuth} from "./actions";
+
+const theme = createMuiTheme();
 
 const loggerMiddleware = createLogger()
 const persistConfig = {
@@ -38,7 +41,9 @@ store.dispatch(attemptFacebookAuth());
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App/>
+      <MuiThemeProvider theme={theme}>
+        <App/>
+      </MuiThemeProvider>
     </PersistGate>
   </Provider>,
   document.getElementById('root'));

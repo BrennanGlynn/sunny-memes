@@ -42,9 +42,11 @@ class UserPage extends Component {
             <Grid item xs={8}>
               <Typography>{this.state.requestedUser.name}</Typography>
             </Grid>
-            {this.state.memes && this.state.memes.map((meme, i) =>
-              <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
-            )}
+            <div>
+              {this.state.memes && this.state.memes.map((meme, i) =>
+                <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
+              )}
+            </div>
           </Grid> :
           <div>Loading...</div>
         }

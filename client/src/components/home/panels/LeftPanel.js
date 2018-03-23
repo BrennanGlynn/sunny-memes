@@ -21,7 +21,11 @@ const styles = theme => ({
     backgroundColor: "#fff",
   },
   icon: {
-    marginRight: 0,
+    marginRight: -7,
+  },
+  navList: {
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 });
 
@@ -30,14 +34,14 @@ class LeftPanel extends Component {
     const { classes } = this.props;
     return(
       <div className={classes.root + " " + classes.desktopMenu}>
-            <List component="nav">
+            <List component="nav" className={classes.navList}>
               {/*<ListItem button>*/}
                 {/*<ListItemText primary="Trending" />*/}
                 {/*<ListItemIcon className={classes.icon}>*/}
                   {/*<TrendingUpIcon />*/}
                 {/*</ListItemIcon>*/}
               {/*</ListItem>*/}
-              <NavLink to="/mostpopular">
+              <NavLink to="/mostpopular" style={{ textDecoration: 'none' }}>
                 <ListItem button>
                   <ListItemText primary="Top Favorites" />
                   <ListItemIcon className={classes.icon}>
@@ -45,7 +49,8 @@ class LeftPanel extends Component {
                   </ListItemIcon>
                 </ListItem>
               </NavLink>
-              <NavLink to="/mostRecent">
+              <Divider />
+              <NavLink to="/mostRecent" style={{ textDecoration: 'none' }}>
                 <ListItem button>
                   <ListItemText primary="Most Recent" />
                   <ListItemIcon className={classes.icon}>
@@ -53,6 +58,7 @@ class LeftPanel extends Component {
                   </ListItemIcon>
                 </ListItem>
               </NavLink>
+              <Divider />
             </List>
 
             <FilterCharacterList />

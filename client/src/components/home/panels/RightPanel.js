@@ -15,9 +15,9 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   rightPanel: {
-    width: 250,
-    paddingLeft: 5,
+    width: 220,
     marginTop: 5,
+    marginLeft: 15,
   },
   navList: {
     paddingTop: 0,
@@ -80,7 +80,7 @@ const RightPanel = ({classes, logout, auth}) =>
         </Typography>
         <Divider/>
         <List component="nav" className={classes.navList}>
-          <NavLink to="/favorites">
+          <NavLink to="/favorites" style={{ textDecoration: 'none' }}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <StarIcon/>
@@ -89,7 +89,7 @@ const RightPanel = ({classes, logout, auth}) =>
             </ListItem>
           </NavLink>
           <Divider />
-          <NavLink to="/mymemes">
+          <NavLink to="/mymemes" style={{ textDecoration: 'none' }}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <PhotoLibraryIcon/>

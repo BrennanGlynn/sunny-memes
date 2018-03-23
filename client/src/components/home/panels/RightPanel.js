@@ -51,8 +51,6 @@ const styles = theme => ({
   uploadButton: {
     marginTop: 20,
     marginLeft: 10,
-    backgroundColor: '#2c8943',
-    color: '#fff',
     textDecoration: 'none',
   },
   icon: {
@@ -96,7 +94,7 @@ const RightPanel = ({classes, logout, auth}) =>
         </List>
         <Divider/>
         <NavLink to="/addmeme">
-          <Button variant="raised" className={classes.uploadButton}>Upload</Button>
+          <Button color="primary" variant="raised">Upload</Button>
         </NavLink>
       </div> :
       <div>
@@ -105,4 +103,4 @@ const RightPanel = ({classes, logout, auth}) =>
   </div>
 
 
-export default withStyles(styles)(RightPanel);
+export default withStyles(styles, {withStyles: true})(RightPanel);

@@ -7,10 +7,6 @@ const top = 25;
 const left = 50;
 
 const styles = theme => ({
-  loginButtonHeader: {
-    color: '#2c8943',
-    backgroundColor: '#fff',
-  },
   loginButtonWrapper: {
     width: '100%',
     marginBottom: 10,
@@ -49,7 +45,7 @@ class LoginModal extends React.Component {
   state = {
     open: false,
   };
-  
+
   handleOpen = () => {
     this.setState({open: true});
   };

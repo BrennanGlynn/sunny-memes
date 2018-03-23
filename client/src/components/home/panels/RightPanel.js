@@ -3,9 +3,9 @@ import {withStyles} from 'material-ui/styles';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import {Button, Divider, Grid, Typography} from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
-import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 import LoginModal from "../../login/LoginModal";
+import SunnyScore from "../../SunnyScore";
 import {NavLink} from "react-router-dom";
 
 const styles = theme => ({
@@ -72,12 +72,7 @@ const RightPanel = ({classes, logout, auth}) =>
             Logout
           </a>
         </Typography>
-        <ListItem button className={classes.sunnyStatus}>
-          <ListItemIcon className={classes.sunnyIcon}>
-            <WbSunnyIcon/>
-          </ListItemIcon>
-          <ListItemText className={classes.sunnyTotal} primary="5"/>
-        </ListItem>
+        <SunnyScore/>
         <Divider/>
         <List component="nav">
           <NavLink to="/favorites">

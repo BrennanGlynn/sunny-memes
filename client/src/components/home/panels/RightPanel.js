@@ -74,7 +74,6 @@ const RightPanel = ({classes, logout, auth}) =>
             Logout
           </a>
         </Typography>
-        <SunnyScore/>
         <Divider/>
         <List component="nav">
           <NavLink to="/favorites">

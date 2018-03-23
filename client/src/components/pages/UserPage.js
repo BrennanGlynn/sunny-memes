@@ -4,9 +4,9 @@ import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import MemeContainer from "../../containers/memes/MemeCardContainer";
 import {Typography} from "material-ui";
 import { withStyles } from 'material-ui/styles';
-import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import SunnyScore from '../SunnyScore';
 import FavoritesTotal from '../FavoritesTotal';
+import UploadsTotal from '../UploadsTotal';
 
 const styles = {
   profileWrapper: {
@@ -97,9 +97,12 @@ class UserPage extends Component {
                   <SunnyScore />
                 </Grid>
                 <Grid item xs={9} className={classes.favoritesWrapper}>
-                  <Grid container justify="flex-end" spacing={0}>
+                  <Grid container justify="flex-end" spacing={16}>
                     <Grid item>
                       <FavoritesTotal />
+                    </Grid>
+                    <Grid item>
+                      <UploadsTotal />
                     </Grid>
                   </Grid>
                 </Grid>

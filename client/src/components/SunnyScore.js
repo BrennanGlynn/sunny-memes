@@ -17,6 +17,7 @@ const styles = {
   },
   sunnyScoreNumber: {
     color: '#fff',
+    marginLeft: 5,
   },
 }
 

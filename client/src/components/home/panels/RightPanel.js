@@ -23,6 +23,9 @@ const styles = theme => ({
     paddingTop: 0,
     paddingBottom: 0,
   },
+  listLink: {
+    color: '#43a047',
+  },
   picture: {
     marginLeft: 5,
     height: 40,
@@ -80,7 +83,7 @@ const RightPanel = ({classes, logout, auth}) =>
         </Typography>
         <Divider/>
         <List component="nav" className={classes.navList}>
-          <NavLink to="/favorites" style={{ textDecoration: 'none' }}>
+          <NavLink to="/favorites" style={{ textDecoration: 'none' }} className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <StarIcon/>
@@ -89,7 +92,7 @@ const RightPanel = ({classes, logout, auth}) =>
             </ListItem>
           </NavLink>
           <Divider />
-          <NavLink to="/mymemes" style={{ textDecoration: 'none' }}>
+          <NavLink to="/mymemes" style={{ textDecoration: 'none' }} className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <PhotoLibraryIcon/>

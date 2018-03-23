@@ -23,6 +23,9 @@ const styles = theme => ({
   icon: {
     marginRight: -7,
   },
+  listLink: {
+    color: '#43a047',
+  },
   navList: {
     paddingTop: 0,
     paddingBottom: 0,
@@ -41,7 +44,7 @@ class LeftPanel extends Component {
                   {/*<TrendingUpIcon />*/}
                 {/*</ListItemIcon>*/}
               {/*</ListItem>*/}
-              <NavLink to="/mostpopular" style={{ textDecoration: 'none' }}>
+              <NavLink to="/mostpopular" style={{ textDecoration: 'none' }} className={classes.listLink}>
                 <ListItem button>
                   <ListItemText primary="Top Favorites" />
                   <ListItemIcon className={classes.icon}>
@@ -50,7 +53,7 @@ class LeftPanel extends Component {
                 </ListItem>
               </NavLink>
               <Divider />
-              <NavLink to="/mostRecent" style={{ textDecoration: 'none' }}>
+              <NavLink to="/mostRecent" style={{ textDecoration: 'none' }} className={classes.listLink}>
                 <ListItem button>
                   <ListItemText primary="Most Recent" />
                   <ListItemIcon className={classes.icon}>

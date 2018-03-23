@@ -105,9 +105,11 @@ class UserPage extends Component {
                 </Grid>
               </Grid>
             </div>
+            <div style={{width: '100%'}}>
             {this.state.memes && this.state.memes.map((meme, i) =>
               <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>
             )}
+            </div>
           </Grid> :
           <div>Loading...</div>
         }

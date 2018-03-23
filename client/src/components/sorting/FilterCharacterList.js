@@ -17,7 +17,8 @@ const styles = theme => ({
     maxHeight: 500,
     overflow: 'auto',
     textTransform: 'capitalize',
-    paddingBottom: 0
+    paddingBottom: 0,
+    paddingTop: 0,
   },
   checkedSecondary: {
     color: '#2c8943',

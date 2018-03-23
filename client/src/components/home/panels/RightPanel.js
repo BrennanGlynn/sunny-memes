@@ -53,6 +53,7 @@ const styles = theme => ({
     marginLeft: 10,
     backgroundColor: '#2c8943',
     color: '#fff',
+    textDecoration: 'none',
   },
   icon: {
     paddingLeft: 5,
@@ -94,7 +95,9 @@ const RightPanel = ({classes, logout, auth}) =>
           </NavLink>
         </List>
         <Divider/>
-        <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
+        <NavLink to="/addmeme">
+          <Button variant="raised" className={classes.uploadButton}>Upload</Button>
+        </NavLink>
       </div> :
       <div>
         <LoginModal/>

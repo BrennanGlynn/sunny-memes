@@ -183,7 +183,7 @@ class ReplyComment extends Component {
           <Grid item>
             <Avatar src={user.picture || "/images/user-icon.png"} className={classes.addCommentAvatar}/>
           </Grid>
-          <Grid item xs={10} className={classes.addComment}>
+          <Grid item xs={12} className={classes.addComment}>
             <CommentInput meme={meme._id} parent={comment._id}/>
           </Grid>
         </Grid>}

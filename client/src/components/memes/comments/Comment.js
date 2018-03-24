@@ -36,7 +36,7 @@ const styles = theme => ({
     width: 30,
     height: 30,
     fontSize: 12,
-    margin: 10,
+    margin: 5,
     marginLeft: 20,
   },
   firstCommentName: {
@@ -164,11 +164,11 @@ class ReplyComment extends Component {
                   {reply.text}
                 </Typography>
                 <div className={classes.replyCommentControls}>
-                  <Typography variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''}
+                  <Typography style={{ position: 'relative', display: 'inline-block' }} variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''}
                               onClick={likeComment.bind(this, reply._id)}>
                     Like ({reply.likes.length})
                   </Typography>
-                  <Typography variant="caption" onClick={this.openReply}>
+                  <Typography style={{ position: 'relative', display: 'inline-block' }} variant="caption" onClick={this.openReply}>
                     Reply
                   </Typography>
                 </div>

@@ -115,7 +115,7 @@ class MemePopup extends Component {
   }
 
   render() {
-    const { classes, data, changeCurrentIndex, lastIndex, stateIndex, user, admin, openModal, zoomed } = this.props;
+    const { classes, data, changeCurrentIndex, lastIndex, stateIndex, user, admin, auth, openModal, zoomed } = this.props;
     const { anchorEl } = this.state;
     return (
       <div>
@@ -141,73 +141,6 @@ class MemePopup extends Component {
                   <KeyboardArrowRight />
                 </IconButton>
               </div>
-
-              {/*Popup Modal Header Row*/}
-              <Grid container alignItems="center">
-                <Grid item md={6} className={classes.titleContainer}>
-
-                  {/*Title*/}
-                  <Typography variant="title" type="title" id="modal-title">
-                    {data.title}
-                  </Typography>
-
-                  {/*Meme Author*/}
-                  <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
-                    <Typography type="subheading" id="simple-modal-description">
-                    {data.uploaded_by.name}
-                  </Typography>
-                  </NavLink>
-                </Grid>
-
-                {/*Options Menu and Close Button*/}
-                <Grid item md={6} className={classes.menuContainer}>
-
-                  {/*options menu button*/}
-                  <IconButton
-                    aria-owns={anchorEl ? 'simple-menu' : null}
-                    aria-haspopup="true"
-                    onClick={this.handleClick}
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-
-                  {/*close button*/}
-                  <Button onClick={openModal}>Close</Button>
-
-                  {/*options menu*/}
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={this.handleClose}
-                  >
-
-                    {/*hide button*/}
-                    <MenuItem onClick={this.handleClose}>
-                      <ListItemIcon>
-                        <RemoveRedEyeIcon/>
-                      </ListItemIcon>Hide
-                    </MenuItem>
-                    <Divider/>
-
-                    {/*delete button*/}
-                    {(user === data.uploaded_by || admin) &&
-                    <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
-                      <ListItemIcon>
-                        <HighlightOffIcon/>
-                      </ListItemIcon>Delete
-                    </MenuItem>}
-                    <Divider/>
-
-                    {/*report button*/}
-                    <MenuItem onClick={this.handleClose}>
-                      <ListItemIcon>
-                        <ReportProblemIcon/>
-                      </ListItemIcon>Report
-                    </MenuItem>
-                  </Menu>
-                </Grid>
-              </Grid>
               <Divider/>
 
               {/*Popup Modal Body*/}
@@ -218,6 +151,73 @@ class MemePopup extends Component {
                     </div>
                   </Grid>
                   <Grid item xs={12} md={6}>
+                    <Grid container spacing={0}>
+                      <Grid item className={classes.titleContainer}>
+                        {/*Meme Author*/}
+                        <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
+                          <Typography type="subheading" id="simple-modal-description">
+                            {data.uploaded_by.name}
+                          </Typography>
+                        </NavLink>
+
+                        {/*Title*/}
+                        <Typography variant="title" type="title" id="modal-title">
+                          {data.title}
+                        </Typography>
+                      </Grid>
+
+                      {/*Popup Modal Header Row*/}
+                      <Grid container justify="flex-end">
+                        {/*Options Menu and Close Button*/}
+                        <Grid item md={6} className={classes.menuContainer}>
+
+                          {/*options menu button*/}
+                          <IconButton
+                            aria-owns={anchorEl ? 'simple-menu' : null}
+                            aria-haspopup="true"
+                            onClick={this.handleClick}
+                          >
+                            <MoreVertIcon />
+                          </IconButton>
+
+                          {/*close button*/}
+                          <Button onClick={openModal}>Close</Button>
+
+                          {/*options menu*/}
+                          <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={this.handleClose}
+                          >
+
+                            {/*hide button*/}
+                            <MenuItem onClick={this.handleClose}>
+                              <ListItemIcon>
+                                <RemoveRedEyeIcon/>
+                              </ListItemIcon>Hide
+                            </MenuItem>
+                            <Divider/>
+
+                            {/*delete button*/}
+                            {(user === data.uploaded_by || admin) &&
+                            <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
+                              <ListItemIcon>
+                                <HighlightOffIcon/>
+                              </ListItemIcon>Delete
+                            </MenuItem>}
+                            <Divider/>
+
+                            {/*report button*/}
+                            <MenuItem onClick={this.handleClose}>
+                              <ListItemIcon>
+                                <ReportProblemIcon/>
+                              </ListItemIcon>Report
+                            </MenuItem>
+                          </Menu>
+                        </Grid>
+                      </Grid>
+                    </Grid>
                     <MemeComments meme={data} user={user} />
                   </Grid>
                 </Grid>

@@ -7,10 +7,6 @@ const top = 25;
 const left = 50;
 
 const styles = theme => ({
-  loginButtonHeader: {
-    color: '#2c8943',
-    backgroundColor: '#fff',
-  },
   loginButtonWrapper: {
     width: '100%',
     marginBottom: 10,
@@ -19,9 +15,17 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  loginButtonCenter: {
+    width: '80%',
+    margin: 'auto',
+    position: 'relative',
+  },
   loginButton: {
     marginTop: 10,
     width: '100%',
+  },
+  loginModalButton: {
+    textDecoration: 'none',
   },
   facebookIcon: {
     marginRight: 8,
@@ -49,7 +53,7 @@ class LoginModal extends React.Component {
   state = {
     open: false,
   };
-  
+
   handleOpen = () => {
     this.setState({open: true});
   };
@@ -64,9 +68,11 @@ class LoginModal extends React.Component {
     const host = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001'
     return (
       <div>
-        <Button onClick={this.handleOpen} variant="raised" className={classes.loginButtonHeader}>
-          Login
-        </Button>
+        <div className={classes.loginButtonCenter}>
+          <Button onClick={this.handleOpen} variant="raised" color="primary">
+            Login
+          </Button>
+        </div>
             <Modal
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"

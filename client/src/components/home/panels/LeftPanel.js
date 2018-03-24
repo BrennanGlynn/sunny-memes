@@ -14,15 +14,21 @@ const styles = theme => ({
   //     display: 'none',
   //   },
   // },
-  root: {
+  leftPanel: {
     textAlign: 'right',
     width: 250,
     minHeight: "100%",
-    marginRight: 5,
     backgroundColor: "#fff",
   },
   icon: {
-    marginRight: 0,
+    marginRight: -7,
+  },
+  listLink: {
+    color: '#43a047',
+  },
+  navList: {
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 });
 
@@ -30,15 +36,15 @@ class LeftPanel extends Component {
   render() {
     const { classes } = this.props;
     return(
-      <div className={classes.root + " " + classes.desktopMenu}>
-            <List component="nav">
+      <div className={classes.leftPanel + " " + classes.desktopMenu}>
+            <List component="nav" className={classes.navList}>
               {/*<ListItem button>*/}
                 {/*<ListItemText primary="Trending" />*/}
                 {/*<ListItemIcon className={classes.icon}>*/}
                   {/*<TrendingUpIcon />*/}
                 {/*</ListItemIcon>*/}
               {/*</ListItem>*/}
-              <NavLink to="/mostpopular">
+              <NavLink to="/mostpopular" style={{ textDecoration: 'none' }} className={classes.listLink}>
                 <ListItem button>
                   <ListItemText primary="Top Favorites" />
                   <ListItemIcon className={classes.icon}>
@@ -46,7 +52,8 @@ class LeftPanel extends Component {
                   </ListItemIcon>
                 </ListItem>
               </NavLink>
-              <NavLink to="/mostRecent">
+              <Divider />
+              <NavLink to="/mostRecent" style={{ textDecoration: 'none' }} className={classes.listLink}>
                 <ListItem button>
                   <ListItemText primary="Most Recent" />
                   <ListItemIcon className={classes.icon}>
@@ -54,6 +61,7 @@ class LeftPanel extends Component {
                   </ListItemIcon>
                 </ListItem>
               </NavLink>
+              <Divider />
             </List>
 
             <FilterCharacterList />

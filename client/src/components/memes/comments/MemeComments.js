@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid} from 'material-ui/';
+import {Avatar, Grid} from 'material-ui/';
 import {withStyles} from 'material-ui/styles';
 import CommentInput from "../../../containers/comments/CommentInputContainer";
 import CommentContainer from "../../../containers/comments/CommentContainer";
@@ -20,7 +20,10 @@ const MemeComments = ({classes, meme, user}) => {
           )
         }
       )}
-      <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+      <Grid container spacing={8} justify="flex-start" wrap="nowrap">
+        <Grid item>
+          <Avatar src={user.picture || "/images/user-icon.png"} className={classes.addCommentAvatar}/>
+        </Grid>
         <Grid item xs={12} className={classes.addComment}>
           <CommentInput meme={meme._id}/>
         </Grid>

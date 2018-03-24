@@ -17,7 +17,7 @@ class LeftDrawer extends Component {
     return(
       <div>
       <IconButton
-        color="inherit"
+        color="primary"
         aria-label="open drawer"
         onClick={openRightDrawer}
       >

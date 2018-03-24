@@ -56,10 +56,10 @@ const styles = theme => ({
     marginRight: 20,
   },
   mobileMenu: {
-    backgroundColor: '#2c8943',
+    backgroundColor: '#fff',
   },
   desktopMenu: {
-    backgroundColor: '#2c8943',
+    backgroundColor: '#fff',
   },
   mobileLogin: {
     marginTop: 10,
@@ -105,7 +105,7 @@ class Home extends Component {
                 </Grid>
                 <Grid item xs={4} className={classes.mobileLogo}>
                   <Button href='/'>
-                    <img src="./images/dayman-nightman.png" alt="Sunny Memes"/>
+                    <img src="/images/dayman-nightman.png" alt="Nightmeme"/>
                   </Button>
                 </Grid>
                 <Grid item xs={4} className={classes.rightIcon}>

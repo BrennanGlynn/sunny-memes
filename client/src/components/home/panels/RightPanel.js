@@ -3,20 +3,23 @@ import {withStyles} from 'material-ui/styles';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import {Button, Divider, Grid, Typography} from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
-import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 import LoginModal from "../../login/LoginModal";
+import SunnyScore from "../../SunnyScore";
 import {NavLink} from "react-router-dom";
 
 const styles = theme => ({
   root: {
     textAlign: 'right',
-    width: 250,
     backgroundColor: theme.palette.background.paper,
   },
-  rightPanel: {
-    paddingLeft: 5,
-    marginTop: 5,
+  navList: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  listLink: {
+    textDecoration: 'none',
+    color: '#43a047',
   },
   picture: {
     marginLeft: 5,
@@ -26,16 +29,12 @@ const styles = theme => ({
     display: 'inline-block',
   },
   userName: {
+    marginTop: 5,
     marginLeft: 5,
-    position: 'relative',
-    top: -25,
-    display: 'inline-block',
   },
   logout: {
     fontSize: 10,
-    top: -20,
-    left: 50,
-    position: 'relative',
+    marginLeft: 5,
   },
   sunnyStatus: {
     paddingLeft: 5,
@@ -51,8 +50,7 @@ const styles = theme => ({
   uploadButton: {
     marginTop: 20,
     marginLeft: 10,
-    backgroundColor: '#2c8943',
-    color: '#fff',
+    textDecoration: 'none',
   },
   icon: {
     paddingLeft: 5,
@@ -60,29 +58,27 @@ const styles = theme => ({
 });
 
 const RightPanel = ({classes, logout, auth}) =>
-  <div className={classes.desktopMenu + ' ' + classes.rightPanel}>
+  <div className={classes.desktopMenu}>
     {auth.loggedIn ?
       <div>
-        <img src={auth.user.picture} className={classes.picture} alt="profile"/>
-        <NavLink to={`/user/${auth.user.id}`}>
-          <Typography type="caption" className={classes.userName}>
-            {auth.user.name}
-          </Typography>
-        </NavLink>
-        <Typography type="caption" className={classes.logout}>
-          <a onClick={logout.bind(this)}>
-            Logout
-          </a>
-        </Typography>
-        <ListItem button className={classes.sunnyStatus}>
-          <ListItemIcon className={classes.sunnyIcon}>
-            <WbSunnyIcon/>
-          </ListItemIcon>
-          <ListItemText className={classes.sunnyTotal} primary="5"/>
-        </ListItem>
+        <Grid container spacing={8}>
+          <Grid item>
+            <img src={auth.user.picture} className={classes.picture} alt="profile"/>
+          </Grid>
+          <Grid>
+            <NavLink to={`/user/${auth.user.id}`} className={classes.listLink}>
+              <Typography type="caption" className={classes.userName}>
+                {auth.user.name}
+              </Typography>
+            </NavLink>
+            <Typography type="caption" className={classes.logout} onClick={logout.bind(this)}>
+              Logout
+            </Typography>
+          </Grid>
+        </Grid>
         <Divider/>
-        <List component="nav">
-          <NavLink to="/favorites">
+        <List component="nav" className={classes.navList}>
+          <NavLink to="/favorites" className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <StarIcon/>
@@ -90,7 +86,8 @@ const RightPanel = ({classes, logout, auth}) =>
               <ListItemText primary="My Favorites"/>
             </ListItem>
           </NavLink>
-          <NavLink to="/mymemes">
+          <Divider />
+          <NavLink to="/mymemes" className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <PhotoLibraryIcon/>
@@ -100,7 +97,11 @@ const RightPanel = ({classes, logout, auth}) =>
           </NavLink>
         </List>
         <Divider/>
-        <Button variant="raised" className={classes.uploadButton} href="/addmeme">Upload</Button>
+        <div style={{ marginTop: 10, textAlign: 'center' }}>
+          <NavLink to="/addmeme" className={classes.listLink}>
+            <Button color="primary" variant="raised">Upload</Button>
+          </NavLink>
+        </div>
       </div> :
       <div>
         <LoginModal/>

@@ -24,26 +24,31 @@ const styles = theme => ({
     panelContainer: {
       display: 'none',
     },
-  }
+  },
+  [theme.breakpoints.down('md')]: {
+    leftPanelContainer: {
+      display: 'none',
+    },
+  },
 })
 
 class WrapperPanels extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid container justify={'center'} spacing={16}>
-        <Grid item sm={4} className={classes.panelContainer}>
+      <Grid container justify={'center'} spacing={0}>
+        <Grid item className={classes.panelContainer + ' ' + classes.leftPanelContainer}>
           <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
             <Grid item>
               <LeftPanel/>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={8} lg={4}>
           {this.props.children}
         </Grid>
-        <Grid item sm={4} className={classes.panelContainer}>
-          <Grid container spacing={0} className={classes.rightPanel}>
+        <Grid item className={classes.panelContainer}>
+          <Grid container spacing={0} justify="center" className={classes.rightPanel}>
             <Grid item>
               <RightPanelContainer/>
             </Grid>

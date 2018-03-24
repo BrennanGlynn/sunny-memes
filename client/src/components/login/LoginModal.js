@@ -15,6 +15,11 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  loginButtonCenter: {
+    width: '80%',
+    margin: 'auto',
+    position: 'relative',
+  },
   loginButton: {
     marginTop: 10,
     width: '100%',
@@ -63,9 +68,11 @@ class LoginModal extends React.Component {
     const host = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001'
     return (
       <div>
-        <Button onClick={this.handleOpen} className="loginModalButton" variant="raised" color="secondary">
-          Login
-        </Button>
+        <div className={classes.loginButtonCenter}>
+          <Button onClick={this.handleOpen} variant="raised" color="primary">
+            Login
+          </Button>
+        </div>
             <Modal
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"

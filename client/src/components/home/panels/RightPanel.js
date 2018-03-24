@@ -11,18 +11,14 @@ import {NavLink} from "react-router-dom";
 const styles = theme => ({
   root: {
     textAlign: 'right',
-    width: 250,
     backgroundColor: theme.palette.background.paper,
-  },
-  rightPanel: {
-    width: 220,
-    marginTop: 5,
   },
   navList: {
     paddingTop: 0,
     paddingBottom: 0,
   },
   listLink: {
+    textDecoration: 'none',
     color: '#43a047',
   },
   picture: {
@@ -33,16 +29,12 @@ const styles = theme => ({
     display: 'inline-block',
   },
   userName: {
+    marginTop: 5,
     marginLeft: 5,
-    position: 'relative',
-    top: -25,
-    display: 'inline-block',
   },
   logout: {
     fontSize: 10,
-    top: -20,
-    left: 50,
-    position: 'relative',
+    marginLeft: 5,
   },
   sunnyStatus: {
     paddingLeft: 5,
@@ -66,23 +58,27 @@ const styles = theme => ({
 });
 
 const RightPanel = ({classes, logout, auth}) =>
-  <div className={classes.desktopMenu + ' ' + classes.rightPanel}>
+  <div className={classes.desktopMenu}>
     {auth.loggedIn ?
       <div>
-        <img src={auth.user.picture} className={classes.picture} alt="profile"/>
-        <NavLink to={`/user/${auth.user.id}`}>
-          <Typography type="caption" className={classes.userName}>
-            {auth.user.name}
-          </Typography>
-        </NavLink>
-        <Typography type="caption" className={classes.logout}>
-          <a onClick={logout.bind(this)}>
-            Logout
-          </a>
-        </Typography>
+        <Grid container spacing={8}>
+          <Grid item>
+            <img src={auth.user.picture} className={classes.picture} alt="profile"/>
+          </Grid>
+          <Grid>
+            <NavLink to={`/user/${auth.user.id}`} className={classes.listLink}>
+              <Typography type="caption" className={classes.userName}>
+                {auth.user.name}
+              </Typography>
+            </NavLink>
+            <Typography type="caption" className={classes.logout} onClick={logout.bind(this)}>
+              Logout
+            </Typography>
+          </Grid>
+        </Grid>
         <Divider/>
         <List component="nav" className={classes.navList}>
-          <NavLink to="/favorites" style={{ textDecoration: 'none' }} className={classes.listLink}>
+          <NavLink to="/favorites" className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <StarIcon/>
@@ -91,7 +87,7 @@ const RightPanel = ({classes, logout, auth}) =>
             </ListItem>
           </NavLink>
           <Divider />
-          <NavLink to="/mymemes" style={{ textDecoration: 'none' }} className={classes.listLink}>
+          <NavLink to="/mymemes" className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
                 <PhotoLibraryIcon/>
@@ -102,7 +98,7 @@ const RightPanel = ({classes, logout, auth}) =>
         </List>
         <Divider/>
         <div style={{ marginTop: 10, textAlign: 'center' }}>
-          <NavLink to="/addmeme" style={{ textDecoration: 'none' }}>
+          <NavLink to="/addmeme" className={classes.listLink}>
             <Button color="primary" variant="raised">Upload</Button>
           </NavLink>
         </div>

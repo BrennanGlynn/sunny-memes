@@ -218,12 +218,20 @@ class MemeCard extends Component {
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete
                 </MenuItem>}
-                <Divider/>
+                <Divider />
                 <MenuItem onClick={this.handleClose}>
                   <ListItemIcon>
                     <ReportProblemIcon/>
                   </ListItemIcon>Report
                 </MenuItem>
+                <Divider />
+                <a style={{ textDecoration: 'none' }} href={data.url} download="">
+                  <MenuItem>
+                      <ListItemIcon>
+                        <FileDownloadIcon/>
+                      </ListItemIcon>Download
+                  </MenuItem>
+                </a>
               </Menu>
               <div className={classes.background}>
                 <img src={data.url} alt={data.title} className={classes.media}
@@ -282,15 +290,15 @@ class MemeCard extends Component {
                 <IconButton aria-label="Share">
                   <ShareIcon/>
                 </IconButton>
-                <IconButton aria-label="Download">
-                  <a className={classes.download} href={data.url}
-                     download=""><FileDownloadIcon/></a>
-                </IconButton>
-                <IconButton
-                  aria-haspopup="true"
-                  onClick={this.handleVertClick.bind(this)}>
-                  <MoreVertIcon/>
-                </IconButton>
+                <Grid container justify="flex-end" spacing={0}>
+                  <Grid item>
+                    <IconButton
+                      aria-haspopup="true"
+                      onClick={this.handleVertClick.bind(this)}>
+                      <MoreVertIcon/>
+                    </IconButton>
+                  </Grid>
+                </Grid>
               </CardActions>
 
 

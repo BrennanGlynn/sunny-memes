@@ -11,7 +11,7 @@ const styles = theme => ({
     border: '1px solid #ced4da',
     fontSize: 12,
     padding: '5px 12px',
-    width: '95%',
+    width: '90%',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:focus': {
       borderColor: '#80bdff',
@@ -62,7 +62,6 @@ class CommentInput extends Component {
         <TextField
           placeholder="Write a comment here..."
           onChange={this.handleChange}
-          multiline
           fullWidth
           value={this.state.comment}
           InputProps={{

@@ -5,7 +5,7 @@ import CommentInput from '../../components/memes/comments/CommentInput'
 const mapStateToProps = (state, props) => {
   return {
     meme: props.meme,
-    parent: props.parent
+    parent: props.parent,
   }
 }
 

@@ -18,7 +18,7 @@ const styles = theme => ({
     paddingTop: 10,
     width: 250,
     backgroundColor: "#fff",
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   [theme.breakpoints.down('xs')]: {
     panelContainer: {
@@ -31,7 +31,7 @@ class WrapperPanels extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid container justify={'center'} spacing={0}>
+      <Grid container justify={'center'} spacing={16}>
         <Grid item sm={4} className={classes.panelContainer}>
           <Grid container spacing={0} justify="flex-end" className={classes.leftPanel}>
             <Grid item>
@@ -42,7 +42,7 @@ class WrapperPanels extends Component {
         <Grid item xs={12} sm={4}>
           {this.props.children}
         </Grid>
-        <Grid itemm sm={4} className={classes.panelContainer}>
+        <Grid item sm={4} className={classes.panelContainer}>
           <Grid container spacing={0} className={classes.rightPanel}>
             <Grid item>
               <RightPanelContainer/>

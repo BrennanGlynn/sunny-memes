@@ -17,7 +17,6 @@ const styles = theme => ({
   rightPanel: {
     width: 220,
     marginTop: 5,
-    marginLeft: 15,
   },
   navList: {
     paddingTop: 0,

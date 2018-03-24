@@ -14,7 +14,7 @@ const styles = theme => ({
   //     display: 'none',
   //   },
   // },
-  rightPanel: {
+  leftPanel: {
     textAlign: 'right',
     width: 250,
     minHeight: "100%",
@@ -36,7 +36,7 @@ class LeftPanel extends Component {
   render() {
     const { classes } = this.props;
     return(
-      <div className={classes.rightPanel + " " + classes.desktopMenu}>
+      <div className={classes.leftPanel + " " + classes.desktopMenu}>
             <List component="nav" className={classes.navList}>
               {/*<ListItem button>*/}
                 {/*<ListItemText primary="Trending" />*/}

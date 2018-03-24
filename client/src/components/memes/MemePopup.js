@@ -17,6 +17,11 @@ const styles = theme => ({
     color: 'inherit',
     textDecoration: 'none'
   },
+  picture: {
+    width: 50,
+    height: 50,
+    borderRadius: '50%',
+  },
   [theme.breakpoints.only('xs')]: {
     openModal: {
       width: '95%',
@@ -65,17 +70,24 @@ const styles = theme => ({
     boxShadow: '0 5px 15px rgba(0,0,0,.5)',
     padding: '32',
     width: '90%',
-    height: '95%',
+    minHeight: 800,
   },
   fullImageContainer: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    backgroundColor: 'black',
+    position: 'relative',
+    height: 800,
   },
   fullImage: {
     maxHeight: 500,
     maxWidth: '100%'
+  },
+  fullImageComments: {
+    padding: 10,
+  },
+  memeCommentsWrapper: {
+    width: '100%',
   },
   root: {
     width: '100%',
@@ -145,80 +157,91 @@ class MemePopup extends Component {
 
               {/*Popup Modal Body*/}
                 <Grid container spacing={0} justify="center">
-                  <Grid item xs={12} md={6}>
-                    <div className={classes.fullImageContainer}>
-                      <img className={classes.fullImage} src={data.url} alt="fullMeme" />
-                    </div>
+                  <Grid item xs={12} md={6} className={classes.fullImageContainer}>
+                    <Grid container spacing={0} justify="center" alignItems="middle">
+                      <Grid item>
+                          <img className={classes.fullImage} src={data.url} alt="fullMeme" />
+                      </Grid>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={12} md={6} className={classes.fullImageComments}>
                     <Grid container spacing={0}>
+                      <Grid item>
+                        <img src="/images/user-icon.png" className={classes.picture} alt="profile"/>
+                      </Grid>
                       <Grid item className={classes.titleContainer}>
                         {/*Meme Author*/}
                         <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
                           <Typography type="subheading" id="simple-modal-description">
-                            {data.uploaded_by.name}
+                            {data.uploaded_by.name} on March 11th, 2018
                           </Typography>
                         </NavLink>
-
-                        {/*Title*/}
-                        <Typography variant="title" type="title" id="modal-title">
-                          {data.title}
-                        </Typography>
                       </Grid>
+                      <Grid item>
+                        {/*Popup Modal Header Row*/}
+                        <Grid container justify="flex-end">
+                          {/*Options Menu and Close Button*/}
+                          <Grid item xs={12}>
 
-                      {/*Popup Modal Header Row*/}
-                      <Grid container justify="flex-end">
-                        {/*Options Menu and Close Button*/}
-                        <Grid item md={6} className={classes.menuContainer}>
+                            {/*options menu button*/}
+                            <IconButton
+                              aria-owns={anchorEl ? 'simple-menu' : null}
+                              aria-haspopup="true"
+                              onClick={this.handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
 
-                          {/*options menu button*/}
-                          <IconButton
-                            aria-owns={anchorEl ? 'simple-menu' : null}
-                            aria-haspopup="true"
-                            onClick={this.handleClick}
-                          >
-                            <MoreVertIcon />
-                          </IconButton>
+                            {/*close button*/}
+                            <Button onClick={openModal}>Close</Button>
 
-                          {/*close button*/}
-                          <Button onClick={openModal}>Close</Button>
+                            {/*options menu*/}
+                            <Menu
+                              id="simple-menu"
+                              anchorEl={anchorEl}
+                              open={Boolean(anchorEl)}
+                              onClose={this.handleClose}
+                            >
 
-                          {/*options menu*/}
-                          <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={this.handleClose}
-                          >
+                              {/*hide button*/}
+                              <MenuItem onClick={this.handleClose}>
+                                <ListItemIcon>
+                                  <RemoveRedEyeIcon/>
+                                </ListItemIcon>Hide
+                              </MenuItem>
+                              <Divider/>
 
-                            {/*hide button*/}
-                            <MenuItem onClick={this.handleClose}>
-                              <ListItemIcon>
-                                <RemoveRedEyeIcon/>
-                              </ListItemIcon>Hide
-                            </MenuItem>
-                            <Divider/>
+                              {/*delete button*/}
+                              {(user === data.uploaded_by || admin) &&
+                              <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
+                                <ListItemIcon>
+                                  <HighlightOffIcon/>
+                                </ListItemIcon>Delete
+                              </MenuItem>}
+                              <Divider/>
 
-                            {/*delete button*/}
-                            {(user === data.uploaded_by || admin) &&
-                            <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
-                              <ListItemIcon>
-                                <HighlightOffIcon/>
-                              </ListItemIcon>Delete
-                            </MenuItem>}
-                            <Divider/>
-
-                            {/*report button*/}
-                            <MenuItem onClick={this.handleClose}>
-                              <ListItemIcon>
-                                <ReportProblemIcon/>
-                              </ListItemIcon>Report
-                            </MenuItem>
-                          </Menu>
+                              {/*report button*/}
+                              <MenuItem onClick={this.handleClose}>
+                                <ListItemIcon>
+                                  <ReportProblemIcon/>
+                                </ListItemIcon>Report
+                              </MenuItem>
+                            </Menu>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid container spacing={0}>
+                        <Grid item>
+                          {/*Title*/}
+                          <Typography variant="title" type="title" id="modal-title">
+                            {data.title}
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
-                    <MemeComments meme={data} user={user} />
+                    <div className={classes.memeCommentsWrapper}>
+                      <MemeComments meme={data} user={user} />
+                    </div>
                   </Grid>
                 </Grid>
             </div>

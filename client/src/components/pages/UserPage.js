@@ -11,7 +11,8 @@ import UploadsTotal from '../UploadsTotal';
 const styles = {
   profileWrapper: {
     width: "100%",
-    background: '#2c8943',
+    // background: '#2c8943',
+    backgroundImage: 'linear-gradient(to top, #0ba360 0%, #2c8943 100%)'
   },
   picture: {
     width: "100px",
@@ -62,35 +63,26 @@ class UserPage extends Component {
 
   componentWillMount() {
     let self = this
-    fetch("/memes/user/" + this.props.match.params.id)
-      .then(res => {
-        if (!res.ok) {
-          self.setState({loading: false, errorMessage: "Error retrieving memes"})
-        } else {
-          return res.json()
-        }
-      })
-      .then(json => {
-        console.log(json.documents)
-        self.setState({memes: json.documents, requestedUser: json.user, loading: false})
-      })
-      .catch(err => {
-        console.log("error", err)
-        self.setState({loading: false, errorMessage: "Error retrieving memes"})
-      })
+    this.props.getMemes(this.props.match.params.id)
   }
 
   render() {
-    const {classes} = this.props;
+    const {classes, currentUser, memes} = this.props;
+    let memesArray = [];
+    for (const key in memes) {
+      if (memes.hasOwnProperty(key)) {
+        memesArray.push(memes[key])
+      }
+    }
     return (
       <div>
-        {this.state.requestedUser ?
+        {currentUser ?
           <Grid container spacing={0}>
             <div className={classes.profileWrapper}>
               <Grid item xs={12} lg={12} className={classes.leftProfile}>
-                <img src={this.state.requestedUser.picture} className={classes.picture}
-                     alt={this.state.requestedUser.name}/>
-                <Typography className={classes.profileName}>{this.state.requestedUser.name}</Typography><br/>
+                <img src={currentUser.picture} className={classes.picture}
+                     alt={currentUser.name}/>
+                <Typography className={classes.profileName}>{currentUser.name}</Typography><br/>
                 <Typography className={classes.joinDate}>Joined on March 11, 2018</Typography>
               </Grid>
               <Grid container spacing={0}>
@@ -110,8 +102,8 @@ class UserPage extends Component {
               </Grid>
             </div>
             <div style={{width: "100%"}}>
-              {this.state.memes && this.state.memes.map((meme, i) =>
-                <MemeContainer meme={meme} index={i} memeArray={this.state.memes} key={meme._id}/>,
+              {memesArray && memesArray.map((meme, i) =>
+                <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>,
               )}
             </div>
           </Grid> :

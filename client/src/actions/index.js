@@ -139,6 +139,12 @@ export const getFavoriteMemes = (query) => {
   }
 }
 
+export const getUserPage = (userId) => {
+  return dispatch => {
+    return memeRequest(dispatch, `/user/${userId}`, changedUserPage)
+  }
+}
+
 export const memesReceived = (memes) => {
   return {
     type: "MEMES_RECEIVED",
@@ -167,12 +173,20 @@ export const favoriteMemesReceived = (memes) => {
   }
 }
 
+export const changedUserPage = (memes, user) => {
+  return {
+    type: 'CHANGED_USER_PAGE',
+    memes,
+    user
+  }
+}
+
 //=================================================================================Favorite actions
 
 export const attemptFavorite = (memeId) => {
   return (dispatch, getState) => {
     if (getState().auth.loggedIn) {
-      return fetch("memes/favorite", {
+      return fetch("/memes/favorite", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -265,20 +279,23 @@ export const likeComment = (commentId) => {
 
 //======================================================================================================Helper functions
 function memeRequest(dispatch, query, receivedAction) {
-  fetch('memes/' + query, {credentials: "include"})
+  fetch('/memes/' + query, {credentials: "include"})
     .then(
       res => {
         if (res.ok) return res.json()
       },
-      error => console.log(error),
+      error => console.log("error making request"),
     ).then(json => {
     let memes = {}
+    let requestedUser = {}
     if (json) {
       json.documents.forEach(meme => {
         memes[meme._id] = meme
       })
+      requestedUser = json.user
     }
-    dispatch(receivedAction(memes))
+
+    return dispatch(receivedAction(memes, requestedUser))
   })
 }
 

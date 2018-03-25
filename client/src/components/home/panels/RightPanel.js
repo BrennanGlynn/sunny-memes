@@ -63,7 +63,9 @@ const RightPanel = ({classes, logout, auth}) =>
       <div>
         <Grid container spacing={8}>
           <Grid item>
-            <img src={auth.user.picture} className={classes.picture} alt="profile"/>
+            <NavLink to={`/user/${auth.user.id}`} className={classes.listLink}>
+              <img src={auth.user.picture} className={classes.picture} alt="profile"/>
+            </NavLink>
           </Grid>
           <Grid>
             <NavLink to={`/user/${auth.user.id}`} className={classes.listLink}>
@@ -86,7 +88,7 @@ const RightPanel = ({classes, logout, auth}) =>
               <ListItemText primary="My Favorites"/>
             </ListItem>
           </NavLink>
-          <Divider />
+          <Divider/>
           <NavLink to="/mymemes" className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>
@@ -97,7 +99,7 @@ const RightPanel = ({classes, logout, auth}) =>
           </NavLink>
         </List>
         <Divider/>
-        <div style={{ marginTop: 10, textAlign: 'center' }}>
+        <div style={{marginTop: 10, textAlign: 'center'}}>
           <NavLink to="/addmeme" className={classes.listLink}>
             <Button color="primary" variant="raised">Upload</Button>
           </NavLink>

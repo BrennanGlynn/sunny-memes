@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
 import {withStyles} from "material-ui/styles";
-import {Avatar, Checkbox, Chip, Divider, Grid, Modal, Typography} from "material-ui/";
+import {Avatar, Checkbox, Divider} from "material-ui/";
 import List, {ListItem, ListItemSecondaryAction, ListItemText} from "material-ui/List";
 
 const styles = theme => ({

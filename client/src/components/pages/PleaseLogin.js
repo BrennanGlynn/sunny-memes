@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import WrapperPanels from "../home/panels/WrapperPanels";
 import {Typography} from "material-ui";
 
 class PleaseLogin extends Component {

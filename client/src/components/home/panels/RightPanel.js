@@ -5,7 +5,6 @@ import {Button, Divider, Grid, Typography} from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 import LoginModal from "../../login/LoginModal";
-import SunnyScore from "../../SunnyScore";
 import {NavLink} from "react-router-dom";
 
 const styles = theme => ({

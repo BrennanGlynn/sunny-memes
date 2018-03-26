@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import {Grid, Divider} from 'material-ui/';
-import TrendingUpIcon from 'material-ui-icons/TrendingUp';
+import React, {Component} from 'react';
+import {withStyles} from 'material-ui/styles';
+import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
+import {Divider} from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
 import AccessTimeIcon from 'material-ui-icons/AccessTime';
 import FilterCharacterList from "../../../containers/sorting/FilterCharacterListContainer";

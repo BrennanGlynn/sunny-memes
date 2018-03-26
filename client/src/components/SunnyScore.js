@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
 import {Typography} from 'material-ui';
-import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import WbSunnyIcon from 'material-ui-icons/WbSunny';
 import IconButton from 'material-ui/IconButton';
 

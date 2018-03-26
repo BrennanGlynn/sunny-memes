@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Drawer, IconButton, withStyles} from 'material-ui'
-import PersonIcon from 'material-ui-icons/Person';
 import RightPanelContainer from "../../../containers/home/panels/RightPanelContainer";
 
 const styles = theme => ({

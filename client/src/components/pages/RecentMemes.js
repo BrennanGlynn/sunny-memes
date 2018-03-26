@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import {withStyles} from "material-ui/styles";
 import MemeContainer from "../../containers/memes/MemeCardContainer"
-import Grid from "material-ui/Grid";
-import WrapperPanels from "../home/panels/WrapperPanels";
+import {Typography} from "material-ui";
 
 const styles = {
   root: {
@@ -22,7 +21,7 @@ class RecentMemes extends Component {
   }
 
   render() {
-    const {classes, memes} = this.props;
+    const {memes} = this.props;
     let memesArray = [];
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
@@ -32,9 +31,10 @@ class RecentMemes extends Component {
 
     return (
       <div>
-        {memesArray.map((meme, i) =>
-          <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
-        )}
+        {memesArray.length > 0 ? memesArray.map((meme, i) =>
+            <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+          ) :
+          <Typography>Trouble getting recent memes...</Typography>}
       </div>
     )
   }

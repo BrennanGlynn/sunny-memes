@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import {withStyles} from "material-ui/styles";
 import MemeContainer from "../../containers/memes/MemeCardContainer";
-import {Grid} from "material-ui/";
-import WrapperPanels from "../home/panels/WrapperPanels";
+import {Typography} from "material-ui";
 
 const styles = {
   root: {
@@ -18,8 +17,6 @@ const styles = {
     margin: 'auto'
   },
   leftPanelContainer: {
-    position: "-webkit-sticky",
-    position: "sticky",
     top: 0,
     minHeight: "100vh",
   },
@@ -31,8 +28,6 @@ const styles = {
     minHeight: "100%",
   },
   rightPanel: {
-    position: "-webkit-sticky",
-    position: "sticky",
     top: 50,
     backgroundColor: "#fff",
     minHeight: "100%",
@@ -50,7 +45,7 @@ class MostPopular extends Component {
   }
 
   render() {
-    const {classes, memes} = this.props;
+    const {memes} = this.props;
     let memesArray = []
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
@@ -59,9 +54,10 @@ class MostPopular extends Component {
     }
     return (
       <div>
-        {memesArray.map((meme, i) =>
-          <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
-        )}
+        {memesArray.length > 0 ? memesArray.map((meme, i) =>
+            <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+          ) :
+          <Typography>Trouble loading memes...</Typography>}
       </div>
     )
   }

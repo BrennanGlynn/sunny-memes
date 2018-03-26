@@ -1,9 +1,8 @@
 import React, {Component} from "react"
 import {Grid} from "material-ui/";
-import List, {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import MemeContainer from "../../containers/memes/MemeCardContainer";
 import {Typography} from "material-ui";
-import { withStyles } from 'material-ui/styles';
+import {withStyles} from 'material-ui/styles';
 import SunnyScore from '../SunnyScore';
 import FavoritesTotal from '../FavoritesTotal';
 import UploadsTotal from '../UploadsTotal';
@@ -62,7 +61,6 @@ class UserPage extends Component {
   }
 
   componentWillMount() {
-    let self = this
     this.props.getMemes(this.props.match.params.id)
   }
 
@@ -102,9 +100,10 @@ class UserPage extends Component {
               </Grid>
             </div>
             <div style={{width: "100%"}}>
-              {memesArray && memesArray.map((meme, i) =>
+              {memesArray.length > 0 ? memesArray.map((meme, i) =>
                 <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>,
-              )}
+              ) :
+                <Typography>Trouble loading users memes...Please try again later.</Typography>}
             </div>
           </Grid> :
           <div>Loading...</div>

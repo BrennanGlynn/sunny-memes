@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import {Grid} from 'material-ui';
+import {Typography} from 'material-ui';
 import MemeContainer from '../../containers/memes/MemeCardContainer'
-import Masonry from 'react-masonry-component'
-import FilterModalContainer from "../../containers/sorting/FilterModalContainer";
-import WrapperPanels from "../home/panels/WrapperPanels";
 
 const styles = {
   root: {
@@ -22,7 +18,7 @@ class MyMemes extends Component {
   }
 
   render() {
-    const {classes, memes} = this.props;
+    const {memes} = this.props;
     const memesArray = []
     for (const key in memes) {
       if (memes.hasOwnProperty(key)) {
@@ -32,9 +28,10 @@ class MyMemes extends Component {
 
     return (
       <div>
-        {memesArray.map((meme, i) =>
-          <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
-        )}
+        {memesArray.length > 0 ? memesArray.map((meme, i) =>
+            <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
+          ) :
+          <Typography>You have not uploaded any memes yet!</Typography>}
       </div>)
   }
 }

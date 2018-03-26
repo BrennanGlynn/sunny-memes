@@ -6,7 +6,7 @@ const mapStateToProps = (state, props) => {
   const memeIndex = state.memes.currentIndex || 0
   const lastIndex = props.memes ? props.memes.length : 0
   return {
-    user: state.auth.user,
+    auth: state.auth,
     admin: state.auth.user.admin,
     stateIndex: state.memes.currentIndex,
     lastIndex: lastIndex,

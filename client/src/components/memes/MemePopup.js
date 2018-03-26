@@ -127,7 +127,7 @@ class MemePopup extends Component {
   }
 
   render() {
-    const { classes, data, changeCurrentIndex, lastIndex, stateIndex, user, admin, auth, openModal, zoomed } = this.props;
+    const { classes, data, changeCurrentIndex, lastIndex, stateIndex, admin, auth, openModal, zoomed } = this.props;
     const { anchorEl } = this.state;
     return (
       <div>
@@ -158,7 +158,7 @@ class MemePopup extends Component {
               {/*Popup Modal Body*/}
                 <Grid container spacing={0} justify="center">
                   <Grid item xs={12} md={6} className={classes.fullImageContainer}>
-                    <Grid container spacing={0} justify="center" alignItems="middle">
+                    <Grid container spacing={0} justify="center" align="middle">
                       <Grid item>
                           <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                       </Grid>
@@ -167,7 +167,7 @@ class MemePopup extends Component {
                   <Grid item xs={12} md={6} className={classes.fullImageComments}>
                     <Grid container spacing={0}>
                       <Grid item>
-                        <img src="/images/user-icon.png" className={classes.picture} alt="profile"/>
+                        <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
                       </Grid>
                       <Grid item className={classes.titleContainer}>
                         {/*Meme Author*/}
@@ -212,7 +212,7 @@ class MemePopup extends Component {
                               <Divider/>
 
                               {/*delete button*/}
-                              {(user === data.uploaded_by || admin) &&
+                              {(auth.user._id === data.uploaded_by._id || admin) &&
                               <MenuItem onClick={this.handleDelete.bind(this, data._id)}>
                                 <ListItemIcon>
                                   <HighlightOffIcon/>
@@ -240,7 +240,7 @@ class MemePopup extends Component {
                       </Grid>
                     </Grid>
                     <div className={classes.memeCommentsWrapper}>
-                      <MemeComments meme={data} user={user} />
+                      <MemeComments meme={data} user={auth.user} />
                     </div>
                   </Grid>
                 </Grid>

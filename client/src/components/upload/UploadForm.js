@@ -1,20 +1,13 @@
 import React, {Component} from 'react';
 import {Button, Grid, Typography, withStyles} from 'material-ui';
 import {createMuiTheme} from 'material-ui/styles';
-import Masonry from 'react-masonry-component';
 import Dropzone from 'react-dropzone';
 import UploadPreviewCard from "./UploadPreviewCard";
-import {LinearProgress} from 'material-ui/Progress';
+import ReactLoading from "react-loading";
 import ErrorDialog from "./ErrorDialog";
 
 const styles = createMuiTheme({
-  primaryColorBar: {
-    backgroundColor: '#2f8a45',
-  },
-  masonry: {
-    margin: 'auto'
-  },
-  dropzoneWrapper: {
+  uploadWrapper: {
     marginTop: 20,
   },
   dropzone: {
@@ -27,26 +20,14 @@ const styles = createMuiTheme({
     borderRadius: 2,
     textAlign: 'center'
   },
-  uploadButton: {
-    margin: '20px auto',
-    position: 'relative',
-      color: '#fff',
-      textShadow: '1px 1px 2px rgba(0,0,0,.3)',
-      backgroundColor: "rgba(22,141,33,.8)",
-        '&:hover': {
-          backgroundColor: "rgba(22,141,33,.9)",
-      },
-  },
   uploadText: {
     position: 'relative',
     top: 90,
   },
-  uploadProgressContainer: {
-    flexGrow: 1,
-  },
-  uploadProgress: {
-    backgroundColor: '#fff',
-  },
+  uploadButtonWrapper: {
+    textAlign: 'center',
+    marginTop: 15
+  }
 });
 
 class UploadForm extends Component {
@@ -100,10 +81,12 @@ class UploadForm extends Component {
       }
     })
 
+    this.setState({loading: true})
+
     if (valid) {
       Promise.all(promises).then(() => {
           dispatchUploads()
-          this.setState({files: []})
+          this.setState({files: [], loading: false})
           this.props.history.push('/mymemes')
         },
         err => console.log(err)
@@ -126,7 +109,7 @@ class UploadForm extends Component {
   }
 
   openDialog = (title, message) => {
-    this.setState({ open: true, error: {title,message} });
+    this.setState({open: true, error: {title, message}});
   };
 
   closeDialog = () => {
@@ -135,41 +118,37 @@ class UploadForm extends Component {
 
   render() {
     const {classes} = this.props;
+
+    if (this.state.loading) return (
+      <Grid container spacing={0} justify={"center"}>
+        <ReactLoading type="bubbles" delay={0} width={128} color="#2c8943"/>
+      </Grid>)
+
     return (
-      <div className={classes.dropzoneWrapper}>
-        <Grid container justify="center" spacing={0}>
-          <Grid item xs={10} sm={6} lg={4}>
-            <Dropzone className={classes.dropzone}
-                      accept="image/gif, image/jpeg, image/png, image/svg+xml"
-                      onDrop={this.onDrop.bind(this)}
-                      onDropRejected={this.onDropRejected.bind(this)}
-            >
-              <div className={classes.uploadProgressContainer}>
-                <LinearProgress className={classes.uploadProgress} variant="determinate" value={60} />
-              </div>
-                <Typography className={classes.uploadText} type="headline" gutterBottom>Click Here or Drag & Drop Memes</Typography>
-            </Dropzone>
-          </Grid>
+      <Grid container spacing={0} justify={"center"} className={classes.uploadWrapper}>
+        <Grid item xs={10} sm={6}>
+          <Dropzone className={classes.dropzone}
+                    accept="image/gif, image/jpeg, image/png, image/svg+xml"
+                    onDrop={this.onDrop.bind(this)}
+                    onDropRejected={this.onDropRejected.bind(this)}
+          >
+            <Typography className={classes.uploadText} type="headline" gutterBottom>
+              Click Here or Drag & Drop Memes
+            </Typography>
+          </Dropzone>
         </Grid>
-        <Masonry
-          options={{fitWidth: true}}
-          className={classes.masonry}
-        >
-          {
-            this.state.files.map((file, index) =>
-              <UploadPreviewCard key={file.name} file={file} cancelCard={this.cancelFileUpload.bind(this, index)} />
-            )
-          }
-        </Masonry>
-        <Grid container justify="center" spacing={0}>
-          <Grid item>
-            <Button className={classes.uploadButton} variant="raised" color="primary" onClick={this.handleUpload.bind(this)}>Upload</Button>
-          </Grid>
+        {
+          this.state.files.map((file, index) =>
+            <UploadPreviewCard key={file.name} file={file} cancelCard={this.cancelFileUpload.bind(this, index)}/>
+          )
+        }
+        <Grid item xs={12} className={classes.uploadButtonWrapper}>
+          <Button variant="raised" color="primary" onClick={this.handleUpload.bind(this)}>Submit</Button>
         </Grid>
 
-        {this.state.open && <ErrorDialog open={this.state.open} error={this.state.error} closeDialog={this.closeDialog.bind(this)} />}
-
-      </div>
+        {this.state.open &&
+        <ErrorDialog open={this.state.open} error={this.state.error} closeDialog={this.closeDialog.bind(this)}/>}
+      </Grid>
     );
   }
 }

@@ -16,10 +16,11 @@ const styles = theme => ({
     },
   },
   card: {
-    width: 335,
-    marginLeft: '7.5px',
-    marginRight: '7.5px',
+    width: '100%',
     marginTop: '15px',
+  },
+  media: {
+    width: '100%'
   },
   dimmed: {
     opacity: 0.4,
@@ -62,54 +63,6 @@ const styles = theme => ({
   checkedSecondary: {
     color: '#2c8943',
   },
-  [theme.breakpoints.only('xs')]: {
-    card: {
-      width: 310,
-      margin: "2.5px",
-    },
-    title: {
-      textTransform: 'capitalize',
-      fontWeight: 500,
-    },
-    rootMedia: {
-      backgroundSize: '100%',
-    },
-    media: {
-      width: '100%',
-    },
-  },
-  [theme.breakpoints.between('sm', 'md')]: {
-    card: {
-      width: 225,
-      margin: 5,
-    },
-    title: {
-      textTransform: 'capitalize',
-      fontWeight: 500,
-    },
-    rootMedia: {
-      backgroundSize: '100%',
-    },
-    media: {
-      width: 225,
-    },
-  },
-  [theme.breakpoints.between('lg', 'xl')]: {
-    card: {
-      width: 280,
-      margin: 5,
-    },
-    title: {
-      textTransform: 'capitalize',
-      fontWeight: 500,
-    },
-    rootMedia: {
-      backgroundSize: '100%',
-    },
-    media: {
-      width: 280,
-    },
-  }
 });
 
 class UploadPreviewCard extends Component {

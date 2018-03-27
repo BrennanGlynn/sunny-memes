@@ -40,10 +40,11 @@ const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
     link: {
       position: 'relative',
-      top: '-10px',
+      top: '0px',
     },
     titleContainer: {
       padding: 4,
+      marginRight: 20,
     },
     openModal: {
       top: '0%',
@@ -196,16 +197,16 @@ class MemePopup extends Component {
                   </Grid>
                   <Grid item xs={12} md={5} className={classes.fullImageComments}>
                     <Grid container spacing={0} wrap="nowrap">
-                      <Grid item md={8} className={classes.titleContainer}>
+                      <Grid item xs={7} md={8} className={classes.titleContainer}>
                         {/*Meme Author*/}
                         <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
                         <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
                           <Typography type="subheading" id="simple-modal-description">
-                            <span className={classes.uploadedByName}>{data.uploaded_by.name}</span> on March 11th, 2018
+                            <span className={classes.uploadedByName}>{data.uploaded_by.name}</span><br /> on March 11th, 2018
                           </Typography>
                         </NavLink>
                       </Grid>
-                      <Grid item xs={4} md={4}>
+                      <Grid item md={4}>
                         {/*Popup Modal Header Row*/}
                         <Grid container justify="flex-end">
                           {/*Options Menu and Close Button*/}

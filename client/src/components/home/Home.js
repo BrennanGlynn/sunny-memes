@@ -13,13 +13,13 @@ import MyMemesContainer from "../../containers/pages/MyMemesContainer"
 import AdminInterface from "../admin/AdminInterface"
 import UploadContainer from "../../containers/upload/UploadContainer"
 import LeftDrawer from "./drawers/LeftDrawer"
-import SingleMemePage from "../pages/SingleMemePage"
 import RecentMemesContainer from "../../containers/pages/RecentMemesContainer"
 import PageNotFound from "../pages/PageNotFound"
 import FavoriteMemesContainer from "../../containers/pages/FavoriteMemesContainer"
 import RightDrawerContainer from "../../containers/home/drawers/RightDrawerContainer";
 import WrapperPanels from "./panels/WrapperPanels";
 import UserPageContainer from "../../containers/pages/UserPageContainer";
+import SingleMemeContainer from "../../containers/pages/SingleMemeContainer";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -130,7 +130,7 @@ class Home extends Component {
               <Route path='/mymemes' component={!auth.pending && auth.loggedIn ? MyMemesContainer : PleaseLogin}/>
               <Route path='/admin' component={AdminInterface}/>
               <Route path='/memepage' component={MemePage}/>
-              <Route path='/meme/:id' component={SingleMemePage}/>
+              <Route path='/meme/:id' component={SingleMemeContainer}/>
               <Route path='/user/:id' component={UserPageContainer}/>
               <Route component={PageNotFound}/>
             </Switch>

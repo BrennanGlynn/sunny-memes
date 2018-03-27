@@ -184,8 +184,8 @@ exports.show = (req, res) => {
       $addFields: {numFaves: {$size: "$favorites"}}
     },
     function (err, docs) {
-      if (!err) res.json(docs[0])
-    },
+      if (!err) res.json({documents: docs})
+    }
   )
 }
 

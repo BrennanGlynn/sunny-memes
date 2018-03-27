@@ -2,6 +2,7 @@ import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
 import {attemptLogout, updateFilter} from "../../actions/index"
 import Home from "../../components/home/Home"
+import {clearAllMemes} from "../../actions";
 
 const mapStateToProps = state => {
   return {
@@ -16,6 +17,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateFilter: (characterArray) => {
       dispatch(updateFilter(characterArray))
+    },
+    clearAll: () => {
+      dispatch(clearAllMemes())
     }
   }
 }

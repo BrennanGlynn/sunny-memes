@@ -231,32 +231,35 @@ class MemeCard extends Component {
                     <HighlightOffIcon/>
                   </ListItemIcon>Delete
                 </MenuItem>}
-                <Divider />
+                <Divider/>
                 <MenuItem onClick={this.handleClose}>
                   <ListItemIcon>
                     <ReportProblemIcon/>
                   </ListItemIcon>Report
                 </MenuItem>
-                <Divider />
-                <a style={{ textDecoration: 'none' }} href={data.url} download="">
+                <Divider/>
+                <a style={{textDecoration: 'none'}} href={data.url} download="">
                   <MenuItem>
-                      <ListItemIcon>
-                        <FileDownloadIcon/>
-                      </ListItemIcon>Download
+                    <ListItemIcon>
+                      <FileDownloadIcon/>
+                    </ListItemIcon>Download
                   </MenuItem>
                 </a>
               </Menu>
               <div className={classes.background}>
-                <img src={data.url} alt={data.title} className={classes.media}
-                     onClick={this.toggleFullMeme.bind(this, index)}/>
+                <NavLink to={`/user/${data.uploaded_by._id}`}>
+                  <img src={data.url} alt={data.title} className={classes.media}
+                       onClick={this.toggleFullMeme.bind(this, index)}/>
+                </NavLink>
               </div>
               <CardContent classes={{root: classes.dateContent}}>
                 <Grid container alignItems="center" spacing={8}>
-                  <NavLink to={`user/${data.uploaded_by._id}`}>
+                  <NavLink to={`/user/${data.uploaded_by._id}`}>
                     <Grid item>
                       <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile"/>
                       <Typography type="caption" className={classes.uploadedBy}>
-                        <span className={classes.uploadedByName}>{data.uploaded_by.name}</span> on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
+                        <span
+                          className={classes.uploadedByName}>{data.uploaded_by.name}</span> on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
                       </Typography>
                     </Grid>
                   </NavLink>
@@ -317,7 +320,7 @@ class MemeCard extends Component {
 
               {/*Expanded section*/}
               <Collapse in={this.state.expanded} className={classes.collapse}>
-                <Divider />
+                <Divider/>
                 <CardContent className={classes.commentsContainer}>
                   <MemeComments meme={data} user={user}/>
                 </CardContent>

@@ -3,6 +3,7 @@ let myMemes = {}
 let recentMemes = {}
 let favoriteMemes = {}
 let userPageMemes = {}
+let singleMeme = {}
 
 function memeReducer(state = {
   pending: false,
@@ -11,9 +12,25 @@ function memeReducer(state = {
   myMemes,
   recentMemes,
   favoriteMemes,
-  userPageMemes
+  userPageMemes,
+  singleMeme
 }, action) {
   switch (action.type) {
+    case "CLEAR_ALL_MEMES":
+      return {
+        ...state,
+        memes: {},
+        myMemes: {},
+        recentMemes: {},
+        favoriteMemes: {},
+        userPageMemes: {},
+        singleMeme: {}
+      }
+    case "SINGLE_MEME_RECEIVED":
+      return {
+        ...state,
+        singleMeme: action.memes
+      }
     case "FAVORITE_MEMES_RECEIVED":
       return {
         ...state,
@@ -43,6 +60,7 @@ function memeReducer(state = {
       recentMemes = {...deleteMeme(state.recentMemes, action.meme)}
       favoriteMemes = {...deleteMeme(state.favoriteMemes, action.meme)}
       userPageMemes = {...deleteMeme(state.userPageMemes, action.meme)}
+      singleMeme = {...deleteMeme(state.singleMeme, action.meme)}
 
       return {
         ...state,
@@ -50,7 +68,8 @@ function memeReducer(state = {
         myMemes,
         recentMemes,
         favoriteMemes,
-        userPageMemes
+        userPageMemes,
+        singleMeme
       }
     case "TOGGLE_FAVORITE":
       memes = {...toggleFavorite(state.memes, action.meme, action.updatedMeme)}
@@ -58,6 +77,7 @@ function memeReducer(state = {
       recentMemes = {...toggleFavorite(state.recentMemes, action.meme, action.updatedMeme)}
       favoriteMemes = {...toggleFavorite(state.favoriteMemes, action.meme, action.updatedMeme)}
       userPageMemes = {...toggleFavorite(state.userPageMemes, action.meme, action.updatedMeme)}
+      singleMeme = {...toggleFavorite(state.singleMeme, action.meme, action.updatedMeme)}
 
       return {
         ...state,
@@ -65,7 +85,8 @@ function memeReducer(state = {
         myMemes,
         recentMemes,
         favoriteMemes,
-        userPageMemes
+        userPageMemes,
+        singleMeme
       }
     case "UPDATED_MEME":
       memes = {...updateMeme(state.memes, action.updatedMeme)}
@@ -73,6 +94,7 @@ function memeReducer(state = {
       recentMemes = {...updateMeme(state.recentMemes, action.updatedMeme)}
       favoriteMemes = {...updateMeme(state.favoriteMemes, action.updatedMeme)}
       userPageMemes = {...updateMeme(state.userPageMemes, action.updatedMeme)}
+      singleMeme = {...updateMeme(state.singleMeme, action.updatedMeme)}
 
       return {
         ...state,
@@ -80,7 +102,8 @@ function memeReducer(state = {
         myMemes,
         recentMemes,
         favoriteMemes,
-        userPageMemes
+        userPageMemes,
+        singleMeme
       }
     case "CHANGE_CURRENT_INDEX":
       return {

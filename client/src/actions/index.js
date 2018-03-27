@@ -145,6 +145,13 @@ export const getUserPage = (userId) => {
   }
 }
 
+export const getSingleMeme = (memeId) => {
+  return (dispatch, getState) => {
+    let query = getQuery(getState)
+    return memeRequest(dispatch, `${memeId}${query}`, singleMemeReceived);
+  }
+}
+
 export const memesReceived = (memes) => {
   return {
     type: "MEMES_RECEIVED",
@@ -173,11 +180,24 @@ export const favoriteMemesReceived = (memes) => {
   }
 }
 
+export const singleMemeReceived = (memes) => {
+  return {
+    type: "SINGLE_MEME_RECEIVED",
+    memes,
+  }
+}
+
 export const changedUserPage = (memes, user) => {
   return {
     type: 'CHANGED_USER_PAGE',
     memes,
     user
+  }
+}
+
+export const clearAllMemes = () => {
+  return {
+    type: "CLEAR_ALL_MEMES"
   }
 }
 
@@ -244,8 +264,8 @@ export const updatedComments = (memeId) => {
       .then(res => {
         if (res.ok) return res.json()
       })
-      .then(meme => {
-        dispatch(updatedMemeReceived(meme))
+      .then(json => {
+        dispatch(updatedMemeReceived(json.documents[0]))
       })
       .catch(err => {
         console.log('error', err)

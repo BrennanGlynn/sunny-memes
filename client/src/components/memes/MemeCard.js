@@ -35,21 +35,18 @@ const styles = theme => ({
     fontSize: 11,
   },
   dateContent: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingTop: 0,
-    paddingBottom: 0,
+    padding: 10,
   },
   uploadedBy: {
-    fontSize: 10,
+    fontSize: 14,
     display: 'inline-block',
-    top: -3,
+    top: -10,
     position: 'relative',
   },
   picture: {
     display: 'inline-block',
-    height: 15,
-    width: 15,
+    height: 30,
+    width: 30,
     marginRight: 5,
     borderRadius: '50%',
   },
@@ -238,7 +235,7 @@ class MemeCard extends Component {
                      onClick={this.toggleFullMeme.bind(this, index)}/>
               </div>
               <CardContent classes={{root: classes.dateContent}}>
-                <Grid container spacing={8}>
+                <Grid container alignItems="center" spacing={8}>
                   <NavLink to={`user/${data.uploaded_by._id}`}>
                     <Grid item>
                       <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile"/>

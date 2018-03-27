@@ -46,7 +46,7 @@ const styles = theme => ({
     marginLeft: 5,
   },
   firstComment: {
-    marginRight: 5,
+    marginRight: 15,
     background: '#e0e0e0',
     borderRadius: '4px 4px',
     padding: '5px',
@@ -138,11 +138,12 @@ class ReplyComment extends Component {
               {comment.text}
             </Typography>
             <div className={classes.firstCommentControls}>
-              <Typography variant="caption" className={comment.likes.includes(user.id) ? classes.activeLike : ''}
+              <Typography variant="caption" style={{ position: 'relative', display: 'inline-block', marginRight: 5 }} className={comment.likes.includes(user.id) ? classes.activeLike : ''}
                           onClick={likeComment.bind(this, comment._id)}>
                 Like ({comment.likes.length})
               </Typography>
-              <Typography variant="caption" onClick={this.openReply}>
+              <span style={{ position: 'relative', top: 2.5 }}>&bull;</span>
+              <Typography variant="caption" style={{ position: 'relative', display: 'inline-block', marginLeft: 5 }} onClick={this.openReply}>
                 Reply
               </Typography>
             </div>
@@ -164,11 +165,12 @@ class ReplyComment extends Component {
                   {reply.text}
                 </Typography>
                 <div className={classes.replyCommentControls}>
-                  <Typography style={{ position: 'relative', display: 'inline-block' }} variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''}
+                  <Typography style={{ position: 'relative', display: 'inline-block', marginRight: 5 }} variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''}
                               onClick={likeComment.bind(this, reply._id)}>
                     Like ({reply.likes.length})
                   </Typography>
-                  <Typography style={{ position: 'relative', display: 'inline-block' }} variant="caption" onClick={this.openReply}>
+                  <span style={{ position: 'relative', top: 2.5 }}>&bull;</span>
+                  <Typography style={{ position: 'relative', display: 'inline-block', marginLeft: 5 }} variant="caption" onClick={this.openReply}>
                     Reply
                   </Typography>
                 </div>

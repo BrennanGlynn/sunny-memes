@@ -160,7 +160,7 @@ class MemePopup extends Component {
               {/*Popup Modal Body*/}
                 <Grid container spacing={0} justify="center">
                   <Grid item xs={12} md={6} className={classes.fullImageContainer}>
-                    <Grid container spacing={0} justify="center" align="middle">
+                    <Grid container spacing={0} justify="center" alignItems="center">
                       <Grid item>
                           <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                       </Grid>

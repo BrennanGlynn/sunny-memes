@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {getMyMemes, getSingleMeme} from "../../actions";
+import {getSingleMeme} from "../../actions";
 import SingleMemePage from "../../components/pages/SingleMemePage";
 
 const mapStateToProps = state => {

@@ -11,10 +11,6 @@ const styles = theme => ({
   activeLike: {
     fontWeight: 'bold'
   },
-  firstCommentWrapper: {
-    position: 'relative',
-    height: 75,
-  },
   replyWrapper: {
     marginTop: 2.5,
   },
@@ -32,12 +28,12 @@ const styles = theme => ({
     marginLeft: 60,
     fontSize: 10,
   },
-  addCommentAvatar: {
-    width: 30,
-    height: 30,
+  addReplyAvatar: {
+    width: 20,
+    height: 20,
     fontSize: 12,
     margin: 5,
-    marginLeft: 20,
+    marginLeft: 60,
   },
   firstCommentName: {
     marginTop: 5,
@@ -55,9 +51,8 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
   replyComment: {
-    marginRight: 5,
     marginLeft: 5,
-    width: '80%',
+    width: '98%',
     background: '#e0e0e0',
     borderRadius: '4px 4px',
     padding: '5px',
@@ -81,6 +76,24 @@ const styles = theme => ({
   link: {
     color: 'inherit',
     textDecoration: 'none'
+  },
+  [theme.breakpoints.down('xs')]: {
+    firstCommentWrapper: {
+      marginLeft: 20
+    },
+    replyComment: {
+      width: '96%',
+    },
+  },
+  [theme.breakpoints.up('sm')]: {
+    replyComment: {
+      width: '97%',
+    },
+  },
+  [theme.breakpoints.up('md')]: {
+    replyComment: {
+      width: '98%',
+    },
   },
   [theme.breakpoints.between('lg', 'xl')]: {
     root: {
@@ -124,10 +137,10 @@ class ReplyComment extends Component {
     return (
       <Paper key={comment._id} className={classes.root} style={{boxShadow: 'none'}}>
         <Grid container spacing={0} justify="flex-start" wrap="nowrap">
-          <Grid item>
+          <Grid item xs={1}>
             <Avatar src={comment.user.picture} className={classes.firstCommentAvatar}/>
           </Grid>
-          <Grid item xs>
+          <Grid item xs={10} sm={11} className={classes.firstCommentWrapper}>
             <NavLink className={classes.link} to={`/user/${comment.user._id}`}>
               <Typography variant="body2"
                                                                                            className={classes.firstCommentName}>
@@ -155,7 +168,7 @@ class ReplyComment extends Component {
               <Grid item>
                 <Avatar src={reply.user.picture} className={classes.replyAvatar}/>
               </Grid>
-              <Grid item xs className={classes.replyWrapper}>
+              <Grid item xs={8} lg={9} className={classes.replyWrapper}>
                 <NavLink className={classes.link} to={`/user/${reply.user._id}`}><Typography variant="body2"
                                                                                              className={classes.replyName}>
                   {reply.user.name}
@@ -182,10 +195,8 @@ class ReplyComment extends Component {
         {/*Show input user has clicked reply*/}
         {this.state.reply &&
         <Grid container spacing={0} justify="flex-start" wrap="nowrap">
-          <Grid item>
-            <Avatar src={user.picture || "/images/user-icon.png"} className={classes.addCommentAvatar}/>
-          </Grid>
-          <Grid item xs={12} className={classes.addComment}>
+            <Avatar src={user.picture || "/images/user-icon.png"} className={classes.addReplyAvatar}/>
+          <Grid item xs={8} lg={9} className={classes.addComment}>
             <CommentInput meme={meme._id} parent={comment._id}/>
           </Grid>
         </Grid>}

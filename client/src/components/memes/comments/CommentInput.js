@@ -11,7 +11,6 @@ const styles = theme => ({
     border: '1px solid #ced4da',
     fontSize: 12,
     padding: '5px 12px',
-    width: '90%',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:focus': {
       borderColor: '#80bdff',

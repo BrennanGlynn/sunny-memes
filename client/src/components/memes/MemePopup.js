@@ -27,9 +27,6 @@ const styles = theme => ({
       width: '95%',
       minHeight: '0',
     },
-    leftArrowContainer: {
-      backgroundColor: 'red',
-    },
     leftArrow: {
       position: 'fixed',
       top: '100%',
@@ -49,15 +46,15 @@ const styles = theme => ({
     leftArrow: {
       position: 'fixed',
       top: '40%',
-      left: '-4%',
-      fontSize: 100,
+      left: '-5%',
+      transform: 'scale(4.5)',
       color: '#fff',
     },
     rightArrow: {
       position: 'fixed',
       top: '40%',
-      right: '-4%',
-      fontSize: 100,
+      right: '-5%',
+      transform: 'scale(4.5)',
       color: '#fff',
     },
   },
@@ -159,14 +156,14 @@ class MemePopup extends Component {
 
               {/*Popup Modal Body*/}
                 <Grid container spacing={0} justify="center">
-                  <Grid item xs={12} md={6} className={classes.fullImageContainer}>
+                  <Grid item xs={12} md={7} className={classes.fullImageContainer}>
                     <Grid container spacing={0} justify="center" alignItems="center">
                       <Grid item>
                           <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={12} md={6} className={classes.fullImageComments}>
+                  <Grid item xs={12} md={5} className={classes.fullImageComments}>
                     <Grid container spacing={0}>
                       <Grid item>
                         <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>

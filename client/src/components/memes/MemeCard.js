@@ -72,6 +72,9 @@ const styles = theme => ({
     textTransform: 'capitalize',
     textDecoration: 'none',
   },
+  cardActions: {
+    padding: '0px 0px',
+  },
   link: {
     fontSize: 12,
     fontWeight: 'normal',
@@ -97,7 +100,10 @@ const styles = theme => ({
   },
   media: {
     width: '100%'
-  }
+  },
+  commentsContainer: {
+    padding: 0,
+  },
 });
 
 class MemeCard extends Component {
@@ -278,7 +284,7 @@ class MemeCard extends Component {
                 </CardContent>
                 <Divider/>
               </div>}
-              <CardActions disableActionSpacing>
+              <CardActions className={classes.cardActions} disableActionSpacing>
                 <IconButton onClick={this.handleFavorite.bind(this, data._id)} aria-label="Add to favorites">
                   <StarIcon
                     className={loggedIn && (data.favorites.includes(user.id) || this.state.favorite) ? classes.favorite : ''}/><Typography
@@ -311,7 +317,8 @@ class MemeCard extends Component {
 
               {/*Expanded section*/}
               <Collapse in={this.state.expanded} className={classes.collapse}>
-                <CardContent>
+                <Divider />
+                <CardContent className={classes.commentsContainer}>
                   <MemeComments meme={data} user={user}/>
                 </CardContent>
               </Collapse>

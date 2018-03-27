@@ -30,6 +30,16 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  leftPanelStick: {
+    position: 'fixed',
+    top: 0,
+    backgroundColor: "#fff",
+  },
+  rightPanelStick: {
+    position: 'fixed',
+    top: 0,
+    backgroundColor: "#fff",
+  },
 })
 
 class WrapperPanels extends Component {

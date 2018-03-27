@@ -33,6 +33,10 @@ const styles = theme => ({
     padding: 10,
     paddingBottom: 15,
   },
+  uploadedByName: {
+    fontWeight: 500,
+    color: '#343434',
+  },
   [theme.breakpoints.only('xs')]: {
     openModal: {
       top: '0%',
@@ -190,7 +194,7 @@ class MemePopup extends Component {
                         <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
                         <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
                           <Typography type="subheading" id="simple-modal-description">
-                            {data.uploaded_by.name} on March 11th, 2018
+                            <span className={classes.uploadedByName}>{data.uploaded_by.name}</span> on March 11th, 2018
                           </Typography>
                         </NavLink>
                       </Grid>

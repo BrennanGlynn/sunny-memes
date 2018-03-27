@@ -30,9 +30,30 @@ const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
     openModal: {
       top: '0%',
+      margin: '0 auto',
       width: '98%',
       height: '100%',
       overflow: 'scroll',
+    },
+    picture: {
+      width: 30,
+      height: 30,
+      borderRadius: '50%',
+      display: 'inline-block',
+    },
+    fullImageContainer: {
+      display: 'flex',
+      overflow: 'hidden',
+      backgroundColor: 'black',
+      position: 'relative',
+      marginTop: 50,
+    },
+    fullImage: {
+      maxHeight: 500,
+      maxWidth: '100%'
+    },
+    fullImageComments: {
+      background: '#fff',
     },
     leftArrow: {
       display: 'none',
@@ -157,7 +178,7 @@ class MemePopup extends Component {
                     </Grid>
                   </Grid>
                   <Grid item xs={12} md={5} className={classes.fullImageComments}>
-                    <Grid container spacing={0}>
+                    <Grid container spacing={0} wrap="nowrap">
                       <Grid item md={8} className={classes.titleContainer}>
                         {/*Meme Author*/}
                         <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
@@ -167,7 +188,7 @@ class MemePopup extends Component {
                           </Typography>
                         </NavLink>
                       </Grid>
-                      <Grid item md={4}>
+                      <Grid item xs={4} md={4}>
                         {/*Popup Modal Header Row*/}
                         <Grid container justify="flex-end">
                           {/*Options Menu and Close Button*/}
@@ -220,13 +241,13 @@ class MemePopup extends Component {
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid container spacing={0}>
-                        <Grid item>
-                          {/*Title*/}
-                          <Typography variant="title" type="title" id="modal-title">
-                            {data.title}
-                          </Typography>
-                        </Grid>
+                    </Grid>
+                    <Grid container spacing={0}>
+                      <Grid item>
+                        {/*Title*/}
+                        <Typography variant="title" type="title" id="modal-title">
+                          {data.title}
+                        </Typography>
                       </Grid>
                     </Grid>
                     <div className={classes.memeCommentsWrapper}>

@@ -35,23 +35,33 @@ const styles = theme => ({
     fontSize: 11,
   },
   dateContent: {
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
   },
   uploadedBy: {
     fontSize: 14,
     display: 'inline-block',
-    top: -10,
+    top: -12.5,
     position: 'relative',
+  },
+  uploadedByName: {
+    fontWeight: 500,
+    color: '#343434',
   },
   picture: {
     display: 'inline-block',
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
     marginRight: 5,
     borderRadius: '50%',
   },
   descriptionContent: {
-    padding: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 10,
+    paddingBottom: 30,
   },
   chipContainer: {
     alignItems: 'center',
@@ -240,7 +250,7 @@ class MemeCard extends Component {
                     <Grid item>
                       <img src={data.uploaded_by.picture} className={classes.picture} alt="poster profile"/>
                       <Typography type="caption" className={classes.uploadedBy}>
-                        {data.uploaded_by.name} on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
+                        <span className={classes.uploadedByName}>{data.uploaded_by.name}</span> on {MemeCard.formatDate(MemeCard.dateFromObjectId(data._id))}
                       </Typography>
                     </Grid>
                   </NavLink>

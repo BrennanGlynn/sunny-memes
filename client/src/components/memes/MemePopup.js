@@ -15,12 +15,17 @@ import {NavLink} from "react-router-dom";
 const styles = theme => ({
   link: {
     color: 'inherit',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    display: 'inline-block',
+    marginLeft: 10,
+    position: 'relative',
+    top: '-20px',
   },
   picture: {
     width: 50,
     height: 50,
     borderRadius: '50%',
+    display: 'inline-block',
   },
   [theme.breakpoints.only('xs')]: {
     openModal: {
@@ -95,12 +100,6 @@ const styles = theme => ({
     paddingLeft: 10,
     paddingRight: 10,
   },
-  modalTitle: {
-    textAlign: 'left',
-  },
-  titleContainer: {
-    textAlign: 'left',
-  },
   menuContainer: {
     textAlign: 'right',
   },
@@ -165,22 +164,20 @@ class MemePopup extends Component {
                   </Grid>
                   <Grid item xs={12} md={5} className={classes.fullImageComments}>
                     <Grid container spacing={0}>
-                      <Grid item>
-                        <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
-                      </Grid>
-                      <Grid item className={classes.titleContainer}>
+                      <Grid item md={8} className={classes.titleContainer}>
                         {/*Meme Author*/}
+                        <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
                         <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
                           <Typography type="subheading" id="simple-modal-description">
                             {data.uploaded_by.name} on March 11th, 2018
                           </Typography>
                         </NavLink>
                       </Grid>
-                      <Grid item>
+                      <Grid item md={4}>
                         {/*Popup Modal Header Row*/}
                         <Grid container justify="flex-end">
                           {/*Options Menu and Close Button*/}
-                          <Grid item xs={12}>
+                          <Grid item>
 
                             {/*options menu button*/}
                             <IconButton

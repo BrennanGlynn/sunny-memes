@@ -29,22 +29,16 @@ const styles = theme => ({
   },
   [theme.breakpoints.only('xs')]: {
     openModal: {
-      width: '95%',
-      minHeight: '0',
+      top: '0%',
+      width: '98%',
+      height: '100%',
+      overflow: 'scroll',
     },
     leftArrow: {
-      position: 'fixed',
-      top: '100%',
-      left: '-2.5%',
-      fontSize: 100,
-      color: '#fff',
+      display: 'none',
     },
     rightArrow: {
-      position: 'fixed',
-      top: '100%',
-      right: '-2.5%',
-      fontSize: 100,
-      color: '#fff',
+      display: 'none',
     },
   },
   [theme.breakpoints.between('sm', 'xl')]: {
@@ -62,46 +56,46 @@ const styles = theme => ({
       transform: 'scale(4.5)',
       color: '#fff',
     },
-  },
-  openModal: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    border: '1px solid #e5e5e5',
-    backgroundColor: '#fff',
-    boxShadow: '0 5px 15px rgba(0,0,0,.5)',
-    padding: '32',
-    width: '90%',
-    minHeight: 800,
-  },
-  fullImageContainer: {
-    display: 'flex',
-    overflow: 'hidden',
-    backgroundColor: 'black',
-    position: 'relative',
-    height: 800,
-  },
-  fullImage: {
-    maxHeight: 500,
-    maxWidth: '100%'
-  },
-  fullImageComments: {
-    padding: 10,
-    marginTop: 20,
-  },
-  memeCommentsWrapper: {
-    width: '100%',
-  },
-  root: {
-    width: '100%',
-    height: '100%',
-    marginBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  menuContainer: {
-    textAlign: 'right',
+    openModal: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      border: '1px solid #e5e5e5',
+      backgroundColor: '#fff',
+      boxShadow: '0 5px 15px rgba(0,0,0,.5)',
+      padding: '32',
+      width: '90%',
+      minHeight: 800,
+    },
+    fullImageContainer: {
+      display: 'flex',
+      overflow: 'hidden',
+      backgroundColor: 'black',
+      position: 'relative',
+      height: 800,
+    },
+    fullImage: {
+      maxHeight: 500,
+      maxWidth: '100%'
+    },
+    fullImageComments: {
+      padding: 10,
+      marginTop: 20,
+    },
+    memeCommentsWrapper: {
+      width: '100%',
+    },
+    root: {
+      width: '100%',
+      height: '100%',
+      marginBottom: 10,
+      paddingLeft: 10,
+      paddingRight: 10,
+    },
+    menuContainer: {
+      textAlign: 'right',
+    },
   },
 })
 

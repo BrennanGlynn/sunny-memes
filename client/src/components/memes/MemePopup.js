@@ -25,6 +25,7 @@ const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
     openModal: {
       width: '95%',
+      minHeight: '0',
     },
     leftArrowContainer: {
       backgroundColor: 'red',
@@ -85,6 +86,7 @@ const styles = theme => ({
   },
   fullImageComments: {
     padding: 10,
+    marginTop: 20,
   },
   memeCommentsWrapper: {
     width: '100%',

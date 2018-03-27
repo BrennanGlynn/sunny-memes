@@ -48,7 +48,7 @@ class WrapperPanels extends Component {
           {this.props.children}
         </Grid>
         <Grid item className={classes.panelContainer}>
-          <Grid container spacing={0} justify="center" className={classes.rightPanel}>
+          <Grid container spacing={0} justify="center" className={classes.rightPanel + " " +  classes.rightPanelStick}>
             <Grid item>
               <RightPanelContainer/>
             </Grid>

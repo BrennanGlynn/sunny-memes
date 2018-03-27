@@ -16,7 +16,12 @@ const styles = theme => ({
   leftPanel: {
     textAlign: 'right',
     width: 250,
-    minHeight: "100%",
+    backgroundColor: "#fff",
+    height: '90%',
+  },
+  leftPanelStick: {
+    position: 'fixed',
+    top: 0,
     backgroundColor: "#fff",
   },
   icon: {
@@ -36,6 +41,7 @@ class LeftPanel extends Component {
     const { classes } = this.props;
     return(
       <div className={classes.leftPanel + " " + classes.desktopMenu}>
+        <div className={classes.leftPanelStick}>
             <List component="nav" className={classes.navList}>
               {/*<ListItem button>*/}
                 {/*<ListItemText primary="Trending" />*/}
@@ -64,7 +70,8 @@ class LeftPanel extends Component {
             </List>
 
             <FilterCharacterList />
-        <Divider />
+            <Divider />
+        </div>
       </div>
     )
   }

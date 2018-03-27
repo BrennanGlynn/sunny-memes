@@ -38,6 +38,13 @@ const styles = theme => ({
     color: '#343434',
   },
   [theme.breakpoints.only('xs')]: {
+    link: {
+      position: 'relative',
+      top: '-10px',
+    },
+    titleContainer: {
+      padding: 4,
+    },
     openModal: {
       top: '0%',
       margin: '0 auto',

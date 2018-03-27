@@ -15,97 +15,87 @@ import {NavLink} from "react-router-dom";
 const styles = theme => ({
   link: {
     color: 'inherit',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    display: 'inline-block',
+    marginLeft: 10,
+    position: 'relative',
+    top: '-20px',
   },
   picture: {
     width: 50,
     height: 50,
     borderRadius: '50%',
+    display: 'inline-block',
   },
   [theme.breakpoints.only('xs')]: {
     openModal: {
-      width: '95%',
-      minHeight: '0',
-    },
-    leftArrowContainer: {
-      backgroundColor: 'red',
+      top: '0%',
+      width: '98%',
+      height: '100%',
+      overflow: 'scroll',
     },
     leftArrow: {
-      position: 'fixed',
-      top: '100%',
-      left: '-2.5%',
-      fontSize: 100,
-      color: '#fff',
+      display: 'none',
     },
     rightArrow: {
-      position: 'fixed',
-      top: '100%',
-      right: '-2.5%',
-      fontSize: 100,
-      color: '#fff',
+      display: 'none',
     },
   },
   [theme.breakpoints.between('sm', 'xl')]: {
     leftArrow: {
       position: 'fixed',
       top: '40%',
-      left: '-4%',
-      fontSize: 100,
+      left: '-5%',
+      transform: 'scale(4.5)',
       color: '#fff',
     },
     rightArrow: {
       position: 'fixed',
       top: '40%',
-      right: '-4%',
-      fontSize: 100,
+      right: '-5%',
+      transform: 'scale(4.5)',
       color: '#fff',
     },
-  },
-  openModal: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    border: '1px solid #e5e5e5',
-    backgroundColor: '#fff',
-    boxShadow: '0 5px 15px rgba(0,0,0,.5)',
-    padding: '32',
-    width: '90%',
-    minHeight: 800,
-  },
-  fullImageContainer: {
-    display: 'flex',
-    overflow: 'hidden',
-    backgroundColor: 'black',
-    position: 'relative',
-    height: 800,
-  },
-  fullImage: {
-    maxHeight: 500,
-    maxWidth: '100%'
-  },
-  fullImageComments: {
-    padding: 10,
-    marginTop: 20,
-  },
-  memeCommentsWrapper: {
-    width: '100%',
-  },
-  root: {
-    width: '100%',
-    height: '100%',
-    marginBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  modalTitle: {
-    textAlign: 'left',
-  },
-  titleContainer: {
-    textAlign: 'left',
-  },
-  menuContainer: {
-    textAlign: 'right',
+    openModal: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      border: '1px solid #e5e5e5',
+      backgroundColor: '#fff',
+      boxShadow: '0 5px 15px rgba(0,0,0,.5)',
+      padding: '32',
+      width: '90%',
+      minHeight: 800,
+    },
+    fullImageContainer: {
+      display: 'flex',
+      overflow: 'hidden',
+      backgroundColor: 'black',
+      position: 'relative',
+      height: 800,
+    },
+    fullImage: {
+      maxHeight: 500,
+      maxWidth: '100%'
+    },
+    fullImageComments: {
+      padding: 10,
+      marginTop: 20,
+    },
+    memeCommentsWrapper: {
+      width: '100%',
+    },
+    root: {
+      width: '100%',
+      height: '100%',
+      marginBottom: 10,
+      paddingLeft: 10,
+      paddingRight: 10,
+    },
+    menuContainer: {
+      textAlign: 'right',
+    },
   },
 })
 
@@ -159,31 +149,29 @@ class MemePopup extends Component {
 
               {/*Popup Modal Body*/}
                 <Grid container spacing={0} justify="center">
-                  <Grid item xs={12} md={6} className={classes.fullImageContainer}>
-                    <Grid container spacing={0} justify="center" align="middle">
+                  <Grid item xs={12} md={7} className={classes.fullImageContainer}>
+                    <Grid container spacing={0} justify="center" alignItems="center">
                       <Grid item>
                           <img className={classes.fullImage} src={data.url} alt="fullMeme" />
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid item xs={12} md={6} className={classes.fullImageComments}>
+                  <Grid item xs={12} md={5} className={classes.fullImageComments}>
                     <Grid container spacing={0}>
-                      <Grid item>
-                        <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
-                      </Grid>
-                      <Grid item className={classes.titleContainer}>
+                      <Grid item md={8} className={classes.titleContainer}>
                         {/*Meme Author*/}
+                        <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
                         <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
                           <Typography type="subheading" id="simple-modal-description">
                             {data.uploaded_by.name} on March 11th, 2018
                           </Typography>
                         </NavLink>
                       </Grid>
-                      <Grid item>
+                      <Grid item md={4}>
                         {/*Popup Modal Header Row*/}
                         <Grid container justify="flex-end">
                           {/*Options Menu and Close Button*/}
-                          <Grid item xs={12}>
+                          <Grid item>
 
                             {/*options menu button*/}
                             <IconButton

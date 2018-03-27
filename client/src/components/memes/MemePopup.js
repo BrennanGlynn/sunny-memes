@@ -40,7 +40,7 @@ const styles = theme => ({
   [theme.breakpoints.only('xs')]: {
     link: {
       position: 'relative',
-      top: '0px',
+      top: '-5px',
     },
     titleContainer: {
       padding: 4,
@@ -54,8 +54,8 @@ const styles = theme => ({
       overflow: 'scroll',
     },
     picture: {
-      width: 30,
-      height: 30,
+      width: 40,
+      height: 40,
       borderRadius: '50%',
       display: 'inline-block',
     },

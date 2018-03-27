@@ -17,12 +17,12 @@ const styles = theme => ({
     textAlign: 'right',
     width: 250,
     backgroundColor: "#fff",
-    height: '90%',
+    height: '100%',
   },
   leftPanelStick: {
-    position: 'fixed',
-    top: 0,
-    backgroundColor: "#fff",
+    // position: 'fixed',
+    // top: 0,
+    // backgroundColor: "#fff",
   },
   icon: {
     marginRight: -7,
@@ -38,43 +38,41 @@ const styles = theme => ({
 
 class LeftPanel extends Component {
   render() {
-    const { classes } = this.props;
-    return(
+    const {classes} = this.props;
+    return (
       <div className={classes.leftPanel + " " + classes.desktopMenu}>
-        <div className={classes.leftPanelStick}>
-            <List component="nav" className={classes.navList}>
-              {/*<ListItem button>*/}
-                {/*<ListItemText primary="Trending" />*/}
-                {/*<ListItemIcon className={classes.icon}>*/}
-                  {/*<TrendingUpIcon />*/}
-                {/*</ListItemIcon>*/}
-              {/*</ListItem>*/}
-              <NavLink to="/mostpopular" style={{ textDecoration: 'none' }} className={classes.listLink}>
-                <ListItem button>
-                  <ListItemText primary="Top Favorites" />
-                  <ListItemIcon className={classes.icon}>
-                    <StarIcon />
-                  </ListItemIcon>
-                </ListItem>
-              </NavLink>
-              <Divider />
-              <NavLink to="/mostRecent" style={{ textDecoration: 'none' }} className={classes.listLink}>
-                <ListItem button>
-                  <ListItemText primary="Most Recent" />
-                  <ListItemIcon className={classes.icon}>
-                    <AccessTimeIcon />
-                  </ListItemIcon>
-                </ListItem>
-              </NavLink>
-              <Divider />
-            </List>
+        <List component="nav" className={classes.navList}>
+          {/*<ListItem button>*/}
+          {/*<ListItemText primary="Trending" />*/}
+          {/*<ListItemIcon className={classes.icon}>*/}
+          {/*<TrendingUpIcon />*/}
+          {/*</ListItemIcon>*/}
+          {/*</ListItem>*/}
+          <NavLink to="/mostpopular" style={{textDecoration: 'none'}} className={classes.listLink}>
+            <ListItem button>
+              <ListItemText primary="Top Favorites"/>
+              <ListItemIcon className={classes.icon}>
+                <StarIcon/>
+              </ListItemIcon>
+            </ListItem>
+          </NavLink>
+          <Divider/>
+          <NavLink to="/mostRecent" style={{textDecoration: 'none'}} className={classes.listLink}>
+            <ListItem button>
+              <ListItemText primary="Most Recent"/>
+              <ListItemIcon className={classes.icon}>
+                <AccessTimeIcon/>
+              </ListItemIcon>
+            </ListItem>
+          </NavLink>
+          <Divider/>
+        </List>
 
-            <FilterCharacterList />
-            <Divider />
-        </div>
+        <FilterCharacterList/>
+        <Divider/>
       </div>
     )
   }
 }
 
-export default withStyles(styles) (LeftPanel);
+export default withStyles(styles)(LeftPanel);

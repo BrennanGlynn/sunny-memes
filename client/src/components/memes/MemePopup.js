@@ -19,13 +19,19 @@ const styles = theme => ({
     display: 'inline-block',
     marginLeft: 10,
     position: 'relative',
-    top: '-20px',
+    top: '-15px',
   },
   picture: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: '50%',
+    marginTop: 5,
+    marginLeft: 5,
     display: 'inline-block',
+  },
+  description: {
+    padding: 10,
+    paddingBottom: 15,
   },
   [theme.breakpoints.only('xs')]: {
     openModal: {
@@ -243,13 +249,14 @@ class MemePopup extends Component {
                       </Grid>
                     </Grid>
                     <Grid container spacing={0}>
-                      <Grid item>
+                      <Grid item className={classes.description}>
                         {/*Title*/}
-                        <Typography variant="title" type="title" id="modal-title">
+                        <Typography variant="caption" type="caption" id="modal-title">
                           {data.title}
                         </Typography>
                       </Grid>
                     </Grid>
+                    <Divider />
                     <div className={classes.memeCommentsWrapper}>
                       <MemeComments meme={data} user={auth.user} />
                     </div>

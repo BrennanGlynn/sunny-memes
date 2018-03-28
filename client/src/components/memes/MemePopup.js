@@ -31,7 +31,6 @@ const styles = theme => ({
   },
   description: {
     padding: 10,
-    paddingBottom: 15,
   },
   uploadedByName: {
     fontWeight: 500,

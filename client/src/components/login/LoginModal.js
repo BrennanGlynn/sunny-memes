@@ -102,10 +102,10 @@ class LoginModal extends React.Component {
                         <PeopleIcon className={classes.facebookIcon}/>
                         Login With Facebook
                       </Button>
-                      <Button className={classes.loginButton + " " + classes.googleButton} color="secondary" variant="raised" href="/auth/google">
-                        <PeopleIcon className={classes.facebookIcon}/>
-                        Login with Google
-                      </Button>
+                      {/*<Button className={classes.loginButton + " " + classes.googleButton} color="secondary" variant="raised" href="/auth/google">*/}
+                        {/*<PeopleIcon className={classes.facebookIcon}/>*/}
+                        {/*Login with Google*/}
+                      {/*</Button>*/}
                     </div>
                   </Grid>
                 </Grid>

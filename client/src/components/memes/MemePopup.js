@@ -19,7 +19,7 @@ const styles = theme => ({
     display: 'inline-block',
     marginLeft: 10,
     position: 'relative',
-    top: '-15px',
+    top: '-5px',
   },
   picture: {
     width: 40,
@@ -35,6 +35,9 @@ const styles = theme => ({
   uploadedByName: {
     fontWeight: 500,
     color: '#343434',
+  },
+  uploadedDate: {
+    fontSize: 11,
   },
   [theme.breakpoints.only('xs')]: {
     link: {
@@ -119,7 +122,7 @@ const styles = theme => ({
     },
     fullImageComments: {
       padding: 10,
-      marginTop: 20,
+      marginTop: 15,
     },
     memeCommentsWrapper: {
       width: '100%',
@@ -201,7 +204,8 @@ class MemePopup extends Component {
                         <img src={data.uploaded_by.picture || "/images/user-icon.png"} className={classes.picture} alt="profile"/>
                         <NavLink className={classes.link} to={`/user/${data.uploaded_by._id}`}>
                           <Typography type="subheading" id="simple-modal-description">
-                            <span className={classes.uploadedByName}>{data.uploaded_by.name}</span><br /> on March 11th, 2018
+                            <span className={classes.uploadedByName}>{data.uploaded_by.name}</span><br />
+                            <span className={classes.uploadedDate}>on March 11th, 2018</span>
                           </Typography>
                         </NavLink>
                       </Grid>

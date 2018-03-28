@@ -73,9 +73,6 @@ const RightPanel = ({classes, logout, auth}) =>
                 {auth.user.name}
               </Typography>
             </NavLink>
-            {/*}<Typography type="caption" className={classes.logout} onClick={logout.bind(this)}>
-              Logout
-            </Typography>*/}
           </Grid>
         </Grid>
         <Divider/>

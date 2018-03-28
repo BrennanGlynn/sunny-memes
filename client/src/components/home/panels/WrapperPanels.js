@@ -20,10 +20,19 @@ const styles = theme => ({
     backgroundColor: "#fff",
     paddingBottom: 10,
   },
+  panelContainer: {
+    margin: 10
+  },
+  centerContainer: {
+    marginTop: 10
+  },
   [theme.breakpoints.down('xs')]: {
     panelContainer: {
       display: 'none',
     },
+    centerContainer: {
+      marginTop: 0
+    }
   },
   [theme.breakpoints.down('md')]: {
     leftPanelContainer: {
@@ -44,7 +53,7 @@ class WrapperPanels extends Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={8} lg={4}>
+        <Grid item xs={12} sm={8} lg={4} className={classes.centerContainer}>
           {this.props.children}
         </Grid>
         <Grid item className={classes.panelContainer}>

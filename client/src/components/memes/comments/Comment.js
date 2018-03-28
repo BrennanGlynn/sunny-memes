@@ -177,7 +177,7 @@ class ReplyComment extends Component {
               {comment.text}
             </Typography>
             <div className={classes.firstCommentControls}>
-              <Typography variant="caption" className={classes.likeButton + " " + comment.likes.includes(user.id) ? classes.activeLike : ''}
+              <Typography variant="caption" className={comment.likes.includes(user.id) ? [classes.likeButton,classes.activeLike].join(' ') : classes.likeButton}
                           onClick={likeComment.bind(this, comment._id)}>
                 <ThumbUpIcon className={classes.thumbsUp} />
                 Like {comment.likes.length}
@@ -205,9 +205,10 @@ class ReplyComment extends Component {
                   {reply.text}
                 </Typography>
                 <div className={classes.replyCommentControls}>
-                  <Typography style={{ position: 'relative', display: 'inline-block', marginRight: 5 }} variant="caption" className={reply.likes.includes(user.id) ? classes.activeLike : ''}
+                  <Typography variant="caption" className={reply.likes.includes(user.id) ? [classes.likeButton,classes.activeLike].join(' ') : classes.likeButton}
                               onClick={likeComment.bind(this, reply._id)}>
-                    Like ({reply.likes.length})
+                    <ThumbUpIcon className={classes.thumbsUp} />
+                    Like {reply.likes.length}
                   </Typography>
                   <span style={{ position: 'relative', top: 2.5 }}>&bull;</span>
                   <Typography style={{ position: 'relative', display: 'inline-block', marginLeft: 5 }} variant="caption" onClick={this.openReply}>

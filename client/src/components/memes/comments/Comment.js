@@ -3,12 +3,14 @@ import {Avatar, Grid, Paper, Typography, withStyles} from "material-ui";
 import CommentInput from "../../../containers/comments/CommentInputContainer";
 import ErrorDialog from "../../upload/ErrorDialog";
 import {NavLink} from "react-router-dom";
+import ThumbUpIcon from 'material-ui-icons/ThumbUp';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
   likeButton: {
+    cursor: 'pointer',
     borderRadius: 5,
     border: '1px solid #e0e0e0',
     position: 'relative',
@@ -18,6 +20,18 @@ const styles = theme => ({
   },
   activeLike: {
     color: '#43a047',
+  },
+  likeNumber: {
+    border: '1px solid #e0e0e0',
+    paddingLeft: '3px',
+    paddingRight: '3px',
+    borderRadius: '50%',
+  },
+  thumbsUp: {
+    position: 'relative',
+    top: '2px',
+    marginRight: 2.5,
+    fontSize: 14,
   },
   replyWrapper: {
     marginTop: 2.5,
@@ -163,9 +177,10 @@ class ReplyComment extends Component {
               {comment.text}
             </Typography>
             <div className={classes.firstCommentControls}>
-              <Typography variant="caption" style={{ cursor: 'pointer', borderRadius: 5, border: '1px solid #e0e0e0', position: 'relative', display: 'inline-block', marginRight: 5, padding: 5, }} className={classes.likeButton + " " + comment.likes.includes(user.id) ? classes.activeLike : ''}
+              <Typography variant="caption" className={classes.likeButton + " " + comment.likes.includes(user.id) ? classes.activeLike : ''}
                           onClick={likeComment.bind(this, comment._id)}>
-                Like <span style={{ border: '1px solid #e0e0e0', color: '#43a047', paddingLeft: '3px', paddingRight: '3px', borderRadius: '50%', }}>{comment.likes.length}</span>
+                <ThumbUpIcon className={classes.thumbsUp} />
+                Like {comment.likes.length}
               </Typography>
               <span style={{ position: 'relative', top: 2.5 }}>&bull;</span>
               <Typography variant="caption" style={{ position: 'relative', display: 'inline-block', marginLeft: 5 }} onClick={this.openReply}>

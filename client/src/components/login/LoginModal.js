@@ -27,6 +27,14 @@ const styles = theme => ({
   loginModalButton: {
     textDecoration: 'none',
   },
+  facebookButton: {
+    background: '#3B5998',
+    color: '#fff'
+  },
+  googleButton: {
+    background: '#dd4b39',
+    color: '#fff',
+  },
   facebookIcon: {
     marginRight: 8,
     marginLeft: -8
@@ -90,11 +98,11 @@ class LoginModal extends React.Component {
                 <Grid container justify="center" spacing={0}>
                   <Grid item xs={12}>
                     <div className={classes.loginButtonWrapper}>
-                      <Button className={classes.loginButton} color="primary" variant="raised" href={`${host}/auth/facebook`}>
+                      <Button className={classes.loginButton + " " + classes.facebookButton} variant="raised" href={`${host}/auth/facebook`}>
                         <PeopleIcon className={classes.facebookIcon}/>
                         Login With Facebook
                       </Button>
-                      <Button className={classes.loginButton} color="secondary" variant="raised" href="/auth/google">
+                      <Button className={classes.loginButton + " " + classes.googleButton} color="secondary" variant="raised" href="/auth/google">
                         <PeopleIcon className={classes.facebookIcon}/>
                         Login with Google
                       </Button>

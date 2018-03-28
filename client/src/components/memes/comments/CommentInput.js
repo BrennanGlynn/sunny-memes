@@ -6,6 +6,7 @@ const styles = theme => ({
     padding: 0,
   },
   textFieldInput: {
+    marginLeft: 5,
     borderRadius: 4,
     backgroundColor: '#fff',
     border: '1px solid #ced4da',

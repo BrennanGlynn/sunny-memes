@@ -15,7 +15,7 @@ const styles = theme => ({
     margin: 10,
   },
   commentInput: {
-    margin: 10
+    margin: 10,
   },
   [theme.breakpoints.down('xs')]: {
     addComment: {

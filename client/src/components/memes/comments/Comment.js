@@ -33,6 +33,7 @@ const styles = theme => ({
     height: 20,
     fontSize: 12,
     margin: 5,
+    marginTop: 10,
     marginLeft: 60,
   },
   firstCommentName: {
@@ -93,6 +94,9 @@ const styles = theme => ({
   [theme.breakpoints.up('md')]: {
     replyComment: {
       width: '98%',
+    },
+    firstCommentWrapper: {
+      marginLeft: 5
     },
   },
   [theme.breakpoints.between('lg', 'xl')]: {

@@ -59,6 +59,7 @@ const styles = theme => ({
   },
   descriptionContent: {
     padding: 10,
+    wordWrap: 'break-word',
   },
   chipContainer: {
     alignItems: 'center',

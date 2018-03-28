@@ -8,8 +8,16 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
+  likeButton: {
+    borderRadius: 5,
+    border: '1px solid #e0e0e0',
+    position: 'relative',
+    display: 'inline-block',
+    marginRight: 5,
+    padding: 5,
+  },
   activeLike: {
-    fontWeight: 'bold'
+    color: '#43a047',
   },
   replyWrapper: {
     marginTop: 2.5,
@@ -155,9 +163,9 @@ class ReplyComment extends Component {
               {comment.text}
             </Typography>
             <div className={classes.firstCommentControls}>
-              <Typography variant="caption" style={{ position: 'relative', display: 'inline-block', marginRight: 5 }} className={comment.likes.includes(user.id) ? classes.activeLike : ''}
+              <Typography variant="caption" style={{ cursor: 'pointer', borderRadius: 5, border: '1px solid #e0e0e0', position: 'relative', display: 'inline-block', marginRight: 5, padding: 5, }} className={classes.likeButton + " " + comment.likes.includes(user.id) ? classes.activeLike : ''}
                           onClick={likeComment.bind(this, comment._id)}>
-                Like ({comment.likes.length})
+                Like <span style={{ border: '1px solid #e0e0e0', color: '#43a047', paddingLeft: '3px', paddingRight: '3px', borderRadius: '50%', }}>{comment.likes.length}</span>
               </Typography>
               <span style={{ position: 'relative', top: 2.5 }}>&bull;</span>
               <Typography variant="caption" style={{ position: 'relative', display: 'inline-block', marginLeft: 5 }} onClick={this.openReply}>

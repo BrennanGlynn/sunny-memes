@@ -23,23 +23,23 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducer)
 
 const store = createStore(
-  persistedReducer,
+  reducer,
   applyMiddleware(
     thunkMiddleware, // lets us dispatch() functions
     loggerMiddleware // neat middleware that logs actions
   )
 )
 
-const persistor = persistStore(store)
+// const persistor = persistStore(store)
 
 // set auth object in store
 store.dispatch(attemptFacebookAuth());
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    {/*<PersistGate loading={null} persistor={persistor}>*/}
       <App/>
-    </PersistGate>
+    {/*</PersistGate>*/}
   </Provider>,
   document.getElementById('root'));
 

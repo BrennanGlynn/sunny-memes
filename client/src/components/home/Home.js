@@ -83,6 +83,10 @@ class Home extends Component {
     }
   }
 
+  componentWillMount() {
+    this.props.clearAll()
+  }
+
   toggleNavDrawer() {
     this.setState({navDrawerOpen: !this.state.navDrawerOpen})
   }

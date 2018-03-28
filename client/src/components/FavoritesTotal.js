@@ -27,7 +27,7 @@ class FavoritesTotal extends Component {
         <IconButton aria-label="Total Favorites">
           <StarIcon className={classes.favoriteIcon} />
           <Typography type={'body2'} className={classes.favoriteNumber}>
-            568
+            296
           </Typography>
         </IconButton>
       </div>

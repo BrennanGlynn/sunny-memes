@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
-import {Grid, Button, Divider, ListItemIcon, Modal, Typography} from 'material-ui';
+import {Grid, Button, Divider, ListItemIcon, Modal, Typography, Hidden} from 'material-ui';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import IconButton from 'material-ui/IconButton';
@@ -162,6 +162,7 @@ class MemePopup extends Component {
     const { anchorEl } = this.state;
     return (
       <div>
+        <Hidden xsDown>
         {data ?
           <Modal
             aria-labelledby="simple-modal-title"
@@ -277,6 +278,7 @@ class MemePopup extends Component {
             </div>
           </Modal> :
           <div></div>}
+        </Hidden>
       </div>
     );
   }

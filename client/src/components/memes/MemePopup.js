@@ -164,7 +164,7 @@ class MemePopup extends Component {
     const { anchorEl } = this.state;
     return (
       <div>
-        <Hidden lgDown>
+        <Hidden smDown>
         {data ?
           <Modal
             aria-labelledby="simple-modal-title"

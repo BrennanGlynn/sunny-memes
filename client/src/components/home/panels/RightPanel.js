@@ -3,6 +3,7 @@ import {withStyles} from 'material-ui/styles';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import {Button, Divider, Grid, Typography} from 'material-ui/';
 import StarIcon from 'material-ui-icons/Star';
+import KeyboardBackspaceIcon from 'material-ui-icons/KeyboardBackspace';
 import PhotoLibraryIcon from 'material-ui-icons/PhotoLibrary';
 import LoginModal from "../../login/LoginModal";
 import {NavLink} from "react-router-dom";
@@ -28,8 +29,8 @@ const styles = theme => ({
     display: 'inline-block',
   },
   userName: {
-    marginTop: 5,
-    marginLeft: 5,
+    marginTop: 12.5,
+    marginLeft: 10,
   },
   logout: {
     fontSize: 10,
@@ -72,13 +73,20 @@ const RightPanel = ({classes, logout, auth}) =>
                 {auth.user.name}
               </Typography>
             </NavLink>
-            <Typography type="caption" className={classes.logout} onClick={logout.bind(this)}>
+            {/*}<Typography type="caption" className={classes.logout} onClick={logout.bind(this)}>
               Logout
-            </Typography>
+            </Typography>*/}
           </Grid>
         </Grid>
         <Divider/>
         <List component="nav" className={classes.navList}>
+            <ListItem onClick={logout.bind(this)} button className={classes.icon}>
+              <ListItemIcon>
+                <KeyboardBackspaceIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Logout"/>
+            </ListItem>
+          <Divider/>
           <NavLink to="/favorites" className={classes.listLink}>
             <ListItem button className={classes.icon}>
               <ListItemIcon>

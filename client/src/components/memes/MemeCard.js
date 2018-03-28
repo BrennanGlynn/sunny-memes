@@ -58,10 +58,7 @@ const styles = theme => ({
     borderRadius: '50%',
   },
   descriptionContent: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingTop: 10,
-    paddingBottom: 30,
+    padding: 10,
   },
   chipContainer: {
     alignItems: 'center',

@@ -34,7 +34,7 @@ const MemeComments = ({classes, meme, user}) => {
           )
         }
       )}
-      <Grid container spacing={0} justify="flex-start" wrap="nowrap">
+      {user.id && <Grid container spacing={0} justify="flex-start" wrap="nowrap">
         <Grid item xs={1}>
           <Avatar src={user.picture} className={classes.addCommentAvatar}/>
         </Grid>
@@ -45,7 +45,7 @@ const MemeComments = ({classes, meme, user}) => {
             <CommentInput meme={meme._id} className={classes.commentInput}/>
           </div>
         </Grid>
-      </Grid>
+      </Grid>}
     </div>
   )
 }

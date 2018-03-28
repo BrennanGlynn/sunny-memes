@@ -72,7 +72,6 @@ class LoginModal extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const loginMessage = "We use external authentication so we don't have to save your password."
     const host = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001'
     return (
       <div>
@@ -91,9 +90,6 @@ class LoginModal extends React.Component {
               <div className={classes.modal}>
                 <Typography variant="title" id="modal-title" gutterBottom>
                   Login with your account
-                </Typography>
-                <Typography variant="subheading" id="simple-modal-description" gutterBottom>
-                  {`${loginMessage}`}
                 </Typography>
                 <Grid container justify="center" spacing={0}>
                   <Grid item xs={12}>

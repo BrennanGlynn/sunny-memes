@@ -28,6 +28,10 @@ const styles = theme => ({
   card: {
     // borderTop: '5px solid #2C8943'
   },
+  cardOptions: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
   collapse: {
     marginBottom: 10
   },
@@ -60,7 +64,7 @@ const styles = theme => ({
   descriptionContent: {
     padding: 10,
     wordWrap: 'break-word',
-    
+
   },
   chipContainer: {
     alignItems: 'center',

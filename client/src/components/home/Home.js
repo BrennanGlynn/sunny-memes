@@ -20,6 +20,7 @@ import RightDrawerContainer from "../../containers/home/drawers/RightDrawerConta
 import WrapperPanels from "./panels/WrapperPanels";
 import UserPageContainer from "../../containers/pages/UserPageContainer";
 import SingleMemeContainer from "../../containers/pages/SingleMemeContainer";
+import { subscribeToNews } from "../../api";
 
 const styles = theme => ({
   [theme.breakpoints.between("xs", "md")]: {
@@ -81,6 +82,7 @@ class Home extends Component {
       navDrawerOpen: false,
       userDrawerOpen: false,
     }
+    subscribeToNews()
   }
 
   componentWillMount() {

@@ -21,7 +21,8 @@ const styles = theme => ({
     paddingBottom: 10,
   },
   panelContainer: {
-    margin: 10
+    margin: 10,
+    position: 'sticky'
   },
   centerContainer: {
     marginTop: 10

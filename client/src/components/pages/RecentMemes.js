@@ -34,7 +34,7 @@ class RecentMemes extends Component {
         {memesArray.length > 0 ? memesArray.map((meme, i) =>
             <MemeContainer meme={meme} index={i} memeArray={memesArray} key={meme._id}/>
           ) :
-          <Typography>Trouble getting recent memes...</Typography>}
+          <Typography>Please login...</Typography>}
       </div>
     )
   }

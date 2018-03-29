@@ -1,4 +1,6 @@
 const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io')
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -15,7 +17,16 @@ const commentRouter = require('./api/comments/index');
 
 // Set up express app
 const app = express();
+const server = http.createServer(app)
+const io = socketIO(server);
 const port = process.env.PORT || 3001;
+
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('received news', function (data) {
+    console.log(data.data);
+  });
+});
 
 //set up mongodb
 mongoose.Promise = global.Promise;
@@ -81,4 +92,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(port, () => console.log(`Listening on port ${port}`));

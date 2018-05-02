@@ -24,11 +24,7 @@ passport.use(new FacebookStrategy({
         done(null, me)
       });
     } else {
-      const {name, picture} = me
-      User.findOneAndUpdate({facebookId: me.facebookId}, {name, picture}, {upsert: true}, function (err, doc) {
-        if (err) return done(null, me);
-        done(null, user);
-      })
+      done(null, user);
     }
   })
 }));

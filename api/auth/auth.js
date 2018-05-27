@@ -14,7 +14,7 @@ passport.use(new FacebookStrategy({
   const me = new User({
     facebookId: profile.id,
     name: profile.displayName,
-    picture: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
+    picture: profile.photos ? `http://graph.facebook.com/${profile.id}/picture?type=normal` : '/img/faces/unknown-user-pic.jpg'
   })
 
   User.findOne({facebookId: me.facebookId}, function (err, user) {
